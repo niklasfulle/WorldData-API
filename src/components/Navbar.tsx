@@ -25,6 +25,9 @@ const Navbar = async () => {
           <Link href="/documentation" className={buttonVariants({ variant: "ghost" })}>
             Documentation
           </Link>
+          <Link href="/data" className={buttonVariants({ variant: "ghost" })}>
+            Data
+          </Link>
           {session ? (
             <>
               <Link className={buttonVariants({ variant: "ghost" })} href="/dashboard">

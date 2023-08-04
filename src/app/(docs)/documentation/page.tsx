@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Metadata } from "next";
 import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
-import DocumentationTabs from "@/components/DocumentationTabs";
+import DocsTabs from "@/components/DocsTabs";
 import "simplebar-react/dist/simplebar.min.css";
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ const page: FC = ({}) => {
       <div className="flex flex-col items-center gap-6">
         <LargeHeading>Making a Request</LargeHeading>
         <Paragraph>worlddata/api/v1/</Paragraph>
-        <DocumentationTabs />
+        <DocsTabs />
       </div>
     </div>
   );

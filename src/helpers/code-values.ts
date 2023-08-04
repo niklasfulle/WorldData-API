@@ -16,7 +16,8 @@ axios.request(options).then(function (response) {
     console.log(response.data);
 }).catch(function (error) {
     console.error(error);
-});`;
+});
+`;
 
 export const python = `import requests
 
@@ -40,7 +41,8 @@ if response.status_code == 200:
   data = response.json()
 print(data)
 else:
-print(f'Request failed with status code {response.status_code}')`
+print(f'Request failed with status code {response.status_code}')
+`;
 
 export const go = `package main
 
@@ -103,5 +105,5 @@ func main() {
 	// Access the response data
 	fmt.Println("Response data:", apiResponse.Data)
 }
-`
+`;
 

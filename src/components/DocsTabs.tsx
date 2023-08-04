@@ -2,7 +2,7 @@
 import { FC } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/Tabs";
 import Code from "@/components/Code";
-import { go, javascript, python } from "@/helpers/documentation-code";
+import { go, javascript, python } from "@/helpers/code-values";
 import SimpleBar from "simplebar-react";
 
 const DocumentationTabs: FC = ({}) => {
@@ -13,17 +13,17 @@ const DocumentationTabs: FC = ({}) => {
         <TabsTrigger value="python">Python</TabsTrigger>
         <TabsTrigger value="go">Go</TabsTrigger>
       </TabsList>
-      <TabsContent value="nodejs" className="mb-24 md:mb-4">
+      <TabsContent value="nodejs" className="lg:mb-24 mb-4">
         <SimpleBar>
           <Code animated language="javascript" code={javascript} show />
         </SimpleBar>
       </TabsContent>
-      <TabsContent value="python">
+      <TabsContent value="python" className="lg:mb-24 mb-4">
         <SimpleBar>
           <Code animated language="python" code={python} show />
         </SimpleBar>
       </TabsContent>
-      <TabsContent value="go">
+      <TabsContent value="go" className="lg:mb-24 mb-4">
         <SimpleBar>
           <Code animated language="go" code={go} show />
         </SimpleBar>

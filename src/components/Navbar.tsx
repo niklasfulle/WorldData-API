@@ -23,7 +23,7 @@ const Navbar = async () => {
         <div className="hidden md:flex gap-4">
           <ThemeToggle />
           <Link href="/documentation" className={buttonVariants({ variant: "ghost" })}>
-            Documentation
+            Docs
           </Link>
           <Link href="/data" className={buttonVariants({ variant: "ghost" })}>
             Data

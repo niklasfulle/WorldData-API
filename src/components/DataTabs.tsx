@@ -10,15 +10,15 @@ const DocumentationTabs: FC = ({}) => {
     <Tabs defaultValue="v1" className="max-w-2xl w-full">
       <TabsList>
         <TabsTrigger value="v1">v1</TabsTrigger>
-        <TabsTrigger value="v2">v2</TabsTrigger>
-        <TabsTrigger value="v3">v3</TabsTrigger>
+        {/*<TabsTrigger value="v2">v2</TabsTrigger>
+        <TabsTrigger value="v3">v3</TabsTrigger>*/}
       </TabsList>
       <TabsContent value="v1" className="lg:mb-24 mb-4">
         <SimpleBar>
           <Code animated language="markup" code={v1} show />
         </SimpleBar>
       </TabsContent>
-      <TabsContent value="v2" className="lg:mb-24 mb-4">
+      {/*<TabsContent value="v2" className="lg:mb-24 mb-4">
         <SimpleBar>
           <Code animated language="markup" code={v2} show />
         </SimpleBar>
@@ -27,7 +27,7 @@ const DocumentationTabs: FC = ({}) => {
         <SimpleBar>
           <Code animated language="markup" code={v3} show />
         </SimpleBar>
-      </TabsContent>
+      </TabsContent>*/}
     </Tabs>
   );
 };

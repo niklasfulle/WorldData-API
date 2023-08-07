@@ -19,13 +19,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Unauthorized', success: false }, { status: 401 })
   }
 
-  try {
-    console.log(req.body)
-    const { text1, text2 } = reqSchema.parse(req.body)
-    console.log("text1: " + text1)
+  const body = await req.json()
 
-    //const text1 = "test"
-    //const text2 = "test"
+  try {
+    const { text1, text2 } = reqSchema.parse(body)
+
     const validApiKey = await db.apiKey.findFirst({
       where: {
         key: apiKey,
@@ -39,7 +37,7 @@ export async function POST(req: Request) {
 
     const start = new Date()
 
-    /*const embeddings = await Promise.all(
+    const embeddings = await Promise.all(
       [text1, text2].map(async (text) => {
         const res = await openai.createEmbedding({
           model: 'text-embedding-ada-002',
@@ -51,14 +49,14 @@ export async function POST(req: Request) {
     )
 
     const similarity = cosineSimilarity(embeddings[0], embeddings[1])
-    const similarity = 0.5
+    //const similarity = 0.5
 
     const duration = new Date().getTime() - start.getTime()
 
     const url = new URL(req.url as string).pathname
 
     // Persist request
-    /*await db.apiRequest.create({
+    await db.apiRequest.create({
       data: {
         duration,
         method: req.method as string,
@@ -67,9 +65,9 @@ export async function POST(req: Request) {
         apiKeyId: validApiKey.id,
         usedApiKey: validApiKey.key,
       },
-    })*/
+    })
 
-    return NextResponse.json({ success: true, }, { status: 200 })
+    return NextResponse.json({ success: true, text1, text2, similarity }, { status: 200 })
 
   } catch (error) {
     //console.log(error)

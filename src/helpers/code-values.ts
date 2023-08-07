@@ -1,12 +1,8 @@
 export const javascript = `const axios = require("axios");
 
 const options = {
-    method: 'POST',
-    url: 'https://similarityapi.com/api/v1/similarity',
-    data: {
-      text1: 'First text',
-      text2: 'Second text'
-    },
+    method: 'GET',
+    url: 'https://worlddataapi.com/api/v1/countries'
     headers: {
       'Authorization': 'YOUR_API_KEY',
     }
@@ -20,70 +16,41 @@ axios.request(options).then(function (response) {
 
 export const python = `import requests
 
-url = 'https://similarityapi.com/api/v1/similarity'
-api_key = 'YOUR_API_KEY'
-text1 = 'First text'
-text2 = 'Second text'
-
+url = 'https://worlddataapi.com/api/v1/countries'
 headers = {
-  'Authorization': api_key
+    'Authorization': 'YOUR_API_KEY',
 }
 
-payload = {
-  'text1': text1,
-  'text2': text2
-}
-
-response = requests.post(url, headers = headers, json = payload)
+response = requests.get(url, headers=headers)
 
 if response.status_code == 200:
-  data = response.json()
-print(data)
+    data = response.json()
+    print(data)
 else:
-print(f'Request failed with status code {response.status_code}')`;
+    print(f"Request failed with status code: {response.status_code}")
+    print(response.text)
+`;
 
 export const go = `package main
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 )
 
-type APIResponse struct {
-	// Define your response structure based on the API response
-	Data interface{} \`json: "data"\`
-}
-
 func main() {
-	apiURL := "https://similarityapi.com/api/v1/similarity"
-	apiKey := "YOUR_API_KEY" // Replace with your actual API key
+	url := "https://worlddataapi.com/api/v1/countries"
+	apiKey := "YOUR_API_KEY"
 
-	// Prepare the request payload
-	payload := map[string]string{
-		"text1": "First text",
-		"text2": "Second text",
-	}
-
-	payloadJSON, err := json.Marshal(payload)
-	if err != nil {
-		fmt.Println("Error marshaling JSON:", err)
-		return
-	}
-
-	// Create the HTTP request
-	req, err := http.NewRequest("POST", apiURL, bytes.NewBuffer(payloadJSON))
+	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		fmt.Println("Error creating request:", err)
 		return
 	}
 
-	// Set the request headers
-	req.Header.Set("Authorization", apiKey)
-	req.Header.Set("Content-Type", "application/json")
+	req.Header.Add("Authorization", apiKey)
 
-	// Send the HTTP request and get the response
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
@@ -92,15 +59,18 @@ func main() {
 	}
 	defer resp.Body.Close()
 
-	// Parse the JSON response
-	var apiResponse APIResponse
-	err = json.NewDecoder(resp.Body).Decode(&apiResponse)
+	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Println("Error parsing JSON response:", err)
+		fmt.Println("Error reading response body:", err)
 		return
 	}
 
-	// Access the response data
-	fmt.Println("Response data:", apiResponse.Data)
-}`;
+	if resp.StatusCode == http.StatusOK {
+		fmt.Println(string(body))
+	} else {
+		fmt.Printf("Request failed with status code: %d\n", resp.StatusCode)
+		fmt.Println(string(body))
+	}
+}
+`;
 

@@ -6,45 +6,69 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
+
 import { DE, ES, FR, IT, US } from "country-flag-icons/react/3x2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { dictionary } from "@/helpers/dictionary";
+import Icons from "./Icons";
 
 export function LanguageToggle() {
   const [language, setLanguage] = useState<string>("en");
+
+  const handelClick = (language: string) => {
+    setLanguage(language);
+  };
+
+  useEffect(() => {}, [language]);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="sm">
-          {/*<Icons.Languages className="scale-90 transition-all hover:text-slate-900  dark:text-slate-400 dark:hover:text-slate-100" />*/}
-          {language === "en" && <US title="United States" className="w-5" />}
-          {language === "de" && <DE title="Germany" className="w-5" />}
-          {language === "fr" && <FR title="France" className="w-5" />}
-          {language === "it" && <IT title="Italy" className="w-5" />}
-          {language === "es" && <ES title="Spain" className="w-5" />}
+          <Icons.Languages className="scale-90 transition-all hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100" />
           <span className="sr-only">Toggle language</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" forceMount>
-        <DropdownMenuItem onClick={() => setLanguage("en")}>
+        <DropdownMenuItem onClick={() => handelClick("en")}>
           <US title="United States" className="w-5 mr-2" />
-          English
+          {language === "en" && dictionary.en.navbarOptions[2]}
+          {language === "de" && dictionary.de.navbarOptions[2]}
+          {language === "fr" && dictionary.fr.navbarOptions[2]}
+          {language === "it" && dictionary.it.navbarOptions[2]}
+          {language === "es" && dictionary.es.navbarOptions[2]}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setLanguage("de")}>
+        <DropdownMenuItem onClick={() => handelClick("de")}>
           <DE title="Germany" className="w-5 mr-2" />
-          German
+          {language === "en" && dictionary.en.navbarOptions[3]}
+          {language === "de" && dictionary.de.navbarOptions[3]}
+          {language === "fr" && dictionary.fr.navbarOptions[3]}
+          {language === "it" && dictionary.it.navbarOptions[3]}
+          {language === "es" && dictionary.es.navbarOptions[3]}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setLanguage("fr")}>
+        <DropdownMenuItem onClick={() => handelClick("fr")}>
           <FR title="France" className="w-5 mr-2" />
-          French
+          {language === "en" && dictionary.en.navbarOptions[4]}
+          {language === "de" && dictionary.de.navbarOptions[4]}
+          {language === "fr" && dictionary.fr.navbarOptions[4]}
+          {language === "it" && dictionary.it.navbarOptions[4]}
+          {language === "es" && dictionary.es.navbarOptions[4]}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setLanguage("it")}>
+        <DropdownMenuItem onClick={() => handelClick("it")}>
           <IT title="Italy" className="w-5 mr-2" />
-          Italian
+          {language === "en" && dictionary.en.navbarOptions[5]}
+          {language === "de" && dictionary.de.navbarOptions[5]}
+          {language === "fr" && dictionary.fr.navbarOptions[5]}
+          {language === "it" && dictionary.it.navbarOptions[5]}
+          {language === "es" && dictionary.es.navbarOptions[5]}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setLanguage("es")}>
+        <DropdownMenuItem onClick={() => handelClick("es")}>
           <ES title="Spain" className="w-5 mr-2" />
-          Spanish
+          {language === "en" && dictionary.en.navbarOptions[6]}
+          {language === "de" && dictionary.de.navbarOptions[6]}
+          {language === "fr" && dictionary.fr.navbarOptions[6]}
+          {language === "it" && dictionary.it.navbarOptions[6]}
+          {language === "es" && dictionary.es.navbarOptions[6]}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

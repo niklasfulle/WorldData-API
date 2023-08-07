@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import Providers from "@/components/Providers";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/Toast";
-import MobileMenu from "@/components/MobileMenu";
 
 const inter = Inter({ subsets: ["latin"] });
 

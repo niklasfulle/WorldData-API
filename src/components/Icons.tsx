@@ -4,7 +4,6 @@ import {
   Moon,
   Sun,
   Laptop,
-  Globe,
   Info,
   LayoutDashboard,
   Loader2,
@@ -12,7 +11,7 @@ import {
   Menu,
   Book,
   Database,
-  Globe2,
+  Languages,
 } from "lucide-react";
 
 export const Icons = {
@@ -21,7 +20,6 @@ export const Icons = {
   Sun,
   Moon,
   Laptop,
-  Globe,
   Info,
   LayoutDashboard,
   Loader2,
@@ -29,7 +27,7 @@ export const Icons = {
   Menu,
   Book,
   Database,
-  Globe2,
+  Languages,
 };
 
 export default Icons;

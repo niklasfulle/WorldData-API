@@ -6,6 +6,7 @@ import { buttonVariants } from "@/ui/Button";
 import SignInButton from "@/components/SignInButton";
 import SignOutButton from "@/components/SignOutButton";
 import MobileMenu from "./MobileMenu";
+import { LanguageToggle } from "./LanguageToggle";
 
 const Navbar = async () => {
   const session = await getServerSession(authOptions);
@@ -19,11 +20,13 @@ const Navbar = async () => {
 
         <div className="md:hidden gap-4 flex flex-row">
           <ThemeToggle />
+          <LanguageToggle />
           <MobileMenu />
         </div>
 
         <div className="hidden md:flex gap-4">
           <ThemeToggle />
+          <LanguageToggle />
           <Link href="/documentation" className={buttonVariants({ variant: "ghost" })}>
             Docs
           </Link>

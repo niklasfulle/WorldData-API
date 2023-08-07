@@ -65,13 +65,13 @@ const Table: FC<TableProps> = ({ userRequests }) => {
           backgroundColor: applicationTheme === "light" ? "white" : "#152238",
           fontSize: "1rem",
         }}
-        pageSizeOptions={[5]}
+        pageSizeOptions={[10, 25, 50]}
         disableRowSelectionOnClick
         autoHeight
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 5,
+              pageSize: 25,
             },
           },
         }}

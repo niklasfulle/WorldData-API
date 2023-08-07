@@ -36,7 +36,7 @@ const MobileMenu = () => {
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild onClick={() => setOpen((prev) => !prev)}>
         <Button variant="ghost" size="sm">
-          <Icons.Menu className="rotate-0 scale-100 transition-all hover:text-slate-900" />
+          <Icons.Menu className="rotate-0 scale-100 transition-all dark:hover:text-slate-100" />
           <span className="sr-only">Mobile Menu</span>
         </Button>
       </DropdownMenuTrigger>

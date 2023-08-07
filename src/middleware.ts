@@ -11,7 +11,7 @@ const redis = new Redis({
 
 const ratelimit = new Ratelimit({
   redis: redis as any,
-  limiter: Ratelimit.slidingWindow(10000, '1 h'),
+  limiter: Ratelimit.slidingWindow(50, '1 h'),
 })
 
 export default withAuth(

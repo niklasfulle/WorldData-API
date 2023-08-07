@@ -1,4 +1,6 @@
+
 interface DictionaryEntry {
+  navbarOptions: string[]
   homepageHeading: string
   homepageParagraph: string
   homepageLink: string
@@ -16,11 +18,14 @@ interface DictionaryEntry {
   apiDashboardHeading: string
   apiDashboardParagraph: string
   apiDashboardParagraph2: string
+  apiDashboardParagraphOptions: string[]
+  apiDashboardTable: string[]
 
 }
 
 export const dictionary: Record<string, DictionaryEntry> = {
   en: {
+    navbarOptions: ["Sign In", "Sing Out", "English", "German", "French", "Spanish"],
     homepageHeading: "Data of the world.",
     homepageParagraph: "Get the latest data of the world in JSON format. Data about countries, states, cities, and more. All the data is free and open source.You can get the API key from ",
     homepageLink: "API Key",
@@ -38,8 +43,11 @@ export const dictionary: Record<string, DictionaryEntry> = {
     apiDashboardHeading: "Welcome back, ",
     apiDashboardParagraph: "Your API key is available at",
     apiDashboardParagraph2: "Your API history:",
+    apiDashboardParagraphOptions: ["Options", "Copy", "Create new key", "Revoke key"],
+    apiDashboardTable: ["API key used", "Path", "Recency", "Duration", "Status", "ago"]
   },
   de: {
+    navbarOptions: ["Anmelden", "Abmelden", "Englisch", "Deutsch", "Französisch", "Spanisch"],
     homepageHeading: "Daten der Welt.",
     homepageParagraph: "Erhalten Sie die neuesten Daten der Welt im JSON-Format. Daten über Länder, Bundesstaaten, Städte und mehr. Alle Daten sind kostenlos und Open Source. Den API-Schlüssel erhalten Sie von ",
     homepageLink: "API-Schlüssel",
@@ -57,5 +65,7 @@ export const dictionary: Record<string, DictionaryEntry> = {
     apiDashboardHeading: "Willkommen zurück, ",
     apiDashboardParagraph: "Ihren API-Schlüssel finden Sie unter",
     apiDashboardParagraph2: "Ihr API-Verlauf:",
+    apiDashboardParagraphOptions: ["Optionen", "Kopieren", "Neuen Schlüssel erstellen", "Schlüssel widerrufen"],
+    apiDashboardTable: ["Verwendeter API - Schlüssel", "Pfad", "Aktualität", "Dauer", "Status", "vor"]
   }
 }

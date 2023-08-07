@@ -1,26 +1,20 @@
-import { withMethods } from '@/lib/api-middlewares/with-methods'
 import { authOptions } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { CreateApiData } from '@/types/api/key'
 import { nanoid } from 'nanoid'
-import { NextApiRequest, NextApiResponse } from 'next'
 import { getServerSession } from 'next-auth'
+import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
-const handler = async (
-  req: NextApiRequest,
-  res: NextApiResponse<CreateApiData>
-) => {
+export async function GET(): Promise<NextResponse<CreateApiData>> {
   try {
-    const user = await getServerSession(req, res, authOptions).then(
-      (res) => res?.user
-    )
+    const user = await getServerSession(authOptions).then((res) => res?.user)
 
     if (!user) {
-      return res.status(401).json({
+      return NextResponse.json({
         error: 'Unauthorized to perform this action.',
         createdApiKey: null,
-      })
+      }, { status: 401 })
     }
 
     const existingApiKey = await db.apiKey.findFirst({
@@ -28,10 +22,10 @@ const handler = async (
     })
 
     if (existingApiKey) {
-      return res.status(400).json({
+      return NextResponse.json({
         error: 'You already have a valid API key.',
         createdApiKey: null,
-      })
+      }, { status: 400 })
     }
 
     const createdApiKey = await db.apiKey.create({
@@ -41,16 +35,12 @@ const handler = async (
       },
     })
 
-    return res.status(200).json({ error: null, createdApiKey })
+    return NextResponse.json({ error: null, createdApiKey }, { status: 200 })
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return res.status(400).json({ error: error.issues, createdApiKey: null })
+      return NextResponse.json({ error: error.issues, createdApiKey: null }, { status: 400 })
     }
 
-    return res
-      .status(500)
-      .json({ error: 'Internal Server Error', createdApiKey: null })
+    return NextResponse.json({ error: 'Internal Server Error', createdApiKey: null }, { status: 500 })
   }
 }
-
-export default withMethods(['GET'], handler)

@@ -5,6 +5,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { buttonVariants } from "@/ui/Button";
 import SignInButton from "@/components/SignInButton";
 import SignOutButton from "@/components/SignOutButton";
+import MobileMenu from "./MobileMenu";
 
 const Navbar = async () => {
   const session = await getServerSession(authOptions);
@@ -16,17 +17,18 @@ const Navbar = async () => {
           World Data API
         </Link>
 
-        <div className="md:hidden">
+        <div className="md:hidden gap-4 flex flex-row">
           <ThemeToggle />
+          <MobileMenu />
         </div>
 
         <div className="hidden md:flex gap-4">
           <ThemeToggle />
           <Link href="/documentation" className={buttonVariants({ variant: "ghost" })}>
-            Documentation
+            Docs
           </Link>
           <Link href="/world-data" className={buttonVariants({ variant: "ghost" })}>
-            World Data
+            Data
           </Link>
           {session ? (
             <>

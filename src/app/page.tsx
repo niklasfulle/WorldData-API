@@ -28,7 +28,7 @@ export default function Home() {
             </Link>
             .
           </Paragraph>
-          <div className=" relative w-full max-w-lg lg:max-w-3xl lg:left-1/2 aspect-square lg:absolute">
+          <div className="relative w-full max-w-xl lg:max-w-3xl lg:left-1/2 aspect-square lg:absolute">
             <Image
               priority
               className="img-shadow"
@@ -37,7 +37,7 @@ export default function Home() {
               fill
               alt="Earth"
               src="/earth.png"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes="(max-width: 900px) 100vw, (max-width: 1200px) 50vw, 33vw"
             ></Image>
           </div>
         </div>

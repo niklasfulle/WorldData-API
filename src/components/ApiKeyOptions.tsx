@@ -66,6 +66,7 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem
+          className="hover:cursor-pointer"
           onClick={() => {
             navigator.clipboard.writeText(apiKeyKey);
 
@@ -79,9 +80,13 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
           Copy
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={createNewApiKey}>Create new key</DropdownMenuItem>
+        <DropdownMenuItem className="hover:cursor-pointer" onClick={createNewApiKey}>
+          Create new key
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={revokeCurrentApiKey}>Revoke key</DropdownMenuItem>
+        <DropdownMenuItem className="hover:cursor-pointer" onClick={revokeCurrentApiKey}>
+          Revoke key
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

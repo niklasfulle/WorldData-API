@@ -8,8 +8,8 @@ import { FC } from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Similarity API | Page not found",
-  description: "Free & open-source text similarity API",
+  title: "Wordldata API - Page not found",
+  description: "Free & Open Source API for Wordldata",
 };
 
 const PageNotFound: FC = () => {

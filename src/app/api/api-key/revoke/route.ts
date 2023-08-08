@@ -1,14 +1,12 @@
-import { withMethods } from '@/lib/api-middlewares/with-methods'
 import { authOptions } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { RevokeApiData } from '@/types/api/key'
-import { NextApiRequest, NextApiResponse } from 'next'
 import { getServerSession } from 'next-auth'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
 
-export async function GET(): Promise<NextResponse<RevokeApiData>> {
+export async function POST(): Promise<NextResponse<RevokeApiData>> {
   try {
     const user = await getServerSession(authOptions).then((res) => res?.user)
 
@@ -47,5 +45,4 @@ export async function GET(): Promise<NextResponse<RevokeApiData>> {
 
     return NextResponse.json({ error: 'Internal Server Error', success: false }, { status: 500 })
   }
-
 }

@@ -1,8 +1,8 @@
-import { Metadata } from "next";
 import LargeHeading from "@/components/ui/LargeHeading";
 import Paragraph from "@/components/ui/Paragraph";
 import Link from "next/link";
 import Image from "next/image";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Wordldata API - Home",

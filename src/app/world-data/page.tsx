@@ -5,11 +5,6 @@ import "simplebar-react/dist/simplebar.min.css";
 import DataTabs from "@/components/DataTabs";
 import { FC } from "react";
 
-export const metadata: Metadata = {
-  title: "Wordldata API - Data",
-  description: "Free & Open Source API for Wordldata",
-};
-
 const page: FC = ({}) => {
   return (
     <div className="container max-w-7xl mx-auto mt-12">

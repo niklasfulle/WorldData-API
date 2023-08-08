@@ -7,11 +7,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
 
-import { DE, ES, FR, IT, US } from "country-flag-icons/react/3x2";
+import { Flags } from "@/components/Flags";
 import { useEffect, useState } from "react";
 import { dictionary } from "@/helpers/dictionary";
 import Icons from "./Icons";
-import { DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
 
 export function LanguageToggle() {
   const [language, setLanguage] = useState<string>("en");
@@ -32,7 +31,7 @@ export function LanguageToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" forceMount>
         <DropdownMenuItem onClick={() => handelClick("en")} className="hover:cursor-pointer">
-          <US title="United States" className="w-5 mr-2" />
+          <Flags.US title="United States" className="w-5 mr-2" />
           {language === "en" && dictionary.en.navbarOptions[2]}
           {language === "de" && dictionary.de.navbarOptions[2]}
           {language === "fr" && dictionary.fr.navbarOptions[2]}
@@ -40,7 +39,7 @@ export function LanguageToggle() {
           {language === "es" && dictionary.es.navbarOptions[2]}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handelClick("de")} className="hover:cursor-pointer">
-          <DE title="Germany" className="w-5 mr-2" />
+          <Flags.DE title="Germany" className="w-5 mr-2" />
           {language === "en" && dictionary.en.navbarOptions[3]}
           {language === "de" && dictionary.de.navbarOptions[3]}
           {language === "fr" && dictionary.fr.navbarOptions[3]}
@@ -48,7 +47,7 @@ export function LanguageToggle() {
           {language === "es" && dictionary.es.navbarOptions[3]}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handelClick("fr")} className="hover:cursor-pointer">
-          <FR title="France" className="w-5 mr-2" />
+          <Flags.FR title="France" className="w-5 mr-2" />
           {language === "en" && dictionary.en.navbarOptions[4]}
           {language === "de" && dictionary.de.navbarOptions[4]}
           {language === "fr" && dictionary.fr.navbarOptions[4]}
@@ -56,7 +55,7 @@ export function LanguageToggle() {
           {language === "es" && dictionary.es.navbarOptions[4]}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handelClick("it")} className="hover:cursor-pointer">
-          <IT title="Italy" className="w-5 mr-2" />
+          <Flags.IT title="Italy" className="w-5 mr-2" />
           {language === "en" && dictionary.en.navbarOptions[5]}
           {language === "de" && dictionary.de.navbarOptions[5]}
           {language === "fr" && dictionary.fr.navbarOptions[5]}
@@ -64,7 +63,7 @@ export function LanguageToggle() {
           {language === "es" && dictionary.es.navbarOptions[5]}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handelClick("es")} className="hover:cursor-pointer">
-          <ES title="Spain" className="w-5 mr-2" />
+          <Flags.ES title="Spain" className="w-5 mr-2" />
           {language === "en" && dictionary.en.navbarOptions[6]}
           {language === "de" && dictionary.de.navbarOptions[6]}
           {language === "fr" && dictionary.fr.navbarOptions[6]}

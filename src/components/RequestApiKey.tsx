@@ -1,5 +1,5 @@
 "use client";
-import { createApiKey } from "@/helpers/create-api-key";
+import { createApiKey } from "@/helpers/api-key";
 import { Key } from "lucide-react";
 import { FC, useState } from "react";
 import { Button } from "@/ui/Button";

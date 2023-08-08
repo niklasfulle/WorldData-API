@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import { toast } from "@/ui/Toast";
+import { clearHistory } from "@/helpers/api-key";
 
 interface ApiHistoryOptionsProps {
   apiKeyKey: string;
@@ -23,8 +24,13 @@ const ApiHistoryOptions: FC<ApiHistoryOptionsProps> = ({ apiKeyKey }) => {
   const clearingHistory = async () => {
     setIsClearingHistory(true);
     try {
-      //await clearHistory();
+      await clearHistory();
       router.refresh();
+      toast({
+        title: "History cleared",
+        message: "History cleared successfully",
+        type: "success",
+      });
     } catch (error) {
       toast({
         title: "Error clearing your history",
@@ -45,10 +51,9 @@ const ApiHistoryOptions: FC<ApiHistoryOptionsProps> = ({ apiKeyKey }) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem className="hover:cursor-pointer" onClick={clearingHistory}>
+        <DropdownMenuItem className="hover:cursor-pointer text-red-600" onClick={clearingHistory}>
           Clearing history
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
       </DropdownMenuContent>
     </DropdownMenu>
   );

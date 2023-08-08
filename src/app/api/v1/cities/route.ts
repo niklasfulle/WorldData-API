@@ -30,6 +30,23 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: 'Too many requests', success: false }, { status: 429 })
     }
 
+    const duration = new Date().getTime() - start.getTime()
+
+    const url = new URL(req.url as string).pathname
+
+    // Persist request
+    await db.apiRequest.create({
+      data: {
+        duration,
+        method: req.method as string,
+        path: url,
+        status: 200,
+        apiKeyId: validApiKey.id,
+        usedApiKey: validApiKey.key,
+        response: "Success"
+      },
+    })
+
     return NextResponse.json({ "endpoint": "cities" }, { status: 200 })
   } catch (error) {
     if (error instanceof z.ZodError) {

@@ -40,11 +40,11 @@ const ApiDashboard = async ({}) => {
       <LargeHeading>Welcome back, {user.user.name}</LargeHeading>
       <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start items-center">
         <Paragraph>Your API key:</Paragraph>
-        <Input className="w-fit truncate" readOnly value={activeApiKey.key} />
+        <Input className="w-fit" readOnly value={activeApiKey.key} />
         <ApiKeyOptions apiKeyKey={activeApiKey.key} />
       </div>
 
-      <div className="flex flex-row justify-between -mb-4">
+      <div className="flex flex-row justify-between -mb-4 px-2 items-center">
         <Paragraph className="text-center md:text-left -mb-2">Your API history:</Paragraph>
         <ApiHistoryOptions apiKeyKey={activeApiKey.key} />
       </div>

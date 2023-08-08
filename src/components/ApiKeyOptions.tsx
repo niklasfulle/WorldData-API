@@ -6,8 +6,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
-import { createApiKey } from "@/helpers/create-api-key";
-import { revokeApiKey } from "@/helpers/revoke-api-key";
+import { createApiKey, revokeApiKey } from "@/helpers/api-key";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
@@ -29,6 +28,11 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
       await revokeApiKey();
       await createApiKey();
       router.refresh();
+      toast({
+        title: "New API key created",
+        message: "New API key created successfully.",
+        type: "success",
+      });
     } catch (error) {
       toast({
         title: "Error creating new API key",

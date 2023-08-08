@@ -73,6 +73,7 @@ model ApiRequest {
   path      String
   status    Int
   duration  Int
+  response  String
 
   usedApiKey String
 

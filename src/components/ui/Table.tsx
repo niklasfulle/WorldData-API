@@ -17,7 +17,7 @@ const columnsDraft: GridColDef[] = [
   {
     field: "col1",
     headerName: "API key used",
-    width: 400,
+    width: 200,
     renderHeader(params) {
       return <strong className="font-semibold">{params.colDef.headerName} </strong>;
     },
@@ -26,6 +26,7 @@ const columnsDraft: GridColDef[] = [
   { field: "col3", headerName: "Recency", width: 250 },
   { field: "col4", headerName: "Duration", width: 150 },
   { field: "col5", headerName: "Status", width: 150 },
+  { field: "col6", headerName: "Response", width: 150 },
 ];
 
 const columns = columnsDraft.map((col) => {
@@ -57,6 +58,7 @@ const Table: FC<TableProps> = ({ userRequests }) => {
     col3: `${request.timestamp} ago`,
     col4: `${request.duration} ms`,
     col5: request.status,
+    col6: request.response,
   }));
   return (
     <ThemeProvider theme={darkTheme}>

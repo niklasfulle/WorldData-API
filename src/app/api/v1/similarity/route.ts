@@ -64,6 +64,7 @@ export async function POST(req: Request): Promise<NextResponse<SimilarityData>> 
         status: 200,
         apiKeyId: validApiKey.id,
         usedApiKey: validApiKey.key,
+        response: "Success"
       },
     })
 

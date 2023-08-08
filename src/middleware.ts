@@ -1,35 +1,13 @@
 import { getToken } from 'next-auth/jwt'
 import { withAuth } from 'next-auth/middleware'
-import { NextRequest, NextResponse } from 'next/server'
-import { Ratelimit } from '@upstash/ratelimit'
-import { Redis } from '@upstash/redis'
+import { NextResponse } from 'next/server'
 
-const redis = new Redis({
-  url: process.env.REDIS_URL,
-  token: process.env.REDIS_SECRET,
-})
 
-const ratelimit = new Ratelimit({
-  redis: redis as any,
-  limiter: Ratelimit.slidingWindow(50, '1 h'),
-})
+
 
 export default withAuth(
   async function middleware(req) {
     const pathname = req.nextUrl.pathname // relative path
-
-    // Manage rate limiting
-    if (pathname.startsWith('/api')) {
-      const ip = req.ip ?? '127.0.0.1'
-      try {
-        const { success } = await ratelimit.limit(ip)
-
-        if (!success) return NextResponse.json({ error: 'Too Many Requests' })
-        return NextResponse.next()
-      } catch (error) {
-        return NextResponse.json({ error: 'Internal Server Error' })
-      }
-    }
 
     // Manage route protection
     const token = await getToken({ req })
@@ -64,26 +42,6 @@ export default withAuth(
     },
   }
 )
-
-const PUBLIC_FILE = /\.(.*)$/
-
-export async function middleware(req: NextRequest) {
-  if (
-    req.nextUrl.pathname.startsWith('/_next') ||
-    req.nextUrl.pathname.includes('/api/') ||
-    PUBLIC_FILE.test(req.nextUrl.pathname)
-  ) {
-    return
-  }
-
-  if (req.nextUrl.locale === 'default') {
-    const locale = req.cookies.get('NEXT_LOCALE')?.value || 'en'
-
-    return NextResponse.redirect(
-      new URL(`/${locale}${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
-    )
-  }
-}
 
 export const config = {
   matcher: ['/', '/login', '/dashboard/:path*', '/api/:path*'],

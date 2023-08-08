@@ -24,7 +24,7 @@ export function LanguageToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm">
+        <Button variant="ghost" size="sm" id="languageToggle">
           <Icons.Languages className="scale-90 transition-all hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100" />
           <span className="sr-only">Toggle language</span>
         </Button>

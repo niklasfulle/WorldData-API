@@ -9,11 +9,18 @@ const DocumentationTabs: FC = ({}) => {
   return (
     <Tabs defaultValue="v1" className="max-w-2xl w-full">
       <TabsList>
-        <TabsTrigger value="v1">v1</TabsTrigger>
+        <TabsTrigger value="v1" id="v1Trigger" aria-controls="v1" aria-labelledby="v1 Trigger">
+          v1
+        </TabsTrigger>
         {/*<TabsTrigger value="v2">v2</TabsTrigger>
         <TabsTrigger value="v3">v3</TabsTrigger>*/}
       </TabsList>
-      <TabsContent value="v1" className="lg:mb-24 mb-4">
+      <TabsContent
+        value="v1"
+        id="v1TabContent"
+        className="lg:mb-24 mb-4"
+        aria-labelledby="v1 Content"
+      >
         <SimpleBar>
           <Code animated language="markup" code={v1} show />
         </SimpleBar>

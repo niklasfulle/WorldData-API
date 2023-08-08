@@ -41,7 +41,7 @@ const Code: FC<CodeProps> = ({
         return () => clearInterval(intervalId);
       }, animationDelay || 150);
     }
-  }, [code, show, animated, animationDelay]);
+  }, [code, show, animated, animationDelay, interactiveSpeed]);
 
   // number of lines
   const lines = text.split(/\r\n|\r|\n/).length;

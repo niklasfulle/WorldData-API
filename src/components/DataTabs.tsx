@@ -12,8 +12,8 @@ const DocumentationTabs: FC = ({}) => {
         <TabsTrigger value="v1" id="v1Trigger" aria-controls="v1" aria-labelledby="v1 Trigger">
           v1
         </TabsTrigger>
-        {/*<TabsTrigger value="v2">v2</TabsTrigger>
-        <TabsTrigger value="v3">v3</TabsTrigger>*/}
+        {/*<TabsTrigger value="v2">v2</TabsTrigger>*/}
+        {/*<TabsTrigger value="v3">v3</TabsTrigger>*/}
       </TabsList>
       <TabsContent
         value="v1"
@@ -29,8 +29,8 @@ const DocumentationTabs: FC = ({}) => {
         <SimpleBar>
           <Code animated language="markup" code={v2} show />
         </SimpleBar>
-      </TabsContent>
-      <TabsContent value="v3" className="lg:mb-24 mb-4">
+      </TabsContent>*/}
+      {/* <TabsContent value="v3" className="lg:mb-24 mb-4">
         <SimpleBar>
           <Code animated language="markup" code={v3} show />
         </SimpleBar>

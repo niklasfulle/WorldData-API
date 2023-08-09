@@ -1,10 +1,14 @@
-"use client";
-
 import { useTheme } from "next-themes";
-import Highlight, { defaultProps, type Language } from "prism-react-renderer";
+import Highlight, { defaultProps, type Language, Prism } from "prism-react-renderer";
 import darkTheme from "prism-react-renderer/themes/nightOwl";
 import lightTheme from "prism-react-renderer/themes/nightOwlLight";
 import { FC, useEffect, useState } from "react";
+
+// @ts-ignore
+(typeof global !== "undefined" ? global : window).Prism = Prism;
+require("prismjs/components/prism-rust");
+require("prismjs/components/prism-kotlin");
+require("prismjs/components/prism-csharp");
 
 interface CodeProps {
   code: string;
@@ -53,7 +57,7 @@ const Code: FC<CodeProps> = ({
       {({ className, tokens, getLineProps, getTokenProps }) => (
         <pre
           className={
-            className + "transition-all w-fit bg-transparent duration-100 py-0 no-scrollbar"
+            className + "transition-all w-fit bg-transparent duration-100 py-0 overflow-hidden"
           }
           style={{
             maxHeight: show ? lines * 24 : 0,

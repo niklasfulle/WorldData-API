@@ -74,3 +74,81 @@ func main() {
 }
 `;
 
+export const rust = `use reqwest;
+
+fn main() -> Result<(), reqwest::Error> {
+    let client = reqwest::blocking::Client::new();
+    
+    let response = client.get("https://worlddataapi.com/api/v1/countries")
+        .header("Authorization", "YOUR_API_KEY")
+        .send()?;
+    
+    let body = response.text()?;
+    println!("{}", body);
+    
+    Ok(())
+}`;
+
+export const kotlin = `import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
+
+fun main() {
+    val apiKey = "YOUR_API_KEY"
+    val apiUrl = "https://worlddataapi.com/api/v1/countries"
+
+    try {
+        val url = URL(apiUrl)
+        val connection = url.openConnection() as HttpURLConnection
+        connection.requestMethod = "GET"
+        connection.setRequestProperty("Authorization", apiKey)
+
+        val responseCode = connection.responseCode
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            val inStream = BufferedReader(InputStreamReader(connection.inputStream))
+            var inputLine: String?
+            val response = StringBuilder()
+
+            while (inStream.readLine().also { inputLine = it } != null) {
+                response.append(inputLine)
+            }
+            inStream.close()
+
+            println(response.toString())
+        } else {
+            println("Request failed with response code: $responseCode")
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+}`;
+
+export const csharp = `using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        string apiKey = "YOUR_API_KEY";
+        string apiUrl = "https://worlddataapi.com/api/v1/countries";
+
+        using (HttpClient client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Add("Authorization", apiKey);
+
+            HttpResponseMessage response = await client.GetAsync(apiUrl);
+            if (response.IsSuccessStatusCode)
+            {
+                string responseBody = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(responseBody);
+            }
+            else
+            {
+                Console.WriteLine("Request failed with response code: " + response.StatusCode);
+            }
+        }
+    }
+}`;

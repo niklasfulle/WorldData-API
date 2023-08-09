@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/DropdownMenu";
 import { Button } from "@/ui/Button";
 import Icons from "./Icons";
+import CopyIcon from "./CopyIcon";
 
 const DocumentationTabs: FC = ({}) => {
   return (
@@ -74,8 +75,8 @@ const DocumentationTabs: FC = ({}) => {
           </TabsTrigger>
         </TabsList>
         <DropdownMenu>
-          <DropdownMenuTrigger asChild className="sm:hidden">
-            <Button variant="ghost" size="sm" id="themeToggle" className="sm:mb-0 -mb-1">
+          <DropdownMenuTrigger asChild className="sm:hidden mr-1">
+            <Button variant="ghost" size="sm" id="themeToggle" className="sm:mb-0">
               <Icons.Menu className="h-6 w-6" />
               <span className="sr-only">Toggle theme</span>
             </Button>
@@ -153,6 +154,7 @@ const DocumentationTabs: FC = ({}) => {
         aria-labelledby="nodejs Content"
       >
         <SimpleBar>
+          <CopyIcon copyText={javascript} />
           <Code animated language="javascript" code={javascript} show />
         </SimpleBar>
       </TabsContent>
@@ -163,6 +165,7 @@ const DocumentationTabs: FC = ({}) => {
         aria-labelledby="python Content"
       >
         <SimpleBar>
+          <CopyIcon copyText={python} />
           <Code animated language="python" code={python} show />
         </SimpleBar>
       </TabsContent>
@@ -173,6 +176,7 @@ const DocumentationTabs: FC = ({}) => {
         aria-labelledby="go Content"
       >
         <SimpleBar>
+          <CopyIcon copyText={go} />
           <Code animated language="go" code={go} show />
         </SimpleBar>
       </TabsContent>
@@ -183,6 +187,7 @@ const DocumentationTabs: FC = ({}) => {
         aria-labelledby="rust Content"
       >
         <SimpleBar>
+          <CopyIcon copyText={rust} />
           {/* @ts-ignore*/}
           <Code animated language="rust" code={rust} show />
         </SimpleBar>
@@ -194,6 +199,7 @@ const DocumentationTabs: FC = ({}) => {
         aria-labelledby="kotlin Content"
       >
         <SimpleBar>
+          <CopyIcon copyText={kotlin} />
           {/* @ts-ignore*/}
           <Code animated language="kotlin" code={kotlin} show />
         </SimpleBar>
@@ -205,6 +211,7 @@ const DocumentationTabs: FC = ({}) => {
         aria-labelledby="csharp Content"
       >
         <SimpleBar>
+          <CopyIcon copyText={csharp} />
           {/* @ts-ignore*/}
           <Code animated language="csharp" code={csharp} show />
         </SimpleBar>

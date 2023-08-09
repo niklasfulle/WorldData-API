@@ -12,6 +12,7 @@ import {
   Book,
   Database,
   Languages,
+  Copy,
 } from "lucide-react";
 
 export const Icons = {
@@ -28,6 +29,7 @@ export const Icons = {
   Book,
   Database,
   Languages,
+  Copy,
 };
 
 export default Icons;

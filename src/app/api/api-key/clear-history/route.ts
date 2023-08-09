@@ -17,11 +17,11 @@ export async function POST() {
       }, { status: 401 })
     }
 
-    const validApiKey = await db.apiKey.findFirst({
-      where: { userId: user.id, enabled: true },
+    const userApiKeys = await db.apiKey.findMany({
+      where: { userId: user.id },
     })
 
-    if (!validApiKey) {
+    if (userApiKeys.length === 0) {
       return NextResponse.json({
         error: 'You do not have a valid API key.',
         success: false,
@@ -29,8 +29,10 @@ export async function POST() {
     }
 
     // clear history
-    await db.apiRequest.deleteMany({
-      where: { apiKeyId: validApiKey.id },
+    userApiKeys.forEach(async (apiKey) => {
+      await db.apiRequest.deleteMany({
+        where: { apiKeyId: apiKey.id },
+      })
     })
 
     return NextResponse.json({ error: null, success: true }, { status: 200 })

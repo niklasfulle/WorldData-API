@@ -17,7 +17,7 @@ const columnsDraft: GridColDef[] = [
   {
     field: "col1",
     headerName: "API key used",
-    width: 200,
+    width: 300,
     renderHeader(params) {
       return <strong className="font-semibold">{params.colDef.headerName} </strong>;
     },

@@ -1,6 +1,5 @@
 import { cosineSimilarity } from '@/helpers/cosine-sim'
 import { db } from '@/lib/db'
-import { openai } from '@/lib/openai'
 import { SimilarityData } from '@/types/api/key'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'

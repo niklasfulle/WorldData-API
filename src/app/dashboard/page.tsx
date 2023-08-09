@@ -1,9 +1,8 @@
 import ApiDashboard from "@/components/ApiDashboard";
 import RequestApiKey from "@/components/RequestApiKey";
 import { authOptions } from "@/lib/auth";
-import { db } from "@/lib/db";
+import { db } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
-
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 

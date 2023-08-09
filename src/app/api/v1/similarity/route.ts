@@ -1,5 +1,5 @@
 import { cosineSimilarity } from '@/helpers/cosine-sim'
-import { db } from '@/lib/db'
+import { db } from '@/lib/prisma'
 import { SimilarityData } from '@/types/api/key'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'

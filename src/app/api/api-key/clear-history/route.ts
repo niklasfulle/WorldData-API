@@ -1,6 +1,5 @@
 import { authOptions } from '@/lib/auth'
-import { db } from '@/lib/db'
-import { RevokeApiData } from '@/types/api/key'
+import { db } from '@/lib/prisma'
 import { getServerSession } from 'next-auth'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'

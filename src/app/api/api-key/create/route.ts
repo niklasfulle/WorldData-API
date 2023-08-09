@@ -1,5 +1,5 @@
 import { authOptions } from '@/lib/auth'
-import { db } from '@/lib/db'
+import { db } from '@/lib/prisma'
 import { CreateApiData } from '@/types/api/key'
 import { nanoid } from 'nanoid'
 import { getServerSession } from 'next-auth'

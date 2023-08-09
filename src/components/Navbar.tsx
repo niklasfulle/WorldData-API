@@ -16,12 +16,10 @@ const Navbar = async () => {
         <Link href="/" className={buttonVariants({ variant: "link" })}>
           World Data API
         </Link>
-
         <div className="md:hidden gap-4 flex flex-row">
           <ThemeToggle />
           <MobileMenu />
         </div>
-
         <div className="hidden md:flex gap-4">
           <ThemeToggle />
           <Link href="/documentation" className={buttonVariants({ variant: "ghost" })}>

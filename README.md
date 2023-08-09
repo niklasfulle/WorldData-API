@@ -9,6 +9,7 @@
   - [V1](#v1)
   - [V2](#v2)
   - [V3](#v3)
+  - [V4](#v4)
 
 ## Description
 
@@ -63,13 +64,13 @@ DATABASE_URL=
 
 ## Data
 
-### V1
+### V1 (working on)
 
 - 7 Continents
 - 195 Countries
 - 100 biggest Cities
 
-### V2
+### V2 (in the future)
 
 - 7 Continents
 - 195 Countries
@@ -79,7 +80,18 @@ DATABASE_URL=
 - 159 longest Rivers
 - 118 biggest Islands
 
-### V3
+### V3 (in the future)
+
+- 7 Continents
+- 195 Countries
+- 1000 biggest Cities
+- 108 highest Mountains
+- 46 largest Lakes
+- 159 longest Rivers
+- 322 biggest Islands
+- 180 Currencies
+
+### V4 (maybe in the future)
 
 - 7 Continents
 - 195 Countries

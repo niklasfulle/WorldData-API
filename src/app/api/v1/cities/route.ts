@@ -28,6 +28,22 @@ export async function GET(req: Request) {
     const remaining = await citiesLimiter.removeTokens(1)
 
     if (remaining < 0) {
+      const duration = new Date().getTime() - start.getTime()
+
+      const url = new URL(req.url as string).pathname
+
+      await prisma.apiRequest.create({
+        data: {
+          duration,
+          method: req.method as string,
+          path: url,
+          status: 429,
+          apiKeyId: validApiKey.id,
+          usedApiKey: validApiKey.key,
+          response: "Too many requests"
+        },
+      })
+
       return NextResponse.json({ error: 'Too many requests', success: false }, { status: 429 })
     }
 

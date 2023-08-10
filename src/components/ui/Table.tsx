@@ -26,7 +26,7 @@ const columnsDraft: GridColDef[] = [
   { field: "col3", headerName: "Recency", width: 250 },
   { field: "col4", headerName: "Duration", width: 150 },
   { field: "col5", headerName: "Status", width: 100 },
-  { field: "col6", headerName: "Response", width: 210 },
+  { field: "col6", headerName: "Response", width: 170 },
 ];
 
 const columns = columnsDraft.map((col) => {

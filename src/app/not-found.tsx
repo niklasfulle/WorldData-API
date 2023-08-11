@@ -23,6 +23,7 @@ const PageNotFound: FC = () => {
           className: "w-fit",
         })}
         href="/"
+        aria-label="Back to the home page"
       >
         <Icons.ChevronLeft className="mr-2 h-4 w-4" />
         Back to home

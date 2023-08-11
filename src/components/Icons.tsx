@@ -13,6 +13,8 @@ import {
   Database,
   Languages,
   Copy,
+  Globe,
+  Globe2,
 } from "lucide-react";
 
 export const Icons = {
@@ -30,6 +32,8 @@ export const Icons = {
   Database,
   Languages,
   Copy,
+  Globe,
+  Globe2,
 };
 
 export default Icons;

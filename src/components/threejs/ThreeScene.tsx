@@ -1,25 +1,39 @@
 "use client";
-import React, { useRef, useEffect } from "react";
-import * as THREE from "three";
+import React, { useRef, useEffect, useState } from "react";
 import {
   vertexShader,
   fragmentShader,
   atmosphereVertexShader,
   atmosphereFragmentShader,
 } from "./shaders/shaders";
+import {
+  AdditiveBlending,
+  BackSide,
+  Mesh,
+  PerspectiveCamera,
+  Scene,
+  ShaderMaterial,
+  SphereGeometry,
+  TextureLoader,
+  WebGLRenderer,
+} from "three/src/Three.js";
+
+
 
 const ThreeScene: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const dataFetchedRef = useRef(false);
 
   useEffect(() => {
+    const theme = localStorage.getItem("theme");
+
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
     if (typeof window !== "undefined") {
-      const scene = new THREE.Scene();
-      scene.background = new THREE.Color("rgb(15, 23, 42)");
-      const camera = new THREE.PerspectiveCamera(75, 600 / 600, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      const scene = new Scene();
+
+      const camera = new PerspectiveCamera(75, 600 / 600, 0.1, 1000);
+      const renderer = new WebGLRenderer({ antialias: true, alpha: true });
 
       if (innerWidth < 600) {
         renderer.setSize(innerWidth, innerWidth);
@@ -31,11 +45,11 @@ const ThreeScene: React.FC = () => {
       containerRef.current?.appendChild(renderer.domElement);
       camera.position.z = 30;
 
-      const textutre = new THREE.TextureLoader().load("./earth-day.jpg");
+      const textutre = new TextureLoader().load("./earth-uv-map.webp");
 
-      const sphere = new THREE.Mesh(
-        new THREE.SphereGeometry(10, 100, 100),
-        new THREE.ShaderMaterial({
+      const sphere = new Mesh(
+        new SphereGeometry(10, 100, 100),
+        new ShaderMaterial({
           vertexShader,
           fragmentShader,
           uniforms: {
@@ -44,24 +58,24 @@ const ThreeScene: React.FC = () => {
         })
       );
 
-      sphere.rotation.set(0, 0, -(-Math.PI * 23) / 180);
+      sphere.rotation.set(0, 0, -(Math.PI * 23) / 180);
 
       scene.add(sphere);
 
       // create a atmosphere
-
-      const atmosphere = new THREE.Mesh(
-        new THREE.SphereGeometry(10, 100, 100),
-        new THREE.ShaderMaterial({
+      const atmosphere = new Mesh(
+        new SphereGeometry(10, 100, 100),
+        new ShaderMaterial({
           vertexShader: atmosphereVertexShader,
           fragmentShader: atmosphereFragmentShader,
-          blending: THREE.AdditiveBlending,
-          side: THREE.BackSide,
+          blending: AdditiveBlending,
+          side: BackSide,
         })
       );
 
       atmosphere.scale.set(1.2, 1.2, 1.2);
 
+      // add the atmosphere to the scene
       scene.add(atmosphere);
 
       // Render the scene and camera

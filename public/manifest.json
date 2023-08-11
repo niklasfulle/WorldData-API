@@ -1,0 +1,24 @@
+{
+  "name": "Worlddata API",
+  "short_name": "Worlddata API",
+  "description": "Worlddata API is a free API for getting data about countries, cities, states, and more.",
+  "icons": [
+    {
+      "src": "/icon144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}

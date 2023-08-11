@@ -44,12 +44,20 @@ const MobileMenu = () => {
         <DropdownMenuGroup onClick={() => setOpen(false)}>
           <DropdownMenuItem asChild className="hover:cursor-pointer">
             {session ? (
-              <Link href="/dashboard" className="w-full flex items-center gap-1.5">
+              <Link
+                href="/dashboard"
+                className="w-full flex items-center gap-1.5"
+                aria-label="Link to the dashboard page"
+              >
                 <Icons.LayoutDashboard className="mr-2 h-5 w-5" />
                 <span>Dashboard</span>
               </Link>
             ) : (
-              <Link href="/login" className="flex w-full items-center gap-1.5">
+              <Link
+                href="/login"
+                className="flex w-full items-center gap-1.5"
+                aria-label="Link to the login page"
+              >
                 <Icons.LayoutDashboard className="mr-2 h-5 w-5" />
                 <span>Sign in</span>
               </Link>
@@ -57,14 +65,22 @@ const MobileMenu = () => {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild className="hover:cursor-pointer">
-            <Link href="/documentation" className="w-full flex items-center gap-1.5">
+            <Link
+              href="/documentation"
+              className="w-full flex items-center gap-1.5"
+              aria-label="Link to the documentation page"
+            >
               <Icons.Book className="mr-2 h-5 w-5" />
               <span>Docs</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild className="hover:cursor-pointer">
-            <Link href="/world-data" className="w-full flex items-center gap-1.5">
+            <Link
+              href="/world-data"
+              className="w-full flex items-center gap-1.5"
+              aria-label="Link to the world-data page"
+            >
               <Icons.Database className="mr-2 h-5 w-5" />
               <span>Data</span>
             </Link>

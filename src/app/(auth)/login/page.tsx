@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Icons from "@/components/Icons";
 import { buttonVariants } from "@/components/ui/Button";
 import LargeHeading from "@/components/ui/LargeHeading";
@@ -18,6 +19,7 @@ const page: FC = () => {
                 className: "w-fit",
               })}
               href="/"
+              aria-label="Back to the home page"
             >
               <Icons.ChevronLeft className="mr-2 h-4 w-4" />
               Back to home

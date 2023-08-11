@@ -15,6 +15,9 @@ import {
   Copy,
   Globe,
   Globe2,
+  PlusSquare,
+  PanelTopOpen,
+  PanelTopClose,
 } from "lucide-react";
 
 export const Icons = {
@@ -34,6 +37,9 @@ export const Icons = {
   Copy,
   Globe,
   Globe2,
+  PlusSquare,
+  PanelTopOpen,
+  PanelTopClose,
 };
 
 export default Icons;

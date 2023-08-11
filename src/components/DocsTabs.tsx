@@ -1,5 +1,5 @@
 "use client";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/Tabs";
 import Code from "@/components/Code";
 import { go, javascript, python, rust, kotlin, csharp } from "@/helpers/code-values";
@@ -77,68 +77,74 @@ const DocumentationTabs: FC = ({}) => {
         <DropdownMenu>
           <DropdownMenuTrigger asChild className="sm:hidden mr-1">
             <Button variant="ghost" size="sm" id="themeToggle" className="sm:mb-0">
-              <Icons.Menu className="h-6 w-6" />
-              <span className="sr-only">Toggle theme</span>
+              <Icons.PanelTopOpen className="h-6 w-6" />
+              <span className="sr-only">Toggle doc tab</span>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" forceMount className="sm:hidden">
-            <TabsList className="flex-col p-0 sm:hidden">
-              <DropdownMenuItem className="hover:cursor-pointer">
+          <DropdownMenuContent align="end" forceMount className="sm:hidden p-0">
+            <TabsList className="flex-col p-0 sm:hidden w-full">
+              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
                 <TabsTrigger
                   id="nodejsTrigger"
                   aria-controls="nodejs"
                   aria-labelledby="nodejs Trigger"
                   value="nodejs"
+                  className="w-full"
                 >
                   NodeJs
                 </TabsTrigger>
               </DropdownMenuItem>
-              <DropdownMenuItem className="hover:cursor-pointer">
+              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
                 <TabsTrigger
                   id="pythonTrigger"
                   aria-controls="python"
                   aria-labelledby="python Trigger"
                   value="python"
+                  className="w-full"
                 >
                   Python
                 </TabsTrigger>
               </DropdownMenuItem>
-              <DropdownMenuItem className="hover:cursor-pointer">
+              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
                 <TabsTrigger
                   id="goTrigger"
                   aria-controls="go"
                   aria-labelledby="go Trigger"
                   value="go"
+                  className="w-full"
                 >
                   Go
                 </TabsTrigger>
               </DropdownMenuItem>
-              <DropdownMenuItem className="hover:cursor-pointer">
+              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
                 <TabsTrigger
                   id="rustTrigger"
                   aria-controls="rust"
                   aria-labelledby="rust Trigger"
                   value="rust"
+                  className="w-full"
                 >
                   Rust
                 </TabsTrigger>
               </DropdownMenuItem>
-              <DropdownMenuItem className="hover:cursor-pointer">
+              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
                 <TabsTrigger
                   id="kotlinTrigger"
                   aria-controls="kotlin"
                   aria-labelledby="kotlin Trigger"
                   value="kotlin"
+                  className="w-full"
                 >
                   Kotlin
                 </TabsTrigger>
               </DropdownMenuItem>
-              <DropdownMenuItem className="hover:cursor-pointer">
+              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
                 <TabsTrigger
                   id="csharpTrigger"
                   aria-controls="csharp"
                   aria-labelledby="csharp Trigger"
                   value="csharp"
+                  className="w-full"
                 >
                   C#
                 </TabsTrigger>

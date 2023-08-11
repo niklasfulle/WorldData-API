@@ -57,7 +57,7 @@ const Code: FC<CodeProps> = ({
       {({ className, tokens, getLineProps, getTokenProps }) => (
         <pre
           className={
-            className + "transition-all w-fit bg-transparent duration-100 py-0 overflow-hidden"
+            className + "transition-all w-fit bg-transparent duration-100 py-0 overflow-hidden "
           }
           style={{
             maxHeight: show ? lines * 24 : 0,

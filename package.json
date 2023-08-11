@@ -30,7 +30,7 @@
     "glslify-loader": "^2.0.0",
     "limiter": "^2.1.0",
     "lodash": "^4.17.21",
-    "lucide-react": "^0.122.0",
+    "lucide-react": "^0.265.0",
     "mongodb": "^5.7.0",
     "mongoose": "^7.4.2",
     "nanoid": "^4.0.1",

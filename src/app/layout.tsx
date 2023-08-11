@@ -11,7 +11,13 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={cn("bg-white text-slate-900 antialiased", inter.className)}>
+    <html
+      lang="en"
+      className={cn(
+        " dark:bg-slate-900 light:bg-white text-slate-900 antialiased",
+        inter.className
+      )}
+    >
       <head>
         <meta name="application-name" content="Worlddata API" />
         <meta name="apple-mobile-web-app-capable" content="yes" />

@@ -3,6 +3,7 @@ import Paragraph from "@/components/ui/Paragraph";
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
+import ThreeScene from "@/components/threejs/ThreeScene";
 
 export const metadata: Metadata = {
   title: "Wordldata API - Home",
@@ -14,10 +15,10 @@ export default function Home() {
     <div className="relative h-screen flex items-center justify-center overflow-x-hidden">
       <div className="container pt-32 max-w-7xl mx-auto w-full h-full">
         <div className="h-full gap-6 flex flex-col justify-start lg:justify-center items-center lg:items-start">
-          <LargeHeading size="lg" className="three-d text-black dark:text-light-gold">
+          <LargeHeading size="lg" className="three-d text-black dark:text-light-gold z-50">
             Data of the world.
           </LargeHeading>
-          <Paragraph className="max-w-xl lg:text-left">
+          <Paragraph className="max-w-xl lg:text-left z-50">
             Get the latest data of the world in JSON format. Data about countries, states, cities,
             and more. All the data is free and open source. You can get the API key from{" "}
             <Link
@@ -28,8 +29,9 @@ export default function Home() {
             </Link>
             .
           </Paragraph>
-          <div className="relative w-full max-w-xl lg:max-w-3xl lg:left-1/2 aspect-square lg:absolute">
-            <Image
+          <div className="relative w-full max-w-xl lg:max-w-3xl lg:left-1/2 lg:absolute sm:-mt-24 -mt-24 -ml-12 lg:ml-10">
+            <ThreeScene />
+            {/*<Image
               priority
               className="img-shadow"
               quality={100}
@@ -38,7 +40,7 @@ export default function Home() {
               alt="Earth"
               src="/earth.png"
               sizes="(max-width: 900px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            ></Image>
+            ></Image>*/}
           </div>
         </div>
       </div>

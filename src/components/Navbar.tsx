@@ -58,6 +58,13 @@ const Navbar = async () => {
           >
             Data
           </Link>
+          <Link
+            href="/blogposts"
+            className={buttonVariants({ variant: "ghost" })}
+            aria-label="Link to the world-data page"
+          >
+            Blog
+          </Link>
           {session ? (
             <>
               <Link

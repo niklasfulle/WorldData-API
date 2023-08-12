@@ -18,6 +18,10 @@ import {
   PlusSquare,
   PanelTopOpen,
   PanelTopClose,
+  Newspaper,
+  Twitter,
+  Instagram,
+  Github,
 } from "lucide-react";
 
 export const Icons = {
@@ -40,6 +44,10 @@ export const Icons = {
   PlusSquare,
   PanelTopOpen,
   PanelTopClose,
+  Newspaper,
+  Twitter,
+  Instagram,
+  Github,
 };
 
 export default Icons;

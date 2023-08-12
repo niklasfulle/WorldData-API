@@ -85,6 +85,17 @@ const MobileMenu = () => {
               <span>Data</span>
             </Link>
           </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem asChild className="hover:cursor-pointer">
+            <Link
+              href="/Blogposts"
+              className="w-full flex items-center gap-1.5"
+              aria-label="Link to the world-data page"
+            >
+              <Icons.Newspaper className="mr-2 h-5 w-5" />
+              <span>Blog</span>
+            </Link>
+          </DropdownMenuItem>
           {session ? (
             <>
               <DropdownMenuSeparator />

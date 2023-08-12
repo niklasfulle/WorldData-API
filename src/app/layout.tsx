@@ -65,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Toaster position="bottom-right" />
 
           {/* Allow for more height on mobile devices*/}
+
           <div className="h-40 md:hidden" />
           <Footer />
         </Providers>

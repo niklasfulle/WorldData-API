@@ -23,8 +23,6 @@ const ThreeScene: React.FC = () => {
   const dataFetchedRef = useRef(false);
 
   useEffect(() => {
-    const theme = localStorage.getItem("theme");
-
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
     if (typeof window !== "undefined") {

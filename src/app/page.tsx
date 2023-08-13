@@ -29,7 +29,7 @@ export default function Home() {
             </Link>
             .
           </Paragraph>
-          <div className="relative w-full max-w-xl lg:max-w-3xl lg:left-1/2 lg:absolute sm:-mt-24 -mt-24 -ml-12 lg:ml-10">
+          <div className="relative w-full max-w-xl lg:max-w-3xl lg:left-1/2 lg:absolute -mt-24 lg:-ml-12">
             <ThreeScene />
           </div>
         </div>

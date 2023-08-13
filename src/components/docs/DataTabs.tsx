@@ -1,20 +1,102 @@
 "use client";
 import { FC } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/Tabs";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/ui/DropdownMenu";
 import Code from "@/docs/Code";
-import { v1, v2, v3 } from "@/helpers/data-values";
+import { v1, v2, v3, v4 } from "@/helpers/data-values";
 import SimpleBar from "simplebar-react";
+import { Button } from "@/ui/Button";
+import Icons from "@/ui/Icons";
 
 const DocumentationTabs: FC = ({}) => {
   return (
     <Tabs defaultValue="v1" className="max-w-2xl w-full">
-      <TabsList>
-        <TabsTrigger value="v1" id="v1Trigger" aria-controls="v1" aria-labelledby="v1 Trigger">
-          v1
-        </TabsTrigger>
-        {/*<TabsTrigger value="v2">v2</TabsTrigger>*/}
-        {/*<TabsTrigger value="v3">v3</TabsTrigger>*/}
-      </TabsList>
+      <div className="flex justify-end md:justify-start">
+        <TabsList className="hidden md:inline-flex">
+          <div className="p-1 dark:hover:bg-slate-700 rounded-l-md">
+            <TabsTrigger value="v1" id="v1Trigger" aria-controls="v1" aria-labelledby="v1 Trigger">
+              V1
+            </TabsTrigger>
+          </div>
+          <div className="p-1 dark:hover:bg-slate-700">
+            <TabsTrigger value="v2" id="v2Trigger" aria-controls="v2" aria-labelledby="v2 Trigger">
+              V2
+            </TabsTrigger>
+          </div>
+          <div className="p-1 dark:hover:bg-slate-700">
+            <TabsTrigger value="v3" id="v3Trigger" aria-controls="v3" aria-labelledby="v3 Trigger">
+              V3
+            </TabsTrigger>
+          </div>
+          <div className="p-1 dark:hover:bg-slate-700 rounded-r-md">
+            <TabsTrigger value="v4" id="v4Trigger" aria-controls="v4" aria-labelledby="v4 Trigger">
+              V4
+            </TabsTrigger>
+          </div>
+        </TabsList>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild className="md:hidden mr-1">
+            <Button variant="ghost" size="sm" id="versionToggle" className="sm:mb-0">
+              <Icons.PanelTopOpen className="h-6 w-6" />
+              <span className="sr-only">Toggle data tab</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" forceMount className="md:hidden p-0">
+            <TabsList className="flex-col p-0 md:hidden w-full">
+              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
+                <TabsTrigger
+                  value="v1"
+                  id="v1Trigger"
+                  aria-controls="v1"
+                  aria-labelledby="v1 Trigger"
+                  className="w-full"
+                >
+                  V1
+                </TabsTrigger>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
+                <TabsTrigger
+                  value="v2"
+                  id="v2Trigger"
+                  aria-controls="v2"
+                  aria-labelledby="v2 Trigger"
+                  className="w-full"
+                >
+                  V2
+                </TabsTrigger>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
+                <TabsTrigger
+                  value="v3"
+                  id="v3Trigger"
+                  aria-controls="v3"
+                  aria-labelledby="v3 Trigger"
+                  className="w-full"
+                >
+                  V3
+                </TabsTrigger>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
+                <TabsTrigger
+                  value="v4"
+                  id="v4Trigger"
+                  aria-controls="v4"
+                  aria-labelledby="v4 Trigger"
+                  className="w-full"
+                >
+                  V4
+                </TabsTrigger>
+              </DropdownMenuItem>
+            </TabsList>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
       <TabsContent
         value="v1"
         id="v1TabContent"
@@ -25,16 +107,21 @@ const DocumentationTabs: FC = ({}) => {
           <Code animated language="markup" code={v1} show />
         </SimpleBar>
       </TabsContent>
-      {/*<TabsContent value="v2" className="lg:mb-24 mb-4">
+      <TabsContent value="v2" className="lg:mb-24 mb-4">
         <SimpleBar>
           <Code animated language="markup" code={v2} show />
         </SimpleBar>
-      </TabsContent>*/}
-      {/* <TabsContent value="v3" className="lg:mb-24 mb-4">
+      </TabsContent>
+      <TabsContent value="v3" className="lg:mb-24 mb-4">
         <SimpleBar>
           <Code animated language="markup" code={v3} show />
         </SimpleBar>
-      </TabsContent>*/}
+      </TabsContent>
+      <TabsContent value="v4" className="lg:mb-24 mb-4">
+        <SimpleBar>
+          <Code animated language="markup" code={v4} show />
+        </SimpleBar>
+      </TabsContent>
     </Tabs>
   );
 };

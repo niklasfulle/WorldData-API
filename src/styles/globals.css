@@ -24,3 +24,8 @@
 .three-d {
   text-shadow: none;
 }
+
+canvas {
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Wordldata API - Terms & Conditions",
+  title: "Wordldata API - Cookies",
   description: "Free & Open Source API for Wordldata",
 };
 

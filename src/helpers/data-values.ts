@@ -7,10 +7,17 @@ export const v2 = `7 Continents
 500 biggest Cities
 108 highest Mountains
 46 largest Lakes 
-159 longest Rivers
-118 biggest Islands`;
+159 longest Rivers`;
 
 export const v3 = `7 Continents
+195 Countries
+1000 biggest Cities
+108 highest Mountains
+46 largest Lakes 
+159 longest Rivers
+322 biggest Islands`;
+
+export const v4 = `7 Continents
 195 Countries
 1000 biggest Cities
 108 highest Mountains

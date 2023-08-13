@@ -43,12 +43,10 @@ const ApiDashboard = async ({}) => {
         <Input className="w-fit " readOnly value={activeApiKey.key} />
         <ApiKeyOptions apiKeyKey={activeApiKey.key} />
       </div>
-
       <div className="flex flex-row justify-between -mb-4 px-2 items-center">
         <Paragraph className="text-center md:text-left -mb-2">Your API history:</Paragraph>
         <ApiHistoryOptions apiKeyKey={activeApiKey.key} />
       </div>
-
       <Table userRequests={serializableRequests} />
     </div>
   );

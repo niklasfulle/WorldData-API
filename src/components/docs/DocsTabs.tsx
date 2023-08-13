@@ -17,72 +17,84 @@ import CopyIcon from "@/docs/CopyIcon";
 const DocumentationTabs: FC = ({}) => {
   return (
     <Tabs defaultValue="nodejs" className="max-w-2xl w-full">
-      <div className="flex justify-end sm:justify-start">
-        <TabsList className="hidden sm:inline-flex">
-          <TabsTrigger
-            id="nodejsTrigger"
-            aria-controls="nodejs"
-            aria-labelledby="nodejs Trigger"
-            value="nodejs"
-            className="min-w-[95px]"
-          >
-            NodeJs
-          </TabsTrigger>
-          <TabsTrigger
-            id="pythonTrigger"
-            aria-controls="python"
-            aria-labelledby="python Trigger"
-            value="python"
-            className="min-w-[95px]"
-          >
-            Python
-          </TabsTrigger>
-          <TabsTrigger
-            id="goTrigger"
-            aria-controls="go"
-            aria-labelledby="go Trigger"
-            value="go"
-            className="min-w-[95px]"
-          >
-            Go
-          </TabsTrigger>
-          <TabsTrigger
-            id="rustTrigger"
-            aria-controls="rust"
-            aria-labelledby="rust Trigger"
-            value="rust"
-            className="min-w-[95px]"
-          >
-            Rust
-          </TabsTrigger>
-          <TabsTrigger
-            id="kotlinTrigger"
-            aria-controls="kotlin"
-            aria-labelledby="kotlin Trigger"
-            value="kotlin"
-            className="min-w-[95px]"
-          >
-            Kotlin
-          </TabsTrigger>
-          <TabsTrigger
-            id="csharpTrigger"
-            aria-controls="csharp"
-            aria-labelledby="csharp Trigger"
-            value="csharp"
-            className="min-w-[95px]"
-          >
-            C#
-          </TabsTrigger>
+      <div className="flex justify-end md:justify-start">
+        <TabsList className="hidden md:inline-flex">
+          <div className="p-1 dark:hover:bg-slate-700 rounded-l-md">
+            <TabsTrigger
+              id="nodejsTrigger"
+              aria-controls="nodejs"
+              aria-labelledby="nodejs Trigger"
+              value="nodejs"
+              className="min-w-[95px]"
+            >
+              NodeJs
+            </TabsTrigger>
+          </div>
+          <div className="p-1 dark:hover:bg-slate-700">
+            <TabsTrigger
+              id="pythonTrigger"
+              aria-controls="python"
+              aria-labelledby="python Trigger"
+              value="python"
+              className="min-w-[95px]"
+            >
+              Python
+            </TabsTrigger>
+          </div>
+          <div className="p-1 dark:hover:bg-slate-700">
+            <TabsTrigger
+              id="goTrigger"
+              aria-controls="go"
+              aria-labelledby="go Trigger"
+              value="go"
+              className="min-w-[95px]"
+            >
+              Go
+            </TabsTrigger>
+          </div>
+          <div className="p-1 dark:hover:bg-slate-700">
+            <TabsTrigger
+              id="rustTrigger"
+              aria-controls="rust"
+              aria-labelledby="rust Trigger"
+              value="rust"
+              className="min-w-[95px]"
+            >
+              Rust
+            </TabsTrigger>
+          </div>
+          <div className="p-1 dark:hover:bg-slate-700">
+            <TabsTrigger
+              id="kotlinTrigger"
+              aria-controls="kotlin"
+              aria-labelledby="kotlin Trigger"
+              value="kotlin"
+              className="min-w-[95px]"
+            >
+              Kotlin
+            </TabsTrigger>
+          </div>
+          <div className="p-1 dark:hover:bg-slate-700 rounded-r-md">
+            <TabsTrigger
+              id="csharpTrigger"
+              aria-controls="csharp"
+              aria-labelledby="csharp Trigger"
+              value="csharp"
+              className="min-w-[95px]"
+            >
+              C#
+            </TabsTrigger>
+          </div>
         </TabsList>
         <DropdownMenu>
-          <DropdownMenuTrigger asChild className="sm:hidden mr-1">
-            <Button variant="ghost" size="sm" id="themeToggle" className="sm:mb-0">
+          <DropdownMenuTrigger asChild className="md:hidden mr-1">
+            <Button variant="ghost" size="sm" id="codeToggle" className="sm:mb-0">
               <Icons.PanelTopOpen className="h-6 w-6" />
               <span className="sr-only">Toggle doc tab</span>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" forceMount className="sm:hidden p-0">
-            <TabsList className="flex-col p-0 sm:hidden w-full">
+          <DropdownMenuContent align="end" forceMount className="md:hidden p-0">
+            <TabsList className="flex-col p-0 md:hidden w-full">
               <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
                 <TabsTrigger
                   id="nodejsTrigger"

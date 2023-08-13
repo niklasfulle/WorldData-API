@@ -1,7 +1,7 @@
 "use client";
 import { FC } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/Tabs";
-import Code from "@/components/Code";
+import Code from "@/docs/Code";
 import { v1, v2, v3 } from "@/helpers/data-values";
 import SimpleBar from "simplebar-react";
 

@@ -5,7 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/DropdownMenu";
+} from "@/ui/DropdownMenu";
 import { createApiKey, revokeApiKey } from "@/helpers/api-key";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";

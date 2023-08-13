@@ -1,7 +1,7 @@
 import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import "simplebar-react/dist/simplebar.min.css";
-import DataTabs from "@/components/DataTabs";
+import DataTabs from "@/docs/DataTabs";
 import { FC } from "react";
 
 const page: FC = ({}) => {

@@ -1,14 +1,8 @@
 import { FC } from "react";
-import { Metadata } from "next";
 import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
-import DocsTabs from "@/components/DocsTabs";
+import DocsTabs from "@/docs/DocsTabs";
 import "simplebar-react/dist/simplebar.min.css";
-
-export const metadata: Metadata = {
-  title: "Wordldata API - Documentation",
-  description: "Free & Open Source API for Wordldata",
-};
 
 const page: FC = ({}) => {
   return (

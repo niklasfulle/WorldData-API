@@ -25,8 +25,12 @@
       "@/lib/*": ["./src/lib/*"],
       "@/components/*": ["./src/components/*"],
       "@/ui/*": ["./src/components/ui/*"],
-      "@/limit/*": ["./src/app/api/config/v1/*"],
-      "@/three/*": ["./src/three/*"]
+      "@/navigation/*": ["./src/components/navigation/*"],
+      "@/auth/*": ["./src/components/auth/*"],
+      "@/docs/*": ["./src/components/docs/*"],
+      "@/api/*": ["./src/components/api/*"],
+      "@/three/*": ["./src/components/threejs/*"],
+      "@/limit/*": ["./src/app/api/config/v1/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

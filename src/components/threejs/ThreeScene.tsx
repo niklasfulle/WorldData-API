@@ -1,11 +1,11 @@
 "use client";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import {
   vertexShader,
   fragmentShader,
   atmosphereVertexShader,
   atmosphereFragmentShader,
-} from "./shaders/shaders";
+} from "@/three/shaders/shaders";
 import {
   AdditiveBlending,
   BackSide,
@@ -17,8 +17,6 @@ import {
   TextureLoader,
   WebGLRenderer,
 } from "three/src/Three.js";
-
-
 
 const ThreeScene: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -97,8 +95,6 @@ const ThreeScene: React.FC = () => {
 
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
-
-        console.log(innerWidth, innerHeight);
 
         if (innerWidth < 600) {
           renderer.setSize(innerWidth, innerWidth);

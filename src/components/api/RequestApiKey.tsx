@@ -7,7 +7,7 @@ import { Input } from "@/ui/Input";
 import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import { toast } from "@/ui/Toast";
-import CopyButton from "@/components/CopyButton";
+import CopyButton from "@/api/CopyButton";
 
 interface RequestApiKeyProps {}
 

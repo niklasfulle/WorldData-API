@@ -1,13 +1,13 @@
 "use client";
 import { useTheme } from "next-themes";
-import { Icons } from "@/components/Icons";
-import { Button } from "@/components/ui/Button";
+import { Icons } from "@/ui/Icons";
+import { Button } from "@/ui/Button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/DropdownMenu";
+} from "@/ui/DropdownMenu";
 
 type ThemeToggleProps = {
   id: string;

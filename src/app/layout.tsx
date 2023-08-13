@@ -2,9 +2,9 @@ import "@/styles/globals.css";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import Providers from "@/components/Providers";
-import Navbar from "@/components/Navbar";
-import { Toaster } from "@/components/ui/Toast";
-const Footer = lazy(() => import("@/components/Footer"));
+import Navbar from "@/navigation/Navbar";
+import { Toaster } from "@/ui/Toast";
+const Footer = lazy(() => import("@/navigation/Footer"));
 import { lazy } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -59,8 +59,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen bg-slate-300 dark:bg-slate-900 antialiased">
         <Providers>
-          <Navbar />
           {children}
+          <Navbar />
 
           <Toaster position="bottom-right" />
 

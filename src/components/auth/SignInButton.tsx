@@ -1,22 +1,22 @@
 "use client";
 import { FC, useState } from "react";
 import { Button } from "@/ui/Button";
-import { signOut } from "next-auth/react";
-import { toast } from "@/components/ui/Toast";
+import { signIn } from "next-auth/react";
+import { toast } from "@/ui/Toast";
 
-interface SignOutButtonProps {}
+interface SignInButtonProps {}
 
-const SignOutButton: FC<SignOutButtonProps> = ({}) => {
+const SignInButton: FC<SignInButtonProps> = ({}) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const signUserOut = async () => {
+  const signInWithGoogle = async () => {
     setIsLoading(true);
 
     try {
-      await signOut();
+      await signIn("google");
     } catch (error) {
       toast({
-        title: "Error signing out",
+        title: "Error signing in",
         message: "Pleas try again later",
         type: "error",
       });
@@ -25,11 +25,11 @@ const SignOutButton: FC<SignOutButtonProps> = ({}) => {
   };
 
   return (
-    <Button onClick={signUserOut} isLoading={isLoading}>
+    <Button onClick={signInWithGoogle} isLoading={isLoading}>
       {" "}
-      Sign out
+      Sign in
     </Button>
   );
 };
 
-export default SignOutButton;
+export default SignInButton;

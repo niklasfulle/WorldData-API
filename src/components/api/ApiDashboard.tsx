@@ -3,12 +3,12 @@ import { db } from "@/lib/prisma";
 import { formatDistance } from "date-fns";
 import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
-import ApiKeyOptions from "./ApiKeyOptions";
+import ApiKeyOptions from "@/api/ApiKeyOptions";
 import { Input } from "@/ui/Input";
 import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import Table from "@/ui/Table";
-import ApiHistoryOptions from "./ApiHistoryOptions";
+import ApiHistoryOptions from "@/api/ApiHistoryOptions";
 
 const ApiDashboard = async ({}) => {
   const user = await getServerSession(authOptions);

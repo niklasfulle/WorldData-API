@@ -1,7 +1,7 @@
-import Icons from "@/components/Icons";
-import { buttonVariants } from "@/components/ui/Button";
-import LargeHeading from "@/components/ui/LargeHeading";
-import Paragraph from "@/components/ui/Paragraph";
+import Icons from "@/ui/Icons";
+import { buttonVariants } from "@/ui/Button";
+import LargeHeading from "@/ui/LargeHeading";
+import Paragraph from "@/ui/Paragraph";
 import Link from "next/link";
 import { FC } from "react";
 

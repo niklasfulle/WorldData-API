@@ -1,5 +1,5 @@
-import ApiDashboard from "@/components/ApiDashboard";
-import RequestApiKey from "@/components/RequestApiKey";
+import ApiDashboard from "@/components/api/ApiDashboard";
+import RequestApiKey from "@/components/api/RequestApiKey";
 import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/prisma";
 import { getServerSession } from "next-auth";

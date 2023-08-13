@@ -1,8 +1,8 @@
-import LargeHeading from "@/components/ui/LargeHeading";
-import Paragraph from "@/components/ui/Paragraph";
+import LargeHeading from "@/ui/LargeHeading";
+import Paragraph from "@/ui/Paragraph";
 import Link from "next/link";
 import { Metadata } from "next";
-import ThreeScene from "@/components/threejs/ThreeScene";
+import ThreeScene from "@/three/ThreeScene";
 
 export const metadata: Metadata = {
   title: "Wordldata API - Home",

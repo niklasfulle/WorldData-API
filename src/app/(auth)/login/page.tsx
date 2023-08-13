@@ -1,8 +1,8 @@
-import Icons from "@/components/Icons";
-import { buttonVariants } from "@/components/ui/Button";
-import LargeHeading from "@/components/ui/LargeHeading";
-import Paragraph from "@/components/ui/Paragraph";
-import UserAuthForm from "@/components/UserAuthForm";
+import Icons from "@/ui/Icons";
+import { buttonVariants } from "@/ui/Button";
+import LargeHeading from "@/ui/LargeHeading";
+import Paragraph from "@/ui/Paragraph";
+import UserAuthForm from "@/auth/UserAuthForm";
 import Link from "next/link";
 
 const page = () => {

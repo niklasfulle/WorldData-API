@@ -1,5 +1,5 @@
 "use client";
-import { Icons } from "@/components/Icons";
+import { Icons } from "@/ui/Icons";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
@@ -11,7 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "./ui/DropdownMenu";
+} from "@/ui/DropdownMenu";
 import { toast } from "@/ui/Toast";
 
 const MobileMenu = () => {

@@ -1,7 +1,7 @@
 "use client";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/Tabs";
-import Code from "@/components/Code";
+import Code from "@/docs/Code";
 import { go, javascript, python, rust, kotlin, csharp } from "@/helpers/code-values";
 import SimpleBar from "simplebar-react";
 import {
@@ -9,10 +9,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/DropdownMenu";
+} from "@/ui/DropdownMenu";
 import { Button } from "@/ui/Button";
-import Icons from "./Icons";
-import CopyIcon from "./CopyIcon";
+import Icons from "@/ui/Icons";
+import CopyIcon from "@/docs/CopyIcon";
 
 const DocumentationTabs: FC = ({}) => {
   return (

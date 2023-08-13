@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
-import Paragraph from "@/components/ui/Paragraph";
+import { Button } from "@/ui/Button";
+import Paragraph from "@/ui/Paragraph";
 
 export default function Error({ reset }: { error: Error; reset: () => void }) {
   return (

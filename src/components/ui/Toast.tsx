@@ -1,6 +1,6 @@
 "use client";
 
-import { Icons } from "@/components/Icons";
+import { Icons } from "@/ui/Icons";
 import { cn } from "@/lib/utils";
 import * as React from "react";
 import hotToast, { Toaster as HotToaster } from "react-hot-toast";
@@ -27,20 +27,6 @@ export function Toast({ visible, className, ...props }: ToastProps) {
 interface ToastIconProps extends Partial<React.SVGProps<SVGSVGElement>> {
   name: keyof typeof Icons;
 }
-
-Toast.Icon = function ToastIcon({ name, className, ...props }: ToastIconProps) {
-  const Icon = Icons[name];
-
-  if (!Icon) {
-    return null;
-  }
-
-  return (
-    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-slate-100">
-      <Icon className={cn("h-10 w-10", className)} {...props} />
-    </div>
-  );
-};
 
 interface ToastTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}
 

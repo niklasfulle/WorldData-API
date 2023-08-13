@@ -1,6 +1,6 @@
 import { FC } from "react";
-import Icons from "./Icons";
-import { toast } from "./ui/Toast";
+import Icons from "@/ui/Icons";
+import { toast } from "@/ui/Toast";
 
 interface CopyIconProps {
   copyText: string;

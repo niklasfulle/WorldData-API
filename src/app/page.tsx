@@ -14,7 +14,7 @@ export default function Home() {
     <div className="relative flex items-center justify-center overflow-x-hidden">
       <div className="container pt-32 max-w-7xl mx-auto w-full h-screen">
         <div className="h-full gap-6 flex flex-col justify-start lg:justify-center items-center lg:items-start">
-          <LargeHeading size="lg" className="three-d text-black dark:text-light-gold z-50">
+          <LargeHeading size="lg" className="rainbow-text three-d z-50">
             Data of the world.
           </LargeHeading>
           <Paragraph className="max-w-xl lg:text-left z-50">
@@ -22,7 +22,7 @@ export default function Home() {
             and more. All the data is free and open source. You can get the API key from{" "}
             <Link
               href="/login"
-              className="underline underline-offset-2 text-black dark:text-light-gold"
+              className="underline underline-offset-2 text-[#4c4ddb] dark:text-[#25bbee]"
               aria-label="Link to the login page"
             >
               API Key

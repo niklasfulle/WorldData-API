@@ -18,14 +18,60 @@
   background-color: white;
 }
 
-.dark .three-d {
-  text-shadow: 0px 5px 0px #533519;
-}
-.three-d {
-  text-shadow: none;
-}
-
 canvas {
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Style the rainbow text element. */
+.rainbow-text {
+  /* Create a conic gradient. */
+  /* Double percentages to avoid blur (#000 10%, #fff 10%, #fff 20%, ...). */
+  background: #25bbee;
+  background-color: #25bbee;
+  background: conic-gradient(
+    #96cd60 16.666%,
+    #25bbee 33.333%,
+    #96cd60 33.333%,
+    #25bbee 50%,
+    #1ccd61 50%,
+    #1ccd61 66.666%,
+    #25bbee 66.666%,
+    #4c4ddb 83.333%
+  );
+
+  /* Set thee background size and repeat properties. */
+  background-size: 57%;
+  background-repeat: repeat;
+
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Style the rainbow text element. */
+.dark .rainbow-text {
+  /* Create a conic gradient. */
+  /* Double percentages to avoid blur (#000 10%, #fff 10%, #fff 20%, ...). */
+  background: #25bbee;
+  background-color: #25bbee;
+  background: conic-gradient(
+    #4c4ddb 16.666%,
+    #1ccd61 33.333%,
+    #4c4ddb 33.333%,
+    #1ccd61 50%,
+    #25bbee 50%,
+    #96cd60 66.666%,
+    #25bbee 66.666%,
+    #96cd60 83.333%
+  );
+
+  /* Set thee background size and repeat properties. */
+  background-size: 57%;
+  background-repeat: repeat;
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

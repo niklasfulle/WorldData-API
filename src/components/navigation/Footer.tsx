@@ -70,8 +70,8 @@ const Footer = async () => {
           <div className="w-44 md:w-96">
             <p className="font-sm dark:text-white font-semibold">
               {"Copyright © "}
-              Worlddata API {" " + new Date().getFullYear()}
-              {"."}
+              {new Date().getFullYear() + " "}
+              {"Worlddata API."}
             </p>
           </div>
           <div className="flex flex-col md:flex-row w-52 md:w-96 justify-end items-end">

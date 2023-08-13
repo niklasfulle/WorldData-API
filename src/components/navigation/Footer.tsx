@@ -9,9 +9,9 @@ const Footer = async () => {
 
   return (
     <div className="backdrop-blur-sm bg-white/75 dark:bg-slate-900/75 dark:text-white border-t border-slate-300 dark:border-slate-700 shadow-sm">
-      <div className="flex flex-col py-4 px-20">
-        <div className="flex justify-evenly items-start flex-wrap flex-row w-full text-center mb-8">
-          <div className="w-[40%] sm:w-[48%] md:w-44 lg:w-72 m-1 flex justify-start flex-col dark:text-white md:mb-4">
+      <div className="flex flex-col py-4 md:px-20 px-8">
+        <div className="grid grid-flow-col gap-4 lg:grid-rows-1 grid-rows-2 w-full text-center mb-2">
+          <div className="m-1 flex justify-start flex-col dark:text-white">
             <h4 className="text-md mb-1.5 text">Worlddata API</h4>
             <Link href="/documentation" className="text-sm mb-1">
               Documentation
@@ -23,7 +23,7 @@ const Footer = async () => {
               Blogposts
             </Link>
           </div>
-          <div className="w-[40%] sm:w-[48%] md:w-44 lg:w-72 m-1 flex justify-start flex-col dark:text-white md:mb-4">
+          <div className=" m-1 flex justify-start flex-col dark:text-white">
             <h4 className="text-md mb-1.5 text">For User</h4>
             {session ? (
               <Link href="/dashboard" className="text-sm mb-1">
@@ -40,11 +40,11 @@ const Footer = async () => {
               </>
             )}
           </div>
-          <div className="w-[40%] sm:w-[48%] md:w-44 lg:w-72 m-1 flex items-center flex-col dark:text-white md:mb-4">
+          <div className="m-1 flex items-center flex-col dark:text-white">
             <h4 className="text-md mb-1.5 text">Theme</h4>
             <ThemeToggleFooter />
           </div>
-          <div className="w-[40%] sm:w-[48%] md:w-44 lg:w-72 m-1 flexflex-col dark:text-white justify-center md:mb-4">
+          <div className="m-1 flexflex-col dark:text-white justify-center">
             <h4 className="text-md mb-1.5 text">Extern</h4>
             <div className="m-1 flex justify-center flex-row dark:text-white">
               {/*<Link href="" className="text-sm mb-1 flex flex-col items-center p-2">
@@ -62,7 +62,7 @@ const Footer = async () => {
             </div>
           </div>
         </div>
-        <hr className="dark:text-white w-full mb-1 "></hr>
+        <hr className="dark:text-white w-full mb-3 mt-0 lg:mt-4"></hr>
         <div className="flex flex-row justify-between mt-0 px-4">
           <div className="w-44 md:w-96">
             <p className="font-sm dark:text-white font-semibold">

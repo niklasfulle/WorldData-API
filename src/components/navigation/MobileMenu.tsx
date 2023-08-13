@@ -88,7 +88,7 @@ const MobileMenu = () => {
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild className="hover:cursor-pointer">
             <Link
-              href="/Blogposts"
+              href="/blogposts"
               className="w-full flex items-center gap-1.5"
               aria-label="Link to the world-data page"
             >

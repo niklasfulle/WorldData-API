@@ -20,9 +20,7 @@ const page = async () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto mt-16 h-screen">
-      {apiKey ? <ApiDashboard /> : <RequestApiKey />}
-    </div>
+    <div className="max-w-7xl mx-auto mt-16">{apiKey ? <ApiDashboard /> : <RequestApiKey />}</div>
   );
 };
 

@@ -6,8 +6,8 @@ import { FC } from "react";
 
 const page: FC = ({}) => {
   return (
-    <div className="container max-w-7xl mx-auto mt-12 h-screen">
-      <div className="flex flex-col items-center gap-6">
+    <div className="container max-w-7xl mx-auto mt-12">
+      <div className="flex flex-col items-center gap-6 min-h-screen h-auto">
         <LargeHeading>The data we use</LargeHeading>
         <Paragraph>From countries, cities, mountains, lakes to currencies</Paragraph>
         <DataTabs />

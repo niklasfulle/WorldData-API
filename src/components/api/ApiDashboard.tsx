@@ -9,6 +9,7 @@ import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import Table from "@/ui/Table";
 import ApiHistoryOptions from "@/api/ApiHistoryOptions";
+import Icons from "../ui/Icons";
 
 const ApiDashboard = async ({}) => {
   const user = await getServerSession(authOptions);
@@ -36,7 +37,7 @@ const ApiDashboard = async ({}) => {
   }));
 
   return (
-    <div className="container flex flex-col gap-6">
+    <div className="container flex flex-col gap-6 min-h-screen h-auto mb-12">
       <LargeHeading>Welcome back, {user.user.name}</LargeHeading>
       <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start items-center">
         <Paragraph className="ml-2">Your API key:</Paragraph>
@@ -47,7 +48,9 @@ const ApiDashboard = async ({}) => {
         <Paragraph className="text-center md:text-left -mb-2">Your API history:</Paragraph>
         <ApiHistoryOptions apiKeyKey={activeApiKey.key} />
       </div>
-      <Table userRequests={serializableRequests} />
+      <div>
+        <Table userRequests={serializableRequests} />
+      </div>
     </div>
   );
 };

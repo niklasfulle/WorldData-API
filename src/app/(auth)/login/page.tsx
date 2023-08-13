@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const page = () => {
   return (
-    <div className="inset-0 mx-auto container flex h-screen flex-col pt-32">
+    <div className="inset-0 mx-auto container flex flex-col pt-32">
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 max-w-lg">
         <div className="flex flex-col items-center gap-6 text-center">
           <Link

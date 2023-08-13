@@ -4,8 +4,10 @@ import { FC } from "react";
 
 const page: FC = ({}) => {
   return (
-    <div className="container max-w-7xl mx-auto mt-12 h-screen">
-      <div className="flex flex-col items-center gap-6"></div>
+    <div className="container max-w-7xl mx-auto mt-12 min-h-screen h-auto">
+      <div className="flex flex-col items-center gap-6">
+        <LargeHeading>Privacy</LargeHeading>
+      </div>
     </div>
   );
 };

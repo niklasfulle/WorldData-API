@@ -59,8 +59,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen bg-slate-300 dark:bg-slate-900 antialiased">
         <Providers>
-          {children}
           <Navbar />
+          {children}
           <Toaster position="bottom-right" />
           <Footer />
         </Providers>

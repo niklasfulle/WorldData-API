@@ -25,6 +25,8 @@ import {
   Twitter,
   Instagram,
   Github,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 
 export const Icons = {
@@ -54,6 +56,8 @@ export const Icons = {
   Twitter,
   Instagram,
   Github,
+  Eye,
+  EyeOff,
 };
 
 export default Icons;

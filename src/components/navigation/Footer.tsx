@@ -12,7 +12,7 @@ const Footer = async () => {
       <div className="flex flex-col py-4 md:px-20 px-8">
         <div className="grid grid-flow-col gap-4 lg:grid-rows-1 grid-rows-2 w-full text-center mb-2">
           <div className="m-1 flex justify-start flex-col dark:text-white">
-            <h4 className="text-md mb-1.5 text">Worlddata API</h4>
+            <h4 className="text-md mb-1.5 text">WorldData API</h4>
             <Link href="/documentation" className="text-sm mb-1">
               Documentation
             </Link>
@@ -71,7 +71,7 @@ const Footer = async () => {
             <p className="font-sm dark:text-white font-semibold">
               {"Copyright © "}
               {new Date().getFullYear() + " "}
-              {"Worlddata API."}
+              {"WorldData API."}
             </p>
           </div>
           <div className="flex flex-col md:flex-row w-52 md:w-96 justify-end items-end">

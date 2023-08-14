@@ -36,6 +36,12 @@ export async function POST(): Promise<NextResponse<RevokeApiData>> {
       },
     })
 
+    // remove API key from user
+    await db.user.update({
+      where: { id: user.id },
+      data: { apiKeyId: null },
+    })
+
     return NextResponse.json({ error: null, success: true }, { status: 200 })
 
   } catch (error) {

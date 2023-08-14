@@ -9,10 +9,10 @@ import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import Table from "@/ui/Table";
 import ApiHistoryOptions from "@/api/ApiHistoryOptions";
-import Icons from "../ui/Icons";
 
 const ApiDashboard = async ({}) => {
   const user = await getServerSession(authOptions);
+  console.log(user);
   if (!user) return notFound();
 
   const apiKeys = await db.apiKey.findMany({

@@ -7,17 +7,17 @@ import { useScrollBlock } from "@/helpers/useScrollBlock";
 
 const CookieConsent = () => {
   const [showConsent, setShowConsent] = useState(true);
-  const [blockScroll, allowScroll] = useScrollBlock();
+  //const [blockScroll, allowScroll] = useScrollBlock();
 
   useEffect(() => {
     setShowConsent(hasCookie("localConsent"));
-    if (!hasCookie("localConsent")) blockScroll();
+    //if (!hasCookie("localConsent")) blockScroll();
   }, []);
 
   const acceptCookie = () => {
     setShowConsent(true);
     setCookie("localConsent", "true", {});
-    allowScroll();
+    //allowScroll();
   };
 
   if (showConsent) {

@@ -34,7 +34,7 @@ const Navbar = async () => {
             className={buttonVariants({ variant: "link" })}
             aria-label="Link to the home page"
           >
-            World Data API
+            WorldData API
           </Link>
         </div>
 

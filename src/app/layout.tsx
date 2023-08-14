@@ -6,6 +6,7 @@ import Navbar from "@/navigation/Navbar";
 import { Toaster } from "@/ui/Toast";
 const Footer = lazy(() => import("@/navigation/Footer"));
 import { lazy } from "react";
+import CookieConsent from "@/components/banner/CookieConsent";
 
 const inter = Inter({ subsets: ["latin"] });
 

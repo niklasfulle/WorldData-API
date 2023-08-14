@@ -3,6 +3,7 @@ import Paragraph from "@/ui/Paragraph";
 import Link from "next/link";
 import { Metadata } from "next";
 import ThreeScene from "@/three/ThreeScene";
+import CookieConsent from "@/components/banner/CookieConsent";
 
 export const metadata: Metadata = {
   title: "Wordldata API - Home",
@@ -32,6 +33,7 @@ export default function Home() {
           <div className="relative w-full max-w-xl lg:max-w-3xl lg:left-1/2 lg:absolute -mt-24 lg:-ml-12">
             <ThreeScene />
           </div>
+          <CookieConsent />
         </div>
       </div>
     </div>

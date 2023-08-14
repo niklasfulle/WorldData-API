@@ -3,6 +3,7 @@ import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import DocsTabs from "@/docs/DocsTabs";
 import "simplebar-react/dist/simplebar.min.css";
+import CookieConsent from "@/components/banner/CookieConsent";
 
 const page: FC = ({}) => {
   return (
@@ -11,6 +12,7 @@ const page: FC = ({}) => {
         <LargeHeading>Making a Request</LargeHeading>
         <Paragraph>How to use the API</Paragraph>
         <DocsTabs />
+        <CookieConsent />
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import Paragraph from "@/ui/Paragraph";
 import "simplebar-react/dist/simplebar.min.css";
 import DataTabs from "@/docs/DataTabs";
 import { FC } from "react";
+import CookieConsent from "@/components/banner/CookieConsent";
 
 const page: FC = ({}) => {
   return (
@@ -11,6 +12,7 @@ const page: FC = ({}) => {
         <LargeHeading>The data we use</LargeHeading>
         <Paragraph>From countries, cities, mountains, lakes to currencies</Paragraph>
         <DataTabs />
+        <CookieConsent />
       </div>
     </div>
   );

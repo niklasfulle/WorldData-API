@@ -4,6 +4,7 @@ import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import UserAuthForm from "@/auth/UserAuthForm";
 import Link from "next/link";
+import CookieConsent from "@/components/banner/CookieConsent";
 
 const page = () => {
   return (
@@ -26,6 +27,7 @@ const page = () => {
           <Paragraph>Please sign in using your Google account.</Paragraph>
         </div>
         <UserAuthForm />
+        <CookieConsent />
       </div>
     </div>
   );

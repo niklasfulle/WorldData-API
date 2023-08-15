@@ -35,14 +35,15 @@ export const authOptions: NextAuthOptions = {
     signIn: "/login"
   },
   providers: [
-    /*GoogleProvider({
+    GoogleProvider({
       clientId: getGoogleCredentials().googleClientId,
       clientSecret: getGoogleCredentials().googleClientSecret,
     }),
-    GitHubProvider({
+    // ! Not working
+    /*GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-    }),*/
+    }),
     CredentialsProvider({
       credentials: {
         email: { type: 'text' },
@@ -63,7 +64,7 @@ export const authOptions: NextAuthOptions = {
 
         return user;
       },
-    }),
+    }),*/
   ],
   callbacks: {
     async session({ token, session }) {

@@ -13,6 +13,7 @@ const SignOutButton: FC<SignOutButtonProps> = ({}) => {
     setIsLoading(true);
 
     try {
+      // ! Not a real sign out, can't switch the accounts
       await signOut();
     } catch (error) {
       toast({

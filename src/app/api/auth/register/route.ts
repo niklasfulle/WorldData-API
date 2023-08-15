@@ -1,4 +1,3 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 import bcrypt from 'bcrypt';
 import { db } from '@/lib/prisma';
@@ -19,7 +18,7 @@ export async function POST(
     const body = await req.json()
     const { firstname, lastname, email, password } = registerUserSchema.parse(body);
     const username = firstname + " " + lastname;
-    console.log(username)
+    
     const user = await db.user.findUnique({
       where: { email },
     });
@@ -38,7 +37,6 @@ export async function POST(
 
     return NextResponse.json({ message: "User created", success: true }, { status: 200 })
   } catch (error) {
-    console.log(error)
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: error.issues, success: false }, { status: 400 })
     }

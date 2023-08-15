@@ -35,8 +35,6 @@ export async function GET(): Promise<NextResponse<CreateApiData>> {
       },
     })
 
-    console.log(createdApiKey)
-
     await db.user.update({
       where: { id: user.id },
       data: { apiKeyId: createdApiKey.id },

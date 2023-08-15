@@ -85,10 +85,8 @@ const SignInForm = ({}) => {
           password,
         }),
       });
-      const json = await res.json();
 
-      if (!res.ok) {
-      }
+      console.log(res);
 
       toast({
         title: "Success",
@@ -96,7 +94,6 @@ const SignInForm = ({}) => {
         type: "success",
       });
     } catch (error) {
-      console.log(error);
       toast({
         title: "Error",
         message: "There was an error registering",

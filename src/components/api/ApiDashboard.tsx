@@ -12,7 +12,7 @@ import ApiHistoryOptions from "@/api/ApiHistoryOptions";
 
 const ApiDashboard = async ({}) => {
   const user = await getServerSession(authOptions);
-  console.log(user);
+
   if (!user) return notFound();
 
   const apiKeys = await db.apiKey.findMany({

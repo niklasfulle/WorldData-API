@@ -67,6 +67,7 @@ const RequestApiKey: FC<RequestApiKeyProps> = ({}) => {
             readOnly
             value={apiKey ?? ""}
             placeholder="Request an API key to display it here"
+            className="bg-white"
           />
         </div>
         <div className="mt-6 flex justify-center sm:mt-0 sm:ml-4 sm:flex-shrink-0">

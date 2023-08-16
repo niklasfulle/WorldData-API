@@ -4,10 +4,14 @@ import { getServerSession } from 'next-auth'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
-
 export async function POST() {
   try {
-    const user = await getServerSession(authOptions).then((res) => res?.user)
+    const session = await getServerSession(authOptions);
+
+    const user = await db.user.findFirst({
+      where: { email: session?.user?.email },
+      include: { apiKey: true },
+    })
 
     if (!user) {
       return NextResponse.json({

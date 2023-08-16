@@ -86,8 +86,6 @@ const SignInForm = ({}) => {
         }),
       });
 
-      console.log(res);
-
       toast({
         title: "Success",
         message: "You have successfully registered",

@@ -1,7 +1,5 @@
-import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/prisma";
 import { formatDistance } from "date-fns";
-import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
 import ApiKeyOptions from "@/api/ApiKeyOptions";
 import { Input } from "@/ui/Input";
@@ -9,14 +7,26 @@ import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import Table from "@/ui/Table";
 import ApiHistoryOptions from "@/api/ApiHistoryOptions";
+import { getSession } from "next-auth/react";
+import { headers } from "next/headers";
 
 const ApiDashboard = async ({}) => {
-  const user = await getServerSession(authOptions);
+  const session = await getSession({
+    req: {
+      headers: Object.fromEntries(headers().entries()),
+    },
+  });
+
+  if (!session) return notFound();
+
+  const user = await db.user.findUnique({
+    where: { email: session?.user?.email! },
+  });
 
   if (!user) return notFound();
 
   const apiKeys = await db.apiKey.findMany({
-    where: { userId: user.user.id },
+    where: { userId: user.id },
   });
 
   const activeApiKey = apiKeys.find((key) => key.enabled);
@@ -38,7 +48,7 @@ const ApiDashboard = async ({}) => {
 
   return (
     <div className="container flex flex-col gap-6 min-h-screen h-auto mb-12">
-      <LargeHeading>Welcome back, {user.user.name}</LargeHeading>
+      <LargeHeading>Welcome back, {user.name}</LargeHeading>
       <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start items-center">
         <Paragraph className="ml-2">Your API key:</Paragraph>
         <Input className="w-fit " readOnly value={activeApiKey.key} />

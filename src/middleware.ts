@@ -1,25 +1,19 @@
 import { getToken } from 'next-auth/jwt'
 import { withAuth } from 'next-auth/middleware'
 import { NextResponse } from 'next/server'
+import { db } from './lib/prisma'
 
 export default withAuth(
   async function middleware(req) {
     const pathname = req.nextUrl.pathname // relative path
+    // get session token
+    const sessionToken = req.cookies.get('next-auth.session-token')
 
     // Manage route protection
-    const token = await getToken({ req })
-    const isAuth = !!token
-    const isAuthPage = req.nextUrl.pathname.startsWith('/login')
+    //const token = await getToken({ req })
+    const isAuth = !!sessionToken
 
     const sensitiveRoutes = ['/dashboard']
-
-    if (isAuthPage) {
-      if (isAuth) {
-        return NextResponse.redirect(new URL('/dashboard', req.url))
-      }
-
-      return null
-    }
 
     if (
       !isAuth &&

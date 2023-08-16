@@ -1,11 +1,15 @@
-import { authOptions } from "@/lib/auth";
-import { getServerSession } from "next-auth";
 import Link from "next/link";
 import Icons from "@/ui/Icons";
 import { ThemeToggleFooter } from "@/navigation/ThemeToggleFooter";
+import { getSession } from "next-auth/react";
+import { headers } from "next/headers";
 
 const Footer = async () => {
-  const session = await getServerSession(authOptions);
+  const session = await getSession({
+    req: {
+      headers: Object.fromEntries(headers().entries()),
+    },
+  });
 
   return (
     <div className="backdrop-blur-sm bg-white/75 dark:bg-slate-900/75 dark:text-white border-t border-slate-300 dark:border-slate-700 shadow-sm bottom-0 left-0 right-0">
@@ -13,6 +17,7 @@ const Footer = async () => {
         <div className="grid grid-flow-col gap-4 lg:grid-rows-1 grid-rows-2 w-full text-center mb-2">
           <div className="m-1 flex justify-start flex-col dark:text-white">
             <h4 className="text-md mb-1.5 text">WorldData API</h4>
+
             <Link href="/documentation" className="text-sm mb-1">
               Documentation
             </Link>

@@ -6,6 +6,8 @@ import { getServerSession } from "next-auth";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CookieConsent from "@/components/banner/CookieConsent";
+import { getSession } from "next-auth/react";
+import { headers } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Wordldata API - Dashboard",
@@ -13,11 +15,22 @@ export const metadata: Metadata = {
 };
 
 const page = async () => {
-  const user = await getServerSession(authOptions);
+  const session = await getSession({
+    req: {
+      headers: Object.fromEntries(headers().entries()),
+    },
+  });
+
+  if (!session) return notFound();
+
+  const user = await db.user.findUnique({
+    where: { email: session?.user?.email! },
+  });
+
   if (!user) return notFound();
 
   const apiKey = await db.apiKey.findFirst({
-    where: { userId: user.user.id, enabled: true },
+    where: { userId: user.id, enabled: true },
   });
 
   return (

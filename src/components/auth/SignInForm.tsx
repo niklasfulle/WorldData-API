@@ -32,6 +32,7 @@ const SignInForm = ({}) => {
     setIsLoadingGithub(true);
 
     try {
+      await signIn("github");
     } catch (error) {
       toast({
         title: "Error",
@@ -56,9 +57,9 @@ const SignInForm = ({}) => {
       const email = target.email.value;
       const password = target.password.value;
 
-      await signIn("credentials", {
-        email,
-        password,
+      const res = await signIn("credentials", {
+        email: email,
+        password: password,
       });
     } catch (error) {
       toast({

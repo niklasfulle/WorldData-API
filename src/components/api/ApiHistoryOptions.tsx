@@ -44,7 +44,7 @@ const ApiHistoryOptions: FC<ApiHistoryOptionsProps> = ({ apiKeyKey }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger disabled={isClearingHistory} asChild>
-        <Button variant="ghost" className="flex gap-2 items-center">
+        <Button variant="ghost" className="flex gap-2 items-center" id="ApiHistoryOptions">
           <p>{isClearingHistory ? "Clearing the history" : "Options"}</p>
           {isClearingHistory ? <Loader2 className="animate-spin h-4 w-4" /> : null}
         </Button>

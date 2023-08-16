@@ -9,7 +9,7 @@ import {
 import { createApiKey, revokeApiKey } from "@/helpers/api-key";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Button } from "@/ui/Button";
 import { toast } from "@/ui/Toast";
 
@@ -60,10 +60,14 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
     }
   };
 
+  useEffect(() => {
+    window.history.scrollRestoration = "manual";
+  }, []);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger disabled={isCreatingNew || isRevoking} asChild>
-        <Button variant="ghost" className="flex gap-2 items-center ">
+        <Button variant="ghost" className="flex gap-2 items-center" id="ApiKeyOptions">
           <p>{isCreatingNew ? "Creating new key" : isRevoking ? "Revoking key" : "Options"}</p>
           {isCreatingNew || isRevoking ? <Loader2 className="animate-spin h-4 w-4" /> : null}
         </Button>

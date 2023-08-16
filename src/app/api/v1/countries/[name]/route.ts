@@ -57,13 +57,13 @@ export async function GET(req: Request, { params: { name } }: Props) {
       const client = await clientPromise;
       const db = client.db("worlddata");
 
-      const city = await db.collection("countries").findOne({ name })
+      const countries = await db.collection("countries").findOne({ name })
 
       const duration = new Date().getTime() - start.getTime()
 
       const url = new URL(req.url as string).pathname
 
-      if (!city) {
+      if (!countries) {
         await prisma.apiRequest.create({
           data: {
             duration,
@@ -91,8 +91,9 @@ export async function GET(req: Request, { params: { name } }: Props) {
         },
       })
 
-      return NextResponse.json(city, { status: 200 })
+      return NextResponse.json(countries, { status: 200 })
     } catch (error) {
+      console.log(error)
       return NextResponse.json({ error: 'Internal Server Error', success: false }, { status: 500 })
     }
 

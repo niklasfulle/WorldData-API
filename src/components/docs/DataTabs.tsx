@@ -13,28 +13,52 @@ import SimpleBar from "simplebar-react";
 import { Button } from "@/ui/Button";
 import Icons from "@/ui/Icons";
 
-const DocumentationTabs: FC = ({}) => {
+const DataTabs: FC = ({}) => {
   return (
     <Tabs defaultValue="v1" className="max-w-2xl w-full">
       <div className="flex justify-end md:justify-start">
         <TabsList className="hidden md:inline-flex">
           <div className="p-1 dark:hover:bg-slate-700 rounded-l-md">
-            <TabsTrigger value="v1" id="v1Trigger" aria-controls="v1" aria-labelledby="v1 Trigger">
+            <TabsTrigger
+              value="v1"
+              id="v1Trigger"
+              aria-controls="v1"
+              aria-labelledby="v1 Trigger"
+              className="min-w-[95px] hover:bg-slate-300 data-[state=active]:bg-slate-300"
+            >
               V1
             </TabsTrigger>
           </div>
-          <div className="p-1 dark:hover:bg-slate-700">
-            <TabsTrigger value="v2" id="v2Trigger" aria-controls="v2" aria-labelledby="v2 Trigger">
+          <div className="p-1 dark:hover:bg-slate-700 ">
+            <TabsTrigger
+              value="v2"
+              id="v2Trigger"
+              aria-controls="v2"
+              aria-labelledby="v2 Trigger"
+              className="min-w-[95px] hover:bg-slate-300 data-[state=active]:bg-slate-300"
+            >
               V2
             </TabsTrigger>
           </div>
           <div className="p-1 dark:hover:bg-slate-700">
-            <TabsTrigger value="v3" id="v3Trigger" aria-controls="v3" aria-labelledby="v3 Trigger">
+            <TabsTrigger
+              value="v3"
+              id="v3Trigger"
+              aria-controls="v3"
+              aria-labelledby="v3 Trigger"
+              className="min-w-[95px] hover:bg-slate-300 data-[state=active]:bg-slate-300"
+            >
               V3
             </TabsTrigger>
           </div>
           <div className="p-1 dark:hover:bg-slate-700 rounded-r-md">
-            <TabsTrigger value="v4" id="v4Trigger" aria-controls="v4" aria-labelledby="v4 Trigger">
+            <TabsTrigger
+              value="v4"
+              id="v4Trigger"
+              aria-controls="v4"
+              aria-labelledby="v4 Trigger"
+              className="min-w-[95px] hover:bg-slate-300 data-[state=active]:bg-slate-300"
+            >
               V4
             </TabsTrigger>
           </div>
@@ -51,10 +75,10 @@ const DocumentationTabs: FC = ({}) => {
               <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
                 <TabsTrigger
                   value="v1"
-                  id="v1Trigger"
+                  id="v1TriggerDrop"
                   aria-controls="v1"
-                  aria-labelledby="v1 Trigger"
-                  className="w-full"
+                  aria-labelledby="v1 TriggerDrop"
+                  className="w-full hover:bg-slate-300 data-[state=active]:bg-slate-300"
                 >
                   V1
                 </TabsTrigger>
@@ -62,10 +86,10 @@ const DocumentationTabs: FC = ({}) => {
               <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
                 <TabsTrigger
                   value="v2"
-                  id="v2Trigger"
+                  id="v2TriggerDrop"
                   aria-controls="v2"
-                  aria-labelledby="v2 Trigger"
-                  className="w-full"
+                  aria-labelledby="v2 TriggerDrop"
+                  className="w-full hover:bg-slate-300 data-[state=active]:bg-slate-300"
                 >
                   V2
                 </TabsTrigger>
@@ -73,10 +97,10 @@ const DocumentationTabs: FC = ({}) => {
               <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
                 <TabsTrigger
                   value="v3"
-                  id="v3Trigger"
+                  id="v3TriggerDrop"
                   aria-controls="v3"
-                  aria-labelledby="v3 Trigger"
-                  className="w-full"
+                  aria-labelledby="v3 TriggerDrop"
+                  className="w-full hover:bg-slate-300 data-[state=active]:bg-slate-300"
                 >
                   V3
                 </TabsTrigger>
@@ -84,10 +108,10 @@ const DocumentationTabs: FC = ({}) => {
               <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
                 <TabsTrigger
                   value="v4"
-                  id="v4Trigger"
+                  id="v4TriggerDrop"
                   aria-controls="v4"
-                  aria-labelledby="v4 Trigger"
-                  className="w-full"
+                  aria-labelledby="v4 TriggerDrop"
+                  className="w-full hover:bg-slate-300 data-[state=active]:bg-slate-300"
                 >
                   V4
                 </TabsTrigger>
@@ -101,23 +125,38 @@ const DocumentationTabs: FC = ({}) => {
         value="v1"
         id="v1TabContent"
         className="lg:mb-24 mb-4"
-        aria-labelledby="v1 Content"
+        aria-labelledby="v1 TabContent"
       >
         <SimpleBar>
           <Code animated language="markup" code={v1} show />
         </SimpleBar>
       </TabsContent>
-      <TabsContent value="v2" className="lg:mb-24 mb-4">
+      <TabsContent
+        value="v2"
+        id="v2TabContent"
+        className="lg:mb-24 mb-4"
+        aria-labelledby="v2 TabContent"
+      >
         <SimpleBar>
           <Code animated language="markup" code={v2} show />
         </SimpleBar>
       </TabsContent>
-      <TabsContent value="v3" className="lg:mb-24 mb-4">
+      <TabsContent
+        value="v3"
+        id="v3TabContent"
+        className="lg:mb-24 mb-4"
+        aria-labelledby="v3 TabContent"
+      >
         <SimpleBar>
           <Code animated language="markup" code={v3} show />
         </SimpleBar>
       </TabsContent>
-      <TabsContent value="v4" className="lg:mb-24 mb-4">
+      <TabsContent
+        value="v4"
+        id="v4TabContent"
+        className="lg:mb-24 mb-4"
+        aria-labelledby="v4 TabContent"
+      >
         <SimpleBar>
           <Code animated language="markup" code={v4} show />
         </SimpleBar>
@@ -126,4 +165,4 @@ const DocumentationTabs: FC = ({}) => {
   );
 };
 
-export default DocumentationTabs;
+export default DataTabs;

@@ -4,8 +4,7 @@ import { db } from '@/lib/prisma';
 import { NextResponse } from 'next/server';
 
 const registerUserSchema = z.object({
-  firstname: z.string().regex(/^[a-zA-Z]{3,15}$/g, 'Invalid firstname'),
-  lastname: z.string().regex(/^[a-zA-Z]{3,15}$/g, 'Invalid lastname'),
+  username: z.string().regex(/^[a-zA-Z0-9]{3,15}$/g, 'Invalid username'),
   email: z.string().email('Invalid email'),
   password: z.string().min(5, 'Password should be minimum 5 characters'),
 });
@@ -16,9 +15,8 @@ export async function POST(
   try {
 
     const body = await req.json()
-    const { firstname, lastname, email, password } = registerUserSchema.parse(body);
-    const username = firstname + " " + lastname;
-    
+    const { username, email, password } = registerUserSchema.parse(body);
+
     const user = await db.user.findUnique({
       where: { email },
     });
@@ -35,8 +33,11 @@ export async function POST(
       },
     });
 
+    console.log()
+
     return NextResponse.json({ message: "User created", success: true }, { status: 200 })
   } catch (error) {
+    console.log(error)
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: error.issues, success: false }, { status: 400 })
     }

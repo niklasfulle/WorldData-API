@@ -1,8 +1,6 @@
 import ApiDashboard from "@/api/ApiDashboard";
 import RequestApiKey from "@/api/RequestApiKey";
-import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/prisma";
-import { getServerSession } from "next-auth";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CookieConsent from "@/components/banner/CookieConsent";
@@ -34,7 +32,7 @@ const page = async () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto mt-16">
+    <div className="max-w-7xl mx-auto mt-12">
       {apiKey ? <ApiDashboard /> : <RequestApiKey />}
       <CookieConsent />
     </div>

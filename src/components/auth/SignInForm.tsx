@@ -96,7 +96,7 @@ const SignInForm = ({}) => {
                 type="email"
                 autoComplete="email"
                 required
-                className="ease-in transition-all block w-full rounded-md border-0 px-l py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+                className="ease-in transition-all block w-full rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
             </div>
           </div>
@@ -114,7 +114,7 @@ const SignInForm = ({}) => {
                 type={showPassword ? "text" : "password"}
                 autoComplete="current-password"
                 required
-                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
               <div className="absolute inset-y-0 right-0 flex items-center px-2">
                 {showPassword ? (

@@ -25,7 +25,7 @@ const DocumentationTabs: FC = ({}) => {
               aria-controls="nodejs"
               aria-labelledby="nodejs Trigger"
               value="nodejs"
-              className="min-w-[95px]"
+              className="min-w-[95px] hover:bg-slate-300 data-[state=active]:bg-slate-300"
             >
               NodeJs
             </TabsTrigger>
@@ -36,7 +36,7 @@ const DocumentationTabs: FC = ({}) => {
               aria-controls="python"
               aria-labelledby="python Trigger"
               value="python"
-              className="min-w-[95px]"
+              className="min-w-[95px] hover:bg-slate-300 data-[state=active]:bg-slate-300"
             >
               Python
             </TabsTrigger>
@@ -47,7 +47,7 @@ const DocumentationTabs: FC = ({}) => {
               aria-controls="go"
               aria-labelledby="go Trigger"
               value="go"
-              className="min-w-[95px]"
+              className="min-w-[95px] hover:bg-slate-300 data-[state=active]:bg-slate-300"
             >
               Go
             </TabsTrigger>
@@ -58,7 +58,7 @@ const DocumentationTabs: FC = ({}) => {
               aria-controls="rust"
               aria-labelledby="rust Trigger"
               value="rust"
-              className="min-w-[95px]"
+              className="min-w-[95px] hover:bg-slate-300 data-[state=active]:bg-slate-300"
             >
               Rust
             </TabsTrigger>
@@ -69,7 +69,7 @@ const DocumentationTabs: FC = ({}) => {
               aria-controls="kotlin"
               aria-labelledby="kotlin Trigger"
               value="kotlin"
-              className="min-w-[95px]"
+              className="min-w-[95px] hover:bg-slate-300 data-[state=active]:bg-slate-300"
             >
               Kotlin
             </TabsTrigger>
@@ -80,7 +80,7 @@ const DocumentationTabs: FC = ({}) => {
               aria-controls="csharp"
               aria-labelledby="csharp Trigger"
               value="csharp"
-              className="min-w-[95px]"
+              className="min-w-[95px] hover:bg-slate-300 data-[state=active]:bg-slate-300"
             >
               C#
             </TabsTrigger>
@@ -101,7 +101,7 @@ const DocumentationTabs: FC = ({}) => {
                   aria-controls="nodejs"
                   aria-labelledby="nodejs Trigger"
                   value="nodejs"
-                  className="w-full"
+                  className="w-full hover:bg-slate-300 data-[state=active]:bg-slate-300"
                 >
                   NodeJs
                 </TabsTrigger>
@@ -112,7 +112,7 @@ const DocumentationTabs: FC = ({}) => {
                   aria-controls="python"
                   aria-labelledby="python Trigger"
                   value="python"
-                  className="w-full"
+                  className="w-full hover:bg-slate-300 data-[state=active]:bg-slate-300"
                 >
                   Python
                 </TabsTrigger>
@@ -123,7 +123,7 @@ const DocumentationTabs: FC = ({}) => {
                   aria-controls="go"
                   aria-labelledby="go Trigger"
                   value="go"
-                  className="w-full"
+                  className="w-full hover:bg-slate-300 data-[state=active]:bg-slate-300"
                 >
                   Go
                 </TabsTrigger>
@@ -134,7 +134,7 @@ const DocumentationTabs: FC = ({}) => {
                   aria-controls="rust"
                   aria-labelledby="rust Trigger"
                   value="rust"
-                  className="w-full"
+                  className="w-full hover:bg-slate-300 data-[state=active]:bg-slate-300"
                 >
                   Rust
                 </TabsTrigger>
@@ -145,7 +145,7 @@ const DocumentationTabs: FC = ({}) => {
                   aria-controls="kotlin"
                   aria-labelledby="kotlin Trigger"
                   value="kotlin"
-                  className="w-full"
+                  className="w-full hover:bg-slate-300 data-[state=active]:bg-slate-300"
                 >
                   Kotlin
                 </TabsTrigger>
@@ -156,7 +156,7 @@ const DocumentationTabs: FC = ({}) => {
                   aria-controls="csharp"
                   aria-labelledby="csharp Trigger"
                   value="csharp"
-                  className="w-full"
+                  className="w-full hover:bg-slate-300 data-[state=active]:bg-slate-300"
                 >
                   C#
                 </TabsTrigger>

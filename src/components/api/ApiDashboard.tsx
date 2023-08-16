@@ -9,6 +9,7 @@ import Table from "@/ui/Table";
 import ApiHistoryOptions from "@/api/ApiHistoryOptions";
 import { getSession } from "next-auth/react";
 import { headers } from "next/headers";
+import { useEffect } from "react";
 
 const ApiDashboard = async ({}) => {
   const session = await getSession({
@@ -49,9 +50,9 @@ const ApiDashboard = async ({}) => {
   return (
     <div className="container flex flex-col gap-6 min-h-screen h-auto mb-12">
       <LargeHeading>Welcome back, {user.name}</LargeHeading>
-      <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start items-center">
-        <Paragraph className="ml-2">Your API key:</Paragraph>
-        <Input className="w-fit " readOnly value={activeApiKey.key} />
+      <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start items-center ">
+        <Paragraph className="ml-2 mt-1">Your API key:</Paragraph>
+        <Input className="md:w-[22rem] w-52" readOnly value={activeApiKey.key} />
         <ApiKeyOptions apiKeyKey={activeApiKey.key} />
       </div>
       <div className="flex flex-row justify-between -mb-4 px-2 items-center">

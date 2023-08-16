@@ -52,15 +52,13 @@ const SignInForm = ({}) => {
     try {
       setIsLoadingCredentials(true);
       const target = e.target as typeof e.target & {
-        firstname: { value: string };
-        lastname: { value: string };
+        username: { value: string };
         email: { value: string };
         password: { value: string };
         passwordConfirm: { value: string };
       };
 
-      const firstname = target.firstname.value;
-      const lastname = target.lastname.value;
+      const username = target.username.value;
       const email = target.email.value;
       const password = target.password.value;
       const passwordConfirm = target.passwordConfirm.value;
@@ -80,8 +78,7 @@ const SignInForm = ({}) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          firstname,
-          lastname,
+          username,
           email,
           password,
         }),
@@ -114,35 +111,18 @@ const SignInForm = ({}) => {
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label
-              htmlFor="firstname"
+              htmlFor="username"
               className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
             >
-              Firstname
+              Username
             </label>
             <div className="mt-1">
               <Input
-                id="firstname"
-                name="firstname"
+                id="username"
+                name="username"
                 type="text"
                 required
-                className="ease-in transition-all block w-full rounded-md border-0 px-l py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
-              />
-            </div>
-          </div>
-          <div>
-            <label
-              htmlFor="lastname"
-              className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
-            >
-              Lastname
-            </label>
-            <div className="mt-1">
-              <Input
-                id="lastname"
-                name="lastname"
-                type="text"
-                required
-                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+                className="ease-in transition-all block w-full rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
             </div>
           </div>
@@ -159,7 +139,7 @@ const SignInForm = ({}) => {
                 name="email"
                 type="email"
                 required
-                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
             </div>
           </div>
@@ -176,7 +156,7 @@ const SignInForm = ({}) => {
                 name="password"
                 type={showPassword ? "text" : "password"}
                 required
-                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
               <div className="absolute inset-y-0 right-0 flex items-center px-2">
                 {showPassword ? (
@@ -206,7 +186,7 @@ const SignInForm = ({}) => {
                 name="passwordConfirm"
                 type={showPasswordConfimation ? "text" : "password"}
                 required
-                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
               <div className="absolute inset-y-0 right-0 flex items-center px-2">
                 {showPasswordConfimation ? (

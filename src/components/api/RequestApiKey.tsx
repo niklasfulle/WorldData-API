@@ -46,11 +46,10 @@ const RequestApiKey: FC<RequestApiKeyProps> = ({}) => {
   return (
     <div className="container md:max-w-3xl min-h-screen h-auto">
       <div className="flex flex-col gap-6 items-center">
-        <Key className="mx-auto h-12 w-12 text-gray-400" />
         <LargeHeading className="text-center">Request your API key</LargeHeading>
         <Paragraph>You haven&apos;t requested an API key yet.</Paragraph>
       </div>
-      <form onSubmit={createNewApiKey} className="mt-6 sm:flex sm:items-center px-12" action="#">
+      <form onSubmit={createNewApiKey} className="mt-16 sm:flex sm:items-center px-12" action="#">
         <label htmlFor="emails" className="sr-only">
           Your API key
         </label>
@@ -67,7 +66,6 @@ const RequestApiKey: FC<RequestApiKeyProps> = ({}) => {
             readOnly
             value={apiKey ?? ""}
             placeholder="Request an API key to display it here"
-            className="bg-white"
           />
         </div>
         <div className="mt-6 flex justify-center sm:mt-0 sm:ml-4 sm:flex-shrink-0">

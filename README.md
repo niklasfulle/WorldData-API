@@ -5,11 +5,21 @@
 - [Description](#description)
 - [Dependencies](#dependencies)
 - [Setup](#setup)
+- [API](#api)
 - [Data](#data)
   - [V1](#v1)
   - [V2](#v2)
   - [V3](#v3)
   - [V4](#v4)
+- [Pages](#pages)
+  - [Home Page](#home-page)
+  - [Documentation Page](#documentation-page)
+  - [World Data Page](#world-data-page)
+  - [Login Page](#login-page)
+  - [Register Page](#register-page)
+  - [Forgot Password Page](#forgot-password-page)
+  - [Dashboard Page](#dashboard-page)
+- [License](#license)
 
 ## Description
 
@@ -17,24 +27,31 @@ This is a API provider for world data. It is a RESTful API that uses JSON as its
 
 ## Dependencies
 
-| Name           | Version | Link                                                 |
-| -------------- | ------- | ---------------------------------------------------- |
-| Node.js        | 18.17.0 | [Link](https://nodejs.org/en/)                       |
-| Typescript     | 5.1.6   | [Link](https://www.typescriptlang.org/)              |
-| React          | 18.2.0  | [Link](https://reactjs.org/)                         |
-| React-DOM      | 18.2.0  | [Link](https://reactjs.org/)                         |
-| Tailwind CSS   | 3.3.3   | [Link](https://tailwindcss.com/)                     |
-| tailwind-merge | 1.10.0  | [Link](https://www.npmjs.com/package/tailwind-merge) |
-| clsx           | 1.2.1   | [Link](https://www.npmjs.com/package/clsx)           |
-| Next.js        | 13.4.12 | [Link](https://nextjs.org/)                          |
-| Next-auth      | 4.20.1  | [Link](https://next-auth.js.org/)                    |
-| Prisma         | 3.6.0   | [Link](https://www.prisma.io/)                       |
-| zod            | 3.21.0  | [Link](https://www.npmjs.com/package/zod)            |
-| lodash         | 4.17.21 | [Link](https://lodash.com/)                          |
-| date-fns       | 2.29.3  | [Link](https://date-fns.org/)                        |
-| limitter       | 2.1.0   | [Link](https://www.npmjs.com/package/limiter)        |
-| nanoId         | 4.0.1   | [Link](https://www.npmjs.com/package/nanoid)         |
-| lucide-react   | 0.122.0 | [Link](https://www.npmjs.com/package/lucide-react)   |
+| Name            | Version | Link                                                 |
+| --------------- | ------- | ---------------------------------------------------- |
+| Node.js         | 18.17.0 | [Link](https://nodejs.org/en/)                       |
+| Typescript      | 5.1.6   | [Link](https://www.typescriptlang.org/)              |
+| React           | 18.2.0  | [Link](https://reactjs.org/)                         |
+| React-DOM       | 18.2.0  | [Link](https://reactjs.org/)                         |
+| react-hot-toast | 2.4.1   | [Link](https://react-hot-toast.com/)                 |
+| Tailwind CSS    | 3.3.3   | [Link](https://tailwindcss.com/)                     |
+| tailwind-merge  | 1.10.0  | [Link](https://www.npmjs.com/package/tailwind-merge) |
+| clsx            | 1.2.1   | [Link](https://www.npmjs.com/package/clsx)           |
+| Next.js         | 13.4.12 | [Link](https://nextjs.org/)                          |
+| Next-auth       | 4.23.0  | [Link](https://next-auth.js.org/)                    |
+| Next-pwa        | 5.6.0   | [Link](https://www.npmjs.com/package/next-pwa)       |
+| Prisma          | 3.6.0   | [Link](https://www.prisma.io/)                       |
+| PostgreSQL      | 14.1    | [Link](https://www.postgresql.org/)                  |
+| MongoDB         | 5.7.0   | [Link](https://www.mongodb.com/)                     |
+| zod             | 3.21.0  | [Link](https://www.npmjs.com/package/zod)            |
+| lodash          | 4.17.21 | [Link](https://lodash.com/)                          |
+| date-fns        | 2.29.3  | [Link](https://date-fns.org/)                        |
+| limitter        | 2.1.0   | [Link](https://www.npmjs.com/package/limiter)        |
+| nanoId          | 4.0.1   | [Link](https://www.npmjs.com/package/nanoid)         |
+| lucide-react    | 0.265.0 | [Link](https://www.npmjs.com/package/lucide-react)   |
+| bcrypt          | 5.1.0   | [Link](https://www.npmjs.com/package/bcrypt)         |
+| three           | 0.155.0 | [Link](https://www.npmjs.com/package/three)          |
+| framer-motion   | 10.0.1  | [Link](https://www.npmjs.com/package/framer-motion)  |
 
 ## Setup
 
@@ -55,12 +72,19 @@ NEXTAUTH_URL=
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+
 # ------------------------
 # Database
 # ------------------------
 
-DATABASE_URL=
+POSTGRESQL_URL=
+
+MONGODB_URL=
 ```
+
+## API
 
 ## Data
 
@@ -77,8 +101,6 @@ DATABASE_URL=
 - 500 biggest Cities
 - 108 highest Mountains
 - 46 largest Lakes
-- 159 longest Rivers
-- 118 biggest Islands
 
 ### V3 (in the future)
 
@@ -89,7 +111,6 @@ DATABASE_URL=
 - 46 largest Lakes
 - 159 longest Rivers
 - 322 biggest Islands
-- 180 Currencies
 
 ### V4 (maybe in the future)
 
@@ -101,3 +122,22 @@ DATABASE_URL=
 - 159 longest Rivers
 - 322 biggest Islands
 - 180 Currencies
+- Solar System
+
+## Pages
+
+### Home Page
+
+### Documentation Page
+
+### World Data Page
+
+### Login Page
+
+### Register Page
+
+### Forgot Password Page
+
+### Dashboard Page
+
+## License

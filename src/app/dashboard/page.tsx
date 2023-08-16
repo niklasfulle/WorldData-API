@@ -1,16 +1,10 @@
 import ApiDashboard from "@/api/ApiDashboard";
 import RequestApiKey from "@/api/RequestApiKey";
 import { db } from "@/lib/prisma";
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CookieConsent from "@/components/banner/CookieConsent";
 import { getSession } from "next-auth/react";
 import { headers } from "next/headers";
-
-export const metadata: Metadata = {
-  title: "Wordldata API - Dashboard",
-  description: "Free & Open Source API for Wordldata",
-};
 
 const page = async () => {
   const session = await getSession({

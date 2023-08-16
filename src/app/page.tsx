@@ -1,14 +1,8 @@
 import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import Link from "next/link";
-import { Metadata } from "next";
 import ThreeScene from "@/three/ThreeScene";
 import CookieConsent from "@/components/banner/CookieConsent";
-
-export const metadata: Metadata = {
-  title: "Wordldata API - Home",
-  description: "Free & Open Source API for Wordldata",
-};
 
 export default function Home() {
   return (

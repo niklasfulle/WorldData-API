@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Wordldata API - Security",
-  description: "Free & Open Source API for Wordldata",
+  description: "Free API for Wordldata",
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

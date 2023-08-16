@@ -4,9 +4,13 @@ import { cn } from "@/lib/utils";
 import Providers from "@/components/Providers";
 import Navbar from "@/navigation/Navbar";
 import { Toaster } from "@/ui/Toast";
-const Footer = lazy(() => import("@/navigation/Footer"));
-import { lazy } from "react";
-import CookieConsent from "@/components/banner/CookieConsent";
+import { Metadata } from "next";
+import Footer from "@/navigation/Footer";
+
+export const metadata: Metadata = {
+  title: "Wordldata API - Home",
+  description: "Free API for Wordldata",
+};
 
 const inter = Inter({ subsets: ["latin"] });
 

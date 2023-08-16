@@ -1,5 +1,4 @@
 import LargeHeading from "@/ui/LargeHeading";
-import Paragraph from "@/ui/Paragraph";
 import { FC } from "react";
 
 const page: FC = ({}) => {

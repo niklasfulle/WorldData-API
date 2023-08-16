@@ -63,7 +63,7 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger disabled={isCreatingNew || isRevoking} asChild>
-        <Button variant="ghost" className="flex gap-2 items-center">
+        <Button variant="ghost" className="flex gap-2 items-center ">
           <p>{isCreatingNew ? "Creating new key" : isRevoking ? "Revoking key" : "Options"}</p>
           {isCreatingNew || isRevoking ? <Loader2 className="animate-spin h-4 w-4" /> : null}
         </Button>

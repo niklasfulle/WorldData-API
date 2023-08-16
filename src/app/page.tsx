@@ -23,7 +23,7 @@ export default function Home() {
             and more. All the data is free and open source. You can get the API key from{" "}
             <Link
               href="/login"
-              className="underline underline-offset-2 text-[#4c4ddb] dark:text-[#25bbee]"
+              className="underline underline-offset-2 text-indigo-600 dark:text-sky-400"
               aria-label="Link to the login page"
             >
               API Key

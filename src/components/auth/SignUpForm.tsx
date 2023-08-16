@@ -5,6 +5,7 @@ import { Button } from "../ui/Button";
 import { toast } from "../ui/Toast";
 import Icons from "../ui/Icons";
 import Link from "next/link";
+import { Input } from "../ui/Input";
 
 const SignInForm = ({}) => {
   const [isLoadingCredentials, setIsLoadingCredentials] = useState<boolean>(false);
@@ -105,7 +106,7 @@ const SignInForm = ({}) => {
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8 bg-white dark:bg-slate-700 rounded-lg">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col justify-center items-center">
-        <h2 className="mt-0 text-center text-2xl font-semibold leading-6 tracking-tight text-gray-900">
+        <h2 className="mt-0 text-center text-2xl font-semibold leading-6 tracking-tight text-gray-900 dark:text-white">
           Sign Up
         </h2>
       </div>
@@ -114,78 +115,78 @@ const SignInForm = ({}) => {
           <div>
             <label
               htmlFor="firstname"
-              className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2"
+              className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
             >
               Firstname
             </label>
             <div className="mt-1">
-              <input
+              <Input
                 id="firstname"
                 name="firstname"
                 type="text"
                 required
-                className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="ease-in transition-all block w-full rounded-md border-0 px-l py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
             </div>
           </div>
           <div>
             <label
               htmlFor="lastname"
-              className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2"
+              className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
             >
               Lastname
             </label>
             <div className="mt-1">
-              <input
+              <Input
                 id="lastname"
                 name="lastname"
                 type="text"
                 required
-                className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
             </div>
           </div>
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2"
+              className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
             >
               Email
             </label>
             <div className="mt-1">
-              <input
+              <Input
                 id="email"
                 name="email"
                 type="email"
                 required
-                className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
             </div>
           </div>
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2"
+              className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
             >
               Password
             </label>
             <div className="mt-1 relative">
-              <input
+              <Input
                 id="password"
                 name="password"
                 type={showPassword ? "text" : "password"}
                 required
-                className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
               <div className="absolute inset-y-0 right-0 flex items-center px-2">
                 {showPassword ? (
                   <Icons.EyeOff
-                    className="rounded text-sm cursor-pointer h-5 w-5"
+                    className="rounded text-sm cursor-pointer h-5 w-5 dark:text-white"
                     onClick={() => setShowPassword(false)}
                   />
                 ) : (
                   <Icons.Eye
-                    className="rounded text-sm cursor-pointer h-5 w-5"
+                    className="rounded text-sm cursor-pointer h-5 w-5 dark:text-white"
                     onClick={() => setShowPassword(true)}
                   />
                 )}
@@ -195,27 +196,27 @@ const SignInForm = ({}) => {
           <div>
             <label
               htmlFor="passwordConfirm"
-              className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2"
+              className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
             >
               Password confirmation
             </label>
             <div className="mt-1 relative">
-              <input
+              <Input
                 id="passwordConfirm"
                 name="passwordConfirm"
                 type={showPasswordConfimation ? "text" : "password"}
                 required
-                className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
               <div className="absolute inset-y-0 right-0 flex items-center px-2">
                 {showPasswordConfimation ? (
                   <Icons.EyeOff
-                    className="rounded text-sm cursor-pointer h-5 w-5"
+                    className="rounded text-sm cursor-pointer h-5 w-5 dark:text-white"
                     onClick={() => setShowPasswordConfimation(false)}
                   />
                 ) : (
                   <Icons.Eye
-                    className="rounded text-sm cursor-pointer h-5 w-5"
+                    className="rounded text-sm cursor-pointer h-5 w-5 dark:text-white"
                     onClick={() => setShowPasswordConfimation(true)}
                   />
                 )}
@@ -228,24 +229,27 @@ const SignInForm = ({}) => {
               isLoading={isLoadingCredentials}
               disabled={isLoadingCredentials}
               type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="ease-in transition-all flex w-full justify-center rounded-md bg-indigo-600 dark:bg-sky-500 hover:bg-indigo-500 dark:hover:bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white dark:text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 disabled:opacity-50 dark:focus:ring-sky-500 disabled:pointer-events-none dark:focus:ring-offset-slate-700"
             >
               Sign Up
             </Button>
           </div>
         </form>
 
-        <p className="text-center text-sm text-gray-500 mt-1">
+        <p className="text-center text-sm text-gray-500 dark:text-white mt-1">
           You have already an account?{" "}
-          <Link href="/login" className="text-sm text-indigo-600 hover:text-indigo-500">
+          <Link
+            href="/login"
+            className="text-sm text-indigo-600 hover:text-indigo-500 dark:text-sky-500 dark:hover:text-sky-400"
+          >
             {" "}
             Sign In
           </Link>
         </p>
 
         <div className="inline-flex items-center justify-center w-full">
-          <hr className="w-64 h-px my-6 bg-gray-500 border-0 dark:bg-gray-700" />
-          <span className="absolute px-3 text-sm text-gray-500  -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">
+          <hr className="w-64 h-px my-6 bg-gray-500 border-0 dark:bg-gray-900" />
+          <span className="absolute px-3 text-sm text-gray-500 dark:text-white -translate-x-1/2 bg-white left-1/2 c dark:bg-slate-700">
             Or continue with
           </span>
         </div>
@@ -254,7 +258,7 @@ const SignInForm = ({}) => {
           <Button
             isLoading={isLoadingGoogle}
             type="button"
-            className="max-w-sm w-full"
+            className="max-w-sm w-full dark:bg-white ease-in transition-all"
             onClick={loginWithGoogle}
             disabled={isLoadingGoogle}
           >
@@ -293,7 +297,7 @@ const SignInForm = ({}) => {
           <Button
             isLoading={isLoadingGithub}
             type="button"
-            className="max-w-sm w-full"
+            className="max-w-sm w-full dark:bg-white ease-in transition-all"
             onClick={loginWithGithub}
             disabled={isLoadingGithub}
           >

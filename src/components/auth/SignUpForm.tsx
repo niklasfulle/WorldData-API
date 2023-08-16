@@ -101,7 +101,7 @@ const SignInForm = ({}) => {
   }
 
   return (
-    <div className="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8 bg-white dark:bg-slate-700 rounded-lg">
+    <div className="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8 bg-white dark:bg-slate-600 rounded-lg">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col justify-center items-center">
         <h2 className="mt-0 text-center text-2xl font-semibold leading-6 tracking-tight text-gray-900 dark:text-white">
           Sign Up
@@ -121,6 +121,7 @@ const SignInForm = ({}) => {
                 id="username"
                 name="username"
                 type="text"
+                autoComplete="username"
                 required
                 className="ease-in transition-all block w-full rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
@@ -138,6 +139,7 @@ const SignInForm = ({}) => {
                 id="email"
                 name="email"
                 type="email"
+                autoComplete="email"
                 required
                 className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
@@ -203,7 +205,6 @@ const SignInForm = ({}) => {
               </div>
             </div>
           </div>
-
           <div>
             <Button
               isLoading={isLoadingCredentials}
@@ -215,25 +216,22 @@ const SignInForm = ({}) => {
             </Button>
           </div>
         </form>
-
         <p className="text-center text-sm text-gray-500 dark:text-white mt-1">
           You have already an account?{" "}
           <Link
             href="/login"
-            className="text-sm text-indigo-600 hover:text-indigo-500 dark:text-sky-500 dark:hover:text-sky-400"
+            className="text-sm text-indigo-600 hover:text-indigo-500 dark:text-sky-400 dark:hover:text-sky-500"
           >
             {" "}
             Sign In
           </Link>
         </p>
-
         <div className="inline-flex items-center justify-center w-full">
           <hr className="w-64 h-px my-6 bg-gray-500 border-0 dark:bg-gray-900" />
-          <span className="absolute px-3 text-sm text-gray-500 dark:text-white -translate-x-1/2 bg-white left-1/2 c dark:bg-slate-700">
+          <span className="absolute px-3 text-sm text-gray-500 dark:text-white -translate-x-1/2 bg-white left-1/2 c dark:bg-slate-600">
             Or continue with
           </span>
         </div>
-
         <div className="flex justify-center space-x-4">
           <Button
             isLoading={isLoadingGoogle}

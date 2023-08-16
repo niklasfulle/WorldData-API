@@ -16,8 +16,7 @@ const Footer = async () => {
       <div className="flex flex-col py-4 md:px-20 px-8">
         <div className="grid grid-flow-col gap-4 lg:grid-rows-1 grid-rows-2 w-full text-center mb-2">
           <div className="m-1 flex justify-start flex-col dark:text-white">
-            <h4 className="text-md mb-1.5 text">WorldData API</h4>
-
+            <h1 className="text-base mb-1.5 text">WorldData API</h1>
             <Link
               href="/documentation"
               className="text-sm mb-1 active:text-slate-500 dark:active:text-slate-400"
@@ -37,8 +36,8 @@ const Footer = async () => {
               Blogposts
             </Link>
           </div>
-          <div className=" m-1 flex justify-start flex-col dark:text-white">
-            <h4 className="text-md mb-1.5 text">For User</h4>
+          <div className="m-1 flex justify-start flex-col dark:text-white">
+            <h1 className="text-base mb-1.5 text">For User</h1>
             {session ? (
               <Link
                 href="/dashboard"
@@ -64,14 +63,14 @@ const Footer = async () => {
             )}
           </div>
           <div className="m-1 flex items-center flex-col dark:text-white">
-            <h4 className="text-md mb-1.5 text">Theme</h4>
+            <h1 className="text-base mb-1.5 text">Theme</h1>
             <ThemeToggleFooter />
           </div>
           <div className="m-1 flexflex-col dark:text-white justify-center">
-            <h4 className="text-md mb-1.5 text">Extern</h4>
+            <h1 className="text-base mb-1.5 text">Extern</h1>
             <div className="m-1 flex justify-center flex-row dark:text-white ">
               <Link
-                href=""
+                href="https://twitter.com/"
                 className="text-sm mb-1 flex flex-col items-center p-2 active:text-slate-500 dark:active:text-slate-400"
               >
                 <Icons.Twitter className="mb-1" />

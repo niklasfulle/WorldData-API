@@ -50,7 +50,7 @@ const RequestApiKey: FC<RequestApiKeyProps> = ({}) => {
         <Paragraph>You haven&apos;t requested an API key yet.</Paragraph>
       </div>
       <form onSubmit={createNewApiKey} className="mt-16 sm:flex sm:items-center px-12" action="#">
-        <label htmlFor="emails" className="sr-only">
+        <label htmlFor="api-key" className="sr-only">
           Your API key
         </label>
         <div className="relative rounded-md shadow-sm sm:min-w-0 sm:flex-1">
@@ -66,6 +66,8 @@ const RequestApiKey: FC<RequestApiKeyProps> = ({}) => {
             readOnly
             value={apiKey ?? ""}
             placeholder="Request an API key to display it here"
+            className=""
+            id="api-key"
           />
         </div>
         <div className="mt-6 flex justify-center sm:mt-0 sm:ml-4 sm:flex-shrink-0">

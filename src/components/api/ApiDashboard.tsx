@@ -52,7 +52,10 @@ const ApiDashboard = async ({}) => {
       <LargeHeading>Welcome back, {user.name}</LargeHeading>
       <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start items-center ">
         <Paragraph className="ml-2 mt-1">Your API key:</Paragraph>
-        <Input className="md:w-[22rem] w-52" readOnly value={activeApiKey.key} />
+        <label htmlFor="api-key" className="sr-only">
+          Your API key
+        </label>
+        <Input id="api-key" className="md:w-[22rem] w-52" readOnly value={activeApiKey.key} />
         <ApiKeyOptions apiKeyKey={activeApiKey.key} />
       </div>
       <div className="flex flex-row justify-between -mb-4 px-2 items-center">

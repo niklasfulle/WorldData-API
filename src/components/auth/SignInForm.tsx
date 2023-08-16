@@ -74,7 +74,7 @@ const SignInForm = ({}) => {
   }
 
   return (
-    <div className="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8 bg-white dark:bg-slate-700 rounded-lg ">
+    <div className="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8 bg-white dark:bg-slate-600 rounded-lg ">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col justify-center items-center">
         <h2 className="mt-0 text-center text-2xl font-semibold leading-6 tracking-tight text-gray-900 dark:text-white">
           Sign in
@@ -132,14 +132,13 @@ const SignInForm = ({}) => {
             </div>
             <p className="text-left pl-2">
               <Link
-                href=""
+                href="/forgot-password"
                 className="text-sm text-indigo-600 hover:text-indigo-500 dark:text-sky-500 dark:hover:text-sky-400"
               >
                 Forgot your password?
               </Link>
             </p>
           </div>
-
           <div>
             <Button
               isLoading={isLoadingCredentials}
@@ -151,7 +150,6 @@ const SignInForm = ({}) => {
             </Button>
           </div>
         </form>
-
         <p className="text-center text-sm text-gray-500 dark:text-white mt-1">
           Not a member?
           <Link
@@ -162,14 +160,12 @@ const SignInForm = ({}) => {
             Sign Up
           </Link>
         </p>
-
         <div className="inline-flex items-center justify-center w-full">
           <hr className="w-64 h-px my-6 bg-gray-500 border-0 dark:bg-gray-900" />
-          <span className="absolute px-3 text-sm text-gray-500 dark:text-white -translate-x-1/2 bg-white left-1/2 c dark:bg-slate-700">
+          <span className="absolute px-3 text-sm text-gray-500 dark:text-white -translate-x-1/2 bg-white left-1/2 c dark:bg-slate-600">
             Or continue with
           </span>
         </div>
-
         <div className="flex justify-center space-x-4">
           <Button
             isLoading={isLoadingGoogle}

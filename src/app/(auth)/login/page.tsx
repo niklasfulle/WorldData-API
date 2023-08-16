@@ -24,7 +24,6 @@ const page = () => {
             Back to home
           </Link>
         </div>
-
         <CookieConsent />
       </div>
     </div>

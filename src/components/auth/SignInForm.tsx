@@ -1,5 +1,5 @@
 "use client";
-import { getSession, signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { Button } from "@/ui/Button";
@@ -7,7 +7,6 @@ import { toast } from "@/ui/Toast";
 import Icons from "@/ui/Icons";
 import { Input } from "../ui/Input";
 import { useRouter } from "next/navigation";
-import { ro } from "date-fns/locale";
 
 const SignInForm = () => {
   const [isLoadingCredentials, setIsLoadingCredentials] = useState<boolean>(false);

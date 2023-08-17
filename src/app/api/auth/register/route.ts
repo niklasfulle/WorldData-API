@@ -35,7 +35,6 @@ export async function POST(
     });
 
     // Create Account
-
     await db.account.create({
       data: {
         userId: userDb.id,

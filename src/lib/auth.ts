@@ -10,6 +10,7 @@ import { randomUUID } from "crypto"
 import { cookies } from "next/headers"
 import { decode } from "next-auth/jwt"
 import { getGithubCredentials, getGoogleCredentials } from "@/helpers/get-credentials"
+import { NextResponse } from "next/server"
 
 const loginUserSchema = z.object({
   email: z.string().email('Invalid email'),
@@ -70,8 +71,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user, account, }) {
-
+    async signIn({ user, account }) {
       if (account?.provider === "credentials") {
 
         if (user) {
@@ -91,6 +91,24 @@ export const authOptions: NextAuthOptions = {
           cookies().set("next-auth.session-token", sessionToken, {
             expires: sessionExpiry,
           });
+        }
+      } else if (account?.provider === "google" || account?.provider === "github") {
+        const { email } = user as any;
+
+        const dbUser = await db.user.findUnique({
+          where: {
+            email,
+          },
+        });
+
+        const accountDb = await db.account.findFirst({
+          where: {
+            userId: dbUser?.id,
+          },
+        });
+
+        if (accountDb?.provider == "credentials" && email == dbUser?.email) {
+          return false
         }
       }
 

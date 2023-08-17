@@ -123,7 +123,7 @@ const SignInForm = ({}) => {
                 type="text"
                 autoComplete="username"
                 required
-                className="ease-in transition-all block w-full rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+                className="ease-in transition-all block w-full rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
             </div>
           </div>
@@ -141,7 +141,7 @@ const SignInForm = ({}) => {
                 type="email"
                 autoComplete="email"
                 required
-                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
             </div>
           </div>
@@ -158,7 +158,7 @@ const SignInForm = ({}) => {
                 name="password"
                 type={showPassword ? "text" : "password"}
                 required
-                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
               <div className="absolute inset-y-0 right-0 flex items-center px-2">
                 {showPassword ? (
@@ -188,7 +188,7 @@ const SignInForm = ({}) => {
                 name="passwordConfirm"
                 type={showPasswordConfimation ? "text" : "password"}
                 required
-                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-500 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
               <div className="absolute inset-y-0 right-0 flex items-center px-2">
                 {showPasswordConfimation ? (
@@ -210,7 +210,7 @@ const SignInForm = ({}) => {
               isLoading={isLoadingCredentials}
               disabled={isLoadingCredentials}
               type="submit"
-              className="ease-in transition-all flex w-full justify-center rounded-md bg-indigo-600 dark:bg-sky-500 hover:bg-indigo-500 dark:hover:bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white dark:text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 disabled:opacity-50 dark:focus:ring-sky-500 disabled:pointer-events-none dark:focus:ring-offset-slate-700"
+              className="ease-in transition-all flex w-full justify-center rounded-md bg-indigo-600 dark:bg-sky-400 hover:bg-indigo-500 dark:hover:bg-sky-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white dark:text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 disabled:opacity-50 dark:focus:ring-sky-500 disabled:pointer-events-none dark:focus:ring-offset-slate-700"
             >
               Sign Up
             </Button>

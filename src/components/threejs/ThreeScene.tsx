@@ -44,7 +44,7 @@ const ThreeScene: React.FC = () => {
       const textutre = new TextureLoader().load("./earth-uv-map.webp");
 
       const sphere = new Mesh(
-        new SphereGeometry(10, 100, 100),
+        new SphereGeometry(12, 100, 100),
         new ShaderMaterial({
           vertexShader,
           fragmentShader,
@@ -60,7 +60,7 @@ const ThreeScene: React.FC = () => {
 
       // create a atmosphere
       const atmosphere = new Mesh(
-        new SphereGeometry(10, 100, 100),
+        new SphereGeometry(12, 100, 100),
         new ShaderMaterial({
           vertexShader: atmosphereVertexShader,
           fragmentShader: atmosphereFragmentShader,

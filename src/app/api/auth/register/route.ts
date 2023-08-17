@@ -25,7 +25,8 @@ export async function POST(
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await db.user.create({
+    // Create user
+    const userDb = await db.user.create({
       data: {
         name: username,
         email,
@@ -33,7 +34,16 @@ export async function POST(
       },
     });
 
-    console.log()
+    // Create Account
+
+    await db.account.create({
+      data: {
+        userId: userDb.id,
+        type: "oauth",
+        provider: "credentials",
+        providerAccountId: userDb.id,
+      },
+    });
 
     return NextResponse.json({ message: "User created", success: true }, { status: 200 })
   } catch (error) {

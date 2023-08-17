@@ -1,17 +1,21 @@
 "use client";
-import { signIn } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { Button } from "@/ui/Button";
 import { toast } from "@/ui/Toast";
 import Icons from "@/ui/Icons";
 import { Input } from "../ui/Input";
+import { useRouter } from "next/navigation";
+import { ro } from "date-fns/locale";
 
-const SignInForm = ({}) => {
+const SignInForm = () => {
   const [isLoadingCredentials, setIsLoadingCredentials] = useState<boolean>(false);
   const [isLoadingGoogle, setIsLoadingGoogle] = useState<boolean>(false);
   const [isLoadingGithub, setIsLoadingGithub] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
+  const router = useRouter();
 
   const loginWithGoogle = async () => {
     setIsLoadingGoogle(true);
@@ -61,7 +65,21 @@ const SignInForm = ({}) => {
       const res = await signIn("credentials", {
         email: email,
         password: password,
+        redirect: false,
       });
+
+      if (res?.error) {
+        if (typeof res.error === "string" && res.error.charAt(0) === "[") {
+          const error: any = JSON.parse(res.error);
+          setError(error[0].message);
+        } else {
+          setError(res.error);
+        }
+      } else {
+        setError("");
+        router.push("/dashboard");
+        router.refresh();
+      }
     } catch (error) {
       toast({
         title: "Error",
@@ -74,12 +92,15 @@ const SignInForm = ({}) => {
   }
 
   return (
-    <div className="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8 bg-white dark:bg-slate-600 rounded-lg ">
+    <div className="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8 bg-white dark:bg-slate-600 rounded-lg items-center">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col justify-center items-center">
         <h2 className="mt-0 text-center text-2xl font-semibold leading-6 tracking-tight text-gray-900 dark:text-white">
           Sign in
         </h2>
       </div>
+      <p id="errors" className="sm:max-w-[14rem] text-center mt-2 text-red-600 font-bold">
+        {error}
+      </p>
       <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>

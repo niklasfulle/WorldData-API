@@ -50,7 +50,7 @@ export const authOptions: NextAuthOptions = {
           });
 
           if (!user) {
-            throw new Error("User account does not exist");
+            throw new Error("Password or Email not correct");
           }
 
           const passwordsMatch = await compare(
@@ -59,7 +59,7 @@ export const authOptions: NextAuthOptions = {
           );
 
           if (!passwordsMatch) {
-            throw new Error("Password is not correct");
+            throw new Error("Password or Email not correct");
           }
 
           return user as any;
@@ -70,7 +70,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user, account, credentials }) {
+    async signIn({ user, account, }) {
 
       if (account?.provider === "credentials") {
 

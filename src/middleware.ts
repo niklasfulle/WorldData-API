@@ -5,21 +5,33 @@ import { db } from './lib/prisma'
 
 export default withAuth(
   async function middleware(req) {
-    const pathname = req.nextUrl.pathname // relative path
+    // relative path
+    const pathname = req.nextUrl.pathname
+
     // get session token
     const sessionToken = req.cookies.get('next-auth.session-token')
 
     // Manage route protection
-    //const token = await getToken({ req })
     const isAuth = !!sessionToken
 
+    // Manage protected routes
     const sensitiveRoutes = ['/dashboard']
+    const notWithSession = ['/login', '/register', '/forgot-password']
 
+    // Check if user is authenticated and trying to access a sensitive route
     if (
       !isAuth &&
       sensitiveRoutes.some((route) => pathname.startsWith(route))
     ) {
       return NextResponse.redirect(new URL('/login', req.url))
+    }
+
+    // Check if user is authenticated and trying to access a route that is not allowed with session
+    if (
+      isAuth &&
+      notWithSession.some((route) => pathname.startsWith(route))
+    ) {
+      return NextResponse.redirect(new URL('/', req.url))
     }
   },
   {
@@ -35,5 +47,5 @@ export default withAuth(
 )
 
 export const config = {
-  matcher: ['/', '/login', '/dashboard/:path*', '/api/:path*'],
+  matcher: ['/', '/login', '/register', '/forgot-password/:path*', '/dashboard/:path*', '/api/:path*'],
 }

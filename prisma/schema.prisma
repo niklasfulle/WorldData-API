@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider     = "postgresql"
-  url          = ""
+  url          = "postgresql://postgres:Salkin263@localhost:5432/worlddataAPI"
   relationMode = "prisma"
 }
 

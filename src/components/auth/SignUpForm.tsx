@@ -13,6 +13,7 @@ const SignInForm = ({}) => {
   const [isLoadingGithub, setIsLoadingGithub] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showPasswordConfimation, setShowPasswordConfimation] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   const loginWithGoogle = async () => {
     setIsLoadingGoogle(true);
@@ -64,11 +65,8 @@ const SignInForm = ({}) => {
       const passwordConfirm = target.passwordConfirm.value;
 
       if (password !== passwordConfirm) {
-        toast({
-          title: "Error",
-          message: "Passwords do not match",
-          type: "error",
-        });
+        setError("Passwords do not match");
+        setIsLoadingCredentials(false);
         return;
       }
 
@@ -84,29 +82,46 @@ const SignInForm = ({}) => {
         }),
       });
 
-      toast({
-        title: "Success",
-        message: "You have successfully registered",
-        type: "success",
-      });
+      if (!res.ok) {
+        res.text().then((text) => {
+          const error: any = JSON.parse(text);
+          if (error.error) {
+            setError(error.error[0].message);
+          } else if (error.message) {
+            setError(error.message);
+          } else {
+            setError(error.message);
+          }
+        });
+      } else {
+        setError("");
+        toast({
+          title: "Success",
+          message: "You have successfully registered",
+          type: "success",
+        });
+      }
     } catch (error) {
       toast({
         title: "Error",
         message: "There was an error registering",
         type: "error",
       });
+    } finally {
+      setIsLoadingCredentials(false);
     }
-
-    setIsLoadingCredentials(false);
   }
 
   return (
-    <div className="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8 bg-white dark:bg-slate-600 rounded-lg">
+    <div className="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8 bg-white dark:bg-slate-600 rounded-lg items-center">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col justify-center items-center">
         <h2 className="mt-0 text-center text-2xl font-semibold leading-6 tracking-tight text-gray-900 dark:text-white">
           Sign Up
         </h2>
       </div>
+      <p id="errors" className="sm:max-w-[14rem] text-center mt-2 text-red-600 font-bold">
+        {error}
+      </p>
       <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>

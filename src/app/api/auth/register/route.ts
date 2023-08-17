@@ -47,7 +47,6 @@ export async function POST(
 
     return NextResponse.json({ message: "User created", success: true }, { status: 200 })
   } catch (error) {
-    console.log(error)
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: error.issues, success: false }, { status: 400 })
     }

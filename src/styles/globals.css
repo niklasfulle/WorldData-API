@@ -84,3 +84,99 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.strength-1::-webkit-progress-value {
+  background-color: #f51a16;
+}
+
+.strength-2::-webkit-progress-value {
+  background-color: #ff9c1b;
+}
+
+.strength-3::-webkit-progress-value {
+  background-color: rgb(255, 251, 12);
+}
+
+.strength-4::-webkit-progress-value {
+  background-color: #9dff00ba;
+}
+
+.strength-5::-webkit-progress-value {
+  background-color: #2de409fa;
+}
+
+.strength-6::-webkit-progress-value {
+  background-color: #2de409fa;
+}
+
+.dark .strength-1::-webkit-progress-value {
+  background-color: #a01d1b;
+}
+
+.dark .strength-2::-webkit-progress-value {
+  background-color: #d48114;
+}
+
+.dark .strength-3::-webkit-progress-value {
+  background-color: rgb(199, 202, 37);
+}
+
+.dark .strength-4::-webkit-progress-value {
+  background-color: #94e611ba;
+}
+
+.dark .strength-5::-webkit-progress-value {
+  background-color: #26ac0cba;
+}
+
+.dark .strength-6::-webkit-progress-value {
+  background-color: #26ac0cba;
+}
+
+.strength-1,
+.strength-0s {
+  color: #ff0000;
+}
+.strength-2 {
+  color: #ff9100;
+}
+
+.strength-3 {
+  color: rgb(201, 198, 58);
+}
+
+.strength-4 {
+  color: #8fd81ade;
+}
+
+.strength-5 {
+  color: #2cdf09;
+}
+
+.strength-6 {
+  color: #2cdf09;
+}
+
+.dark .strength-1,
+.dark .strength-0s {
+  color: #ff312d;
+}
+.dark .strength-2 {
+  color: #ff9d1d;
+}
+
+.dark .strength-3 {
+  color: rgb(199, 202, 37);
+}
+
+.dark .strength-4 {
+  color: #94e611ba;
+}
+
+.dark .strength-5 {
+  color: #37d816ba;
+}
+
+.dark .strength-6 {
+  color: #37d816ba;
+}

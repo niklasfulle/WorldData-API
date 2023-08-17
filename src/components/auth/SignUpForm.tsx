@@ -6,18 +6,28 @@ import { toast } from "../ui/Toast";
 import Icons from "../ui/Icons";
 import Link from "next/link";
 import { Input } from "../ui/Input";
+import PasswordStrength from "./PasswordStrength";
 
 const SignInForm = ({}) => {
-  const [isLoadingCredentials, setIsLoadingCredentials] = useState<boolean>(false);
-  const [isLoadingGoogle, setIsLoadingGoogle] = useState<boolean>(false);
-  const [isLoadingGithub, setIsLoadingGithub] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState({ provider: "", isLoading: false });
+  const [password, setPassword] = useState<string>("");
+  const [strength, setStrength] = useState<number>(0);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showPasswordConfimation, setShowPasswordConfimation] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
-  const loginWithGoogle = async () => {
-    setIsLoadingGoogle(true);
+  const handleChange = (password: string) => {
+    setPassword(password);
 
+    if (document.getElementById("passwordStrengh")) {
+      // @ts-ignore
+      const strengh = document.getElementById("passwordStrengh")?.value;
+      setStrength(strengh || 0);
+    }
+  };
+
+  const loginWithGoogle = async () => {
+    setIsLoading({ provider: "google", isLoading: true });
     try {
       await signIn("google");
     } catch (error) {
@@ -27,12 +37,12 @@ const SignInForm = ({}) => {
         type: "error",
       });
     } finally {
-      setIsLoadingGoogle(false);
+      setIsLoading({ provider: "", isLoading: false });
     }
   };
 
   const loginWithGithub = async () => {
-    setIsLoadingGithub(true);
+    setIsLoading({ provider: "github", isLoading: true });
 
     try {
       await signIn("github");
@@ -43,15 +53,15 @@ const SignInForm = ({}) => {
         type: "error",
       });
     } finally {
-      setIsLoadingGithub(false);
+      setIsLoading({ provider: "", isLoading: false });
     }
   };
 
-  async function handleSubmit(e: FormEvent) {
+  const registerWithCredentials = async (e: FormEvent) => {
     e.preventDefault();
+    setIsLoading({ provider: "credentials", isLoading: true });
 
     try {
-      setIsLoadingCredentials(true);
       const target = e.target as typeof e.target & {
         username: { value: string };
         email: { value: string };
@@ -66,7 +76,7 @@ const SignInForm = ({}) => {
 
       if (password !== passwordConfirm) {
         setError("Passwords do not match");
-        setIsLoadingCredentials(false);
+        setIsLoading({ provider: "", isLoading: false });
         return;
       }
 
@@ -108,9 +118,9 @@ const SignInForm = ({}) => {
         type: "error",
       });
     } finally {
-      setIsLoadingCredentials(false);
+      setIsLoading({ provider: "", isLoading: false });
     }
-  }
+  };
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8 bg-white dark:bg-slate-600 rounded-lg items-center">
@@ -123,7 +133,7 @@ const SignInForm = ({}) => {
         {error}
       </p>
       <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-6" onSubmit={registerWithCredentials}>
           <div>
             <label
               htmlFor="username"
@@ -173,7 +183,8 @@ const SignInForm = ({}) => {
                 name="password"
                 type={showPassword ? "text" : "password"}
                 required
-                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+                className="ease-in transition-all block w-full rounded-md border-0 pl-3 pr-8 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+                onChange={(e) => handleChange(e.target.value)}
               />
               <div className="absolute inset-y-0 right-0 flex items-center px-2">
                 {showPassword ? (
@@ -189,6 +200,7 @@ const SignInForm = ({}) => {
                 )}
               </div>
             </div>
+            <PasswordStrength password={password} />
           </div>
           <div>
             <label
@@ -203,7 +215,7 @@ const SignInForm = ({}) => {
                 name="passwordConfirm"
                 type={showPasswordConfimation ? "text" : "password"}
                 required
-                className="ease-in transition-all block w-full rounded-md border-0 pl-3 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+                className="ease-in transition-all block w-full rounded-md border-0 pl-3 pr-8 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
               <div className="absolute inset-y-0 right-0 flex items-center px-2">
                 {showPasswordConfimation ? (
@@ -222,8 +234,10 @@ const SignInForm = ({}) => {
           </div>
           <div>
             <Button
-              isLoading={isLoadingCredentials}
-              disabled={isLoadingCredentials}
+              isLoading={isLoading.provider == "credentials" && isLoading.isLoading}
+              disabled={
+                strength < 4 || (isLoading.provider == "credentials" && isLoading.isLoading)
+              }
               type="submit"
               className="ease-in transition-all flex w-full justify-center rounded-md bg-indigo-600 dark:bg-sky-400 hover:bg-indigo-500 dark:hover:bg-sky-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white dark:text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 disabled:opacity-50 dark:focus:ring-sky-500 disabled:pointer-events-none dark:focus:ring-offset-slate-700"
             >
@@ -242,20 +256,20 @@ const SignInForm = ({}) => {
           </Link>
         </p>
         <div className="inline-flex items-center justify-center w-full">
-          <hr className="w-64 h-px my-6 bg-gray-500 border-0 dark:bg-gray-900" />
+          <hr className="w-64 h-px my-6 bg-gray-500 border-0 dark:bg-gray-300" />
           <span className="absolute px-3 text-sm text-gray-500 dark:text-white -translate-x-1/2 bg-white left-1/2 c dark:bg-slate-600">
             Or continue with
           </span>
         </div>
         <div className="flex justify-center space-x-4">
           <Button
-            isLoading={isLoadingGoogle}
+            isLoading={isLoading.provider == "google" && isLoading.isLoading}
             type="button"
             className="max-w-sm w-full dark:bg-white ease-in transition-all"
             onClick={loginWithGoogle}
-            disabled={isLoadingGoogle}
+            disabled={isLoading.provider == "google" && isLoading.isLoading}
           >
-            {isLoadingGoogle ? null : (
+            {isLoading.provider == "google" && isLoading.isLoading ? null : (
               <svg
                 className="mr-2 h-4 w-4"
                 aria-hidden="true"
@@ -288,13 +302,15 @@ const SignInForm = ({}) => {
             Google
           </Button>
           <Button
-            isLoading={isLoadingGithub}
+            isLoading={isLoading.provider == "github" && isLoading.isLoading}
             type="button"
             className="max-w-sm w-full dark:bg-white ease-in transition-all"
             onClick={loginWithGithub}
-            disabled={isLoadingGithub}
+            disabled={isLoading.provider == "github" && isLoading.isLoading}
           >
-            {isLoadingGithub ? null : <Icons.Github className="mr-2 h-4 w-4" />}
+            {isLoading.provider == "github" && isLoading.isLoading ? null : (
+              <Icons.Github className="mr-2 h-4 w-4" />
+            )}
             Github
           </Button>
         </div>

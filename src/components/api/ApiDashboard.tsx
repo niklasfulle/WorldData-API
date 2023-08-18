@@ -37,7 +37,7 @@ const ApiDashboard: FC<ApiDashboardProps> = async ({ user }) => {
   }));
 
   return (
-    <div className="container flex flex-col gap-6 min-h-screen h-auto mb-12">
+    <div className="container flex flex-col gap-6 min-h-[90vh] h-auto mb-12">
       <LargeHeading>Welcome back, {user.name}</LargeHeading>
       <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start items-center ">
         <Paragraph className="ml-2 mt-1">Your API key:</Paragraph>

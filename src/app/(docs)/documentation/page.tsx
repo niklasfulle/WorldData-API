@@ -8,7 +8,7 @@ import CookieConsent from "@/components/banner/CookieConsent";
 const page: FC = ({}) => {
   return (
     <div className="container max-w-7xl mx-auto mt-12">
-      <div className="flex flex-col items-center gap-6 min-h-screen h-auto">
+      <div className="flex flex-col items-center gap-6 min-h-[90vh] h-auto">
         <LargeHeading>Making a Request</LargeHeading>
         <Paragraph>How to use the API</Paragraph>
         <DocsTabs />

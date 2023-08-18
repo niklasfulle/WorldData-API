@@ -33,7 +33,7 @@ const RequestApiKey = ({}) => {
   }
 
   return (
-    <div className="container md:max-w-3xl min-h-screen h-auto">
+    <div className="container md:max-w-3xl min-h-[90vh] h-auto">
       <div className="flex flex-col gap-6 items-center">
         <LargeHeading className="text-center">Request your API key</LargeHeading>
         <Paragraph>You haven&apos;t requested an API key yet.</Paragraph>

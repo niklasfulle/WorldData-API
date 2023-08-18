@@ -27,61 +27,61 @@ This is a API provider for world data. It is a RESTful API that uses JSON as its
 
 ## Dependencies
 
-| Name                          | tyTypepe | Version  | Link                                                        |
-| ----------------------------- | -------- | -------- | ----------------------------------------------------------- |
-| @emotion/react                | prod     | ^11.10.6 | https://www.npmjs.com/package/@emotion/react                |
-| @emotion/styled               | prod     | ^11.10.6 | https://www.npmjs.com/package/@emotion/styled               |
-| @mui/material                 | prod     | ^5.11.11 | https://www.npmjs.com/package/@mui/material                 |
-| @mui/system                   | prod     | ^5.11.11 | https://www.npmjs.com/package/@mui/system                   |
-| @mui/x-data-grid              | prod     | ^6.0.0   | https://www.npmjs.com/package/@mui/x-data-grid              |
-| @next-auth/prisma-adapter     | prod     | ^1.0.5   | https://www.npmjs.com/package/@next-auth/prisma-adapter     |
-| @prisma/client                | prod     | 4.11.0   | https://www.npmjs.com/package/@prisma/client                |
-| @radix-ui/react-dropdown-menu | prod     | ^2.0.3   | https://www.npmjs.com/package/@radix-ui/react-dropdown-menu |
-| @radix-ui/react-scroll-area   | prod     | ^1.0.2   | https://www.npmjs.com/package/@radix-ui/react-scroll-area   |
-| @radix-ui/react-tabs          | prod     | ^1.0.2   | https://www.npmjs.com/package/@radix-ui/react-tabs          |
-| @total-typescript/ts-reset    | prod     | ^0.3.7   | https://www.npmjs.com/package/@total-typescript/ts-reset    |
-| @types/bcrypt                 | prod     | ^5.0.0   | https://www.npmjs.com/package/@types/bcrypt                 |
-| @types/nodemailer             | prod     | ^6.4.9   | https://www.npmjs.com/package/@types/nodemailer             |
-| @types/three                  | prod     | ^0.155.0 | https://www.npmjs.com/package/@types/three                  |
-| bcrypt                        | prod     | ^5.1.0   | https://www.npmjs.com/package/bcrypt                        |
-| class-variance-authority      | prod     | ^0.4.0   | https://www.npmjs.com/package/class-variance-authority      |
-| clsx                          | prod     | ^1.2.1   | https://www.npmjs.com/package/clsx                          |
-| cookies-next                  | prod     | ^2.1.2   | https://www.npmjs.com/package/cookies-next                  |
-| date-fns                      | prod     | ^2.29.3  | https://www.npmjs.com/package/date-fns                      |
-| eslint                        | prod     | 8.35.0   | https://www.npmjs.com/package/eslint                        |
-| eslint-config-next            | prod     | 13.2.3   | https://www.npmjs.com/package/eslint-config-next            |
-| framer-motion                 | prod     | ^10.0.1  | https://www.npmjs.com/package/framer-motion                 |
-| limiter                       | prod     | ^2.1.0   | https://www.npmjs.com/package/limiter                       |
-| lodash                        | prod     | ^4.17.21 | https://www.npmjs.com/package/lodash                        |
-| lucide-react                  | prod     | ^0.265.0 | https://www.npmjs.com/package/lucide-react                  |
-| mongodb                       | prod     | ^5.7.0   | https://www.npmjs.com/package/mongodb                       |
-| nanoid                        | prod     | ^4.0.1   | https://www.npmjs.com/package/nanoid                        |
-| next                          | prod     | ^13.4.12 | https://www.npmjs.com/package/next                          |
-| next-auth                     | prod     | ^4.23.0  | https://www.npmjs.com/package/next-auth                     |
-| next-pwa                      | prod     | ^5.6.0   | https://www.npmjs.com/package/next-pwa                      |
-| next-themes                   | prod     | ^0.2.1   | https://www.npmjs.com/package/next-themes                   |
-| nodemailer                    | prod     | ^6.9.4   | https://www.npmjs.com/package/nodemailer                    |
-| prism-react-renderer          | prod     | 1.3.5    | https://www.npmjs.com/package/prism-react-renderer          |
-| prisma                        | prod     | 4.11.0   | https://www.npmjs.com/package/prisma                        |
-| prismjs                       | prod     | ^1.29.0  | https://www.npmjs.com/package/prismjs                       |
-| react                         | prod     | 18.2.0   | https://www.npmjs.com/package/react                         |
-| react-dom                     | prod     | 18.2.0   | https://www.npmjs.com/package/react-dom                     |
-| react-hook-form               | prod     | ^7.43.4  | https://www.npmjs.com/package/react-hook-form               |
-| react-hot-toast               | prod     | ^2.4.1   | https://www.npmjs.com/package/react-hot-toast               |
-| sharp                         | prod     | ^0.31.3  | https://www.npmjs.com/package/sharp                         |
-| simplebar-react               | prod     | ^3.2.1   | https://www.npmjs.com/package/simplebar-react               |
-| tailwind-merge                | prod     | ^1.10.0  | https://www.npmjs.com/package/tailwind-merge                |
-| three                         | prod     | ^0.155.0 | https://www.npmjs.com/package/three                         |
-| zod                           | prod     | ^3.21.0  | https://www.npmjs.com/package/zod                           |
-| @tailwindcss/typography       | dev      | ^0.5.9   | https://www.npmjs.com/package/@tailwindcss/typography       |
-| @types/node                   | dev      | ^18.14.6 | https://www.npmjs.com/package/@types/node                   |
-| @types/react                  | dev      | ^18.0.28 | https://www.npmjs.com/package/@types/react                  |
-| @types/react-dom              | dev      | ^18.0.11 | https://www.npmjs.com/package/@types/react-dom              |
-| autoprefixer                  | dev      | ^10.4.13 | https://www.npmjs.com/package/autoprefixer                  |
-| postcss                       | dev      | ^8.4.21  | https://www.npmjs.com/package/postcss                       |
-| tailwindcss                   | dev      | ^3.3.3   | https://www.npmjs.com/package/tailwindcss                   |
-| tailwindcss-animate           | dev      | ^1.0.5   | https://www.npmjs.com/package/tailwindcss-animate           |
-| typescript                    | dev      | ^5.1.6   | https://www.npmjs.com/package/typescript                    |
+| Name                          | Version  | Link                                                        |
+| ----------------------------- | -------- | ----------------------------------------------------------- |
+| @emotion/react                | ^11.10.6 | https://www.npmjs.com/package/@emotion/react                |
+| @emotion/styled               | ^11.10.6 | https://www.npmjs.com/package/@emotion/styled               |
+| @mui/material                 | ^5.11.11 | https://www.npmjs.com/package/@mui/material                 |
+| @mui/system                   | ^5.11.11 | https://www.npmjs.com/package/@mui/system                   |
+| @mui/x-data-grid              | ^6.0.0   | https://www.npmjs.com/package/@mui/x-data-grid              |
+| @next-auth/prisma-adapter     | ^1.0.5   | https://www.npmjs.com/package/@next-auth/prisma-adapter     |
+| @prisma/client                | 4.11.0   | https://www.npmjs.com/package/@prisma/client                |
+| @radix-ui/react-dropdown-menu | ^2.0.3   | https://www.npmjs.com/package/@radix-ui/react-dropdown-menu |
+| @radix-ui/react-scroll-area   | ^1.0.2   | https://www.npmjs.com/package/@radix-ui/react-scroll-area   |
+| @radix-ui/react-tabs          | ^1.0.2   | https://www.npmjs.com/package/@radix-ui/react-tabs          |
+| @total-typescript/ts-reset    | ^0.3.7   | https://www.npmjs.com/package/@total-typescript/ts-reset    |
+| @types/bcrypt                 | ^5.0.0   | https://www.npmjs.com/package/@types/bcrypt                 |
+| @types/nodemailer             | ^6.4.9   | https://www.npmjs.com/package/@types/nodemailer             |
+| @types/three                  | ^0.155.0 | https://www.npmjs.com/package/@types/three                  |
+| bcrypt                        | ^5.1.0   | https://www.npmjs.com/package/bcrypt                        |
+| class-variance-authority      | ^0.4.0   | https://www.npmjs.com/package/class-variance-authority      |
+| clsx                          | ^1.2.1   | https://www.npmjs.com/package/clsx                          |
+| cookies-next                  | ^2.1.2   | https://www.npmjs.com/package/cookies-next                  |
+| date-fns                      | ^2.29.3  | https://www.npmjs.com/package/date-fns                      |
+| eslint                        | 8.35.0   | https://www.npmjs.com/package/eslint                        |
+| eslint-config-next            | 13.2.3   | https://www.npmjs.com/package/eslint-config-next            |
+| framer-motion                 | ^10.0.1  | https://www.npmjs.com/package/framer-motion                 |
+| limiter                       | ^2.1.0   | https://www.npmjs.com/package/limiter                       |
+| lodash                        | ^4.17.21 | https://www.npmjs.com/package/lodash                        |
+| lucide-react                  | ^0.265.0 | https://www.npmjs.com/package/lucide-react                  |
+| mongodb                       | ^5.7.0   | https://www.npmjs.com/package/mongodb                       |
+| nanoid                        | ^4.0.1   | https://www.npmjs.com/package/nanoid                        |
+| next                          | ^13.4.12 | https://www.npmjs.com/package/next                          |
+| next-auth                     | ^4.23.0  | https://www.npmjs.com/package/next-auth                     |
+| next-pwa                      | ^5.6.0   | https://www.npmjs.com/package/next-pwa                      |
+| next-themes                   | ^0.2.1   | https://www.npmjs.com/package/next-themes                   |
+| nodemailer                    | ^6.9.4   | https://www.npmjs.com/package/nodemailer                    |
+| prism-react-renderer          | 1.3.5    | https://www.npmjs.com/package/prism-react-renderer          |
+| prisma                        | 4.11.0   | https://www.npmjs.com/package/prisma                        |
+| prismjs                       | ^1.29.0  | https://www.npmjs.com/package/prismjs                       |
+| react                         | 18.2.0   | https://www.npmjs.com/package/react                         |
+| react-dom                     | 18.2.0   | https://www.npmjs.com/package/react-dom                     |
+| react-hook-form               | ^7.43.4  | https://www.npmjs.com/package/react-hook-form               |
+| react-hot-toast               | ^2.4.1   | https://www.npmjs.com/package/react-hot-toast               |
+| sharp                         | ^0.31.3  | https://www.npmjs.com/package/sharp                         |
+| simplebar-react               | ^3.2.1   | https://www.npmjs.com/package/simplebar-react               |
+| tailwind-merge                | ^1.10.0  | https://www.npmjs.com/package/tailwind-merge                |
+| three                         | ^0.155.0 | https://www.npmjs.com/package/three                         |
+| zod                           | ^3.21.0  | https://www.npmjs.com/package/zod                           |
+| @tailwindcss/typography       | ^0.5.9   | https://www.npmjs.com/package/@tailwindcss/typography       |
+| @types/node                   | ^18.14.6 | https://www.npmjs.com/package/@types/node                   |
+| @types/react                  | ^18.0.28 | https://www.npmjs.com/package/@types/react                  |
+| @types/react-dom              | ^18.0.11 | https://www.npmjs.com/package/@types/react-dom              |
+| autoprefixer                  | ^10.4.13 | https://www.npmjs.com/package/autoprefixer                  |
+| postcss                       | ^8.4.21  | https://www.npmjs.com/package/postcss                       |
+| tailwindcss                   | ^3.3.3   | https://www.npmjs.com/package/tailwindcss                   |
+| tailwindcss-animate           | ^1.0.5   | https://www.npmjs.com/package/tailwindcss-animate           |
+| typescript                    | ^5.1.6   | https://www.npmjs.com/package/typescript                    |
 
 ## Setup
 
@@ -196,3 +196,5 @@ NODEMAILER_EMAIL=
 ### Forgot Password Page
 
 ## License
+
+This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details.

@@ -11,6 +11,7 @@ import { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import { toast } from "@/ui/Toast";
 import { clearHistory } from "@/helpers/api-key";
+import { shortToast } from "@/helpers/shorter-function";
 
 interface ApiHistoryOptionsProps {
   apiKeyKey: string;
@@ -25,17 +26,14 @@ const ApiHistoryOptions: FC<ApiHistoryOptionsProps> = ({ apiKeyKey }) => {
     try {
       await clearHistory();
       router.refresh();
-      toast({
-        title: "History cleared",
-        message: "History cleared successfully",
-        type: "success",
-      });
+      shortToast("History cleared", "History cleared successfully.", "success");
     } catch (error) {
       toast({
         title: "Error clearing your history",
         message: "Please try again later.",
         type: "error",
       });
+      shortToast("Error clearing your history", "Please try again later.", "error");
     } finally {
       setIsClearingHistory(false);
     }

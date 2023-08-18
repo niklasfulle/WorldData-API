@@ -1,12 +1,15 @@
 "use client";
-import { signIn } from "next-auth/react";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { Button } from "../ui/Button";
-import { toast } from "../ui/Toast";
 import Icons from "../ui/Icons";
 import Link from "next/link";
 import { Input } from "../ui/Input";
 import PasswordStrength from "./PasswordStrength";
+import {
+  loginWithGithub,
+  loginWithGoogle,
+  registerWithCredentials,
+} from "@/lib/auth/auth-functions";
 
 const SignInForm = ({}) => {
   const [isLoading, setIsLoading] = useState({ provider: "", isLoading: false });
@@ -26,102 +29,6 @@ const SignInForm = ({}) => {
     }
   };
 
-  const loginWithGoogle = async () => {
-    setIsLoading({ provider: "google", isLoading: true });
-    try {
-      await signIn("google");
-    } catch (error) {
-      toast({
-        title: "Error",
-        message: "There was an error logging in with Google",
-        type: "error",
-      });
-    } finally {
-      setIsLoading({ provider: "", isLoading: false });
-    }
-  };
-
-  const loginWithGithub = async () => {
-    setIsLoading({ provider: "github", isLoading: true });
-
-    try {
-      await signIn("github");
-    } catch (error) {
-      toast({
-        title: "Error",
-        message: "There was an error logging in with Github",
-        type: "error",
-      });
-    } finally {
-      setIsLoading({ provider: "", isLoading: false });
-    }
-  };
-
-  const registerWithCredentials = async (e: FormEvent) => {
-    e.preventDefault();
-    setIsLoading({ provider: "credentials", isLoading: true });
-
-    try {
-      const target = e.target as typeof e.target & {
-        username: { value: string };
-        email: { value: string };
-        password: { value: string };
-        passwordConfirm: { value: string };
-      };
-
-      const username = target.username.value;
-      const email = target.email.value;
-      const password = target.password.value;
-      const passwordConfirm = target.passwordConfirm.value;
-
-      if (password !== passwordConfirm) {
-        setError("Passwords do not match");
-        setIsLoading({ provider: "", isLoading: false });
-        return;
-      }
-
-      const res = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          email,
-          password,
-        }),
-      });
-
-      if (!res.ok) {
-        res.text().then((text) => {
-          const error: any = JSON.parse(text);
-          if (error.error) {
-            setError(error.error[0].message);
-          } else if (error.message) {
-            setError(error.message);
-          } else {
-            setError(error.message);
-          }
-        });
-      } else {
-        setError("");
-        toast({
-          title: "Success",
-          message: "You have successfully registered",
-          type: "success",
-        });
-      }
-    } catch (error) {
-      toast({
-        title: "Error",
-        message: "There was an error registering",
-        type: "error",
-      });
-    } finally {
-      setIsLoading({ provider: "", isLoading: false });
-    }
-  };
-
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8 bg-white dark:bg-slate-600 rounded-lg items-center">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col justify-center items-center">
@@ -133,7 +40,10 @@ const SignInForm = ({}) => {
         {error}
       </p>
       <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" onSubmit={registerWithCredentials}>
+        <form
+          className="space-y-6"
+          onSubmit={(e) => registerWithCredentials(e, setIsLoading, setError)}
+        >
           <div>
             <label
               htmlFor="username"
@@ -266,7 +176,7 @@ const SignInForm = ({}) => {
             isLoading={isLoading.provider == "google" && isLoading.isLoading}
             type="button"
             className="max-w-sm w-full dark:bg-white ease-in transition-all"
-            onClick={loginWithGoogle}
+            onClick={() => loginWithGoogle(setIsLoading)}
             disabled={isLoading.provider == "google" && isLoading.isLoading}
           >
             {isLoading.provider == "google" && isLoading.isLoading ? null : (
@@ -305,7 +215,7 @@ const SignInForm = ({}) => {
             isLoading={isLoading.provider == "github" && isLoading.isLoading}
             type="button"
             className="max-w-sm w-full dark:bg-white ease-in transition-all"
-            onClick={loginWithGithub}
+            onClick={() => loginWithGithub(setIsLoading)}
             disabled={isLoading.provider == "github" && isLoading.isLoading}
           >
             {isLoading.provider == "github" && isLoading.isLoading ? null : (

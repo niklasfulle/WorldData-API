@@ -1,4 +1,4 @@
-import { db } from "@/lib/prisma";
+import { db } from "@/lib/db/prisma";
 import { formatDistance } from "date-fns";
 import { notFound } from "next/navigation";
 import ApiKeyOptions from "@/api/ApiKeyOptions";
@@ -7,25 +7,14 @@ import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import Table from "@/ui/Table";
 import ApiHistoryOptions from "@/api/ApiHistoryOptions";
-import { getSession } from "next-auth/react";
-import { headers } from "next/headers";
-import { useEffect } from "react";
+import { FC } from "react";
+import { User } from "@prisma/client";
 
-const ApiDashboard = async ({}) => {
-  const session = await getSession({
-    req: {
-      headers: Object.fromEntries(headers().entries()),
-    },
-  });
+interface ApiDashboardProps {
+  user: User;
+}
 
-  if (!session) return notFound();
-
-  const user = await db.user.findUnique({
-    where: { email: session?.user?.email! },
-  });
-
-  if (!user) return notFound();
-
+const ApiDashboard: FC<ApiDashboardProps> = async ({ user }) => {
   const apiKeys = await db.apiKey.findMany({
     where: { userId: user.id },
   });

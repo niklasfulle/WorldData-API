@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { citiesLimiter } from "@/limit/limiter"
-import { db as prisma } from '@/lib/prisma'
+import { db as prisma } from '@/lib/db/prisma'
 import clientPromise from "@/lib/mogodb"
 import { z } from "zod"
 

@@ -4,6 +4,7 @@ import { Copy } from "lucide-react";
 import { ButtonHTMLAttributes, FC } from "react";
 import { Button } from "@/ui/Button";
 import { toast } from "@/ui/Toast";
+import { shortToast } from "@/helpers/shorter-function";
 
 interface CopyButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   valueToCopy: string;
@@ -16,12 +17,7 @@ const CopyButton: FC<CopyButtonProps> = ({ valueToCopy, className, ...props }) =
       type="button"
       onClick={() => {
         navigator.clipboard.writeText(valueToCopy);
-
-        toast({
-          title: "Copied",
-          message: "API key copied to clipboard",
-          type: "success",
-        });
+        shortToast("Copied", "API key copied to clipboard.", "success");
       }}
       variant="ghost"
       className={cn("", className)}

@@ -1,5 +1,5 @@
-import { authOptions } from '@/lib/auth'
-import { db } from '@/lib/prisma'
+import { authOptions } from '@/lib/auth/auth'
+import { db } from '@/lib/db/prisma'
 import { RevokeApiData } from '@/types/api/key'
 import { getServerSession } from 'next-auth'
 import { NextResponse } from 'next/server'

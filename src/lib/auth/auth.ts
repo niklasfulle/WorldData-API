@@ -1,5 +1,5 @@
 import { NextAuthOptions } from "next-auth"
-import { db } from "@/lib/prisma"
+import { db } from "@/lib/db/prisma"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
@@ -9,7 +9,7 @@ import { z } from "zod"
 import { randomUUID } from "crypto"
 import { cookies } from "next/headers"
 import { decode } from "next-auth/jwt"
-import { getGithubCredentials, getGoogleCredentials } from "@/helpers/get-credentials"
+import { getGithubCredentials, getGoogleCredentials } from "@/lib/auth/get-credentials"
 import { NextResponse } from "next/server"
 
 const loginUserSchema = z.object({
@@ -61,6 +61,10 @@ export const authOptions: NextAuthOptions = {
 
           if (!passwordsMatch) {
             throw new Error("Password or Email not correct");
+          }
+
+          if (!user.emailVerified) {
+            throw new Error("Email not verified");
           }
 
           return user as any;

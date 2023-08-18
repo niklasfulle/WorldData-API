@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 import { Button } from "@/ui/Button";
 import { toast } from "@/ui/Toast";
+import { shortToast } from "@/helpers/shorter-function";
 
 interface ApiKeyOptionsProps {
   apiKeyKey: string;
@@ -28,17 +29,9 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
       await revokeApiKey();
       await createApiKey();
       router.refresh();
-      toast({
-        title: "New API key created",
-        message: "New API key created successfully.",
-        type: "success",
-      });
+      shortToast("New API key created", "New API key created successfully.", "success");
     } catch (error) {
-      toast({
-        title: "Error creating new API key",
-        message: "Please try again later.",
-        type: "error",
-      });
+      shortToast("Error creating new API key", "Please try again later.", "error");
     } finally {
       setIsCreatingNew(false);
     }
@@ -50,19 +43,11 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
       await revokeApiKey();
       router.refresh();
     } catch (error) {
-      toast({
-        title: "Error revoking your API key",
-        message: "Please try again later.",
-        type: "error",
-      });
+      shortToast("Error revoking your API key", "Please try again later.", "error");
     } finally {
       setIsRevoking(false);
     }
   };
-
-  useEffect(() => {
-    window.history.scrollRestoration = "manual";
-  }, []);
 
   return (
     <DropdownMenu>
@@ -77,12 +62,7 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
           className="hover:cursor-pointer"
           onClick={() => {
             navigator.clipboard.writeText(apiKeyKey);
-
-            toast({
-              title: "Copied",
-              message: "API key copied to clipboard",
-              type: "success",
-            });
+            shortToast("Copied", "API key copied to clipboard.", "success");
           }}
         >
           Copy

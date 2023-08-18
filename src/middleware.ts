@@ -1,7 +1,7 @@
 import { getToken } from 'next-auth/jwt'
 import { withAuth } from 'next-auth/middleware'
 import { NextResponse } from 'next/server'
-import { db } from './lib/prisma'
+import { db } from './lib/db/prisma'
 
 export default withAuth(
   async function middleware(req) {
@@ -16,7 +16,7 @@ export default withAuth(
 
     // Manage protected routes
     const sensitiveRoutes = ['/dashboard']
-    const notWithSession = ['/login', '/register', '/forgot-password']
+    const notWithSession = ['/login', '/register', '/forgot-password', '/confirm-email']
 
     // Check if user is authenticated and trying to access a sensitive route
     if (
@@ -47,5 +47,5 @@ export default withAuth(
 )
 
 export const config = {
-  matcher: ['/', '/login', '/register', '/forgot-password/:path*', '/dashboard/:path*', '/api/:path*'],
+  matcher: ['/', '/login', '/register', '/forgot-password/:path*', '/confirm-email/:path*', '/dashboard/:path*', '/api/:path*'],
 }

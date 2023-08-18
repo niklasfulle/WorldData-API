@@ -8,10 +8,9 @@ import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import { toast } from "@/ui/Toast";
 import CopyButton from "@/api/CopyButton";
+import { shortToast } from "@/helpers/shorter-function";
 
-interface RequestApiKeyProps {}
-
-const RequestApiKey: FC<RequestApiKeyProps> = ({}) => {
+const RequestApiKey = ({}) => {
   const [isCreating, setIsCreating] = useState<boolean>(false);
   const [apiKey, setApiKey] = useState<string | null>(null);
 
@@ -24,20 +23,12 @@ const RequestApiKey: FC<RequestApiKeyProps> = ({}) => {
       setApiKey(generatedApiKey);
     } catch (err) {
       if (err instanceof Error) {
-        toast({
-          title: "Error",
-          message: err.message,
-          type: "error",
-        });
+        shortToast("Error", err.message, "error");
 
         return;
       }
 
-      toast({
-        title: "Error",
-        message: "Something went wrong",
-        type: "error",
-      });
+      shortToast("Error", "Something went wrong", "error");
     } finally {
       setIsCreating(false);
     }

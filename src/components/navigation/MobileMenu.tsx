@@ -12,7 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/ui/DropdownMenu";
-import { toast } from "@/ui/Toast";
+import { shortToast } from "@/helpers/shorter-function";
 
 const MobileMenu = () => {
   const { data: session } = useSession();
@@ -24,11 +24,7 @@ const MobileMenu = () => {
       setIsLoading(true);
       await signOut();
     } catch (error) {
-      toast({
-        title: "Error signing out",
-        message: "Please try again later.",
-        type: "error",
-      });
+      shortToast("Error signing out", "Please try again later.", "error");
     }
   };
 

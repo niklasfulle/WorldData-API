@@ -1,92 +1,21 @@
 "use client";
-import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/ui/Button";
-import { toast } from "@/ui/Toast";
 import Icons from "@/ui/Icons";
-import { Input } from "../ui/Input";
-import { useRouter } from "next/navigation";
+import { Input } from "@/ui/Input";
+import {
+  loginWithCredentials,
+  loginWithGithub,
+  loginWithGoogle,
+  resendConfirmationEmail,
+} from "@/lib/auth/auth-functions";
 
 const SignInForm = () => {
   const [isLoading, setIsLoading] = useState({ provider: "", isLoading: false });
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
-  const router = useRouter();
-
-  const loginWithGoogle = async () => {
-    setIsLoading({ provider: "google", isLoading: true });
-
-    try {
-      await signIn("google");
-    } catch (error) {
-      toast({
-        title: "Error",
-        message: "There was an error logging in with Google",
-        type: "error",
-      });
-    } finally {
-      setIsLoading({ provider: "", isLoading: false });
-    }
-  };
-
-  const loginWithGithub = async () => {
-    setIsLoading({ provider: "github", isLoading: true });
-
-    try {
-      await signIn("github");
-    } catch (error) {
-      toast({
-        title: "Error",
-        message: "There was an error logging in with Github",
-        type: "error",
-      });
-    } finally {
-      setIsLoading({ provider: "", isLoading: false });
-    }
-  };
-
-  const loginWithCredentials = async (e: FormEvent) => {
-    e.preventDefault();
-    setIsLoading({ provider: "credentials", isLoading: true });
-
-    try {
-      const target = e.target as typeof e.target & {
-        email: { value: string };
-        password: { value: string };
-      };
-
-      const email = target.email.value;
-      const password = target.password.value;
-
-      const res = await signIn("credentials", {
-        email: email,
-        password: password,
-        redirect: false,
-      });
-
-      if (res?.error) {
-        if (typeof res.error === "string" && res.error.charAt(0) === "[") {
-          const error: any = JSON.parse(res.error);
-          setError(error[0].message);
-        } else {
-          setError(res.error);
-        }
-      } else {
-        setError("");
-        router.push("/dashboard");
-        router.refresh();
-      }
-    } catch (error) {
-      toast({
-        title: "Error",
-        message: "There was an error logging in",
-        type: "error",
-      });
-    }
-
-    setIsLoading({ provider: "", isLoading: false });
-  };
+  const [email, setEmail] = useState<string>("");
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8 bg-white dark:bg-slate-600 rounded-lg items-center">
@@ -95,11 +24,25 @@ const SignInForm = () => {
           Sign in
         </h2>
       </div>
-      <p id="errors" className="sm:max-w-[14rem] text-center mt-2 text-red-600 font-bold">
+      <p id="errors" className="sm:max-w-[14rem] text-center mt-2 text-[#ff0000] font-bold">
         {error}
       </p>
+      {error !== "Email not verified" ? null : (
+        <Button
+          onClick={() => resendConfirmationEmail(setIsLoading, setError, email)}
+          isLoading={isLoading.provider == "email" && isLoading.isLoading}
+          disabled={isLoading.provider == "email" && isLoading.isLoading}
+          className="mt-2"
+          size="sm"
+        >
+          Resend email
+        </Button>
+      )}
       <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" onSubmit={loginWithCredentials}>
+        <form
+          className="space-y-6"
+          onSubmit={(e) => loginWithCredentials(e, setIsLoading, setEmail, setError)}
+        >
           <div>
             <label
               htmlFor="email"
@@ -189,7 +132,7 @@ const SignInForm = () => {
             isLoading={isLoading.provider == "google" && isLoading.isLoading}
             type="button"
             className="max-w-sm w-full dark:bg-white ease-in transition-all"
-            onClick={loginWithGoogle}
+            onClick={() => loginWithGoogle(setIsLoading)}
             disabled={isLoading.provider == "google" && isLoading.isLoading}
           >
             {isLoading.provider == "google" && isLoading.isLoading ? null : (
@@ -228,7 +171,7 @@ const SignInForm = () => {
             isLoading={isLoading.provider == "github" && isLoading.isLoading}
             type="button"
             className="max-w-sm w-full dark:bg-white ease-in transition-all"
-            onClick={loginWithGithub}
+            onClick={() => loginWithGithub(setIsLoading)}
             disabled={isLoading.provider == "github" && isLoading.isLoading}
           >
             {isLoading.provider == "github" && isLoading.isLoading ? null : (

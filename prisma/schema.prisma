@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider     = "postgresql"
-  url          = ""
+  url          = "postgresql://postgres:postgres@localhost:5432/worlddataAPI"
   relationMode = "prisma"
 }
 
@@ -45,7 +45,7 @@ model User {
   id            String    @id @default(cuid())
   name          String
   email         String?    @unique
-  emailVerified DateTime?
+  emailVerified Boolean?
   password      String?
 
   apiKey   ApiKey[]
@@ -53,6 +53,15 @@ model User {
   image    String?
   accounts Account[]
   sessions Session[]
+}
+
+model ConfirmEmail {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  expires   DateTime 
+  email     String
+  userId    String
+  createdAt DateTime @default(now())
 }
 
 model ApiKey {

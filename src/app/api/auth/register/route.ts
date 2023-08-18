@@ -1,7 +1,9 @@
 import { z } from 'zod';
 import bcrypt from 'bcrypt';
-import { db } from '@/lib/prisma';
+import { db } from '@/lib/db/prisma';
 import { NextResponse } from 'next/server';
+import { nanoid } from 'nanoid';
+import { sendConfirmMail } from '@/helpers/send-confirm-mail';
 
 const registerUserSchema = z.object({
   username: z.string().regex(/^[a-zA-Z0-9]{3,15}$/g, 'Invalid username'),
@@ -31,6 +33,7 @@ export async function POST(
         name: username,
         email,
         password: hashedPassword,
+        emailVerified: false,
       },
     });
 
@@ -43,6 +46,21 @@ export async function POST(
         providerAccountId: userDb.id,
       },
     });
+
+    const token = nanoid(128);
+
+    // Create ConfirmEmail
+    await db.confirmEmail.create({
+      data: {
+        userId: userDb.id,
+        token,
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
+        email: userDb.email!,
+      },
+    })
+
+    // Send email
+    await sendConfirmMail(userDb.email!, token);
 
     return NextResponse.json({ message: "User created", success: true }, { status: 200 })
   } catch (error) {

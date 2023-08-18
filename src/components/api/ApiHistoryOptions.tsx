@@ -9,7 +9,6 @@ import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
 import { Button } from "@/ui/Button";
-import { toast } from "@/ui/Toast";
 import { clearHistory } from "@/helpers/api-key";
 import { shortToast } from "@/helpers/shorter-function";
 
@@ -28,11 +27,6 @@ const ApiHistoryOptions: FC<ApiHistoryOptionsProps> = ({ apiKeyKey }) => {
       router.refresh();
       shortToast("History cleared", "History cleared successfully.", "success");
     } catch (error) {
-      toast({
-        title: "Error clearing your history",
-        message: "Please try again later.",
-        type: "error",
-      });
       shortToast("Error clearing your history", "Please try again later.", "error");
     } finally {
       setIsClearingHistory(false);

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import { citiesLimiter } from "@/limit/limiter"
 import { db as prisma } from '@/lib/db/prisma'
-import clientPromise from "@/lib/mogodb"
+import clientPromise from "@/lib/db/mogodb"
 import { z } from "zod"
 
 type Props = {

@@ -9,9 +9,8 @@ import {
 import { createApiKey, revokeApiKey } from "@/helpers/api-key";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { Button } from "@/ui/Button";
-import { toast } from "@/ui/Toast";
 import { shortToast } from "@/helpers/shorter-function";
 
 interface ApiKeyOptionsProps {

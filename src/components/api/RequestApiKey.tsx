@@ -1,12 +1,10 @@
 "use client";
 import { createApiKey } from "@/helpers/api-key";
-import { Key } from "lucide-react";
-import { FC, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/ui/Button";
 import { Input } from "@/ui/Input";
 import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
-import { toast } from "@/ui/Toast";
 import CopyButton from "@/api/CopyButton";
 import { shortToast } from "@/helpers/shorter-function";
 

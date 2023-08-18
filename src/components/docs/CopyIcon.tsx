@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Icons from "@/ui/Icons";
-import { toast } from "@/ui/Toast";
+import { shortToast } from "@/helpers/shorter-function";
 
 interface CopyIconProps {
   copyText: string;
@@ -12,13 +12,9 @@ const CopyIcon: FC<CopyIconProps> = ({ copyText }) => {
       aria-label="Copy code to clipboard"
       className="h-6 w-6 dark:text-white absolute right-0 top-0 hover:cursor-pointer hover:dark:text-gray-400"
       onClick={() => {
+        // TODO: Add support for Safari
         navigator.clipboard.writeText(copyText);
-
-        toast({
-          title: "Copied",
-          message: "Code copied to clipboard",
-          type: "success",
-        });
+        shortToast("Copied", "API key copied to clipboard.", "success");
       }}
     />
   );

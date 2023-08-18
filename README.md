@@ -52,6 +52,7 @@ This is a API provider for world data. It is a RESTful API that uses JSON as its
 | bcrypt          | 5.1.0   | [Link](https://www.npmjs.com/package/bcrypt)         |
 | three           | 0.155.0 | [Link](https://www.npmjs.com/package/three)          |
 | framer-motion   | 10.0.1  | [Link](https://www.npmjs.com/package/framer-motion)  |
+| nodemailer      | 6.9.4   | [Link](https://nodemailer.com/about/)                |
 
 ## Setup
 
@@ -82,6 +83,13 @@ GITHUB_CLIENT_SECRET=
 POSTGRESQL_URL=
 
 MONGODB_URL=
+
+# ------------------------
+# Nodemalier
+# ------------------------
+
+NODEMAILER_PW=
+NODEMAILER_EMAIL=
 ```
 
 ## API
@@ -132,12 +140,16 @@ MONGODB_URL=
 
 ### World Data Page
 
+### Blog Page
+
+### Rquest Api Key Page
+
+### Dashboard Page
+
 ### Login Page
 
 ### Register Page
 
 ### Forgot Password Page
-
-### Dashboard Page
 
 ## License

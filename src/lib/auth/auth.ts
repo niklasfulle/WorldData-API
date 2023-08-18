@@ -143,15 +143,9 @@ export const authOptions: NextAuthOptions = {
       };
 
       if (sessionToken) {
-        const sessiondb = await db.session.findUnique({
-          where: {
-            sessionToken: sessionToken,
-          },
-        });
-
         await db.session.deleteMany({
           where: {
-            userId: sessiondb?.userId,
+            sessionToken: sessionToken,
           },
         });
       }

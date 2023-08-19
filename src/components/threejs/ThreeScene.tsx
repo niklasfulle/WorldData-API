@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import {
   vertexShader,
   fragmentShader,
@@ -17,27 +17,31 @@ import {
   TextureLoader,
   WebGLRenderer,
 } from "three/src/Three.js";
-import { set } from "lodash";
 
 const ThreeScene: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const dataFetchedRef = useRef(false);
-  const [error, setError] = React.useState<Error | null>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
     try {
       if (typeof window !== "undefined") {
+        const width = 600;
+        const height = 600;
         const scene = new Scene();
 
-        const camera = new PerspectiveCamera(75, 600 / 600, 0.1, 1000);
-        const renderer = new WebGLRenderer({ antialias: true, alpha: true });
-
-        if (innerWidth < 600) {
+        const camera = new PerspectiveCamera(75, width / height, 0.1, 1000);
+        const renderer = new WebGLRenderer({
+          antialias: true,
+          alpha: true,
+          powerPreference: "high-performance",
+        });
+        if (innerWidth < width) {
           renderer.setSize(innerWidth, innerWidth);
         } else {
-          renderer.setSize(600, 600);
+          renderer.setSize(width, height);
         }
         renderer.setPixelRatio(devicePixelRatio);
 
@@ -91,13 +95,10 @@ const ThreeScene: React.FC = () => {
         renderScene();
 
         const handleResize = () => {
-          const width = 600;
-          const height = 600;
-
           camera.aspect = width / height;
           camera.updateProjectionMatrix();
 
-          if (innerWidth < 600) {
+          if (innerWidth < width) {
             renderer.setSize(innerWidth, innerWidth);
           } else {
             renderer.setSize(width, height);
@@ -116,10 +117,6 @@ const ThreeScene: React.FC = () => {
     }
   }, []);
 
-  return (
-    <>
-      {error ? <div className="text-white mt-20">{error.message}</div> : <div ref={containerRef} />}
-    </>
-  );
+  return <>{error ? <div></div> : <div ref={containerRef} />}</>;
 };
 export default ThreeScene;

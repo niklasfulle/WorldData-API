@@ -4,6 +4,7 @@ import { Copy } from "lucide-react";
 import { ButtonHTMLAttributes, FC } from "react";
 import { Button } from "@/ui/Button";
 import { shortToast } from "@/helpers/shorter-function";
+import copyToClipboard from "@/helpers/copyToClipboard";
 
 interface CopyButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   valueToCopy: string;
@@ -15,8 +16,7 @@ const CopyButton: FC<CopyButtonProps> = ({ valueToCopy, className, ...props }) =
       {...props}
       type="button"
       onClick={() => {
-        // TODO: Add support for Safari
-        navigator.clipboard.writeText(valueToCopy);
+        copyToClipboard(valueToCopy);
         shortToast("Copied", "API key copied to clipboard.", "success");
       }}
       variant="ghost"

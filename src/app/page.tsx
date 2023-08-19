@@ -1,10 +1,18 @@
+"use client";
 import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import Link from "next/link";
 import ThreeScene from "@/three/ThreeScene";
 import CookieConsent from "@/components/banner/CookieConsent";
+import { useState } from "react";
 
 export default function Home() {
+  const [threeIsLoaded, setThreeIsLoaded] = useState(false);
+  /**
+   * TODO: Add a loading screen
+   * den Setter mit in die ThreeSection geben und dann hier den Loader anzeigen
+   * wenn threeIsLoaded false ist und wenn true dann die ThreeSection
+   */
   return (
     <div className="relative flex items-center justify-center overflow-x-hidden">
       <div className="container pt-32 max-w-7xl mx-auto w-full h-screen">

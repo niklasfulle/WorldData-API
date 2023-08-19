@@ -5,6 +5,7 @@ import Link from "next/link";
 import ThreeScene from "@/three/ThreeScene";
 import CookieConsent from "@/components/banner/CookieConsent";
 import { useState } from "react";
+import { Skeleton } from "@mui/material";
 
 export default function Home() {
   const [threeIsLoaded, setThreeIsLoaded] = useState(false);
@@ -33,7 +34,15 @@ export default function Home() {
             .
           </Paragraph>
           <div className="relative w-full max-w-xl lg:max-w-3xl lg:left-1/2 lg:absolute -mt-20 md:-mt-24 lg:-ml-12 mx-auto flex flex-col items-center">
-            <ThreeScene />
+            {!threeIsLoaded ? (
+              <Skeleton
+                variant="rectangular"
+                animation="wave"
+                height={400}
+                className="mt-16 md:mt-0 dark:bg-slate-700/20 rounded-3xl w-64 h-64 md:w-96 md:h-96"
+              />
+            ) : null}
+            <ThreeScene setLoading={setThreeIsLoaded} />
           </div>
           <CookieConsent />
         </div>

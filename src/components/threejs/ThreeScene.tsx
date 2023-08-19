@@ -126,6 +126,10 @@ const ThreeScene: FC<Props> = ({ setLoading }) => {
     setLoading(false);
   }, []);
 
-  return <>{error ? <div></div> : <div ref={containerRef} />}</>;
+  return (
+    <>
+      {error ? <div></div> : <div className="dark:bg-slate-900 bg-slate-200" ref={containerRef} />}
+    </>
+  );
 };
 export default ThreeScene;

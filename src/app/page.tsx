@@ -9,11 +9,7 @@ import { Skeleton } from "@mui/material";
 
 export default function Home() {
   const [threeIsLoaded, setThreeIsLoaded] = useState(false);
-  /**
-   * TODO: Add a loading screen
-   * den Setter mit in die ThreeSection geben und dann hier den Loader anzeigen
-   * wenn threeIsLoaded false ist und wenn true dann die ThreeSection
-   */
+
   return (
     <div className="relative flex items-center justify-center overflow-x-hidden">
       <div className="container pt-32 max-w-7xl mx-auto w-full h-screen">
@@ -39,7 +35,7 @@ export default function Home() {
                 variant="rectangular"
                 animation="wave"
                 height={400}
-                className="mt-16 md:mt-0 dark:bg-slate-700/20 rounded-3xl w-64 h-64 md:w-96 md:h-96"
+                className="mt-16 md:mt-0 bg-slate-300/20 dark:bg-slate-700/20 rounded-3xl w-64 h-64 md:w-96 md:h-96"
               />
             ) : null}
             <ThreeScene setLoading={setThreeIsLoaded} />

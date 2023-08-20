@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate": "prisma migrate dev",
+    "generate": "prisma generate"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -52,6 +54,7 @@
     "simplebar-react": "^3.2.1",
     "tailwind-merge": "^1.10.0",
     "three": "^0.155.0",
+    "webpack": "^5.88.2",
     "zod": "^3.21.0"
   },
   "devDependencies": {

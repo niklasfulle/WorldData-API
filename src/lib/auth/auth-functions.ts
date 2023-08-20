@@ -7,6 +7,8 @@ type SetIsLoading = Dispatch<SetStateAction<{
   isLoading: boolean;
 }>>;
 
+type SetIsLoading2 = Dispatch<SetStateAction<boolean>>
+
 type SetError = Dispatch<SetStateAction<string>>;
 
 type SetEmail = Dispatch<SetStateAction<string>>;
@@ -167,4 +169,56 @@ export const resendConfirmationEmail = async (setIsLoading: SetIsLoading, setErr
     shortToast("Error", "There was an error with sending the confirm email.", "error");
   }
   setIsLoading({ provider: "", isLoading: false });
+};
+
+export const sendForgotPasswordEmail = async (e: FormEvent, setIsLoading: SetIsLoading2, setError: SetError) => {
+  e.preventDefault();
+  setIsLoading(true);
+
+  try {
+    const target = e.target as typeof e.target & {
+      email: { value: string };
+    };
+
+    const email = target.email.value;
+
+    const res = await fetch("/api/auth/forgot-password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+      }),
+    });
+
+    if (!res.ok) {
+      res.text().then((text) => {
+        const error: any = JSON.parse(text);
+        if (error.error) {
+          console.log("1", error.error[0].message);
+          if (error.error[0].message === "Invalid email") {
+            setError("Invalid email");
+          }
+        } else if (error.message) {
+          if (error.message === "No user found" || error.message === "Wrong Provider") {
+            shortToast("Success", "Check your email to reset your password.", "success");
+          } else if (error.message === "Too many requests") {
+            shortToast("Error", "Too many requests. Please try again later.", "error");
+          }
+          setError("");
+          console.log("2", error.message);
+        } else {
+          console.log("3", error.message)
+        }
+      });
+    } else {
+      setError("");
+      shortToast("Success", "Check your email to reset your password.", "success");
+    }
+  } catch (error) {
+    setError("");
+    shortToast("Error", "There was an error with sending the forgot password email.", "error");
+  }
+  setIsLoading(false);
 };

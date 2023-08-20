@@ -1,4 +1,4 @@
-import { sendConfirmMail } from "@/helpers/send-confirm-mail";
+import { sendConfirmMail } from "@/helpers/send-mail";
 import { db } from "@/lib/db/prisma";
 import { nanoid } from "nanoid";
 import { NextResponse } from "next/server";
@@ -24,7 +24,7 @@ export async function POST(
     const token = nanoid(128);
 
     // Create ConfirmEmail
-    const test = await db.confirmEmail.create({
+    await db.confirmEmail.create({
       data: {
         userId: userDb.id,
         token,
@@ -33,15 +33,11 @@ export async function POST(
       },
     })
 
-    console.log(test)
-
     // Send email
-    const res = await sendConfirmMail(userDb.email!, token);
+    await sendConfirmMail(userDb.email!, token);
 
     return NextResponse.json({ message: "Email send succsesful", success: true }, { status: 200 })
   } catch (error) {
-    console.log(error)
-
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: error.issues, success: false }, { status: 400 })
     }

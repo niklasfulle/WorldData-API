@@ -35,7 +35,7 @@ const SignInForm = () => {
           className="mt-2"
           size="sm"
         >
-          Resend email
+          Resend E-Mail
         </Button>
       )}
       <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -48,7 +48,7 @@ const SignInForm = () => {
               htmlFor="email"
               className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
             >
-              Email
+              E-Mail
             </label>
             <div className="mt-1">
               <Input

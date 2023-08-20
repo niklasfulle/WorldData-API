@@ -10,7 +10,7 @@ const page = () => {
     <div className="inset-0 mx-auto container flex flex-col mt-12 min-h-[90vh] h-auto">
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 max-w-lg">
         <div className="flex flex-col items-center gap-6 text-center">
-          <LargeHeading>Welcome back!</LargeHeading>
+          <LargeHeading size={"sm"}>Welcome back!</LargeHeading>
           <SignInForm />
           <Link
             className={buttonVariants({

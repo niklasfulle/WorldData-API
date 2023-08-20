@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import bcrypt from 'bcrypt';
 import { db } from '@/lib/db/prisma';
 import { NextResponse } from 'next/server';
 import { nanoid } from 'nanoid';
 import { sendConfirmMail } from '@/helpers/send-mail';
+import bcrypt from 'bcrypt';
 
 const registerUserSchema = z.object({
   username: z.string().regex(/^[a-zA-Z0-9]{3,15}$/g, 'Invalid username'),

@@ -222,3 +222,58 @@ export const sendForgotPasswordEmail = async (e: FormEvent, setIsLoading: SetIsL
   }
   setIsLoading(false);
 };
+
+export const resetPassword = async (e: FormEvent, setIsLoading: SetIsLoading2, setError: SetError, token: string) => {
+  e.preventDefault();
+  setIsLoading(true);
+  try {
+    const target = e.target as typeof e.target & {
+      password: { value: string };
+      passwordConfirm: { value: string };
+    };
+
+    const password = target.password.value;
+    const passwordConfirm = target.passwordConfirm.value;
+
+    if (password !== passwordConfirm) {
+      setError("Passwords do not match");
+      setIsLoading(false);
+      return;
+    }
+
+    //const hashedPassword = await bcrypt.hash(password, 10);
+
+    const res = await fetch("/api/auth/new-password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        token,
+        password,
+      }),
+    });
+
+    if (!res.ok) {
+      res.text().then((text) => {
+        console.log(text);
+        const error: any = JSON.parse(text);
+        if (error.error) {
+          setError(error.error[0].message);
+        } else if (error.message) {
+          setError(error.message);
+        } else {
+          setError(error.message);
+        }
+      });
+    }
+
+    setError("");
+    shortToast("Success", "You have successfully reset your password.", "success");
+
+  } catch (error) {
+    setError("");
+    shortToast("Error", "There was an error with reseting the password.", "error");
+  }
+  setIsLoading(false);
+}

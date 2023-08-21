@@ -67,18 +67,7 @@ const MobileMenu = () => {
               aria-label="Link to the documentation page"
             >
               <Icons.Book className="mr-2 h-5 w-5" />
-              <span>Docs</span>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild className="hover:cursor-pointer">
-            <Link
-              href="/world-data"
-              className="w-full flex items-center gap-1.5"
-              aria-label="Link to the world-data page"
-            >
-              <Icons.Database className="mr-2 h-5 w-5" />
-              <span>Data</span>
+              <span>Documentation</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
@@ -89,7 +78,7 @@ const MobileMenu = () => {
               aria-label="Link to the world-data page"
             >
               <Icons.Newspaper className="mr-2 h-5 w-5" />
-              <span>Blog</span>
+              <span>Blogposts</span>
             </Link>
           </DropdownMenuItem>
           {session ? (

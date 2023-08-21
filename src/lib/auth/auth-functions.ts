@@ -18,7 +18,7 @@ export const loginWithGoogle = async (setIsLoading: SetIsLoading) => {
   setIsLoading({ provider: "google", isLoading: true });
 
   try {
-    await signIn("google");
+    await signIn("google")
   } catch (error) {
     shortToast("Error", "There was an error logging in with Google.", "error");
   } finally {
@@ -31,7 +31,7 @@ export const loginWithGithub = async (setIsLoading: SetIsLoading) => {
   setIsLoading({ provider: "github", isLoading: true });
 
   try {
-    await signIn("github");
+    await signIn("github")
   } catch (error) {
     shortToast("Error", "There was an error logging in with Github.", "error");
   } finally {
@@ -69,7 +69,7 @@ export const loginWithCredentials = async (e: FormEvent, setIsLoading: SetIsLoad
       }
     } else {
       setError("");
-      window.location.href = "/";
+      window.location.href = "/dashboard";
     }
   } catch (error) {
     shortToast("Error", "There was an error logging in.", "error");

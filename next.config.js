@@ -1,12 +1,17 @@
 /** @type {import('next').NextConfig} */
-const withPWA = require("next-pwa")({
+/*const withPWA = require("next-pwa")({
   dest: "public",
 });
 
-/*module.exports = withPWA({
+module.exports = withPWA({
   productionBrowserSourceMaps: true,
 });*/
 
-module.exports = {
+const withNextra = require("nextra")({
+  theme: "nextra-theme-docs",
+  themeConfig: "./theme.config.jsx",
+});
+
+module.exports = withNextra({
   productionBrowserSourceMaps: true,
-};
+});

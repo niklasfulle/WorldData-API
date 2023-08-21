@@ -24,12 +24,6 @@ const Footer = async () => {
               Documentation
             </Link>
             <Link
-              href="/world-data"
-              className="text-sm mb-1 active:text-slate-500 dark:active:text-slate-400"
-            >
-              World Data
-            </Link>
-            <Link
               href="/blogposts"
               className="text-sm mb-1 active:text-slate-500 dark:active:text-slate-400"
             >

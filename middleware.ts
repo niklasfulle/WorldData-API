@@ -1,7 +1,5 @@
-import { getToken } from 'next-auth/jwt'
 import { withAuth } from 'next-auth/middleware'
 import { NextResponse } from 'next/server'
-import { db } from './lib/db/prisma'
 
 export default withAuth(
   async function middleware(req) {

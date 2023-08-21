@@ -52,21 +52,14 @@ const Navbar = async () => {
             className={buttonVariants({ variant: "ghost" })}
             aria-label="Link to the documentation page"
           >
-            Docs
-          </Link>
-          <Link
-            href="/world-data"
-            className={buttonVariants({ variant: "ghost" })}
-            aria-label="Link to the world-data page"
-          >
-            Data
+            Documentation
           </Link>
           <Link
             href="/blogposts"
             className={buttonVariants({ variant: "ghost" })}
             aria-label="Link to the world-data page"
           >
-            Blog
+            Blogposts
           </Link>
           {session ? (
             <>

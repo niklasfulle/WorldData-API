@@ -10,7 +10,6 @@ import { randomUUID } from "crypto"
 import { cookies } from "next/headers"
 import { decode } from "next-auth/jwt"
 import { getGithubCredentials, getGoogleCredentials } from "@/lib/auth/get-credentials"
-import { NextResponse } from "next/server"
 
 const loginUserSchema = z.object({
   email: z.string().email('Invalid email'),

@@ -71,7 +71,7 @@ const ForgotPasswordForm = () => {
           </span>
         </div>
         <div className="w-64 dark:text-white text-justify text-sm">
-          You will receive an email with a link to reset your password. If you don't receive an
+          You will receive an email with a link to reset your password. If you don&apos;t receive an
           email, please check your spam folder.
         </div>
       </div>

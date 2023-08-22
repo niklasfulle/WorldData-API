@@ -31,7 +31,7 @@ const fallback = (text: string) => {
   document.body.removeChild(textarea);
 };
 
-export default (text: string) => {
+const copyToClipboard = (text: string) => {
   if (!navigator.clipboard) {
     fallback(text);
     return;
@@ -39,3 +39,5 @@ export default (text: string) => {
 
   navigator.clipboard.writeText(text);
 };
+
+export default copyToClipboard;

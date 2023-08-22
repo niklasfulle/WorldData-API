@@ -1,8 +1,17 @@
+---
+title: Code Examples
+description: Code examples how to implement the World Data API in your project in different programming languages.
+---
+
+# Examples
+
+Examples how to implement the World Data API in your project in different programming languages.
+
 ## Javascript
 
 How to create an request in Javascript
 
-```js
+```js copy
 const axios = require("axios");
 
 const options = {
@@ -24,7 +33,7 @@ axios.request(options).then(function (response) {
 
 How to create an request in Typescript
 
-```ts
+```ts copy
 import axios from "axios";
 
 const options = {
@@ -49,7 +58,7 @@ axios
 
 How to create an request in Python
 
-```python
+```python copy
 import requests
 
 url = 'https://worlddataapi.com/api/v1/countries'
@@ -71,7 +80,7 @@ else:
 
 How to create an request in Java
 
-```java
+```java copy
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -115,7 +124,7 @@ public class Main {
 
 How to create an request in Kotlin
 
-```kotlin
+```kotlin copy
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -156,7 +165,7 @@ fun main() {
 
 How to create an request in Rust
 
-```rust
+```rust copy
 use reqwest;
 
 fn main() -> Result<(), reqwest::Error> {
@@ -177,7 +186,7 @@ fn main() -> Result<(), reqwest::Error> {
 
 How to create an request in C#
 
-```csharp
+```csharp copy
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -212,7 +221,7 @@ class Program
 
 How to create an request in Go
 
-```go
+```go copy
 package main
 
 import (
@@ -254,4 +263,33 @@ func main() {
 		fmt.Println(string(body))
 	}
 }
+```
+
+## PHP
+
+How to create an request in PHP
+
+```php copy
+<?php
+
+$apiKey = 'YOUR_API_KEY';
+$url = 'https://worlddataapi.com/api/v1/countries';
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Authorization: ' . $apiKey
+]);
+
+$response = curl_exec($ch);
+
+if ($response === false) {
+    echo 'cURL Error: ' . curl_error($ch);
+} else {
+    echo $response;
+}
+
+curl_close($ch);
+
+?>
 ```

@@ -180,7 +180,3 @@ body {
 .dark .strength-6 {
   color: #37d816ba;
 }
-
-.dark div[dir="ltr"] {
-  background-color: red;
-}

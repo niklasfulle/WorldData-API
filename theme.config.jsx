@@ -12,4 +12,5 @@ export default {
     defaultMenuCollapseLevel: 1,
     toggleButton: true,
   },
+  primaryHue: { dark: 198, light: 243 },
 };

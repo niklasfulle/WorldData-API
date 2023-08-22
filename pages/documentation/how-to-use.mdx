@@ -1,4 +1,40 @@
----
-title: How to use the API
-description: a
----
+import { Callout, Card, Cards, Steps } from "nextra/components";
+
+## Create an API-Key
+
+<Steps>
+### Create an account
+
+To create an account, you can go to the sign-up page [Register](/register). You will get an email to confirm your account. After that, you can sign in [Login](/login), or you can log in with Google or GitHub
+
+### Create an API-Key
+
+1. Navigate to the `Dashboard`
+2. If you don't have an active API key, you can click on `Request key` and request an API key. Or if you have an API key, you
+   can click on the `Options` button right from our API key and request a completely new one.
+
+   <Callout>If you have an API key and request a new one, the old one won't work anymore.</Callout>
+
+### Making requests
+
+Now you can make request to the API with your API-key. To do that you need to add the API-key in the Header of the request.
+
+```js filename="nodejs"
+const options = {
+  method: 'GET',
+  url: 'https://worlddataapi.com/api/v1/countries'
+  headers: {
+    'Authorization': 'YOUR_API_KEY',
+  }
+};
+```
+
+For more examples to show here [Examples](/documentation/examples)
+
+</Steps>
+
+## Revoke an API-Key
+
+## Copy an API-Key
+
+## Clear the request history

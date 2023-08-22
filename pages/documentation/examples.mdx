@@ -1,0 +1,257 @@
+## Javascript
+
+How to create an request in Javascript
+
+```js
+const axios = require("axios");
+
+const options = {
+    method: 'GET',
+    url: 'https://worlddataapi.com/api/v1/countries'
+    headers: {
+      'Authorization': 'YOUR_API_KEY',
+    }
+  };
+
+axios.request(options).then(function (response) {
+    console.log(response.data);
+}).catch(function (error) {
+    console.error(error);
+});
+```
+
+## Typescript
+
+How to create an request in Typescript
+
+```ts
+import axios from "axios";
+
+const options = {
+  method: "GET",
+  url: "https://worlddataapi.com/api/v1/countries",
+  headers: {
+    Authorization: "YOUR_API_KEY",
+  },
+};
+
+axios
+  .request(options)
+  .then(function (response) {
+    console.log(response.data);
+  })
+  .catch(function (error) {
+    console.error(error);
+  });
+```
+
+## Python
+
+How to create an request in Python
+
+```python
+import requests
+
+url = 'https://worlddataapi.com/api/v1/countries'
+headers = {
+    'Authorization': 'YOUR_API_KEY',
+}
+
+response = requests.get(url, headers=headers)
+
+if response.status_code == 200:
+    data = response.json()
+    print(data)
+else:
+    print(f"Request failed with status code: {response.status_code}")
+    print(response.text)
+```
+
+## Java
+
+How to create an request in Java
+
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class Main {
+    public static void main(String[] args) {
+        String apiKey = "YOUR_API_KEY";
+        String apiUrl = "https://worlddataapi.com/api/v1/countries";
+
+        try {
+            URL url = new URL(apiUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Authorization", apiKey);
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String inputLine;
+                StringBuilder response = new StringBuilder();
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+
+                System.out.println(response.toString());
+            } else {
+                System.out.println("Request failed with response code: " + responseCode);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+## Kotlin
+
+How to create an request in Kotlin
+
+```kotlin
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
+
+fun main() {
+    val apiKey = "YOUR_API_KEY"
+    val apiUrl = "https://worlddataapi.com/api/v1/countries"
+
+    try {
+        val url = URL(apiUrl)
+        val connection = url.openConnection() as HttpURLConnection
+        connection.requestMethod = "GET"
+        connection.setRequestProperty("Authorization", apiKey)
+
+        val responseCode = connection.responseCode
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            val inStream = BufferedReader(InputStreamReader(connection.inputStream))
+            var inputLine: String?
+            val response = StringBuilder()
+
+            while (inStream.readLine().also { inputLine = it } != null) {
+                response.append(inputLine)
+            }
+            inStream.close()
+
+            println(response.toString())
+        } else {
+            println("Request failed with response code: $responseCode")
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+}
+```
+
+## Rust
+
+How to create an request in Rust
+
+```rust
+use reqwest;
+
+fn main() -> Result<(), reqwest::Error> {
+    let client = reqwest::blocking::Client::new();
+
+    let response = client.get("https://worlddataapi.com/api/v1/countries")
+        .header("Authorization", "YOUR_API_KEY")
+        .send()?;
+
+    let body = response.text()?;
+    println!("{}", body);
+
+    Ok(())
+}
+```
+
+## C#
+
+How to create an request in C#
+
+```csharp
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        string apiKey = "YOUR_API_KEY";
+        string apiUrl = "https://worlddataapi.com/api/v1/countries";
+
+        using (HttpClient client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Add("Authorization", apiKey);
+
+            HttpResponseMessage response = await client.GetAsync(apiUrl);
+            if (response.IsSuccessStatusCode)
+            {
+                string responseBody = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(responseBody);
+            }
+            else
+            {
+                Console.WriteLine("Request failed with response code: " + response.StatusCode);
+            }
+        }
+    }
+}
+```
+
+## Go
+
+How to create an request in Go
+
+```go
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	url := "https://worlddataapi.com/api/v1/countries"
+	apiKey := "YOUR_API_KEY"
+
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		fmt.Println("Error creating request:", err)
+		return
+	}
+
+	req.Header.Add("Authorization", apiKey)
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println("Error sending request:", err)
+		return
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Error reading response body:", err)
+		return
+	}
+
+	if resp.StatusCode == http.StatusOK {
+		fmt.Println(string(body))
+	} else {
+		fmt.Printf("Request failed with status code: %d\n", resp.StatusCode)
+		fmt.Println(string(body))
+	}
+}
+```

@@ -1,4 +1,8 @@
 {
+  "documentation": {
+    "title": "Documentation",
+    "type": "page"
+  },
   "blog": {
     "title": "Blogposts",
     "type": "page",
@@ -9,12 +13,6 @@
     "title": "Dashboard",
     "type": "page",
     "href": "/dashboard",
-    "newWindow": false
-  },
-  "documentation": {
-    "title": "Documentation",
-    "type": "page",
-    "href": "/documentation",
     "newWindow": false
   }
 }

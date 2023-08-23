@@ -17,7 +17,6 @@ import {
   TextureLoader,
   WebGLRenderer,
 } from "three/src/Three.js";
-import { set } from "lodash";
 
 interface Props {
   setLoading: SetLoading;

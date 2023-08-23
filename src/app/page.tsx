@@ -18,8 +18,8 @@ export default function Home() {
             Data of the world.
           </LargeHeading>
           <Paragraph className="max-w-xl lg:text-left z-10 px-3 text-justify md:text-center">
-            Get the latest data of the world in JSON format. Data about countries, states, cities,
-            and more. All the data is free and open source. You can get the API key from{" "}
+            Get the latest data from around the world in JSON format. Data about countries, states,
+            cities, and more. All the data is free and open-source. You can get the API key from{" "}
             <Link
               href="/login"
               className="underline underline-offset-2 text-indigo-600 dark:text-sky-400"

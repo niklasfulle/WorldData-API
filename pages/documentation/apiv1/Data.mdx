@@ -2,17 +2,23 @@
 title: Data
 description: Description and data model about the Worlddata API v1
 ---
+import { Callout, Card, Cards, Steps } from "nextra/components";
 
 ## Continents
 
 ### Description
 
+List of all continents in the world. The list is sorted alphabetically by continent name.
+
 ### Data Model
 
-```md filename="Version: V1"
+```md filename="Version: V1" copy
 {
   "id": Number,
   "name": String,
+  "area_m2": Number,
+  "population": Number,
+  "density": Number,
 }
 ```
 
@@ -20,12 +26,18 @@ description: Description and data model about the Worlddata API v1
 
 ### Description
 
+List of all oceans in the world. The list is sorted alphabetically by ocean name.
+
 ### Data Model
 
-```md filename="Version: V1"
+```md filename="Version: V1" copy
 {
   "id": Number,
   "name": String,
+  "area_m2": Number,
+  "avg_depth_m": Number,
+  "max_depth_m": Number,
+  "volume_m3": Number,
 }
 ```
 
@@ -33,12 +45,18 @@ description: Description and data model about the Worlddata API v1
 
 ### Description
 
+List of the 100 biggest seas in the world. The list is sorted by area.
+
 ### Data Model
 
-```md filename="Version: V1"
+```md filename="Version: V1" copy
 {
   "id": Number,
   "name": String,
+  "area": Number,
+  "avg_depth": Number,
+  "max_depth": Number,
+  "volume": Number,
 }
 ```
 
@@ -46,9 +64,11 @@ description: Description and data model about the Worlddata API v1
 
 ### Description
 
+List of the 195 United Nations member states in the world. The list is sorted alphabetically by country name.
+
 ### Data Model
 
-```md filename="Version: V1"
+```md filename="Version: V1" copy
 {
   "id": Number,
   "name": String,
@@ -58,11 +78,11 @@ description: Description and data model about the Worlddata API v1
   "phone_code": String,
   "capital": String,
   "tld": String,
-  "native": String,
   "region": String,
   "subregion": String,
   "latitude": String,
-  "longitude": String
+  "longitude": String,
+  "independent": Boolean
 }
 ```
 
@@ -70,13 +90,16 @@ description: Description and data model about the Worlddata API v1
 
 ### Description
 
+A list of the 100 biggest cities in the world. The list is sorted by population.
+
 ### Data Model
 
-```md filename="Version: V1"
+```md filename="Version: V1" copy
 {
   "id": Number,
   "name": String,
   "latitude": String,
-  "longitude": String
+  "longitude": String,
+  "population": Number,
 }
 ```

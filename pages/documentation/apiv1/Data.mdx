@@ -10,7 +10,10 @@ description: Description and data model about the Worlddata API v1
 ### Data Model
 
 ```md filename="Version: V1"
-
+{
+  "id": Number,
+  "name": String,
+}
 ```
 
 ## Oceans
@@ -20,7 +23,10 @@ description: Description and data model about the Worlddata API v1
 ### Data Model
 
 ```md filename="Version: V1"
-
+{
+  "id": Number,
+  "name": String,
+}
 ```
 
 ## Seas
@@ -30,7 +36,10 @@ description: Description and data model about the Worlddata API v1
 ### Data Model
 
 ```md filename="Version: V1"
-
+{
+  "id": Number,
+  "name": String,
+}
 ```
 
 ## Countries
@@ -40,7 +49,21 @@ description: Description and data model about the Worlddata API v1
 ### Data Model
 
 ```md filename="Version: V1"
-
+{
+  "id": Number,
+  "name": String,
+  "iso3": String,
+  "iso2": String,
+  "numeric_code": String,
+  "phone_code": String,
+  "capital": String,
+  "tld": String,
+  "native": String,
+  "region": String,
+  "subregion": String,
+  "latitude": String,
+  "longitude": String
+}
 ```
 
 ## Cities
@@ -50,5 +73,10 @@ description: Description and data model about the Worlddata API v1
 ### Data Model
 
 ```md filename="Version: V1"
-
+{
+  "id": Number,
+  "name": String,
+  "latitude": String,
+  "longitude": String
+}
 ```

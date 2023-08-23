@@ -1,0 +1,104 @@
+---
+title: How to use the API
+description: How to use the Worlddata API with the basic functionality.
+---
+import { Callout, Card, Cards, Steps } from "nextra/components";
+
+# How to use the API
+
+The following steps will show you the basic functionality of the API.
+
+## Create an API-Key
+
+<Steps>
+### Create an account
+
+To create an account, you can go to the sign-up page [Register](/register). You will get an email to confirm your account.
+After that, you can sign in [Login](/login), or you can log in with Google or GitHub.
+
+### Create an API-Key
+
+1. Navigate to the `Dashboard`.
+
+#### Option 1
+
+2.  If you don't have an active API key, you can click on `Request key` and request an API key.
+
+#### Option 2
+
+2. Or if you have an API key, you can click on the `Options` button right from our API key and request a completely new one.
+
+<Callout>If you have an API-key and request a new one, the old one won't work anymore.</Callout>
+
+### Making a requests
+
+Now you can make request to the API with your API-key. To do that you need to add the API-key in the Header of the request.
+
+```js filename="nodejs" copy
+const options = {
+  method: 'GET',
+  url: 'https://worlddataapi.com/api/v1/countries'
+  headers: {
+    'Authorization': 'YOUR_API_KEY',
+  }
+};
+```
+
+For more examples to show here [Examples](/documentation/examples).
+
+</Steps>
+
+## Revoke an API-Key
+
+<Steps>
+
+### Navigate to the `Dashboard`
+
+Navigate to the `Dashboard`.
+
+### Revoke the API-Key
+
+2. Click on the `Options` button right from the API key.
+3. Click on `Revoke key` option.
+
+<Callout>The API-key you revoked won't work anymore for any request to the API.</Callout>
+
+</Steps>
+
+## Copy an API-Key
+
+<Steps>
+
+### Navigate to the `Dashboard`
+
+Navigate to the `Dashboard`.
+
+### Copy the API-Key
+
+#### Option 1
+
+1. When you first requested an API key, you will see a copy button right from the API key.
+2. Click on the copy button and the API key will be copied to your clipboard.
+
+#### Option 2
+
+1. Click on the `Options` button right from the API key.
+2. Click on `Copy` option.
+
+</Steps>
+
+## Clear the request history
+
+<Steps>
+
+### Navigate to the `Dashboard`
+
+Navigate to the `Dashboard`.
+
+### Clear the request history
+
+1. Click on the `Options` button on the top right corner of the `API history table`.
+2. Click on `Clear history` option.
+
+<Callout>The API history will be cleared and you won't be able to see the history anymore.</Callout>
+</Steps>

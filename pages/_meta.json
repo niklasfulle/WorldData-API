@@ -1,0 +1,18 @@
+{
+  "documentation": {
+    "title": "Documentation",
+    "type": "page"
+  },
+  "blog": {
+    "title": "Blogposts",
+    "type": "page",
+    "href": "/blogposts",
+    "newWindow": false
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "type": "page",
+    "href": "/dashboard",
+    "newWindow": false
+  }
+}

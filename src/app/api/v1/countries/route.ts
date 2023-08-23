@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { citiesLimiterV1 } from "@/app/api/config/limiter"
+import { countriesLimiterV1 } from "@/app/api/config/limiter"
 import { db as prisma } from '@/lib/db/prisma'
 import clientPromise from "@/lib/db/mogodb"
 import { z } from "zod"
@@ -25,7 +25,7 @@ export async function GET(req: Request) {
 
     const start = new Date()
 
-    const remaining = await citiesLimiterV1.removeTokens(1)
+    const remaining = await countriesLimiterV1.removeTokens(1)
 
     if (remaining < 0) {
       const duration = new Date().getTime() - start.getTime()
@@ -72,6 +72,7 @@ export async function GET(req: Request) {
 
       return NextResponse.json(countries, { status: 200 })
     } catch (error) {
+      console.log(error)
       return NextResponse.json({ error: 'Internal Server Error', success: false }, { status: 500 })
     }
   } catch (error) {

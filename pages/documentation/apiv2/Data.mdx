@@ -3,6 +3,8 @@ title: Data
 description: Description and data model about the Worlddata API v1
 ---
 
+import { Callout, Card, Cards, Steps } from "nextra/components";
+
 ## Continents
 
 ### Description
@@ -10,7 +12,13 @@ description: Description and data model about the Worlddata API v1
 ### Data Model
 
 ```md filename="Version: V2"
-
+{
+  "id": Number,
+  "name": String,
+  "area_m2": Number,
+  "population": Number,
+  "density": Number,
+}
 ```
 
 ## Oceans
@@ -20,7 +28,15 @@ description: Description and data model about the Worlddata API v1
 ### Data Model
 
 ```md filename="Version: V2"
-
+{
+  "id": Number,
+  "name": String,
+  "area_m2": Number,
+  "avg_depth_m": Number,
+  "max_depth_m": Number,
+  "volume_m3": Number,
+  "coastline_length_km": Number  <-- New
+}
 ```
 
 ## Seas
@@ -30,7 +46,15 @@ description: Description and data model about the Worlddata API v1
 ### Data Model
 
 ```md filename="Version: V2"
-
+{
+  "id": Number,
+  "name": String,
+  "area": Number,
+  "avg_depth": Number,
+  "max_depth": Number,
+  "volume": Number,
+  "coastline_length": Number  <-- New
+}
 ```
 
 ## Countries
@@ -40,7 +64,24 @@ description: Description and data model about the Worlddata API v1
 ### Data Model
 
 ```md filename="Version: V2"
-
+{
+  "id": Number,
+  "name": String,
+  "iso3": String,
+  "iso2": String,
+  "numeric_code": String,
+  "phone_code": String,
+  "capital": String,
+  "tld": String,
+  "region": String,
+  "subregion": String,
+  "latitude": String,
+  "longitude": String,
+  "independent": Boolean,
+  "area_m2": Number,  <-- New
+  "population": Number,  <-- New
+  "population_density": Number,  <-- New
+}
 ```
 
 ## Cities
@@ -50,7 +91,15 @@ description: Description and data model about the Worlddata API v1
 ### Data Model
 
 ```md filename="Version: V2"
-
+{
+  "id": Number,
+  "name": String,
+  "latitude": String,
+  "longitude": String,
+  "population": Number,
+  "country": String,  <-- New
+  "country_code": String,  <-- New
+}
 ```
 
 ## Mountains
@@ -60,7 +109,13 @@ description: Description and data model about the Worlddata API v1
 ### Data Model
 
 ```md filename="Version: V2"
-
+{
+  "id": Number,
+  "name": String,
+  "height_m": Number,
+  "latitude": String,
+  "longitude": String,
+}
 ```
 
 ## Lakes
@@ -70,5 +125,11 @@ description: Description and data model about the Worlddata API v1
 ### Data Model
 
 ```md filename="Version: V2"
-
+{
+  "id": Number,
+  "name": String,
+  "area_m2": Number,
+  "depth_m": Number,
+  "volume_m3": Number
+}
 ```

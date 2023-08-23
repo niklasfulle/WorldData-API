@@ -3,30 +3,104 @@ title: Functions
 description: Functions for the Worlddata API v2
 ---
 
+import { Callout, Card, Cards, Steps } from "nextra/components";
+
 ## Continents
 
 ### Functions
+
+Returns all continents: <br/>
+`/api/v1/continents`
+
+Will return a `200 OK` status code
+
+Returns a specific continent: <br/>
+`/api/v1/continents/name/[name]`
+
+Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code
 
 ## Oceans
 
 ### Functions
 
+Returns all oceans: <br/>
+`/api/v1/oceans`
+
+Will return a `200 OK` status code
+
+Returns a specific ocean: <br/>
+`/api/v1/oceans/name/[name]`
+
+Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code
+
 ## Seas
 
 ### Functions
+
+Returns all seas: <br/>
+`/api/v1/seas`
+
+Will return a `200` status code
+
+Returns a specific sea: <br/>
+`/api/v1/seas/name/[name]`
+
+Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code
+
+<Callout> Spaces in the name are replaced with a `-` for the search</Callout>
 
 ## Countries
 
 ### Functions
 
+Returns all countries: <br/>
+`/api/v1/countries`
+
+Will return a `200 OK` status code
+
+Returns a specific country: <br/>
+`/api/v1/countries/name/[name]`
+
+Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code
+
 ## Cities
 
 ### Functions
+
+Returns all cities: <br/>
+`/api/v1/cities`
+
+Will return a `200 OK` status code
+
+Returns a specific city: <br/>
+`/api/v1/cities/name/[name]`
+
+Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code
 
 ## Mountains
 
 ### Functions
 
+Returns all mountains: <br/>
+`/api/v1/mountains`
+
+Will return a `200 OK` status code
+
+Returns a specific mountain: <br/>
+`/api/v1/mountains/name/[name]`
+
+Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code
+
 ## Lakes
 
 ### Functions
+
+Returns all lakes: <br/>
+`/api/v1/lakes`
+
+Will return a `200 OK` status code
+
+Returns a specific lake: <br/>
+`/api/v1/lakes/name/[name]`
+
+Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code

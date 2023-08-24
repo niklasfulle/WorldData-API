@@ -1,6 +1,6 @@
 ---
 title: Data
-description: Description and data model about the Worlddata API v1
+description: Description and data model about the Worlddata API v3
 ---
 
 import { Callout, Card, Cards, Steps } from "nextra/components";
@@ -9,13 +9,15 @@ import { Callout, Card, Cards, Steps } from "nextra/components";
 
 ### Description
 
+List of all continents in the world. The list is sorted alphabetically by continent name.
+
 ### Data Model
 
-```md filename="Version: V2"
+```md filename="Version: V2" copy
 {
   "id": Number,
   "name": String,
-  "area_m2": Number,
+  "area_km2": Number,
   "population": Number,
   "density": Number,
 }
@@ -25,16 +27,18 @@ import { Callout, Card, Cards, Steps } from "nextra/components";
 
 ### Description
 
+List of all oceans in the world. The list is sorted alphabetically by ocean name.
+
 ### Data Model
 
-```md filename="Version: V2"
+```md filename="Version: V2" copy
 {
   "id": Number,
   "name": String,
-  "area_m2": Number,
+  "area_km2": Number,
   "avg_depth_m": Number,
   "max_depth_m": Number,
-  "volume_m3": Number,
+  "volume_km3": Number,
   "coastline_length_km": Number  <-- New
 }
 ```
@@ -43,17 +47,17 @@ import { Callout, Card, Cards, Steps } from "nextra/components";
 
 ### Description
 
+List of the 100 biggest seas in the world. The list is sorted by area.
+
 ### Data Model
 
-```md filename="Version: V2"
+```md filename="Version: V2" copy
 {
   "id": Number,
   "name": String,
-  "area": Number,
-  "avg_depth": Number,
-  "max_depth": Number,
-  "volume": Number,
-  "coastline_length": Number  <-- New
+  "area_km2": Number,
+  "avg_depth_m": Number,
+  "max_depth_m": Number,
 }
 ```
 
@@ -61,9 +65,11 @@ import { Callout, Card, Cards, Steps } from "nextra/components";
 
 ### Description
 
+List of the 250 United Nations member states and other states with limited recognition. The list is sorted alphabetically by country name.
+
 ### Data Model
 
-```md filename="Version: V2"
+```md filename="Version: V2" copy
 {
   "id": Number,
   "name": String,
@@ -88,15 +94,18 @@ import { Callout, Card, Cards, Steps } from "nextra/components";
 
 ### Description
 
+A list of the 250 biggest cities in the world. The list is sorted by population.
+
 ### Data Model
 
-```md filename="Version: V2"
+```md filename="Version: V2" copy
 {
   "id": Number,
   "name": String,
   "latitude": String,
   "longitude": String,
-  "population": Number,
+  "population": Number,  <-- New
+  "area_km2": Number,  <-- New
   "country": String,  <-- New
   "country_code": String,  <-- New
 }
@@ -106,9 +115,11 @@ import { Callout, Card, Cards, Steps } from "nextra/components";
 
 ### Description
 
+A list of the 100 highest mountains in the world. The list is sorted by height.
+
 ### Data Model
 
-```md filename="Version: V2"
+```md filename="Version: V2" copy
 {
   "id": Number,
   "name": String,
@@ -122,14 +133,16 @@ import { Callout, Card, Cards, Steps } from "nextra/components";
 
 ### Description
 
+A list of the 29 biggest lakes in the world. The list is sorted by area.
+
 ### Data Model
 
-```md filename="Version: V2"
+```md filename="Version: V2" copy
 {
   "id": Number,
   "name": String,
-  "area_m2": Number,
+  "area_km2": Number,
   "depth_m": Number,
-  "volume_m3": Number
+  "volume_km3": Number
 }
 ```

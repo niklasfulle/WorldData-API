@@ -3,38 +3,165 @@ title: Functions
 description: Functions for the Worlddata API v3
 ---
 
+import { Callout, Card, Cards, Steps } from "nextra/components";
+
 ## Continents
 
 ### Functions
+
+Returns all continents: <br/>
+`/api/v3/continents`
+
+Will return a `200 OK` status code
+
+Returns a specific continent: <br/>
+`/api/v3/continents/name/[name]`
+
+Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code.
+
+Returns all countries in the continent: <br/>
+`/api/v3/continents/countries/[name]`
+
+Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code.
 
 ## Oceans
 
 ### Functions
 
+Returns all oceans: <br/>
+`/api/v3/oceans`
+
+Will return a `200 OK` status code
+
+Returns a specific ocean: <br/>
+`/api/v3/oceans/name/[name]`
+
+Will return a `200 OK` status code if the ocean exists, otherwise a `404 Not Found` status code.
+
+Returns all countries that have a coast to the ocean: <br/>
+`/api/v3/oceans/countries/[name]`
+
+Will return a `200 OK` status code if the ocean exists, otherwise a `404 Not Found` status code.
+
 ## Seas
 
 ### Functions
+
+Returns all seas: <br/>
+`/api/v3/seas`
+
+Will return a `200` status code
+
+Returns a specific sea: <br/>
+`/api/v3/seas/name/[name]`
+
+Will return a `200 OK` status code if the sea exists, otherwise a `404 Not Found` status code.
+
+Returns all countries that have a coast to the sea: <br/>
+`/api/v3/seas/countries/[name]`
+
+Will return a `200 OK` status code if the sea exists, otherwise a `404 Not Found` status code.
 
 ## Countries
 
 ### Functions
 
+Returns all countries: <br/>
+`/api/v3/countries`
+
+Will return a `200 OK` status code
+
+Returns a specific country: <br/>
+`/api/v3/countries/name/[name]`
+
+Will return a `200 OK` status code if the countrie exists, otherwise a `404 Not Found` status code.
+
+Returns a specific country by capital: <br/>
+`/api/v3/countries/capital/[name]`
+
+Will return a `200 OK` status code if the countrie with the capital exists, otherwise a `404 Not Found` status code.
+
 ## Cities
 
 ### Functions
+
+Returns all cities: <br/>
+`/api/v3/cities`
+
+Will return a `200 OK` status code
+
+Returns a specific city: <br/>
+`/api/v3/cities/name/[name]`
+
+Will return a `200 OK` status code if the citie exists, otherwise a `404 Not Found` status code.
+
+Returns all cities in the given countrie: <br/>
+`/api/v3/cities/countire/[name]`
+
+Will return a `200 OK` status code if cities exists in the given countrie, otherwise a `404 Not Found` status code.
 
 ## Mountains
 
 ### Functions
 
+Returns all mountains: <br/>
+`/api/v3/mountains`
+
+Will return a `200 OK` status code
+
+Returns a specific mountain: <br/>
+`/api/v3/mountains/name/[name]`
+
+Will return a `200 OK` status code if the mountain exists, otherwise a `404 Not Found` status code.
+
+Returns all mountains in the given continent: <br/>
+`/api/v3/mountains/continent/[name]`
+
+Will return a `200 OK` status code if mountains exists in the given continent, otherwise a `404 Not Found` status code.
+
 ## Lakes
 
 ### Functions
+
+Returns all lakes: <br/>
+`/api/v3/lakes`
+
+Will return a `200 OK` status code
+
+Returns a specific lake: <br/>
+`/api/v3/lakes/name/[name]`
+
+Will return a `200 OK` status code if the lake exists, otherwise a `404 Not Found` status code.
+
+Returns all lakes in the given continent: <br/>
+`/api/v3/lakes/continent/[name]`
+
+Will return a `200 OK` status code if lakes exists in the given continent, otherwise a `404 Not Found` status code.
 
 ## Rivers
 
 ### Functions
 
+Returns all rivers: <br/>
+`/api/v3/rivers`
+
+Will return a `200 OK` status code
+
+Returns a specific lake: <br/>
+`/api/v3/rivers/name/[name]`
+
+Will return a `200 OK` status code if the river exists, otherwise a `404 Not Found` status code.
+
 ## Islands
 
 ### Functions
+
+Returns all islands: <br/>
+`/api/v3/islands`
+
+Will return a `200 OK` status code
+
+Returns a specific lake: <br/>
+`/api/v3/islands/name/[name]`
+
+Will return a `200 OK` status code if the island exists, otherwise a `404 Not Found` status code.

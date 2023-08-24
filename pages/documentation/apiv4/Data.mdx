@@ -1,114 +1,300 @@
 ---
 title: Data
-description: Description and data model about the Worlddata API v1
+description: Description and data model about the Worlddata API v4
 ---
+
+import { Callout, Card, Cards, Steps } from "nextra/components";
 
 ## Continents
 
 ### Description
 
+List of all continents in the world. The list is sorted alphabetically by continent name.
+
 ### Data Model
 
-```md filename="Version: V4"
-
+```md filename="Version: V4" copy
+{
+  "id": Number,
+  "name": String,
+  "area_m2": Number,
+  "population": Number,
+  "density": Number,
+  "countries": [
+    "name": String,
+  ]
+}
 ```
 
 ## Oceans
 
 ### Description
 
+List of all oceans in the world. The list is sorted alphabetically by ocean name.
+
 ### Data Model
 
-```md filename="Version: V4"
-
+```md filename="Version: V4" copy
+{
+  "id": Number,
+  "name": String,
+  "area_m2": Number,
+  "avg_depth_m": Number,
+  "max_depth_m": Number,
+  "volume_m3": Number,
+  "coastline_length_km": Number,
+  "countries": [
+    "name": String,
+  ],
+  "territories": [  <-- New
+    "name": String,
+  ],
+}
 ```
 
 ## Seas
 
 ### Description
 
+List of the 200 biggest seas in the world. The list is sorted by area.
+
 ### Data Model
 
-```md filename="Version: V4"
-
+```md filename="Version: V4" copy
+{
+  "id": Number,
+  "name": String,
+  "area_km2": Number,
+  "avg_depth_m": Number,
+  "max_depth_m": Number,
+  "countries": [
+    "name": String,
+  ]
+}
 ```
 
 ## Countries
 
 ### Description
 
+List of the 250 United Nations member states and other states with limited recognition. The list is sorted alphabetically by country name.
+
 ### Data Model
 
-```md filename="Version: V4"
-
+```md filename="Version: V4" copy
+{
+  "id": Number,
+  "name": String,
+  "iso3": String,
+  "iso2": String,
+  "numeric_code": String,
+  "phone_code": String,
+  "capital": String,
+  "tld": String,
+  "region": String,
+  "subregion": String,
+  "latitude": String,
+  "longitude": String,
+  "independent": Boolean,
+  "area_m2": Number,
+  "population": Number,
+  "population_density": Number,
+  "currency": String,  <-- New
+  "currency_name": String,  <-- New
+  "currency_symbol": String,  <-- New
+  "timezones": [  <-- New
+    {
+      "zone_name": String,
+      "gmt_offset": Number,
+      "gmt_offset_name": String,
+      "abbreviation": String,
+      "tz_name": String
+    }
+  ],
+  "native_name": String,
+  "translations": {
+    "kr": String,
+    "pt-BR": String,
+    "pt": String,
+    "nl": String,
+    "hr": String,
+    "fa": String,
+    "de": String,
+    "es": String,
+    "fr": String,
+    "ja": String,
+    "it": String,
+    "cn": String,
+    "tr": String,
+  },
+  "emoji": String,
+  "emojiU": String
+}
 ```
 
 ## Cities
 
 ### Description
 
+A list of the 1000 biggest cities in the world. The list is sorted by population.
+
 ### Data Model
 
-```md filename="Version: V4"
-
+```md filename="Version: V4" copy
+{
+  "id": Number,
+  "name": String,
+  "latitude": String,
+  "longitude": String,
+  "population": Number,
+  "country": String,
+  "country_code": String,
+  "timezone": String,  <-- New
+}
 ```
 
 ## Mountains
 
 ### Description
 
+A list of the 300 highest mountains in the world. The list is sorted by height.
+
 ### Data Model
 
-```md filename="Version: V4"
-
+```md filename="Version: V4" copy
+{
+  "id": Number,
+  "name": String,
+  "height_m": Number,
+  "latitude": String,
+  "longitude": String,
+  "continent": String,
+  "country": [
+    "name": String,
+  ], 
+  "first_climbed": String,
+}
 ```
 
 ## Lakes
 
 ### Description
 
+A list of the 46 biggest lakes in the world. The list is sorted by area.
+
 ### Data Model
 
-```md filename="Version: V4"
-
+```md filename="Version: V4" copy
+{
+  "id": Number,
+  "name": String,
+  "area_m2": Number,
+  "depth_m": Number,
+  "volume_m3": Number
+  "latitude": String,
+  "longitude": String,
+  "continent": String,
+  "countries": [
+    "name": String,
+  ]
+}
 ```
 
 ## Rivers
 
 ### Description
 
+A list of the 189 longest rivers in the world. The list is sorted by length.
+
 ### Data Model
 
-```md filename="Version: V4"
-
+```md filename="Version: V4" copy
+{
+  "id": Number,
+  "name": String,
+  "length_km": Number,
+  "countries": [
+    "name": String,
+  ],
+  "discharge_m3_s": Number,  <-- New
+  "outflow": String,  <-- New
+}
 ```
 
 ## Islands
 
 ### Description
 
+A list of the 322 biggest islands in the world. The list is sorted by area.
+
 ### Data Model
 
-```md filename="Version: V4"
-
+```md filename="Version: V4" copy
+{
+  "id": Number,
+  "name": String,
+  "area_m2": Number,
+  "latitude": String,
+  "longitude": String,
+  "population": Number,  <-- New
+  "continent": String,  <-- New
+  "countries": [  <-- New
+    "name": String,
+  ],
+}
 ```
 
 ## Currencies
 
 ### Description
 
+A list of 180 currencies in the world. The list is sorted alphabetically by currency name.
+
 ### Data Model
 
-```md filename="Version: V4"
-
+```md filename="Version: V4" copy
+{
+  "id": Number,
+  "name": String,
+  "code": String,
+  "symbol": String,
+  "countries": [
+    "name": String,
+  ]
+}
 ```
 
 ## Solar System
 
 ### Description
 
+A list of the 8 planets and the sun in the solar system. List is sorted by distance to the sun, starting with the sun.
+
 ### Data Model
 
-```md filename="Version: V4"
-
+```md filename="Version: V4" copy
+{
+  "id": Number,
+  "name": String,
+  "type": String,
+  "mass": Number,
+  "diameter_km": Number,
+  "tilt_degrees": Number,
+  "rotation_period_days": Number,
+  "translations": {
+    "kr": String,
+    "pt-BR": String,
+    "pt": String,
+    "nl": String,
+    "hr": String,
+    "fa": String,
+    "de": String,
+    "es": String,
+    "fr": String,
+    "ja": String,
+    "it": String,
+    "cn": String,
+    "tr": String,
+  },
+}
 ```

@@ -1,94 +1,223 @@
 ---
 title: Data
-description: Description and data model about the Worlddata API v1
+description: Description and data model about the Worlddata API v3
 ---
+
+import { Callout, Card, Cards, Steps } from "nextra/components";
 
 ## Continents
 
 ### Description
 
+List of all continents in the world. The list is sorted alphabetically by continent name.
+
 ### Data Model
 
-```md filename="Version: V3"
-
+```md filename="Version: V3" copy
+{
+  "id": Number,
+  "name": String,
+  "area_m2": Number,
+  "population": Number,
+  "density": Number,
+  "countries": [  <-- New
+    "name": String,
+  ]
+}
 ```
 
 ## Oceans
 
 ### Description
 
+List of all oceans in the world. The list is sorted alphabetically by ocean name.
+
 ### Data Model
 
-```md filename="Version: V3"
-
+```md filename="Version: V3" copy
+{
+  "id": Number,
+  "name": String,
+  "area_m2": Number,
+  "avg_depth_m": Number,
+  "max_depth_m": Number,
+  "volume_m3": Number,
+  "coastline_length_km": Number,
+  "countries": [  <-- New
+    "name": String,
+  ]
+}
 ```
 
 ## Seas
 
 ### Description
 
+List of the 100 biggest seas in the world. The list is sorted by area.
+
 ### Data Model
 
-```md filename="Version: V3"
-
+```md filename="Version: V3" copy
+{
+  "id": Number,
+  "name": String,
+  "area_km2": Number,
+  "avg_depth_m": Number,
+  "max_depth_m": Number,
+  "countries": [  <-- New
+    "name": String,
+  ]
+}
 ```
 
 ## Countries
 
 ### Description
 
+List of the 250 United Nations member states and other states with limited recognition. The list is sorted alphabetically by country name.
+
 ### Data Model
 
-```md filename="Version: V3"
-
+```md filename="Version: V3" copy
+{
+  "id": Number,
+  "name": String,
+  "iso3": String,
+  "iso2": String,
+  "numeric_code": String,
+  "phone_code": String,
+  "capital": String,
+  "tld": String,
+  "region": String,
+  "subregion": String,
+  "latitude": String,
+  "longitude": String,
+  "independent": Boolean,
+  "area_m2": Number,
+  "population": Number,
+  "population_density": Number,
+  "native_name": String,  <-- New
+  "translations": {  <-- New
+    "kr": String,
+    "pt-BR": String,
+    "pt": String,
+    "nl": String,
+    "hr": String,
+    "fa": String,
+    "de": String,
+    "es": String,
+    "fr": String,
+    "ja": String,
+    "it": String,
+    "cn": String,
+    "tr": String,
+  },
+  "emoji": String,  <-- New
+  "emojiU": String  <-- New
+}
 ```
 
 ## Cities
 
 ### Description
 
+A list of the 500 biggest cities in the world. The list is sorted by population.
+
 ### Data Model
 
-```md filename="Version: V3"
-
+```md filename="Version: V3" copy
+{
+  "id": Number,
+  "name": String,
+  "latitude": String,
+  "longitude": String,
+  "population": Number,
+  "area_km2": Number,
+  "country": String,
+  "country_code": String
+}
 ```
 
 ## Mountains
 
 ### Description
 
+A list of the 200 highest mountains in the world. The list is sorted by height.
+
 ### Data Model
 
-```md filename="Version: V3"
-
+```md filename="Version: V3" copy
+{
+  "id": Number,
+  "name": String,
+  "height_m": Number,
+  "latitude": String,
+  "longitude": String,
+  "continent": String,  <-- New
+  "country": [  <-- New
+    "name": String,
+  ],  
+  "first_climbed": String,  <-- New
+}
 ```
 
 ## Lakes
 
 ### Description
 
+A list of the 46 biggest lakes in the world. The list is sorted by area.
+
 ### Data Model
 
-```md filename="Version: V3"
-
+```md filename="Version: V3" copy
+{
+  "id": Number,
+  "name": String,
+  "area_m2": Number,
+  "depth_m": Number,
+  "volume_m3": Number
+  "latitude": String,  <-- New
+  "longitude": String,  <-- New
+  "continent": String,  <-- New
+  "countries": [  <-- New
+    "name": String,
+  ]
+}
 ```
 
 ## Rivers
 
 ### Description
 
+A list of the 50 longest rivers in the world. The list is sorted by length.
+
 ### Data Model
 
-```md filename="Version: V3"
-
+```md filename="Version: V3" copy
+{
+  "id": Number,
+  "name": String,
+  "length_km": Number,
+  "countries": [
+    "name": String,
+  ]
+}
 ```
 
 ## Islands
 
 ### Description
 
+A list of the 100 biggest islands in the world. The list is sorted by area.
+
 ### Data Model
 
-```md filename="Version: V3"
-
+```md filename="Version: V3" copy
+{
+  "id": Number,
+  "name": String,
+  "area_m2": Number,
+  "latitude": String,
+  "longitude": String,
+}
 ```

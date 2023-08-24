@@ -10,97 +10,115 @@ import { Callout, Card, Cards, Steps } from "nextra/components";
 ### Functions
 
 Returns all continents: <br/>
-`/api/v1/continents`
+`/api/v2/continents`
 
 Will return a `200 OK` status code
 
 Returns a specific continent: <br/>
-`/api/v1/continents/name/[name]`
+`/api/v2/continents/name/[name]`
 
-Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code
+Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code.
 
 ## Oceans
 
 ### Functions
 
 Returns all oceans: <br/>
-`/api/v1/oceans`
+`/api/v2/oceans`
 
 Will return a `200 OK` status code
 
 Returns a specific ocean: <br/>
-`/api/v1/oceans/name/[name]`
+`/api/v2/oceans/name/[name]`
 
-Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code
+Will return a `200 OK` status code if the ocean exists, otherwise a `404 Not Found` status code.
 
 ## Seas
 
 ### Functions
 
 Returns all seas: <br/>
-`/api/v1/seas`
+`/api/v2/seas`
 
 Will return a `200` status code
 
 Returns a specific sea: <br/>
-`/api/v1/seas/name/[name]`
+`/api/v2/seas/name/[name]`
 
-Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code
-
-<Callout> Spaces in the name are replaced with a `-` for the search</Callout>
+Will return a `200 OK` status code if the sea exists, otherwise a `404 Not Found` status code.
 
 ## Countries
 
 ### Functions
 
 Returns all countries: <br/>
-`/api/v1/countries`
+`/api/v2/countries`
 
 Will return a `200 OK` status code
 
 Returns a specific country: <br/>
-`/api/v1/countries/name/[name]`
+`/api/v2/countries/name/[name]`
 
-Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code
+Will return a `200 OK` status code if the countrie exists, otherwise a `404 Not Found` status code.
+
+Returns a specific country by capital: <br/>
+`/api/v2/countries/capital/[name]`
+
+Will return a `200 OK` status code if the countrie with the capital exists, otherwise a `404 Not Found` status code.
 
 ## Cities
 
 ### Functions
 
 Returns all cities: <br/>
-`/api/v1/cities`
+`/api/v2/cities`
 
 Will return a `200 OK` status code
 
 Returns a specific city: <br/>
-`/api/v1/cities/name/[name]`
+`/api/v2/cities/name/[name]`
 
-Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code
+Will return a `200 OK` status code if the citie exists, otherwise a `404 Not Found` status code.
+
+Returns all cities in the given countrie: <br/>
+`/api/v2/cities/countire/[name]`
+
+Will return a `200 OK` status code if cities exists in the given countrie, otherwise a `404 Not Found` status code.
 
 ## Mountains
 
 ### Functions
 
 Returns all mountains: <br/>
-`/api/v1/mountains`
+`/api/v2/mountains`
 
 Will return a `200 OK` status code
 
 Returns a specific mountain: <br/>
-`/api/v1/mountains/name/[name]`
+`/api/v2/mountains/name/[name]`
 
-Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code
+Will return a `200 OK` status code if the mountain exists, otherwise a `404 Not Found` status code.
+
+Returns all mountains in the given countrie: <br/>
+`/api/v2/mountains/countrie/[name]`
+
+Will return a `200 OK` status code if mountains exists in the given countrie, otherwise a `404 Not Found` status code.
 
 ## Lakes
 
 ### Functions
 
 Returns all lakes: <br/>
-`/api/v1/lakes`
+`/api/v2/lakes`
 
 Will return a `200 OK` status code
 
 Returns a specific lake: <br/>
-`/api/v1/lakes/name/[name]`
+`/api/v2/lakes/name/[name]`
 
-Will return a `200 OK` status code if the continent exists, otherwise a `404 Not Found` status code
+Will return a `200 OK` status code if the lake exists, otherwise a `404 Not Found` status code.
+
+Returns all mountains in the given countrie: <br/>
+`/api/v2/lakes/countrie/[name]`
+
+Will return a `200 OK` status code if lakes exists in the given countrie, otherwise a `404 Not Found` status code.

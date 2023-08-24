@@ -25,219 +25,80 @@ model Account {
   id_token          String? @db.Text
   session_state     String?
 
-  user              User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@index([userId])
 }
 
 model Session {
-  id                String   @id @default(cuid()) @unique
-  sessionToken      String   @unique
-  userId            String
-  expires           DateTime
-  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id           String   @id @default(cuid()) @unique
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
 
 model User {
-  id                String    @id @default(cuid()) @unique
-  name              String
-  email             String?    @unique
-  emailVerified     Boolean?
-  password          String?
-  role              String    @default("user")
+  id            String    @id @default(cuid()) @unique
+  name          String
+  email         String?    @unique
+  emailVerified Boolean?
+  password      String?
+  role          String    @default("user")
 
-  apiKey            ApiKey[]
-  apiKeyId          String?
-  image             String?
-  accounts          Account[]
-  sessions          Session[]
+  apiKey   ApiKey[]
+  apiKeyId String?
+  image    String?
+  accounts Account[]
+  sessions Session[]
 }
 
 model ConfirmEmail {
-  id                String   @id @default(cuid()) @unique
-  token             String   @db.Text @unique
-  expires           DateTime 
-  email             String
-  userId            String
-  createdAt         DateTime @default(now())
+  id        String   @id @default(cuid()) @unique
+  token     String   @unique
+  expires   DateTime 
+  email     String
+  userId    String
+  createdAt DateTime @default(now())
 }
 
 model ForgotPassword {
-  id                String   @id @default(cuid()) @unique
-  token             String   @db.Text @unique
-  expires           DateTime 
-  email             String
-  userId            String
-  createdAt         DateTime @default(now())
+  id        String   @id @default(cuid()) @unique
+  token     String   @unique
+  expires   DateTime 
+  email     String
+  userId    String
+  createdAt DateTime @default(now())
 }
 
 model ApiKey {
-  id                String  @id @default(cuid())
-  key               String  @unique
-  enabled           Boolean @default(true)
-  User              User    @relation(fields: [userId], references: [id])
-  userId            String
+  id      String  @id @default(cuid())
+  key     String  @unique
+  enabled Boolean @default(true)
+  User    User    @relation(fields: [userId], references: [id])
+  userId  String
 
-  requests          ApiRequest[]
+  requests ApiRequest[]
 
   @@unique([userId, key, enabled])
 }
 
 model ApiRequest {
-  id                String   @id @default(cuid()) @unique
-  timestamp         DateTime @default(now())
-  method            String
-  path              String
-  status            Int
-  duration          Int
-  response          String
+  id        String   @id @default(cuid()) @unique
+  timestamp DateTime @default(now())
+  method    String
+  path      String
+  status    Int
+  duration  Int
+  response  String
 
-  usedApiKey        String
+  usedApiKey String
 
-  ApiKey            ApiKey @relation(fields: [apiKeyId], references: [id])
-  apiKeyId          String
+  ApiKey   ApiKey @relation(fields: [apiKeyId], references: [id])
+  apiKeyId String
 
   @@index([apiKeyId, timestamp])
-}
-
-model Continent {
-  id                String   @id @default(cuid()) @unique
-  name              String
-  area_km2          Float
-  population        Int
-  density_km2       Float
-}
-
-model Ocean {
-  id                String   @id @default(cuid()) @unique
-  name              String
-  area_km2          Float
-  avg_depth_m       Float
-  max_depth_m       Float
-  volume_km3        Float
-  coast_km          Float
-}
-
-model Sea {
-  id                String   @id @default(cuid()) @unique
-  name              String
-  area_km2          Float
-  avg_depth_m       Float
-  max_depth_m       Float
-}
-
-model Country {
-  id                String   @id @default(cuid()) @unique
-  name              String
-  iso3              String
-  iso2              String
-  numeric           Int
-  phone_code        String
-  capital           String
-  tld               String
-  region            String
-  subregion         String
-  latitude          Float
-  longitude         Float
-  independence      Boolean
-  area_km2          Float
-  population        Int
-  density_km2       Float
-  currency          String
-  currency_name     String
-  currency_symbol   String
-  native_name       String
-  emoji             String
-  emojiU            String
-}
-
-model City {
-  id                String   @id @default(cuid()) @unique
-  name              String
-  latitude          Float
-  longitude         Float
-  population        Int
-  capital           Boolean
-}
-
-model Mountain {
-  id                String   @id @default(cuid()) @unique
-  name              String
-  height_m          Float
-  latitude          Float
-  longitude         Float
-  first_clicked     String
-}
-
-model Lake {
-  id                String   @id @default(cuid()) @unique
-  name              String
-  area_km2          Float
-  depth_m           Float
-  volume_km3        Float
-  latitude          Float
-  longitude         Float
-}
-
-model River {
-  id                String   @id @default(cuid()) @unique
-  name              String
-  length_km         Float
-  discharge_m3_s    Float
-  outflow           String
-}
-
-model Island {
-  id                String   @id @default(cuid()) @unique
-  name              String
-  area_km2          Float
-  latitude          Float
-  longitude         Float
-  population        Int
-}
-
-model Currencie {
-  id                String   @id @default(cuid()) @unique
-  name              String
-  code              String
-  symbol            String
-}
-
-model CelestialBodie {
-  id                String   @id @default(cuid()) @unique
-  name              String
-  type              String
-  mass              Float
-  diameter_km       Float
-  tilt_degrees      Float
-  rotation_days     Float
-}
-
-model Timezone {
-  id                String   @id @default(cuid()) @unique
-  name              String
-  gmt_offset        Int
-  gmt_offset_name   String
-  abbreviation      String
-  tz_name           String
-}
-
-model Translation{
-    id              String   @id @default(cuid()) @unique
-    kr              String
-    pt_BR           String
-    pt              String
-    nl              String
-    hr              String
-    fa              String
-    de              String
-    es              String
-    fr              String
-    ja              String
-    it              String
-    cn              String
-    tr              String
 }

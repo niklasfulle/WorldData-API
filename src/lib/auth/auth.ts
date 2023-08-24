@@ -118,7 +118,7 @@ export const authOptions: NextAuthOptions = {
       return true;
     },
     async redirect({ baseUrl }) {
-      return baseUrl + "/dashboard";  
+      return baseUrl + "/dashboard";
     },
   },
   jwt: {

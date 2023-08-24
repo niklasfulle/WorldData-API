@@ -19,7 +19,7 @@ List of all continents in the world. The list is sorted alphabetically by contin
   "name": String,
   "area_km2": Number,
   "population": Number,
-  "density": Number,
+  "density_km2": Number
 }
 ```
 
@@ -39,7 +39,7 @@ List of all oceans in the world. The list is sorted alphabetically by ocean name
   "avg_depth_m": Number,
   "max_depth_m": Number,
   "volume_km3": Number,
-  "coastline_length_km": Number  <-- New
+  "coast_km": Number  <-- New
 }
 ```
 
@@ -57,7 +57,7 @@ List of the 100 biggest seas in the world. The list is sorted by area.
   "name": String,
   "area_km2": Number,
   "avg_depth_m": Number,
-  "max_depth_m": Number,
+  "max_depth_m": Number
 }
 ```
 
@@ -75,7 +75,7 @@ List of the 250 United Nations member states and other states with limited recog
   "name": String,
   "iso3": String,
   "iso2": String,
-  "numeric_code": String,
+  "numeric_code": Number,
   "phone_code": String,
   "capital": String,
   "tld": String,
@@ -86,7 +86,7 @@ List of the 250 United Nations member states and other states with limited recog
   "independent": Boolean,
   "area_m2": Number,  <-- New
   "population": Number,  <-- New
-  "population_density": Number,  <-- New
+  "density_km2": Number  <-- New
 }
 ```
 
@@ -106,8 +106,7 @@ A list of the 250 biggest cities in the world. The list is sorted by population.
   "longitude": String,
   "population": Number,  <-- New
   "area_km2": Number,  <-- New
-  "country": String,  <-- New
-  "country_code": String,  <-- New
+  "country": String  <-- New
 }
 ```
 
@@ -125,7 +124,7 @@ A list of the 100 highest mountains in the world. The list is sorted by height.
   "name": String,
   "height_m": Number,
   "latitude": String,
-  "longitude": String,
+  "longitude": String
 }
 ```
 

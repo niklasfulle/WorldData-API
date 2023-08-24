@@ -11,19 +11,11 @@ export interface RevokeApiData {
   success: boolean
 }
 
-export interface SimilarityData {
-  error?: string | ZodIssue[] | null
-  success: boolean;
-  text1?: string
-  text2?: string
-  similarity?: number
-}
-
 type Meta = {
   id: string,
   title: string,
   date: string,
-  tags: string[], 
+  tags: string[],
 }
 
 type BlogPost = {

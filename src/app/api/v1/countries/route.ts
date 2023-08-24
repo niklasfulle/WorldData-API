@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { countriesLimiterV1 } from "@/app/api/config/limiter"
+import { limiterV1 } from "@/app/api/config/limiter"
 import { db as prisma } from '@/lib/db/prisma'
 import clientPromise from "@/lib/db/mogodb"
 import { z } from "zod"
@@ -25,7 +25,7 @@ export async function GET(req: Request) {
 
     const start = new Date()
 
-    const remaining = await countriesLimiterV1.removeTokens(1)
+    const remaining = await limiterV1.removeTokens(1)
 
     if (remaining < 0) {
       const duration = new Date().getTime() - start.getTime()

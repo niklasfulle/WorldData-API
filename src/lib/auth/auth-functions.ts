@@ -2,6 +2,8 @@ import { shortToast } from "@/helpers/shorter-function";
 import { signIn } from "next-auth/react";
 import { Dispatch, FormEvent, SetStateAction } from "react";
 
+// TODO Check for unhandels errors
+
 type SetIsLoading = Dispatch<SetStateAction<{
   provider: string;
   isLoading: boolean;
@@ -207,9 +209,9 @@ export const sendForgotPasswordEmail = async (e: FormEvent, setIsLoading: SetIsL
             shortToast("Error", "Too many requests. Please try again later.", "error");
           }
           setError("");
-          console.log("2", error.message);
+          console.log(error.message);
         } else {
-          console.log("3", error.message)
+          console.log(error.message)
         }
       });
     } else {
@@ -240,8 +242,6 @@ export const resetPassword = async (e: FormEvent, setIsLoading: SetIsLoading2, s
       setIsLoading(false);
       return;
     }
-
-    //const hashedPassword = await bcrypt.hash(password, 10);
 
     const res = await fetch("/api/auth/new-password", {
       method: "POST",

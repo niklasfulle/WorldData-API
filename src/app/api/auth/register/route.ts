@@ -4,7 +4,6 @@ import { NextResponse } from 'next/server';
 import { nanoid } from 'nanoid';
 import { sendConfirmMail } from '@/helpers/send-mail';
 import bcrypt from 'bcrypt';
-import { mongodb } from '@/lib/db/mogodb';
 
 const registerUserSchema = z.object({
   username: z.string().regex(/^[a-zA-Z0-9]{3,15}$/g, 'Invalid username'),
@@ -37,13 +36,6 @@ export async function POST(
         emailVerified: false,
       },
     });
-
-    const userDb2 = await mongodb.User.create({
-      name: username,
-      email,
-      password: hashedPassword,
-      emailVerified: false,
-    })
 
     // Create Account
     await db.account.create({

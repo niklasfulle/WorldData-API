@@ -38,6 +38,7 @@
     "lodash": "^4.17.21",
     "lucide-react": "^0.265.0",
     "mongodb": "^5.7.0",
+    "mongoose": "^7.4.4",
     "nanoid": "^4.0.1",
     "next": "^13.4.12",
     "next-auth": "^4.23.0",

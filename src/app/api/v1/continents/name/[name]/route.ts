@@ -6,7 +6,13 @@ import { z } from "zod"
 import { continentBody, continentV1Schema } from "@/lib/db/schema/continent.schema"
 import { createApiRequest } from "@/helpers/data-helper"
 
-export async function GET(req: Request) {
+type Props = {
+  params: {
+    name: string;
+  }
+}
+
+export async function GET(req: Request, { params: { name } }: Props) {
   const apiKey = req.headers.get("authorization")
 
   if (!apiKey) {
@@ -43,21 +49,29 @@ export async function GET(req: Request) {
     try {
       const Continent = mongoDb.Continent;
 
-      const continents: continentBody[] = await Continent.find()
+      const continent: continentBody | null = await Continent.findOne({ name })
 
-      let continentsV1 = continents.map((continent) => {
-        const continentValidated = continentV1Schema.parse(continent)
-        return continentValidated
-      })
 
-      const duration = new Date().getTime() - start.getTime()
 
       const url = new URL(req.url as string).pathname
 
-      // Persist request
-      createApiRequest(duration, req.method as string, url, 200, validApiKey.id, validApiKey.key, "Success")
+      if (!continent) {
+        const duration = new Date().getTime() - start.getTime()
 
-      return NextResponse.json(continentsV1, { status: 200 })
+        // Persist request
+        createApiRequest(duration, req.method as string, url, 404, validApiKey.id, validApiKey.key, "Not Found")
+
+        return NextResponse.json({ error: 'Not Found', success: false }, { status: 404 })
+      }
+
+      const continentValidated = continentV1Schema.parse(continent)
+
+      const duration = new Date().getTime() - start.getTime()
+
+      // Persist request
+      createApiRequest(duration, req.method as string, url, 429, validApiKey.id, validApiKey.key, "Success")
+
+      return NextResponse.json(continentValidated, { status: 200 })
     } catch (error) {
       return NextResponse.json({ error: 'Internal Server Error', success: false }, { status: 500 })
     }

@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server"
-import { limiterV1 } from "@/app/api/config/limiter"
+import { limiterV3 } from "@/lib/limiter"
 import { db as prisma } from '@/lib/db/prisma'
-import clientPromise from "@/lib/db/mogodb"
+import { mongoDb } from "@/lib/db/mogodb"
 import { z } from "zod"
+import { continentBody, continentV3Schema } from "@/lib/db/schema/continent.schema"
+import { createApiRequest } from "@/helpers/data-helper"
 
 type Props = {
   params: {
@@ -31,69 +33,45 @@ export async function GET(req: Request, { params: { name } }: Props) {
 
     const start = new Date()
 
-    const remaining = await limiterV1.removeTokens(1)
+    const remaining = await limiterV3.removeTokens(1)
 
     if (remaining < 0) {
       const duration = new Date().getTime() - start.getTime()
 
       const url = new URL(req.url as string).pathname
 
-      await prisma.apiRequest.create({
-        data: {
-          duration,
-          method: req.method as string,
-          path: url,
-          status: 429,
-          apiKeyId: validApiKey.id,
-          usedApiKey: validApiKey.key,
-          response: "Too many requests"
-        },
-      })
+      // Persist request
+      createApiRequest(duration, req.method as string, url, 429, validApiKey.id, validApiKey.key, "Too many requests")
 
       return NextResponse.json({ error: 'Too many requests', success: false }, { status: 429 })
     }
 
     try {
-      const client = await clientPromise;
-      const db = client.db("worlddata");
+      const Continent = mongoDb.Continent;
 
-      const countries = await db.collection("countries").findOne({ name })
-
-      const duration = new Date().getTime() - start.getTime()
+      const continent: continentBody | null = await Continent.findOne({ name })
 
       const url = new URL(req.url as string).pathname
 
-      if (!countries) {
-        await prisma.apiRequest.create({
-          data: {
-            duration,
-            method: req.method as string,
-            path: url,
-            status: 404,
-            apiKeyId: validApiKey.id,
-            usedApiKey: validApiKey.key,
-            response: "Not Found"
-          },
-        })
+      if (!continent) {
+        const duration = new Date().getTime() - start.getTime()
+
+        // Persist request
+        createApiRequest(duration, req.method as string, url, 404, validApiKey.id, validApiKey.key, "Not Found")
+
         return NextResponse.json({ error: 'Not Found', success: false }, { status: 404 })
       }
 
+      const continentValidated = continentV3Schema.parse(continent)
+
+      const duration = new Date().getTime() - start.getTime()
+
       // Persist request
-      await prisma.apiRequest.create({
-        data: {
-          duration,
-          method: req.method as string,
-          path: url,
-          status: 200,
-          apiKeyId: validApiKey.id,
-          usedApiKey: validApiKey.key,
-          response: "Success"
-        },
-      })
+      createApiRequest(duration, req.method as string, url, 200, validApiKey.id, validApiKey.key, "Success")
 
-      return NextResponse.json(countries, { status: 200 })
+      return NextResponse.json(continentValidated, { status: 200 })
     } catch (error) {
-
+      console.log(error)
       return NextResponse.json({ error: 'Internal Server Error', success: false }, { status: 500 })
     }
 

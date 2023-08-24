@@ -3,10 +3,16 @@ import { limiterV1 } from "@/lib/limiter"
 import { db as prisma } from '@/lib/db/prisma'
 import { mongoDb } from "@/lib/db/mogodb"
 import { z } from "zod"
-import { continentBody, continentV1Schema } from "@/lib/db/schema/continent.schema"
+import { oceanBody, oceanV1Schema } from "@/lib/db/schema/ocean.schema"
 import { createApiRequest } from "@/helpers/data-helper"
 
-export async function GET(req: Request) {
+type Props = {
+  params: {
+    name: string;
+  }
+}
+
+export async function GET(req: Request, { params: { name } }: Props) {
   const apiKey = req.headers.get("authorization")
 
   if (!apiKey) {
@@ -41,23 +47,29 @@ export async function GET(req: Request) {
     }
 
     try {
-      const Continent = mongoDb.Continent;
+      const Ocean = mongoDb.Ocean;
 
-      const continents: continentBody[] = await Continent.find()
-
-      let continentsV1 = continents.map((continent) => {
-        const continentValidated = continentV1Schema.parse(continent)
-        return continentValidated
-      })
-
-      const duration = new Date().getTime() - start.getTime()
+      const ocean: oceanBody | null = await Ocean.findOne({ name })
 
       const url = new URL(req.url as string).pathname
+
+      if (!ocean) {
+        const duration = new Date().getTime() - start.getTime()
+
+        // Persist request
+        createApiRequest(duration, req.method as string, url, 404, validApiKey.id, validApiKey.key, "Not Found")
+
+        return NextResponse.json({ error: 'Not Found', success: false }, { status: 404 })
+      }
+
+      const oceanValidated = oceanV1Schema.parse(ocean)
+
+      const duration = new Date().getTime() - start.getTime()
 
       // Persist request
       createApiRequest(duration, req.method as string, url, 200, validApiKey.id, validApiKey.key, "Success")
 
-      return NextResponse.json(continentsV1, { status: 200 })
+      return NextResponse.json(oceanValidated, { status: 200 })
     } catch (error) {
       return NextResponse.json({ error: 'Internal Server Error', success: false }, { status: 500 })
     }

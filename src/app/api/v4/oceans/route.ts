@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server"
-import { limiterV1 } from "@/lib/limiter"
+import { limiterV4 } from "@/lib/limiter"
 import { db as prisma } from '@/lib/db/prisma'
 import { mongoDb } from "@/lib/db/mogodb"
 import { z } from "zod"
-import { continentBody, continentV1Schema } from "@/lib/db/schema/continent.schema"
+import { oceanBody, oceanV4Schema } from "@/lib/db/schema/ocean.schema"
 import { createApiRequest } from "@/helpers/data-helper"
 
 export async function GET(req: Request) {
@@ -27,7 +27,7 @@ export async function GET(req: Request) {
 
     const start = new Date()
 
-    const remaining = await limiterV1.removeTokens(1)
+    const remaining = await limiterV4.removeTokens(1)
 
     if (remaining < 0) {
       const duration = new Date().getTime() - start.getTime()
@@ -41,12 +41,12 @@ export async function GET(req: Request) {
     }
 
     try {
-      const Continent = mongoDb.Continent;
+      const Ocean = mongoDb.Ocean;
 
-      const continents: continentBody[] = await Continent.find()
+      const oceans: oceanBody[] = await Ocean.find()
 
-      let continentsV1 = continents.map((continent) => {
-        const continentValidated = continentV1Schema.parse(continent)
+      let oceansV1 = oceans.map((ocean) => {
+        const continentValidated = oceanV4Schema.parse(ocean)
         return continentValidated
       })
 
@@ -55,9 +55,9 @@ export async function GET(req: Request) {
       const url = new URL(req.url as string).pathname
 
       // Persist request
-      createApiRequest(duration, req.method as string, url, 200, validApiKey.id, validApiKey.key, "Success")
+      createApiRequest(duration, req.method as string, url, 429, validApiKey.id, validApiKey.key, "Success")
 
-      return NextResponse.json(continentsV1, { status: 200 })
+      return NextResponse.json(oceansV1, { status: 200 })
     } catch (error) {
       return NextResponse.json({ error: 'Internal Server Error', success: false }, { status: 500 })
     }

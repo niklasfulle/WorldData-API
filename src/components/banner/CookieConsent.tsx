@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { hasCookie, setCookie } from "cookies-next";
 import Link from "next/link";
 import { Button, buttonVariants } from "@/ui/Button";

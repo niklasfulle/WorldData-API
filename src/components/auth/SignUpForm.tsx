@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/Button";
 import Icons from "../ui/Icons";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import {
   registerWithCredentials,
 } from "@/lib/auth/auth-functions";
 
-const SignInForm = ({}) => {
+const SignInForm = () => {
   const [isLoading, setIsLoading] = useState({ provider: "", isLoading: false });
   const [password, setPassword] = useState<string>("");
   const [strength, setStrength] = useState<number>(0);

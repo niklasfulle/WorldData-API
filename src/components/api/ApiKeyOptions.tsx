@@ -1,4 +1,5 @@
 "use client";
+import React, { FC, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,7 +10,6 @@ import {
 import { createApiKey, revokeApiKey } from "@/helpers/api-key";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import { shortToast } from "@/helpers/shorter-function";
 

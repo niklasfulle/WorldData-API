@@ -1,3 +1,4 @@
+import React from "react";
 import CookieConsent from "@/components/banner/CookieConsent";
 import { db } from "@/lib/db/prisma";
 import { notFound } from "next/navigation";

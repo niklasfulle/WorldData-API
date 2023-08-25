@@ -123,7 +123,7 @@ const ThreeScene: FC<Props> = ({ setLoading }) => {
       setError(err as Error);
     }
     setLoading(false);
-  }, []);
+  }, [setLoading]);
 
   return <>{error ? <div></div> : <div ref={containerRef} />}</>;
 };

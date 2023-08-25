@@ -30,7 +30,7 @@ export async function sendConfirmMail(email: string, token: string) {
       html: `<div>Please click this link to confirm your email: <a href="${process.env.NEXTAUTH_URL}/confirm-email/${token}">Click</a> </div>`
     };
 
-    transporter.sendMail(mailOptions, function (error: any, info: any) {
+    transporter.sendMail(mailOptions, function (error: any) {
       if (error) {
         throw new Error(error);
       } else {
@@ -64,7 +64,7 @@ export async function sendResetPasswordMail(email: string, token: string) {
       html: `<div>Please click this link to reset your Password: <a href="${process.env.NEXTAUTH_URL}/forgot-password/${token}">Click</a> </div>`
     };
 
-    transporter.sendMail(mailOptions, function (error: any, info: any) {
+    transporter.sendMail(mailOptions, function (error: any) {
       if (error) {
         throw new Error(error);
       } else {

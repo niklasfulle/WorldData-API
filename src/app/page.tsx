@@ -1,10 +1,10 @@
 "use client";
+import React, { useState } from "react";
 import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import Link from "next/link";
 import ThreeScene from "@/three/ThreeScene";
 import CookieConsent from "@/components/banner/CookieConsent";
-import { useState } from "react";
 import { Skeleton } from "@mui/material";
 
 export default function Home() {

@@ -57,7 +57,7 @@ export async function GET(req: Request) {
       // Persist request
       createApiRequest(duration, req.method as string, url, 200, validApiKey.id, validApiKey.key, "Success")
 
-      return NextResponse.json(continents, { status: 200 })
+      return NextResponse.json(continentsV4, { status: 200 })
     } catch (error) {
       return NextResponse.json({ error: 'Internal Server Error', success: false }, { status: 500 })
     }

@@ -1,4 +1,4 @@
-import { array, number, object, string, TypeOf } from "zod";
+import { number, object, string, TypeOf } from "zod";
 
 export const seaSchema = {
   body: object({

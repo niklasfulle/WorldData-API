@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import { ThemeToggle } from "@/navigation/ThemeToggle";
 import { buttonVariants } from "@/ui/Button";

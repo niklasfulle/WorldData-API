@@ -40,36 +40,32 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        try {
-          const { email, password } = loginUserSchema.parse(credentials);
+        const { email, password } = loginUserSchema.parse(credentials);
 
-          const user = await db.user.findUnique({
-            where: {
-              email,
-            }
-          });
-
-          if (!user) {
-            throw new Error("Password or Email not correct");
+        const user = await db.user.findUnique({
+          where: {
+            email,
           }
+        });
 
-          const passwordsMatch = await compare(
-            password,
-            user?.password!
-          );
-
-          if (!passwordsMatch) {
-            throw new Error("Password or Email not correct");
-          }
-
-          if (!user.emailVerified) {
-            throw new Error("Email not verified");
-          }
-
-          return user as any;
-        } catch (error) {
-          throw error;
+        if (!user) {
+          throw new Error("Password or Email not correct");
         }
+
+        const passwordsMatch = await compare(
+          password,
+          user?.password!
+        );
+
+        if (!passwordsMatch) {
+          throw new Error("Password or Email not correct");
+        }
+
+        if (!user.emailVerified) {
+          throw new Error("Email not verified");
+        }
+
+        return user as any;
       },
     }),
   ],

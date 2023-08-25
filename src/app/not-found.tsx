@@ -1,9 +1,9 @@
+import React, { FC } from "react";
 import Icons from "@/ui/Icons";
 import { buttonVariants } from "@/ui/Button";
 import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import Link from "next/link";
-import { FC } from "react";
 import type { Metadata } from "next";
 import CookieConsent from "@/components/banner/CookieConsent";
 

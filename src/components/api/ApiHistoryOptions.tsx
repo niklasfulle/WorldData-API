@@ -1,4 +1,5 @@
 "use client";
+import React, { FC, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,7 +8,6 @@ import {
 } from "@/ui/DropdownMenu";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import { clearHistory } from "@/helpers/api-key";
 import { shortToast } from "@/helpers/shorter-function";
@@ -16,7 +16,7 @@ interface ApiHistoryOptionsProps {
   apiKeyKey: string;
 }
 
-const ApiHistoryOptions: FC<ApiHistoryOptionsProps> = ({ apiKeyKey }) => {
+const ApiHistoryOptions: FC<ApiHistoryOptionsProps> = () => {
   const router = useRouter();
   const [isClearingHistory, setIsClearingHistory] = useState<boolean>(false);
 

@@ -1,5 +1,5 @@
 "use client";
-import { FC } from "react";
+import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/Tabs";
 import {
   DropdownMenu,
@@ -13,7 +13,7 @@ import SimpleBar from "simplebar-react";
 import { Button } from "@/ui/Button";
 import Icons from "@/ui/Icons";
 
-const DataTabs: FC = ({}) => {
+const DataTabs = () => {
   return (
     <Tabs defaultValue="v1" className="max-w-2xl w-full">
       <div className="flex justify-end md:justify-start">

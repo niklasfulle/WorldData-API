@@ -1,7 +1,6 @@
 "use client";
-import { Icons } from "@/ui/Icons";
 import { cn } from "@/lib/utils";
-import { HTMLAttributes, SVGProps } from "react";
+import React, { HTMLAttributes } from "react";
 import hotToast, { Toaster as HotToaster } from "react-hot-toast";
 
 export const Toaster = HotToaster;
@@ -22,11 +21,6 @@ export function Toast({ visible, className, ...props }: ToastProps) {
     />
   );
 }
-
-interface ToastIconProps extends Partial<SVGProps<SVGSVGElement>> {
-  name: keyof typeof Icons;
-}
-
 interface ToastTitleProps extends HTMLAttributes<HTMLHeadingElement> {}
 
 Toast.Title = function ToastTitle({ className, ...props }: ToastTitleProps) {

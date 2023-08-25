@@ -1,6 +1,6 @@
 "use client";
+import React, { FC, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { FC, useEffect, useState } from "react";
 
 interface PasswordStrengthProps {
   password: string;

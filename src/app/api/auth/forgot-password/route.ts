@@ -3,7 +3,7 @@ import { db } from "@/lib/db/prisma";
 import { nanoid } from "nanoid";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { resetPassword } from "../../config/limiter";
+import { resetPassword } from "../../../../lib/limiter";
 
 const forgotPasswordSchema = z.object({
   email: z.string().email('Invalid email'),

@@ -1,3 +1,4 @@
+import React from "react";
 import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm";
 import CookieConsent from "@/components/banner/CookieConsent";
 import { buttonVariants } from "@/components/ui/Button";

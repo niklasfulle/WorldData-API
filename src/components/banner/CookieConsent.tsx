@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { hasCookie, setCookie } from "cookies-next";
 import Link from "next/link";
 import { Button, buttonVariants } from "@/ui/Button";
@@ -14,12 +14,20 @@ const CookieConsent = () => {
       if (html) {
         html.style.overflow = "hidden";
       }
+    } else {
+      const sessionExpiry = new Date(Date.now() + 60 * 60 * 24 * 30 * 1000);
+      setCookie("localConsent", "true", {
+        expires: sessionExpiry,
+      });
     }
   }, []);
 
   const acceptCookie = () => {
     setShowConsent(true);
-    setCookie("localConsent", "true", {});
+    const sessionExpiry = new Date(Date.now() + 60 * 60 * 24 * 30 * 1000);
+    setCookie("localConsent", "true", {
+      expires: sessionExpiry,
+    });
     const html = document.querySelector("html");
     if (html) {
       html.style.overflow = "auto";

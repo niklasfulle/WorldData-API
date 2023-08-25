@@ -42,5 +42,11 @@ export async function POST(
 
     return NextResponse.json({ message: 'Password updated', success: true }, { status: 200 })
 
-  } catch (error) { }
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ error: error.issues, success: false }, { status: 400 })
+    }
+
+    return NextResponse.json({ error: 'Internal Server Error', success: false }, { status: 500 })
+  }
 }

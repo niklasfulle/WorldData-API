@@ -1,5 +1,5 @@
 "use client";
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import { Button } from "../ui/Button";
 import Icons from "../ui/Icons";
 import { Input } from "../ui/Input";

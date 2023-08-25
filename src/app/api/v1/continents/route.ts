@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server"
-import { continentsLimiterV1 } from "@/app/api/config/limiter"
+import { limiterV1 } from "@/lib/limiter"
 import { db as prisma } from '@/lib/db/prisma'
-import clientPromise from "@/lib/db/mogodb"
+import { mongoDb } from "@/lib/db/mogodb"
 import { z } from "zod"
+import { continentBody, continentV1Schema } from "@/lib/db/schema/continent.schema"
+import { createApiRequest } from "@/helpers/data-helper"
 
 export async function GET(req: Request) {
   const apiKey = req.headers.get("authorization")
@@ -25,52 +27,37 @@ export async function GET(req: Request) {
 
     const start = new Date()
 
-    const remaining = await continentsLimiterV1.removeTokens(1)
+    const remaining = await limiterV1.removeTokens(1)
 
     if (remaining < 0) {
       const duration = new Date().getTime() - start.getTime()
 
       const url = new URL(req.url as string).pathname
 
-      await prisma.apiRequest.create({
-        data: {
-          duration,
-          method: req.method as string,
-          path: url,
-          status: 429,
-          apiKeyId: validApiKey.id,
-          usedApiKey: validApiKey.key,
-          response: "Too many requests"
-        },
-      })
+      // Persist request
+      createApiRequest(duration, req.method as string, url, 429, validApiKey.id, validApiKey.key, "Too many requests")
 
       return NextResponse.json({ error: 'Too many requests', success: false }, { status: 429 })
     }
 
     try {
-      const client = await clientPromise;
-      const db = client.db("worlddata");
+      const Continent = mongoDb.Continent;
 
-      const continents = await db.collection("continents").find().toArray();
+      const continents: continentBody[] = await Continent.find()
+
+      let continentsV1 = continents.map((continent) => {
+        const continentValidated = continentV1Schema.parse(continent)
+        return continentValidated
+      })
 
       const duration = new Date().getTime() - start.getTime()
 
       const url = new URL(req.url as string).pathname
 
       // Persist request
-      await prisma.apiRequest.create({
-        data: {
-          duration,
-          method: req.method as string,
-          path: url,
-          status: 200,
-          apiKeyId: validApiKey.id,
-          usedApiKey: validApiKey.key,
-          response: "Success"
-        },
-      })
+      createApiRequest(duration, req.method as string, url, 200, validApiKey.id, validApiKey.key, "Success")
 
-      return NextResponse.json(continents, { status: 200 })
+      return NextResponse.json(continentsV1, { status: 200 })
     } catch (error) {
       return NextResponse.json({ error: 'Internal Server Error', success: false }, { status: 500 })
     }

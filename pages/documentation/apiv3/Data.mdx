@@ -17,11 +17,14 @@ List of all continents in the world. The list is sorted alphabetically by contin
 {
   "id": Number,
   "name": String,
-  "area_m2": Number,
+  "area_km2": Number,
   "population": Number,
-  "density": Number,
+  "density_km2": Number,
   "countries": [  <-- New
-    "name": String,
+    {
+      "id": Number,
+      "name": String,
+    }
   ]
 }
 ```
@@ -38,13 +41,16 @@ List of all oceans in the world. The list is sorted alphabetically by ocean name
 {
   "id": Number,
   "name": String,
-  "area_m2": Number,
+  "area_km2": Number,
   "avg_depth_m": Number,
   "max_depth_m": Number,
-  "volume_m3": Number,
-  "coastline_length_km": Number,
+  "volume_km3": Number,
+  "coast_km": Number,
   "countries": [  <-- New
-    "name": String,
+    {
+      "id": Number,
+      "name": String,
+    }
   ]
 }
 ```
@@ -65,7 +71,10 @@ List of the 100 biggest seas in the world. The list is sorted by area.
   "avg_depth_m": Number,
   "max_depth_m": Number,
   "countries": [  <-- New
-    "name": String,
+    {
+      "id": Number,
+      "name": String,
+    }
   ]
 }
 ```
@@ -84,7 +93,7 @@ List of the 250 United Nations member states and other states with limited recog
   "name": String,
   "iso3": String,
   "iso2": String,
-  "numeric_code": String,
+  "numeric_code": Number,
   "phone_code": String,
   "capital": String,
   "tld": String,
@@ -93,9 +102,9 @@ List of the 250 United Nations member states and other states with limited recog
   "latitude": String,
   "longitude": String,
   "independent": Boolean,
-  "area_m2": Number,
+  "area_km2": Number,
   "population": Number,
-  "population_density": Number,
+  "density_km2": Number,
   "native_name": String,  <-- New
   "translations": {  <-- New
     "kr": String,
@@ -133,8 +142,7 @@ A list of the 500 biggest cities in the world. The list is sorted by population.
   "longitude": String,
   "population": Number,
   "area_km2": Number,
-  "country": String,
-  "country_code": String
+  "country": String
 }
 ```
 
@@ -154,10 +162,13 @@ A list of the 200 highest mountains in the world. The list is sorted by height.
   "latitude": String,
   "longitude": String,
   "continent": String,  <-- New
-  "country": [  <-- New
-    "name": String,
+  "countries": [  <-- New
+    {
+      "id": Number,
+      "name": String,
+    }
   ],  
-  "first_climbed": String,  <-- New
+  "first_climbed": String  <-- New
 }
 ```
 
@@ -173,14 +184,17 @@ A list of the 46 biggest lakes in the world. The list is sorted by area.
 {
   "id": Number,
   "name": String,
-  "area_m2": Number,
+  "area_km2": Number,
   "depth_m": Number,
-  "volume_m3": Number
+  "volume_km3": Number
   "latitude": String,  <-- New
   "longitude": String,  <-- New
   "continent": String,  <-- New
   "countries": [  <-- New
-    "name": String,
+    {
+      "id": Number,
+      "name": String,
+    }
   ]
 }
 ```
@@ -198,8 +212,11 @@ A list of the 50 longest rivers in the world. The list is sorted by length.
   "id": Number,
   "name": String,
   "length_km": Number,
-  "countries": [
-    "name": String,
+  "countries": [  <-- New
+    {
+      "id": Number,
+      "name": String,
+    }
   ]
 }
 ```
@@ -216,8 +233,8 @@ A list of the 100 biggest islands in the world. The list is sorted by area.
 {
   "id": Number,
   "name": String,
-  "area_m2": Number,
+  "area_km2": Number,
   "latitude": String,
-  "longitude": String,
+  "longitude": String
 }
 ```

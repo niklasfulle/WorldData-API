@@ -1,6 +1,6 @@
 "use client";
+import React, { useState } from "react";
 import { createApiKey } from "@/helpers/api-key";
-import { useState } from "react";
 import { Button } from "@/ui/Button";
 import { Input } from "@/ui/Input";
 import LargeHeading from "@/ui/LargeHeading";
@@ -8,7 +8,7 @@ import Paragraph from "@/ui/Paragraph";
 import CopyButton from "@/api/CopyButton";
 import { shortToast } from "@/helpers/shorter-function";
 
-const RequestApiKey = ({}) => {
+const RequestApiKey = () => {
   const [isCreating, setIsCreating] = useState<boolean>(false);
   const [apiKey, setApiKey] = useState<string | null>(null);
 

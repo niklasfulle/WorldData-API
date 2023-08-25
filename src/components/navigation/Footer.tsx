@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import Icons from "@/ui/Icons";
 import { ThemeToggleFooter } from "@/navigation/ThemeToggleFooter";

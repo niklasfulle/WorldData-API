@@ -1,5 +1,5 @@
 "use client";
-import { FC } from "react";
+import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/Tabs";
 import Code from "@/docs/Code";
 import { go, javascript, python, rust, kotlin, csharp } from "@/helpers/code-values";
@@ -14,7 +14,7 @@ import { Button } from "@/ui/Button";
 import Icons from "@/ui/Icons";
 import CopyIcon from "@/docs/CopyIcon";
 
-const DocumentationTabs: FC = ({}) => {
+const DocumentationTabs = () => {
   return (
     <Tabs defaultValue="nodejs" className="max-w-2xl w-full">
       <div className="flex justify-end md:justify-start">

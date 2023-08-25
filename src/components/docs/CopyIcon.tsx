@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import Icons from "@/ui/Icons";
 import { shortToast } from "@/helpers/shorter-function";
 import copyToClipboard from "@/helpers/copyToClipboard";

@@ -1,7 +1,7 @@
 "use client";
+import React, { ButtonHTMLAttributes, FC } from "react";
 import { cn } from "@/lib/utils";
 import { Copy } from "lucide-react";
-import { ButtonHTMLAttributes, FC } from "react";
 import { Button } from "@/ui/Button";
 import { shortToast } from "@/helpers/shorter-function";
 import copyToClipboard from "@/helpers/copyToClipboard";

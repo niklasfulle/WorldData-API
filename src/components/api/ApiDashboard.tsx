@@ -1,3 +1,4 @@
+import React, { FC } from "react";
 import { db } from "@/lib/db/prisma";
 import { formatDistance } from "date-fns";
 import { notFound } from "next/navigation";
@@ -7,7 +8,6 @@ import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import Table from "@/ui/Table";
 import ApiHistoryOptions from "@/api/ApiHistoryOptions";
-import { FC } from "react";
 import { User } from "@prisma/client";
 
 interface ApiDashboardProps {

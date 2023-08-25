@@ -1,11 +1,9 @@
 "use client";
-import { FC } from "react";
+import React from "react";
 import { buttonVariants } from "@/ui/Button";
 import Link from "next/link";
 
-interface SignInButtonProps {}
-
-const SignInButton: FC<SignInButtonProps> = ({}) => {
+const SignInButton = () => {
   return (
     <Link href="/login" className={buttonVariants()}>
       {" "}

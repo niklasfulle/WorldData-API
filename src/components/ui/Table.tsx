@@ -1,9 +1,10 @@
 "use client";
+import React, { FC } from "react";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { DataGrid, GridColDef, GridColumnHeaderParams } from "@mui/x-data-grid";
 import { ApiRequest } from "@prisma/client";
 import { useTheme } from "next-themes";
-import { FC } from "react";
+
 
 type ModifiedRequestType<K extends keyof ApiRequest> = Omit<ApiRequest, K> & {
   timestamp: string;

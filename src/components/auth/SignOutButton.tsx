@@ -1,12 +1,10 @@
 "use client";
-import { FC, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@/ui/Button";
 import { signOut } from "next-auth/react";
 import { shortToast } from "@/helpers/shorter-function";
 
-interface SignOutButtonProps {}
-
-const SignOutButton: FC<SignOutButtonProps> = ({}) => {
+const SignOutButton = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const signUserOut = async () => {

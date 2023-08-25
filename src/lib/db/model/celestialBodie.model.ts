@@ -13,6 +13,30 @@ export function celestialBodieModel() {
       type: String,
       required: true
     },
+    type: {
+      type: String,
+      required: true,
+    },
+    mass: {
+      type: Number,
+      required: true,
+    },
+    diameter_km: {
+      type: Number,
+      required: true,
+    },
+    tilt_degrees: {
+      type: Number,
+      required: true,
+    },
+    rotation_period_days: {
+      type: Number,
+      required: true,
+    },
+    translations: {
+      type: Object,
+      required: true,
+    },
   }, {
     // add createdAt and updatedAt timestamps
     timestamps: true

@@ -13,6 +13,22 @@ export function riverModel() {
       type: String,
       required: true
     },
+    length_km: {
+      type: Number,
+      required: true,
+    },
+    countries: {
+      type: Array,
+      required: true,
+    },
+    discharge_m3_s: {
+      type: Number,
+      required: true,
+    },
+    outflow: {
+      type: String,
+      required: true,
+    }
   }, {
     // add createdAt and updatedAt timestamps
     timestamps: true

@@ -13,6 +13,18 @@ export function currencyModel() {
       type: String,
       required: true
     },
+    code: {
+      type: String,
+      required: true,
+    },
+    symbol: {
+      type: String,
+      required: true,
+    },
+    countries: {
+      type: Array,
+      required: true,
+    }
   }, {
     // add createdAt and updatedAt timestamps
     timestamps: true

@@ -21,7 +21,10 @@ List of all continents in the world. The list is sorted alphabetically by contin
   "population": Number,
   "density_km2": Number,
   "countries": [
-    "name": String,
+    {
+      "id": Number,
+      "name": String,
+    }
   ]
 }
 ```
@@ -44,11 +47,17 @@ List of all oceans in the world. The list is sorted alphabetically by ocean name
   "volume_km3": Number,
   "coast_km": Number,
   "countries": [
-    "name": String,
+    {
+      "id": Number,
+      "name": String,
+    }
   ],
   "territories": [  <-- New
-    "name": String,
-  ],
+    {
+      "id": Number,
+      "name": String,
+    }
+  ]
 }
 ```
 
@@ -68,7 +77,10 @@ List of the 200 biggest seas in the world. The list is sorted by area.
   "avg_depth_m": Number,
   "max_depth_m": Number,
   "countries": [
-    "name": String,
+    {
+      "id": Number,
+      "name": String,
+    }
   ]
 }
 ```
@@ -147,6 +159,7 @@ A list of the 1000 biggest cities in the world. The list is sorted by population
   "latitude": String,
   "longitude": String,
   "population": Number,
+  "area_km2": Number,
   "country": String,
   "timezone": {  <-- New
     "zone_name": String,
@@ -174,9 +187,12 @@ A list of the 300 highest mountains in the world. The list is sorted by height.
   "latitude": String,
   "longitude": String,
   "continent": String,
-  "country": [
-    "name": String,
-  ], 
+  "countries": [
+    {
+      "id": Number,
+      "name": String,
+    }
+  ],
   "first_climbed": String
 }
 ```
@@ -193,14 +209,17 @@ A list of the 46 biggest lakes in the world. The list is sorted by area.
 {
   "id": Number,
   "name": String,
-  "area_m2": Number,
+  "area_km2": Number,
   "depth_m": Number,
-  "volume_m3": Number
+  "volume_km3": Number
   "latitude": String,
   "longitude": String,
   "continent": String,
   "countries": [
-    "name": String,
+    {
+      "id": Number,
+      "name": String,
+    }
   ]
 }
 ```
@@ -219,7 +238,10 @@ A list of the 189 longest rivers in the world. The list is sorted by length.
   "name": String,
   "length_km": Number,
   "countries": [
-    "name": String,
+    {
+      "id": Number,
+      "name": String,
+    }
   ],
   "discharge_m3_s": Number,  <-- New
   "outflow": String  <-- New
@@ -238,14 +260,17 @@ A list of the 322 biggest islands in the world. The list is sorted by area.
 {
   "id": Number,
   "name": String,
-  "area_m2": Number,
+  "area_km2": Number,
   "latitude": String,
   "longitude": String,
   "population": Number,  <-- New
   "continent": String,  <-- New
   "countries": [  <-- New
-    "name": String,
-  ],
+    {
+      "id": Number,
+      "name": String,
+    }
+  ]
 }
 ```
 
@@ -264,7 +289,10 @@ A list of 180 currencies in the world. The list is sorted alphabetically by curr
   "code": String,
   "symbol": String,
   "countries": [
-    "name": String,
+    {
+      "id": Number,
+      "name": String,
+    }
   ]
 }
 ```

@@ -13,6 +13,30 @@ export function mountainModel() {
       type: String,
       required: true
     },
+    height_m: {
+      type: Number,
+      required: true,
+    },
+    latitude: {
+      type: String,
+      required: true,
+    },
+    longitude: {
+      type: String,
+      required: true,
+    },
+    continent: {
+      type: String,
+      required: true,
+    },
+    country: {
+      type: Array,
+      required: true,
+    },
+    first_climbed: {
+      type: String,
+      required: true,
+    },
   }, {
     // add createdAt and updatedAt timestamps
     timestamps: true

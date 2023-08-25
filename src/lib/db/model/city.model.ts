@@ -13,6 +13,26 @@ export function cityModel() {
       type: String,
       required: true
     },
+    latitude: {
+      type: String,
+      required: true,
+    },
+    longitude: {
+      type: String,
+      required: true,
+    },
+    population: {
+      type: Number,
+      required: true,
+    },
+    country: {
+      type: String,
+      required: true,
+    },
+    timezone: {
+      type: Object,
+      required: true,
+    },
   }, {
     // add createdAt and updatedAt timestamps
     timestamps: true

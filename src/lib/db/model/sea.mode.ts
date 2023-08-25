@@ -13,6 +13,22 @@ export function seaModel() {
       type: String,
       required: true
     },
+    area_km2: {
+      type: Number,
+      required: true,
+    },
+    avg_depth_m: {
+      type: Number,
+      required: true,
+    },
+    max_depth_m: {
+      type: Number,
+      required: true,
+    },
+    countries: {
+      type: Array,
+      required: true,
+    }
   }, {
     // add createdAt and updatedAt timestamps
     timestamps: true

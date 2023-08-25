@@ -13,6 +13,30 @@ export function islandModel() {
       type: String,
       required: true
     },
+    area_km2: {
+      type: Number,
+      required: true,
+    },
+    latitude: {
+      type: String,
+      required: true,
+    },
+    longitude: {
+      type: String,
+      required: true,
+    },
+    population: {
+      type: Number,
+      required: true,
+    },
+    continent: {
+      type: String,
+      required: true,
+    },
+    countries: {
+      type: Array,
+      required: true,
+    }
   }, {
     // add createdAt and updatedAt timestamps
     timestamps: true

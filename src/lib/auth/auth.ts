@@ -65,7 +65,7 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Email not verified");
         }
 
-        return user as any;
+        return user;
       },
     }),
   ],
@@ -74,6 +74,8 @@ export const authOptions: NextAuthOptions = {
       if (account?.provider === "credentials") {
 
         if (user) {
+          console.log(user)
+
           const sessionToken = randomUUID();
           const sessionExpiry = new Date(
             Date.now() + 60 * 60 * 24 * 30 * 1000
@@ -83,6 +85,7 @@ export const authOptions: NextAuthOptions = {
             data: {
               sessionToken,
               userId: user.id,
+              userRole: user.role,
               expires: sessionExpiry,
             },
           });
@@ -115,6 +118,13 @@ export const authOptions: NextAuthOptions = {
     },
     async redirect({ baseUrl }) {
       return baseUrl + "/dashboard";
+    },
+    session: async ({ session, user }) => {
+      session.user = {
+        ...session.user,
+        role: user.role,
+      };
+      return Promise.resolve(session);
     },
   },
   jwt: {

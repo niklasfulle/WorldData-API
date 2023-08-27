@@ -16,7 +16,7 @@ export default withAuth(
     const isAuth = !!sessionToken
 
     // Manage protected routes
-    const sensitiveRoutes = ['/dashboard', '/change-password']
+    const sensitiveRoutes = ['/dashboard', '/change-password', '/admin']
     const notWithSession = ['/login', '/register', '/forgot-password', '/confirm-email']
 
     // Check if user is authenticated and trying to access a sensitive route
@@ -48,5 +48,5 @@ export default withAuth(
 )
 
 export const config = {
-  matcher: ['/', '/change-password', '/login', '/register', '/forgot-password/:path*', '/confirm-email/:path*', '/dashboard/:path*', '/api/:path*'],
+  matcher: ['/', '/admin', '/change-password', '/login', '/register', '/forgot-password/:path*', '/confirm-email/:path*', '/dashboard/:path*', '/api/:path*'],
 }

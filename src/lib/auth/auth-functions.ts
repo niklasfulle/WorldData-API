@@ -198,7 +198,6 @@ export const sendForgotPasswordEmail = async (e: FormEvent, setIsLoading: SetIsL
       res.text().then((text) => {
         const error: any = JSON.parse(text);
         if (error.error) {
-          console.log("1", error.error[0].message);
           if (error.error[0].message === "Invalid email") {
             setError("Invalid email");
           }
@@ -209,9 +208,7 @@ export const sendForgotPasswordEmail = async (e: FormEvent, setIsLoading: SetIsL
             shortToast("Error", "Too many requests. Please try again later.", "error");
           }
           setError("");
-          console.log(error.message);
         } else {
-          console.log(error.message)
         }
       });
     } else {
@@ -256,7 +253,6 @@ export const resetPassword = async (e: FormEvent, setIsLoading: SetIsLoading2, s
 
     if (!res.ok) {
       res.text().then((text) => {
-        console.log(text);
         const error: any = JSON.parse(text);
         if (error.error) {
           setError(error.error[0].message);

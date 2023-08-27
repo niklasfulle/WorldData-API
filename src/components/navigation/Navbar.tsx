@@ -7,6 +7,7 @@ import SignOutButton from "@/auth/SignOutButton";
 import MobileMenu from "@/navigation/MobileMenu";
 import { getSession } from "next-auth/react";
 import { headers } from "next/headers";
+import UserProfile from "../auth/UserProfile";
 
 const Navbar = async () => {
   const session = await getSession({
@@ -46,7 +47,7 @@ const Navbar = async () => {
           <ThemeToggle id="themeToggleMobile" />
           <MobileMenu />
         </div>
-        <div className="hidden md:flex gap-4">
+        <div className="hidden md:flex gap-4 items-center">
           <ThemeToggle id="themeToggle" />
           <Link
             href="/documentation"
@@ -71,7 +72,7 @@ const Navbar = async () => {
               >
                 Dashboard
               </Link>
-              <SignOutButton />
+              <UserProfile session={session} />
             </>
           ) : (
             <SignInButton />

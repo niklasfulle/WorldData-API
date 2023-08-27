@@ -1,5 +1,4 @@
 const fallback = (text: string) => {
-  console.log(navigator.userAgent)
   const isIos = navigator.userAgent.match(/ipad|iphone/i);
   const textarea = document.createElement('textarea');
 

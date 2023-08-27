@@ -27,6 +27,11 @@ import {
   Github,
   Eye,
   EyeOff,
+  UserCircle2,
+  User2,
+  LogOut,
+  Lock,
+  KeyRound,
 } from "lucide-react";
 
 export const Icons = {
@@ -58,6 +63,11 @@ export const Icons = {
   Github,
   Eye,
   EyeOff,
+  UserCircle2,
+  User2,
+  LogOut,
+  Lock,
+  KeyRound
 };
 
 export default Icons;

@@ -71,7 +71,6 @@ export async function GET(req: Request, { params: { name } }: Props) {
 
       return NextResponse.json(continentValidated, { status: 200 })
     } catch (error) {
-      console.log(error)
       return NextResponse.json({ error: 'Internal Server Error', success: false }, { status: 500 })
     }
 

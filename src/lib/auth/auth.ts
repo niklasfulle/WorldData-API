@@ -72,10 +72,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async signIn({ user, account }) {
       if (account?.provider === "credentials") {
-
         if (user) {
-          console.log(user)
-
           const sessionToken = randomUUID();
           const sessionExpiry = new Date(
             Date.now() + 60 * 60 * 24 * 30 * 1000
@@ -117,12 +114,19 @@ export const authOptions: NextAuthOptions = {
       return true;
     },
     async redirect({ baseUrl }) {
-      return baseUrl + "/dashboard";
+      return baseUrl;
     },
     session: async ({ session, user }) => {
+      const account = await db.account.findFirst({
+        where: {
+          userId: user.id,
+        },
+      });
+
       session.user = {
         ...session.user,
         role: user.role,
+        provider: account?.provider,
       };
       return Promise.resolve(session);
     },

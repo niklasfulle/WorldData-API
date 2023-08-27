@@ -1,4 +1,7 @@
+import { db } from '@/lib/db/prisma';
 import { withAuth } from 'next-auth/middleware'
+import { getSession } from 'next-auth/react';
+import { headers } from 'next/headers';
 import { NextResponse } from 'next/server'
 
 export default withAuth(
@@ -13,7 +16,7 @@ export default withAuth(
     const isAuth = !!sessionToken
 
     // Manage protected routes
-    const sensitiveRoutes = ['/dashboard']
+    const sensitiveRoutes = ['/dashboard', '/change-password']
     const notWithSession = ['/login', '/register', '/forgot-password', '/confirm-email']
 
     // Check if user is authenticated and trying to access a sensitive route
@@ -45,5 +48,5 @@ export default withAuth(
 )
 
 export const config = {
-  matcher: ['/', '/login', '/register', '/forgot-password/:path*', '/confirm-email/:path*', '/dashboard/:path*', '/api/:path*'],
+  matcher: ['/', '/change-password', '/login', '/register', '/forgot-password/:path*', '/confirm-email/:path*', '/dashboard/:path*', '/api/:path*'],
 }

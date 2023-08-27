@@ -12,13 +12,14 @@ import { signOut } from "next-auth/react";
 import { shortToast } from "@/helpers/shorter-function";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Link from "next/link";
-import { lime, purple } from "@mui/material/colors";
 
 interface UserProfileProps {
   session: any;
 }
 
 const UserProfile: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
+  const { user } = session;
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [prefersDarkMode, setPrefersDarkMode] = useState<boolean>(false);
@@ -68,9 +69,9 @@ const UserProfile: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
               aria-expanded={open ? "true" : undefined}
               className="bg-none"
             >
-              {session.user.image ? (
+              {user.image ? (
                 <Image
-                  src={session.user.image}
+                  src={user.image}
                   alt=""
                   width={100}
                   height={100}
@@ -91,10 +92,10 @@ const UserProfile: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          <div className="h-auto flex flex-col gap-1 items-center p-4 -mt-2 dark:bg-slate-800 bg-slate-100">
-            {session.user.image ? (
+          <div className="h-auto flex flex-col gap-1 items-center p-4 -mt-2 dark:bg-slate-800 bg-slate-100 w-60">
+            {user.image ? (
               <Image
-                src={session.user.image}
+                src={user.image}
                 alt=""
                 width={100}
                 height={100}
@@ -103,24 +104,26 @@ const UserProfile: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
             ) : (
               <Icons.UserCircle2 className="dark:text-white h-32 w-32 drop-shadow-sm stroke-1 mt-1" />
             )}
-            <span> {session.user.name}</span>
-            <span> {session.user.email}</span>
-            {session.user.provider !== "credentials" ? (
-              <>{session.user.provider === "google" ? <span>Google</span> : <span>GitHub</span>}</>
+            <span> {user.name}</span>
+            <span> {user.email}</span>
+            {user.provider !== "credentials" ? (
+              <>{user.provider === "google" ? <span>Google</span> : <span>GitHub</span>}</>
             ) : (
               <span>Email</span>
             )}
           </div>
           <Divider className="dark:bg-white bg-black" />
-          <Link href="/change-password" className="w-full">
-            <MenuItem className="-ml-2 bg-slate-100 hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700">
-              <Icons.KeyRound className="mr-2 w-5 h-5" />
-              Change password
-            </MenuItem>
-          </Link>
-          {session.user.role === "admin" ? (
+          {user.provider === "credentials" ? (
+            <Link href="/change-password" className="w-full">
+              <MenuItem className="bg-slate-100 hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700">
+                <Icons.KeyRound className="mr-2 w-5 h-5" />
+                Change password
+              </MenuItem>
+            </Link>
+          ) : null}
+          {user.role === "admin" ? (
             <Link href="/admin" className="w-full">
-              <MenuItem className="-ml-2 bg-slate-100 hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700">
+              <MenuItem className="bg-slate-100 hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700">
                 <Icons.Lock className="mr-2 w-5 h-5" />
                 Admin Panel
               </MenuItem>
@@ -128,9 +131,14 @@ const UserProfile: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
           ) : null}
           <MenuItem
             onClick={signUserOut}
-            className="-ml-2 bg-slate-100 hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700"
+            disabled={isLoading}
+            className="bg-slate-100 hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700"
           >
-            <Icons.LogOut className="mr-2 w-5 h-5" />
+            {isLoading ? (
+              <Icons.Loader2 className="mr-2 w-5 h-5 animate-spin" />
+            ) : (
+              <Icons.LogOut className="mr-2 w-5 h-5" />
+            )}
             Logout
           </MenuItem>
           <div className="h-4 w-full bg-slate-100 dark:bg-slate-800 -mb-4"></div>

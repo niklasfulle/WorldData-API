@@ -4,18 +4,26 @@ import { Button } from "../ui/Button";
 import Icons from "../ui/Icons";
 import { Input } from "../ui/Input";
 import PasswordStrength from "./PasswordStrength";
-import { resetPassword } from "@/lib/auth/auth-functions";
+import { changePassword, resetPassword } from "@/lib/auth/auth-functions";
 
-interface Props {
-  token: string;
+type User = {
+  name: string;
+  email: string;
+  image: string;
+  role: string;
+};
+
+interface ChangePasswordFormProps {
+  user: User;
 }
 
-const NewPasswordForm: FC<Props> = ({ token }) => {
+const ChangePasswordForm: FC<ChangePasswordFormProps> = ({ user }: ChangePasswordFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [password, setPassword] = useState<string>("");
   const [strength, setStrength] = useState<number>(0);
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [showPasswordConfimation, setShowPasswordConfimation] = useState<boolean>(false);
+  const [showOldPassword, setShowOldPassword] = useState<boolean>(false);
+  const [showNewPassword, setShowNewPassword] = useState<boolean>(false);
+  const [showNewPasswordConfimation, setShowNewPasswordConfimation] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
   const handleChange = (password: string) => {
@@ -32,7 +40,7 @@ const NewPasswordForm: FC<Props> = ({ token }) => {
     <div className="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8 bg-white dark:bg-slate-600 rounded-lg items-center">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col justify-center items-center">
         <h2 className="mt-0 text-center text-2xl font-semibold leading-6 tracking-tight text-gray-900 dark:text-white">
-          Set new password
+          Change password
         </h2>
       </div>
       <p id="errors" className="sm:max-w-[14rem] text-center mt-2 text-red-600 font-bold">
@@ -41,34 +49,64 @@ const NewPasswordForm: FC<Props> = ({ token }) => {
       <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
         <form
           className="space-y-6"
-          onSubmit={(e) => resetPassword(e, setIsLoading, setError, token)}
+          onSubmit={(e) => changePassword(e, setIsLoading, setError, user)}
         >
           <div>
             <label
-              htmlFor="password"
+              htmlFor="oldPassword"
+              className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
+            >
+              Old Password
+            </label>
+            <div className="mt-1 relative">
+              <Input
+                id="oldPassword"
+                name="oldPassword"
+                type={showOldPassword ? "text" : "password"}
+                required
+                className="ease-in transition-all block w-full rounded-md border-0 pl-3 pr-8 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+              />
+              <div className="absolute inset-y-0 right-0 flex items-center px-2">
+                {showOldPassword ? (
+                  <Icons.EyeOff
+                    className="rounded text-sm cursor-pointer h-5 w-5 dark:text-white"
+                    onClick={() => setShowOldPassword(false)}
+                  />
+                ) : (
+                  <Icons.Eye
+                    className="rounded text-sm cursor-pointer h-5 w-5 dark:text-white"
+                    onClick={() => setShowOldPassword(true)}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+          <div>
+            <label
+              htmlFor="newPassword"
               className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
             >
               New Password
             </label>
             <div className="mt-1 relative">
               <Input
-                id="password"
-                name="password"
-                type={showPassword ? "text" : "password"}
+                id="newPassword"
+                name="newPassword"
+                type={showNewPassword ? "text" : "password"}
                 required
                 className="ease-in transition-all block w-full rounded-md border-0 pl-3 pr-8 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
                 onChange={(e) => handleChange(e.target.value)}
               />
               <div className="absolute inset-y-0 right-0 flex items-center px-2">
-                {showPassword ? (
+                {showNewPassword ? (
                   <Icons.EyeOff
                     className="rounded text-sm cursor-pointer h-5 w-5 dark:text-white"
-                    onClick={() => setShowPassword(false)}
+                    onClick={() => setShowNewPassword(false)}
                   />
                 ) : (
                   <Icons.Eye
                     className="rounded text-sm cursor-pointer h-5 w-5 dark:text-white"
-                    onClick={() => setShowPassword(true)}
+                    onClick={() => setShowNewPassword(true)}
                   />
                 )}
               </div>
@@ -77,29 +115,29 @@ const NewPasswordForm: FC<Props> = ({ token }) => {
           </div>
           <div>
             <label
-              htmlFor="passwordConfirm"
+              htmlFor="newPasswordConfirm"
               className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
             >
               Password confirmation
             </label>
             <div className="mt-1 relative">
               <Input
-                id="passwordConfirm"
-                name="passwordConfirm"
-                type={showPasswordConfimation ? "text" : "password"}
+                id="newPasswordConfirm"
+                name="newPasswordConfirm"
+                type={showNewPasswordConfimation ? "text" : "password"}
                 required
                 className="ease-in transition-all block w-full rounded-md border-0 pl-3 pr-8 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
               />
               <div className="absolute inset-y-0 right-0 flex items-center px-2">
-                {showPasswordConfimation ? (
+                {showNewPasswordConfimation ? (
                   <Icons.EyeOff
                     className="rounded text-sm cursor-pointer h-5 w-5 dark:text-white"
-                    onClick={() => setShowPasswordConfimation(false)}
+                    onClick={() => setShowNewPasswordConfimation(false)}
                   />
                 ) : (
                   <Icons.Eye
                     className="rounded text-sm cursor-pointer h-5 w-5 dark:text-white"
-                    onClick={() => setShowPasswordConfimation(true)}
+                    onClick={() => setShowNewPasswordConfimation(true)}
                   />
                 )}
               </div>
@@ -130,4 +168,4 @@ const NewPasswordForm: FC<Props> = ({ token }) => {
   );
 };
 
-export default NewPasswordForm;
+export default ChangePasswordForm;

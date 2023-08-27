@@ -15,6 +15,13 @@ type SetError = Dispatch<SetStateAction<string>>;
 
 type SetEmail = Dispatch<SetStateAction<string>>;
 
+type User = {
+  name: string;
+  email: string;
+  image: string;
+  role: string;
+};
+
 // handles the login with google
 export const loginWithGoogle = async (setIsLoading: SetIsLoading) => {
   setIsLoading({ provider: "google", isLoading: true });
@@ -71,7 +78,7 @@ export const loginWithCredentials = async (e: FormEvent, setIsLoading: SetIsLoad
       }
     } else {
       setError("");
-      window.location.href = "/dashboard";
+      window.location.href = "/";
     }
   } catch (error) {
     shortToast("Error", "There was an error logging in.", "error");
@@ -270,6 +277,62 @@ export const resetPassword = async (e: FormEvent, setIsLoading: SetIsLoading2, s
   } catch (error) {
     setError("");
     shortToast("Error", "There was an error with reseting the password.", "error");
+  }
+  setIsLoading(false);
+}
+
+export const changePassword = async (e: FormEvent, setIsLoading: SetIsLoading2, setError: SetError, user: User) => {
+  e.preventDefault();
+  setIsLoading(true);
+  try {
+    const target = e.target as typeof e.target & {
+      oldPassword: { value: string };
+      newPassword: { value: string };
+      newPasswordConfirm: { value: string };
+    };
+
+    const oldPassword = target.oldPassword.value;
+    const newPassword = target.newPassword.value;
+    const newPasswordConfirm = target.newPasswordConfirm.value;
+
+    if (newPassword !== newPasswordConfirm) {
+      setError("Passwords do not match");
+      setIsLoading(false);
+      return;
+    }
+
+    const res = await fetch("/api/auth/change-password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        oldPassword,
+        newPassword,
+        email: user.email,
+      }),
+    });
+
+
+    if (!res.ok) {
+      res.text().then((text) => {
+        const error: any = JSON.parse(text);
+        if (error.error) {
+          setError(error.error[0].message);
+        } else if (error.message) {
+          setError(error.message);
+        } else {
+          setError(error.message);
+        }
+      });
+    }
+
+    setError("");
+    shortToast("Success", "You have successfully change your password.", "success");
+
+  } catch (error) {
+    setError("");
+    shortToast("Error", "There was an error with changing the password.", "error");
   }
   setIsLoading(false);
 }

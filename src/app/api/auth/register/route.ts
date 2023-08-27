@@ -3,7 +3,7 @@ import { db } from '@/lib/db/prisma';
 import { NextResponse } from 'next/server';
 import { nanoid } from 'nanoid';
 import { sendConfirmMail } from '@/helpers/send-mail';
-import bcrypt from 'bcrypt';
+import { hash } from 'bcrypt';
 
 const registerUserSchema = z.object({
   username: z.string().regex(/^[a-zA-Z0-9]{3,15}$/g, 'Invalid username'),
@@ -25,7 +25,7 @@ export async function POST(
 
     if (user !== null) return NextResponse.json({ message: 'User already exists', success: false }, { status: 409 })
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await hash(password, 10);
 
     // Create user
     const userDb = await db.user.create({

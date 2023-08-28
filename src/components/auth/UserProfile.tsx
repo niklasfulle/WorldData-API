@@ -75,6 +75,7 @@ const UserProfile: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
                   alt=""
                   width={100}
                   height={100}
+                  priority={true}
                   className="h-10 w-10 rounded-full drop-shadow-sm hover:drop-shadow-xl hover:cursor-pointer"
                 />
               ) : (
@@ -99,6 +100,7 @@ const UserProfile: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
                 alt=""
                 width={100}
                 height={100}
+                priority={false}
                 className="h-32 w-32 rounded-full drop-shadow-sm mb-3 mt-1"
               />
             ) : (

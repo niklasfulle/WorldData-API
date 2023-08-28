@@ -1,11 +1,13 @@
 import Icons from "@/components/ui/Icons";
 import { Collapse, ListItemButton, ListItemText, List } from "@mui/material";
 import Link from "next/link";
-import React, { Dispatch, FC, SetStateAction, useState } from "react";
+import React, { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 interface ItemCollapseProps {
   mainTile: string;
   icon?: any;
+  page: string;
   collapseTitle: {
     title: string;
     link: string;
@@ -13,17 +15,30 @@ interface ItemCollapseProps {
   }[];
 }
 
-const ItemCollapse: FC<ItemCollapseProps> = ({ mainTile, icon, collapseTitle }) => {
+const ItemCollapse: FC<ItemCollapseProps> = ({ mainTile, icon, page, collapseTitle }) => {
   const [open, setOpen] = useState<boolean>(false);
+  const [active, setActive] = useState<string>("");
+  const searchParams = useSearchParams();
 
   const handleClick = (setOpen: Dispatch<SetStateAction<boolean>>, open: boolean) => {
     setOpen(!open);
   };
+
+  useEffect(() => {
+    if (mainTile.toLowerCase() === page) {
+      const action = searchParams?.get("action");
+      if (action) {
+        setActive(action);
+      }
+
+      setOpen(true);
+    }
+  }, [mainTile, page, searchParams]);
   return (
     <>
       <ListItemButton
         onClick={() => handleClick(setOpen, open)}
-        className="dark:hover:bg-slate-700 hover:bg-slate-200 rounded-md"
+        className="dark:hover:bg-slate-700 hover:bg-slate-200 rounded-md "
       >
         {icon}
         <ListItemText primary={mainTile} className="ml-3" />
@@ -38,13 +53,23 @@ const ItemCollapse: FC<ItemCollapseProps> = ({ mainTile, icon, collapseTitle }) 
         {collapseTitle.map((item, index) => (
           <List component="div" disablePadding key={index}>
             <Link href={item.link}>
-              <ListItemButton
-                sx={{ pl: 4 }}
-                className="dark:hover:bg-slate-700 hover:bg-slate-200 rounded-md"
-              >
-                {item.icon}
-                <ListItemText primary={item.title} className="ml-3" />
-              </ListItemButton>
+              {active === item.title.toLowerCase() ? (
+                <ListItemButton
+                  sx={{ pl: 4 }}
+                  className="dark:hover:bg-slate-700 dark:bg-slate-700 hover:bg-slate-200 rounded-md h-11 my-1"
+                >
+                  {item.icon}
+                  <ListItemText primary={item.title} className="ml-3" />
+                </ListItemButton>
+              ) : (
+                <ListItemButton
+                  sx={{ pl: 4 }}
+                  className="dark:hover:bg-slate-700 hover:bg-slate-200 rounded-md h-11 my-1"
+                >
+                  {item.icon}
+                  <ListItemText primary={item.title} className="ml-3" />
+                </ListItemButton>
+              )}
             </Link>
           </List>
         ))}

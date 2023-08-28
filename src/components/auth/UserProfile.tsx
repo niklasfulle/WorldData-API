@@ -113,35 +113,36 @@ const UserProfile: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
             )}
           </div>
           <Divider className="dark:bg-white bg-black" />
-          {user.provider === "credentials" ? (
-            <Link href="/change-password" className="w-full">
-              <MenuItem className="bg-slate-100 hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700">
-                <Icons.KeyRound className="mr-2 w-5 h-5" />
-                Change password
-              </MenuItem>
-            </Link>
-          ) : null}
-          {user.role === "admin" ? (
-            <Link href="/admin" className="w-full">
-              <MenuItem className="bg-slate-100 hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700">
-                <Icons.Lock className="mr-2 w-5 h-5" />
-                Admin Panel
-              </MenuItem>
-            </Link>
-          ) : null}
-          <MenuItem
-            onClick={signUserOut}
-            disabled={isLoading}
-            className="bg-slate-100 hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700"
-          >
-            {isLoading ? (
-              <Icons.Loader2 className="mr-2 w-5 h-5 animate-spin" />
-            ) : (
-              <Icons.LogOut className="mr-2 w-5 h-5" />
-            )}
-            Logout
-          </MenuItem>
-          <div className="h-4 w-full bg-slate-100 dark:bg-slate-800 -mb-4"></div>
+          <div className="dark:bg-slate-800 bg-slate-100 py-2 -mb-2">
+            {user.provider === "credentials" ? (
+              <Link href="/change-password" className="w-full">
+                <MenuItem className=" hover:bg-slate-50  dark:hover:bg-slate-700 -ml-1">
+                  <Icons.KeyRound className="mr-3 w-5 h-5" />
+                  Change password
+                </MenuItem>
+              </Link>
+            ) : null}
+            {user.role === "admin" ? (
+              <Link href="/admin" className="w-full">
+                <MenuItem className=" hover:bg-slate-50  dark:hover:bg-slate-700 -ml-1">
+                  <Icons.Lock className="mr-3 w-5 h-5" />
+                  Admin Panel
+                </MenuItem>
+              </Link>
+            ) : null}
+            <MenuItem
+              onClick={signUserOut}
+              disabled={isLoading}
+              className=" hover:bg-slate-50  dark:hover:bg-slate-700 -ml-1"
+            >
+              {isLoading ? (
+                <Icons.Loader2 className="mr-3 w-5 h-5 animate-spin" />
+              ) : (
+                <Icons.LogOut className="mr-3 w-5 h-5" />
+              )}
+              Logout
+            </MenuItem>
+          </div>
         </Menu>
       </ThemeProvider>
     </>

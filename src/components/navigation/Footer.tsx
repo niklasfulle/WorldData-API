@@ -13,7 +13,7 @@ const Footer = async () => {
   });
 
   return (
-    <div className="backdrop-blur-sm bg-white/75 dark:bg-slate-800/75 dark:text-white border-t border-slate-300 dark:border-slate-700 shadow-sm bottom-0 left-0 right-0">
+    <div className="relativ backdrop-blur-sm bg-white/75 dark:bg-slate-800/75 dark:text-white border-t border-slate-300 dark:border-slate-700 shadow-sm bottom-0 left-0 right-0">
       <div className="flex flex-col py-4 md:px-20 px-8">
         <div className="grid grid-flow-col gap-4 lg:grid-rows-1 grid-rows-2 w-full text-center mb-2">
           <div className="m-1 flex justify-start flex-col dark:text-white">

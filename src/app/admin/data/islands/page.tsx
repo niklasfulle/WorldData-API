@@ -5,7 +5,7 @@ import Sidebar from "@/components/navigation/SideBar/SideBar";
 const page = async () => {
   return (
     <div className="max-w-full mx-auto flex">
-      <Sidebar page="admin" />
+      <Sidebar page="islands"/>
       <div className="container  flex flex-col items-center gap-6 min-h-screen h-auto rounded-md"></div>
       <CookieConsent />
     </div>

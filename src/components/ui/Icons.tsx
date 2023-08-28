@@ -38,7 +38,8 @@ import {
   Palmtree,
   FileText,
   FilePlus,
-  FileEdit
+  FileEdit,
+  BarChart3,
 } from "lucide-react";
 
 export const Icons = {
@@ -82,6 +83,7 @@ export const Icons = {
   FileText,
   FilePlus,
   FileEdit,
+  BarChart3,
 };
 
 export default Icons;

@@ -1,5 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
+import { Sidebar } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Wordldata API - Admin Panel",
@@ -7,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <section className="pt-20">{children}</section>;
+  return <section className="p-4">{children}</section>;
 }

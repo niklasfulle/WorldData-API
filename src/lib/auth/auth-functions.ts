@@ -216,6 +216,7 @@ export const sendForgotPasswordEmail = async (e: FormEvent, setIsLoading: SetIsL
           }
           setError("");
         } else {
+          setError(error.message);
         }
       });
     } else {

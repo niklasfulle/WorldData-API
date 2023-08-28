@@ -1,6 +1,8 @@
 import {
   ChevronLeft,
   ChevronRight,
+  ChevronUp,
+  ChevronDown,
   Moon,
   Sun,
   Monitor,
@@ -32,11 +34,18 @@ import {
   LogOut,
   Lock,
   KeyRound,
+  Code,
+  Palmtree,
+  FileText,
+  FilePlus,
+  FileEdit
 } from "lucide-react";
 
 export const Icons = {
   ChevronLeft,
   ChevronRight,
+  ChevronUp,
+  ChevronDown,
   Sun,
   Moon,
   Monitor,
@@ -67,7 +76,12 @@ export const Icons = {
   User2,
   LogOut,
   Lock,
-  KeyRound
+  KeyRound,
+  Code,
+  Palmtree,
+  FileText,
+  FilePlus,
+  FileEdit,
 };
 
 export default Icons;

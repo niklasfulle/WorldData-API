@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-undef*/
 import type { Session, User } from 'next-auth'
 import type { JWT } from 'next-auth/jwt'
 

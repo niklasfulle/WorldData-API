@@ -4,7 +4,7 @@ import { Button } from "../ui/Button";
 import Icons from "../ui/Icons";
 import { Input } from "../ui/Input";
 import PasswordStrength from "./PasswordStrength";
-import { changePassword, resetPassword } from "@/lib/auth/auth-functions";
+import { changePassword } from "@/lib/auth/auth-functions";
 
 type User = {
   name: string;

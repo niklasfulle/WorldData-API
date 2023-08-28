@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ThemeToggle } from "@/navigation/ThemeToggle";
 import { buttonVariants } from "@/ui/Button";
 import SignInButton from "@/auth/SignInButton";
-import SignOutButton from "@/auth/SignOutButton";
 import MobileMenu from "@/navigation/MobileMenu";
 import { getSession } from "next-auth/react";
 import { headers } from "next/headers";
@@ -17,7 +16,7 @@ const Navbar = async () => {
   });
 
   return (
-    <div className="fixed backdrop-blur-sm bg-white/75 dark:bg-slate-900/75 z-50 top-0 left-0 right-0 h-20 border-b border-slate-300 dark:border-slate-700 shadow-sm flex items-center justify-between">
+    <div className="backdrop-blur-sm bg-white/75 dark:bg-slate-800/75 z-50 top-0 left-0 right-0 h-20 border-b border-slate-300 dark:border-slate-700 shadow-sm flex items-center justify-between">
       <div className="container max-w-7xl mx-auto w-full flex justify-between items-center">
         <div className="flex flex-row justify-center  items-center">
           <Link href="/" aria-label="Link to the home page">

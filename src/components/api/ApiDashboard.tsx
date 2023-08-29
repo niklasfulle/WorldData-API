@@ -9,6 +9,7 @@ import Paragraph from "@/ui/Paragraph";
 import Table from "@/ui/Table";
 import ApiHistoryOptions from "@/api/ApiHistoryOptions";
 import { User } from "@prisma/client";
+import ApiHistoryTable from "./ApiHistoryTable";
 
 interface ApiDashboardProps {
   user: User;
@@ -52,7 +53,7 @@ const ApiDashboard: FC<ApiDashboardProps> = async ({ user }) => {
         <ApiHistoryOptions apiKeyKey={activeApiKey.key} />
       </div>
       <div>
-        <Table userRequests={serializableRequests} />
+        <ApiHistoryTable userRequests={serializableRequests} />
       </div>
     </div>
   );

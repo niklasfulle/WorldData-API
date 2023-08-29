@@ -1,12 +1,25 @@
+"use client";
 import React from "react";
 import CookieConsent from "@/components/banner/CookieConsent";
-import Sidebar from "@/components/navigation/SideBar/SideBar";
+import Sidebar from "@/navigation/SideBar/SideBar";
+import { useSearchParams } from "next/navigation";
+import APIStatistics from "@/admin/statistic/APIStatistics";
+import DataStatistics from "@/admin/statistic/DataStatistics";
+import UserStatistics from "@/admin/statistic/UserStatistics";
 
-const page = async () => {
+const page = () => {
+  const searchParams = useSearchParams();
+
+  const action = searchParams?.get("data");
+
   return (
     <div className="max-w-full mx-auto flex">
       <Sidebar page="statistic" />
-      <div className="container  flex flex-col items-center gap-6 min-h-screen h-auto rounded-md"></div>
+      <div className="container p-0 gap-6 min-h-screen h-auto dark:text-white">
+        {action === "api" && <APIStatistics />}
+        {action === "user" && <UserStatistics />}
+        {action === "data" && <DataStatistics />}
+      </div>
       <CookieConsent />
     </div>
   );

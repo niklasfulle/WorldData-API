@@ -26,7 +26,7 @@ const Sidebar: FC<SidebarProps> = ({ page }) => {
   }, [searchParams]);
 
   return (
-    <div className="lg:w-64 w-14 dark:bg-slate-800 bg-white/75 rounded-md px-1 xl:px-4 mr-2 md:block hidden">
+    <div className="lg:w-64 w-14 dark:bg-slate-800 bg-white/75 rounded-md px-1 xl:px-3 mr-2 md:block hidden">
       <div className="my-1 lg:block hidden">
         <h1 className="dark:text-white py-1 flex flex-row justify-center w-full dark:hover:bg-slate-700 hover:bg-slate-200 rounded-md ease-in transition-all duration-150">
           <Link href="/admin" className="flex flex-row items-center h-10">
@@ -43,7 +43,7 @@ const Sidebar: FC<SidebarProps> = ({ page }) => {
           collapseTitle={AdminLinkList}
         />
       </div>
-      <Divider className="bg-white mx-1 lx:mx-0" />
+      <Divider className="bg-white" />
       <List
         sx={{ width: "100%", maxWidth: 360 }}
         component="nav"
@@ -59,7 +59,7 @@ const Sidebar: FC<SidebarProps> = ({ page }) => {
           </Link>
         </h1>
       </div>
-      <Divider className="bg-white mx-1 lx:mx-0" />
+      <Divider className="bg-white" />
       <div className="lg:hidden text-white my-2 flex flex-col items-center gap-1 justify-center">
         <DropDownItems page={page} />
       </div>

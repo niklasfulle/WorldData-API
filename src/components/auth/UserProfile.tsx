@@ -43,7 +43,11 @@ const UserProfile: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
   };
 
   useEffect(() => {
-    setPrefersDarkMode(localStorage.getItem("theme") === "dark" ? true : false);
+    if (localStorage.getItem("theme") === "system") {
+      setPrefersDarkMode(true);
+    } else {
+      setPrefersDarkMode(localStorage.getItem("theme") === "dark" ? true : false);
+    }
   }, [open]);
 
   const theme = useMemo(

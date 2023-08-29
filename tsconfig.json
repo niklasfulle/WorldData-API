@@ -30,6 +30,7 @@
       "@/docs/*": ["./src/components/docs/*"],
       "@/api/*": ["./src/components/api/*"],
       "@/three/*": ["./src/components/threejs/*"],
+      "@/admin/*": ["./src/components/admin-panel/*"],
       "@/limit/*": ["./src/app/api/config/*"]
     }
   },

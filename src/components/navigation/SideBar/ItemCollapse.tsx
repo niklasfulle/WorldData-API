@@ -38,10 +38,10 @@ const ItemCollapse: FC<ItemCollapseProps> = ({ mainTile, icon, page, collapseTit
     <>
       <ListItemButton
         onClick={() => handleClick(setOpen, open)}
-        className="dark:hover:bg-slate-700 hover:bg-slate-200 rounded-md px-2 xl:px-3"
+        className="dark:hover:bg-slate-700 hover:bg-slate-200 rounded-md"
       >
         {icon}
-        <ListItemText primary={mainTile} className="xl:ml-3 ml-2" />
+        <ListItemText primary={mainTile} className="xl:ml-2 ml-2" />
 
         {open ? (
           <Icons.ChevronUp className="active:rotate-180 transition-all ease-in duration-100" />
@@ -56,7 +56,7 @@ const ItemCollapse: FC<ItemCollapseProps> = ({ mainTile, icon, page, collapseTit
               {active === item.title.toLowerCase() ? (
                 <ListItemButton
                   sx={{ pl: 4 }}
-                  className="dark:hover:bg-slate-700 dark:bg-slate-700 hover:bg-slate-200 rounded-md h-11 my-1 px-2 xl:px-3"
+                  className="dark:hover:bg-slate-700 dark:bg-slate-700 hover:bg-slate-200 rounded-md h-11 my-1 px-2 xl:px-3 xl:pl-8"
                 >
                   {item.icon}
                   <ListItemText primary={item.title} />

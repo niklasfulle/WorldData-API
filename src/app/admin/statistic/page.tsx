@@ -3,9 +3,9 @@ import React from "react";
 import CookieConsent from "@/components/banner/CookieConsent";
 import Sidebar from "@/navigation/SideBar/SideBar";
 import { useSearchParams } from "next/navigation";
-import APIStatistics from "@/admin/statistic/APIStatistics";
-import DataStatistics from "@/admin/statistic/DataStatistics";
-import UserStatistics from "@/admin/statistic/UserStatistics";
+import APIStatistics from "./APIStatistics";
+import DataStatistics from "./DataStatistics";
+import UserStatistics from "./UserStatistics";
 
 const page = () => {
   const searchParams = useSearchParams();

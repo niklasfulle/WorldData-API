@@ -1,12 +1,25 @@
+"use client";
 import React from "react";
 import CookieConsent from "@/components/banner/CookieConsent";
 import Sidebar from "@/components/navigation/SideBar/SideBar";
+import { useSearchParams } from "next/navigation";
+import ViewSection from "./ViewSection";
+import CreateSection from "./CreateSection";
+import UpdateSection from "./UpdateSection";
 
 const page = async () => {
+  const searchParams = useSearchParams();
+
+  const action = searchParams?.get("action");
+
   return (
     <div className="max-w-full mx-auto flex">
       <Sidebar page="mountains" />
-      <div className="container flex flex-col items-center gap-6 min-h-screen h-auto rounded-md dark:text-white border-2 md:border-orange-500/70 lg:border-red-500/70 xl:border-green-500/70 border-blue-500/70"></div>
+      <div className="container p-0 gap-6 min-h-screen h-auto dark:text-white">
+        {action === "view" && <ViewSection />}
+        {action === "create" && <CreateSection />}
+        {action === "update" && <UpdateSection />}
+      </div>
       <CookieConsent />
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
+import React, { FC, useState } from "react";
 import LargeHeading from "@/components/ui/LargeHeading";
 import LineChart from "@/components/ui/LineChart";
-import React, { FC, useState } from "react";
 
 export const UserData = [
   {
@@ -66,14 +66,14 @@ export const UserData = [
   },
 ];
 
-interface APIStatisticsProps {}
+interface DataStatisticsProps {}
 
-const APIStatistics: FC<APIStatisticsProps> = ({}) => {
-  const [userData, setUserData] = useState({
+const DataStatistics: FC<DataStatisticsProps> = ({}) => {
+  const [userData] = useState({
     labels: UserData.map((data) => data.year),
     datasets: [
       {
-        label: "API Calls",
+        label: "Data added",
         data: UserData.map((data) => data.userGain),
         borderWidth: 2,
       },
@@ -85,7 +85,7 @@ const APIStatistics: FC<APIStatisticsProps> = ({}) => {
       <div className="dark:bg-slate-900 w-full h-full rounded-sm flex flex-col xl:flex-row gap-4">
         <div className="w-full xl:w-9/12 dark:bg-slate-800 bg-white/75 rounded-md h-fit relativ p-2 ">
           <LargeHeading className="flex flex-row justify-center w-full mt-4">
-            API Statistic
+            Data Statistic
           </LargeHeading>
           <div className="h-auto w-full mb-6 dark:border-slate-700 border-2 mt-12 rounded-md">
             <LineChart chartData={userData} />
@@ -93,45 +93,7 @@ const APIStatistics: FC<APIStatisticsProps> = ({}) => {
         </div>
         <div className="w-full xl:w-3/12 dark:bg-slate-800 bg-white/75 h-full xl:h-fit rounded-md relativ flex flex-col gap-2">
           <h1 className="flex flex-row justify-center w-full mt-6 text-2xl font-medium">
-            Calls by Month
-          </h1>
-          <ul className="flex flex-col items-start px-24 xl:px-10 my-6 gap-4">
-            <li className="flex flex-row justify-between w-full">
-              January:<span>7</span>
-            </li>
-            <li className="flex flex-row justify-between w-full">
-              February:<span>7</span>
-            </li>
-            <li className="flex flex-row justify-between w-full">
-              March:<span>7</span>
-            </li>
-            <li className="flex flex-row justify-between w-full">
-              April:<span>7</span>
-            </li>
-            <li className="flex flex-row justify-between w-full">
-              May:<span>7</span>
-            </li>
-            <li className="flex flex-row justify-between w-full">
-              June:<span>7</span>
-            </li>
-            <li className="flex flex-row justify-between w-full">
-              July:<span>7</span>
-            </li>
-            <li className="flex flex-row justify-between w-full">
-              August:<span>7</span>
-            </li>
-            <li className="flex flex-row justify-between w-full">
-              October:<span>7</span>
-            </li>
-            <li className="flex flex-row justify-between w-full">
-              November:<span>7</span>
-            </li>
-            <li className="flex flex-row justify-between w-full">
-              December:<span>7</span>
-            </li>
-          </ul>
-          <h1 className="flex flex-row justify-center w-full mt-4 text-2xl font-medium mb-4">
-            Calls by Month
+            Data Count
           </h1>
           <ul className="flex flex-col items-start px-10 my-6 gap-4">
             <li className="flex flex-row justify-between w-full">
@@ -174,4 +136,4 @@ const APIStatistics: FC<APIStatisticsProps> = ({}) => {
   );
 };
 
-export default APIStatistics;
+export default DataStatistics;

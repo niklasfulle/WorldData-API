@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { Button } from "../ui/Button";
-import Icons from "../ui/Icons";
+import { Button } from "@/ui/Button";
+import Icons from "@/ui/Icons";
 import Link from "next/link";
-import { Input } from "../ui/Input";
+import { Input } from "@/ui/Input";
 import PasswordStrength from "./PasswordStrength";
 import {
   loginWithGithub,

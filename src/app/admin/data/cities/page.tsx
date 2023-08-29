@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
 import CookieConsent from "@/components/banner/CookieConsent";
-import Sidebar from "@/components/navigation/SideBar/SideBar";
+import Sidebar from "@/navigation/SideBar/SideBar";
 import { useSearchParams } from "next/navigation";
 import ViewSection from "./ViewSection";
 import CreateSection from "./CreateSection";
 import UpdateSection from "./UpdateSection";
 
-const page = async () => {
+const CitiesPage = () => {
   const searchParams = useSearchParams();
 
   const action = searchParams?.get("action");
@@ -25,4 +25,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default CitiesPage;

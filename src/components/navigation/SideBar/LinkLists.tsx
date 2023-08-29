@@ -1,4 +1,4 @@
-import Icons from "@/components/ui/Icons";
+import Icons from "@/ui/Icons";
 import React from "react";
 
 export const ContinentsLinkList = [

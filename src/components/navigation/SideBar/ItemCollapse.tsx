@@ -1,4 +1,4 @@
-import Icons from "@/components/ui/Icons";
+import Icons from "@/ui/Icons";
 import { Collapse, ListItemButton, ListItemText, List } from "@mui/material";
 import Link from "next/link";
 import React, { Dispatch, FC, SetStateAction, useEffect, useState } from "react";

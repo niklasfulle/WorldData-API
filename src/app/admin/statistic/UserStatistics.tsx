@@ -1,7 +1,7 @@
 "use client";
 import React, { FC, useState } from "react";
-import LargeHeading from "@/components/ui/LargeHeading";
-import LineChart from "@/components/ui/LineChart";
+import LargeHeading from "@/ui/LargeHeading";
+import LineChart from "@/ui/LineChart";
 
 export const UserData = [
   {
@@ -68,7 +68,7 @@ export const UserData = [
 
 interface UserStatisticsProps {}
 
-const UserStatistics: FC<UserStatisticsProps> = ({}) => {
+const UserStatistics: FC<UserStatisticsProps> = () => {
   const [userData] = useState({
     labels: UserData.map((data) => data.year),
     datasets: [

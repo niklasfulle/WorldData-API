@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import Icons from "@/components/ui/Icons";
+import Icons from "@/ui/Icons";
 import { ListItemButton, ListItemText } from "@mui/material";
 import Link from "next/link";
 

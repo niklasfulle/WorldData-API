@@ -6,7 +6,7 @@ import SignInButton from "@/auth/SignInButton";
 import MobileMenu from "@/navigation/MobileMenu";
 import { getSession } from "next-auth/react";
 import { headers } from "next/headers";
-import UserProfile from "../auth/UserProfile";
+import UserProfile from "@/auth/UserProfile";
 
 const Navbar = async () => {
   const session = await getSession({

@@ -1,8 +1,8 @@
 "use client";
 import React, { FC, useState } from "react";
-import { Button } from "../ui/Button";
-import Icons from "../ui/Icons";
-import { Input } from "../ui/Input";
+import { Button } from "@/ui/Button";
+import Icons from "@/ui/Icons";
+import { Input } from "@/ui/Input";
 import PasswordStrength from "./PasswordStrength";
 import { changePassword } from "@/lib/auth/auth-functions";
 

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import ItemCollapse from "./ItemCollapse";
-import Icons from "@/components/ui/Icons";
+import Icons from "@/ui/Icons";
 import SouthAmericaIcon from "@mui/icons-material/SouthAmerica";
 import SailingIcon from "@mui/icons-material/Sailing";
 import WavesIcon from "@mui/icons-material/Waves";

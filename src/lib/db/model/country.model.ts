@@ -73,10 +73,6 @@ export function countryModel() {
       type: String,
       required: true,
     },
-    currency_name: {
-      type: String,
-      required: true,
-    },
     currency_symbol: {
       type: String,
       required: true,

@@ -1,8 +1,7 @@
 "use client";
 import React, { FC, useState } from "react";
-import LargeHeading from "@/components/ui/LargeHeading";
-import LineChart from "@/components/ui/LineChart";
-import { set } from "lodash";
+import LargeHeading from "@/ui/LargeHeading";
+import LineChart from "@/ui/LineChart";
 
 export const UserData = [
   {
@@ -69,7 +68,7 @@ export const UserData = [
 
 interface APIStatisticsProps {}
 
-const APIStatistics: FC<APIStatisticsProps> = ({}) => {
+const APIStatistics: FC<APIStatisticsProps> = () => {
   const [userData] = useState({
     labels: UserData.map((data) => data.year),
     datasets: [

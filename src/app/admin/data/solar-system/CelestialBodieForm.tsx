@@ -1,14 +1,13 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import FormTextarea from "@/ui/FormTextarea";
 
-interface MountainsFormProps {
+interface CelestialBodieFormProps {
   buttonTitle: string;
-  mountain?: any;
+  celestialBodie?: any;
 }
 
-const MountainsForm: FC<MountainsFormProps> = ({ buttonTitle, mountain }) => {
+const CelestialBodieForm: FC<CelestialBodieFormProps> = ({ buttonTitle, celestialBodie }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -19,22 +18,32 @@ const MountainsForm: FC<MountainsFormProps> = ({ buttonTitle, mountain }) => {
       </p>
       <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-[18rem]">
         <form className="space-y-6" onSubmit={(e) => console.log(e, setIsLoading, setError)}>
-          <FormInput id="name" title="Name" value={mountain?.name || ""} />
-          <FormInput id="height_m" title="Height m" value={mountain?.height_m || ""} />
-          <FormInput id="latitude" title="Latitude" value={mountain?.latitude || ""} />
-          <FormInput id="longitude" title="Longitude" value={mountain?.longitude || ""} />
-          <FormInput id="continent" title="Continent" value={mountain?.continent || ""} />
-          <FormTextarea
-            id="countries"
-            title="Countries"
-            value={mountain?.countries || ""}
-            infoText="Must be a list with countries separated by commas."
+          <FormInput id="name" title="Name" value={celestialBodie?.name || ""} />
+          <FormInput id="type" title="Type" value={celestialBodie?.type || ""} />
+          <FormInput id="mass" title="Mass" value={celestialBodie?.mass || ""} />
+          <FormInput
+            id="diameter_km"
+            title="Diameter Km"
+            value={celestialBodie?.diameter_km || ""}
           />
           <FormInput
-            id="first_climbed"
-            title="First Climbed"
-            value={mountain?.first_climbed || ""}
+            id="tilt_degrees"
+            title="Tilt Degrees"
+            value={celestialBodie?.tilt_degrees || ""}
           />
+          <FormInput
+            id="rotation_period_days"
+            title="Rotation Period Days"
+            value={celestialBodie?.rotation_period_days || ""}
+          />
+          <div>
+            <label
+              htmlFor="translations"
+              className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
+            >
+              Translations
+            </label>
+          </div>
           <div>
             <Button
               isLoading={isLoading}
@@ -51,4 +60,4 @@ const MountainsForm: FC<MountainsFormProps> = ({ buttonTitle, mountain }) => {
   );
 };
 
-export default MountainsForm;
+export default CelestialBodieForm;

@@ -7,7 +7,7 @@ import APIStatistics from "./APIStatistics";
 import DataStatistics from "./DataStatistics";
 import UserStatistics from "./UserStatistics";
 
-const page = () => {
+const StatisticPage = () => {
   const searchParams = useSearchParams();
 
   const action = searchParams?.get("data");
@@ -25,4 +25,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default StatisticPage;

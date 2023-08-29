@@ -53,9 +53,6 @@ export const countrySchema = {
     currency: string({
       required_error: "currency is required",
     }),
-    currency_name: string({
-      required_error: "currency_name is required",
-    }),
     currency_symbol: string({
       required_error: "currency_symbol is required",
     }),
@@ -221,7 +218,6 @@ export const countryV4Schema = object({
   population: number(),
   density_km2: number(),
   currency: string(),
-  currency_name: string(),
   currency_symbol: string(),
   timezones: object({
     zone_name: string(),

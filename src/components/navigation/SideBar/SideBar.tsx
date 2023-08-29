@@ -2,7 +2,7 @@
 import React, { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { Divider, List } from "@mui/material";
-import Icons from "@/components/ui/Icons";
+import Icons from "@/ui/Icons";
 import { AdminLinkList } from "./LinkLists";
 import { useSearchParams } from "next/navigation";
 import { DropDownToggle } from "./DropDownToggle";

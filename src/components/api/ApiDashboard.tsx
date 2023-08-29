@@ -6,7 +6,6 @@ import ApiKeyOptions from "@/api/ApiKeyOptions";
 import { Input } from "@/ui/Input";
 import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
-import Table from "@/ui/Table";
 import ApiHistoryOptions from "@/api/ApiHistoryOptions";
 import { User } from "@prisma/client";
 import ApiHistoryTable from "./ApiHistoryTable";

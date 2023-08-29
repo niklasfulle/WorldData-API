@@ -7,7 +7,7 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Image from "next/image";
-import Icons from "../ui/Icons";
+import Icons from "@/ui/Icons";
 import { signOut } from "next-auth/react";
 import { shortToast } from "@/helpers/shorter-function";
 import { createTheme, ThemeProvider } from "@mui/material/styles";

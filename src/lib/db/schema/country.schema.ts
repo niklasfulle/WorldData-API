@@ -1,4 +1,4 @@
-import { number, object, string, TypeOf, boolean } from "zod";
+import { number, object, string, TypeOf } from "zod";
 
 export const countrySchema = {
   body: object({

@@ -55,7 +55,7 @@ export function countryModel() {
     },
     independent: {
       type: Boolean,
-      required: true,
+      required: false,
     },
     area_km2: {
       type: Number,

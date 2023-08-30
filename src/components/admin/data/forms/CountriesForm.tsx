@@ -1,6 +1,8 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
+import FormTranslationsInput from "@/components/ui/FormTranslationsInput";
+import FormMultyTimezonesInput from "@/components/ui/FormMultyTimezonesInput";
 
 interface CountriesFormProps {
   buttonTitle: string;
@@ -35,8 +37,6 @@ const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
               <FormInput id="subregion" title="Subregion" value={country?.subregion || ""} />
               <FormInput id="latitude" title="Latitude" value={country?.latitude || ""} />
               <FormInput id="longitude" title="Longitude" value={country?.longitude || ""} />
-            </div>
-            <div className="w-[18rem]">
               <FormInput id="independent" title="Independent" value={country?.independent || ""} />
               <FormInput id="area_m2" title="Area m²" value={country?.area_m2 || ""} />
               <FormInput
@@ -51,23 +51,19 @@ const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
                 title="Currency Symbol"
                 value={country?.currency_symbol || ""}
               />
-              <div>
-                <label
-                  htmlFor="timezones"
-                  className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
-                >
-                  Timezones
-                </label>
-              </div>
+            </div>
+            <div className="w-[18rem]">
+              <FormMultyTimezonesInput
+                id="timezones"
+                title="Timezones"
+                timezones={country?.timezones || ""}
+              />
               <FormInput id="native_name" title="Native Name" value={country?.native_name || ""} />
-              <div>
-                <label
-                  htmlFor="translations"
-                  className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
-                >
-                  Translations
-                </label>
-              </div>
+              <FormTranslationsInput
+                id="translations"
+                title="Translations"
+                translations={country?.translations || ""}
+              />
               <FormInput id="emoji" title="Emoji" value={country?.emoji || ""} />
               <FormInput id="emojiU" title="EmojiU" value={country?.emojiU || ""} />
             </div>

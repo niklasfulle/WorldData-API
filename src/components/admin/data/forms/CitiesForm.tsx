@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
+import FormTimezoneInput from "@/components/ui/FormTimezoneInput";
 
 interface CitiesFormProps {
   buttonTitle: string;
@@ -28,14 +29,7 @@ const CitiesForm: FC<CitiesFormProps> = ({ buttonTitle, city }) => {
               <FormInput id="country" title="Country" value={city?.country || ""} />
             </div>
             <div className="w-[18rem]">
-              <div>
-                <label
-                  htmlFor="timezone"
-                  className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
-                >
-                  Timezone
-                </label>
-              </div>
+              <FormTimezoneInput id="timezone" title="Timezone" timezone={city?.timezone || ""} />
             </div>
           </div>
 

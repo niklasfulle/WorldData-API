@@ -18,10 +18,10 @@ const CurrenciesPage = () => {
       <div className="container p-0 gap-6 min-h-screen h-auto dark:text-white">
         {action === "view" && <ViewSection />}
         {action === "create" && (
-          <CreateSection title="Create City" form={<CurrenciesForm buttonTitle="Create" />} />
+          <CreateSection title="Create Currencies" form={<CurrenciesForm buttonTitle="Create" />} />
         )}
         {action === "update" && (
-          <UpdateSection title="Update City" form={<CurrenciesForm buttonTitle="Update" />} />
+          <UpdateSection title="Update Currencies" form={<CurrenciesForm buttonTitle="Update" />} />
         )}
       </div>
     </div>

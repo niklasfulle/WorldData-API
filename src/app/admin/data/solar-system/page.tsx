@@ -18,10 +18,16 @@ const CelestialBodiePage = () => {
       <div className="container p-0 gap-6 min-h-screen h-auto dark:text-white">
         {action === "view" && <ViewSection />}
         {action === "create" && (
-          <CreateSection title="Create City" form={<CelestialBodieForm buttonTitle="Create" />} />
+          <CreateSection
+            title="Create Celestial Bodie"
+            form={<CelestialBodieForm buttonTitle="Create" />}
+          />
         )}
         {action === "update" && (
-          <UpdateSection title="Update City" form={<CelestialBodieForm buttonTitle="Update" />} />
+          <UpdateSection
+            title="Update Celestial Bodie"
+            form={<CelestialBodieForm buttonTitle="Update" />}
+          />
         )}
       </div>
     </div>

@@ -18,10 +18,10 @@ const IslandsPage = () => {
       <div className="container p-0 gap-6 min-h-screen h-auto dark:text-white">
         {action === "view" && <ViewSection />}
         {action === "create" && (
-          <CreateSection title="Create City" form={<IslandsForm buttonTitle="Create" />} />
+          <CreateSection title="Create Islands" form={<IslandsForm buttonTitle="Create" />} />
         )}
         {action === "update" && (
-          <UpdateSection title="Update City" form={<IslandsForm buttonTitle="Update" />} />
+          <UpdateSection title="Update Islands" form={<IslandsForm buttonTitle="Update" />} />
         )}
       </div>
     </div>

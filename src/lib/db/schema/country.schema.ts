@@ -39,7 +39,7 @@ export const countrySchema = {
       required_error: "longitude is required",
     }),
     independent: string({
-      required_error: "independent is required",
+
     }),
     area_km2: number({
       required_error: "area_km2 is required",
@@ -141,7 +141,7 @@ export const countryV1Schema = object({
   subregion: string(),
   latitude: string(),
   longitude: string(),
-  independent: boolean()
+  //independent: boolean()
 });
 
 export const countryV2Schema = object({
@@ -157,7 +157,7 @@ export const countryV2Schema = object({
   subregion: string(),
   latitude: string(),
   longitude: string(),
-  independent: boolean(),
+  //independent: boolean(),
   area_km2: number(),
   population: number(),
   density_km2: number()
@@ -176,7 +176,7 @@ export const countryV3Schema = object({
   subregion: string(),
   latitude: string(),
   longitude: string(),
-  independent: boolean(),
+  //independent: boolean(),
   area_km2: number(),
   population: number(),
   density_km2: number(),
@@ -213,7 +213,7 @@ export const countryV4Schema = object({
   subregion: string(),
   latitude: string(),
   longitude: string(),
-  independent: boolean(),
+  //independent: boolean(),
   area_km2: number(),
   population: number(),
   density_km2: number(),

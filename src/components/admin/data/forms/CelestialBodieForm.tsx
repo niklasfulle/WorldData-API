@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
+import FormTranslationsInput from "@/components/ui/FormTranslationsInput";
 
 interface CelestialBodieFormProps {
   buttonTitle: string;
@@ -40,14 +41,11 @@ const CelestialBodieForm: FC<CelestialBodieFormProps> = ({ buttonTitle, celestia
                 title="Rotation Period Days"
                 value={celestialBodie?.rotation_period_days || ""}
               />
-              <div>
-                <label
-                  htmlFor="translations"
-                  className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
-                >
-                  Translations
-                </label>
-              </div>
+              <FormTranslationsInput
+                id="translations"
+                title="Translations"
+                translations={celestialBodie?.translations || ""}
+              />
             </div>
           </div>
           <div className="w-full flex flex-row justify-center pt-12 pb-8">

@@ -18,10 +18,10 @@ const OceansPage = () => {
       <div className="container p-0 gap-6 min-h-screen h-auto dark:text-white">
         {action === "view" && <ViewSection />}
         {action === "create" && (
-          <CreateSection title="Create City" form={<OceansForm buttonTitle="Create" />} />
+          <CreateSection title="Create Oceans" form={<OceansForm buttonTitle="Create" />} />
         )}
         {action === "update" && (
-          <UpdateSection title="Update City" form={<OceansForm buttonTitle="Update" />} />
+          <UpdateSection title="Update Oceans" form={<OceansForm buttonTitle="Update" />} />
         )}
       </div>
     </div>

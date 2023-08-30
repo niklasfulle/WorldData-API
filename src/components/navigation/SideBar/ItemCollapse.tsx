@@ -56,7 +56,7 @@ const ItemCollapse: FC<ItemCollapseProps> = ({ mainTile, icon, page, collapseTit
               {active === item.title.toLowerCase() ? (
                 <ListItemButton
                   sx={{ pl: 4 }}
-                  className="dark:hover:bg-slate-700 dark:bg-slate-700 hover:bg-slate-200 rounded-md h-11 my-1 px-2 xl:px-3 xl:pl-8"
+                  className="dark:hover:bg-slate-700 dark:bg-slate-700 hover:bg-slate-200 rounded-md h-11 my-1 px-2 lg:pl-8 pl-4"
                 >
                   {item.icon}
                   <ListItemText primary={item.title} />
@@ -64,7 +64,7 @@ const ItemCollapse: FC<ItemCollapseProps> = ({ mainTile, icon, page, collapseTit
               ) : (
                 <ListItemButton
                   sx={{ pl: 4 }}
-                  className="dark:hover:bg-slate-700 hover:bg-slate-200 rounded-md h-11 my-1 pl-6 pr-2 xl:pl-8"
+                  className="dark:hover:bg-slate-700 hover:bg-slate-200 rounded-md h-11 my-1 pr-2 lg:pl-8 pl-4"
                 >
                   {item.icon}
                   <ListItemText primary={item.title} />

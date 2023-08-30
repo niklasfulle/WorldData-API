@@ -9,14 +9,14 @@ interface FormInputProps {
 
 const FormInput: FC<FormInputProps> = ({ id, title, value }) => {
   return (
-    <div>
+    <div className="mb-2.5">
       <label
         htmlFor={id}
         className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
       >
         {title}
       </label>
-      <div className="mt-1">
+      <div className="mt-0.5">
         <Input
           id={id}
           name={id}

@@ -1,7 +1,7 @@
 "use client";
-import React, { useState }from "react";
+import React, { FC, useState } from "react";
 import { Icons } from "@/ui/Icons";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { Button } from "@/ui/Button";
 import {
@@ -14,8 +14,13 @@ import {
 } from "@/ui/DropdownMenu";
 import { shortToast } from "@/helpers/shorter-function";
 
-const MobileMenu = () => {
-  const { data: session } = useSession();
+interface UserProfileProps {
+  session: any;
+}
+
+const MobileMenu: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
+  const { user } = session;
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
 
@@ -81,11 +86,41 @@ const MobileMenu = () => {
               <span>Blogposts</span>
             </Link>
           </DropdownMenuItem>
-          {session ? (
+          {user.role === "admin" ? (
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="gap-1.5 hover:cursor-pointer">
+                <Link
+                  href="/admin"
+                  className="w-full flex items-center gap-1.5"
+                  aria-label="Link to the world-data page"
+                >
+                  <Icons.Lock className="mr-2 w-5 h-5" />
+                  <span>Admin Panel</span>
+                </Link>
+              </DropdownMenuItem>
+            </>
+          ) : null}
+          {user.provider === "credentials" ? (
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="gap-1.5 hover:cursor-pointer">
+                <Link
+                  href="/change-password"
+                  className="w-full flex items-center gap-1.5"
+                  aria-label="Link to the world-data page"
+                >
+                  <Icons.KeyRound className="mr-2 w-5 h-5" />
+                  <span>Change password</span>
+                </Link>
+              </DropdownMenuItem>
+            </>
+          ) : null}
+          {user ? (
             <>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={signUserOut} className="gap-1.5 hover:cursor-pointer">
-                <Icons.User className="mr-2 h-5 w-5" />
+                <Icons.LogOut className="mr-2 h-5 w-5" />
                 <span>{isLoading ? "Signing out" : "Sign out"}</span>
                 {isLoading ? <Icons.Loader2 className="animate-spin h-4 w-4" /> : null}
               </DropdownMenuItem>

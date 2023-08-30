@@ -9,7 +9,7 @@ const CreateSection: FC<CreateSectionProps> = () => {
     <div className="dark:bg-slate-900 w-full h-full rounded-sm flex flex-col xl:flex-row gap-4">
       <div className="w-full xl:w-9/12 dark:bg-slate-800 bg-white/75 rounded-md h-fit relativ p-2 ">
         <LargeHeading className="flex flex-row justify-center w-full mt-4" size={"sm"}>
-          Create City
+          Create Continent
         </LargeHeading>
         <ContinentsForm buttonTitle="Create" />
       </div>

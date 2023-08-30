@@ -44,7 +44,7 @@ const Navbar = async () => {
         </div>
         <div className="md:hidden gap-4 flex flex-row">
           <ThemeToggle id="themeToggleMobile" />
-          <MobileMenu />
+          <MobileMenu session={session} />
         </div>
         <div className="hidden md:flex gap-4 items-center">
           <ThemeToggle id="themeToggle" />

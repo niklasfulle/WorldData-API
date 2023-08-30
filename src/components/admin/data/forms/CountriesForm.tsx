@@ -3,6 +3,7 @@ import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
 import FormTranslationsInput from "@/components/ui/FormTranslationsInput";
 import FormMultyTimezonesInput from "@/components/ui/FormMultyTimezonesInput";
+import { countryBody } from "@/lib/db/schema/country.schema";
 
 interface CountriesFormProps {
   buttonTitle: string;
@@ -12,6 +13,8 @@ interface CountriesFormProps {
 const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const [timezones, setTimezones] = useState(country?.timezones || []);
 
   return (
     <div className="flex min-h-full flex-col justify-center px-2 md:px-6 lg:px-8 py-6 rounded-lg items-center">
@@ -51,14 +54,15 @@ const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
                 title="Currency Symbol"
                 value={country?.currency_symbol || ""}
               />
+              <FormInput id="native_name" title="Native Name" value={country?.native_name || ""} />
             </div>
             <div className="w-[18rem]">
               <FormMultyTimezonesInput
                 id="timezones"
                 title="Timezones"
-                timezones={country?.timezones || ""}
+                timezones={timezones}
+                setTimezones={setTimezones}
               />
-              <FormInput id="native_name" title="Native Name" value={country?.native_name || ""} />
               <FormTranslationsInput
                 id="translations"
                 title="Translations"

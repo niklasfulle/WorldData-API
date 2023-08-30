@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, use, useEffect, useState } from "react";
 import { Input } from "./Input";
 import { Button } from "./Button";
 import { useRouter } from "next/navigation";
@@ -7,18 +7,24 @@ interface FormMultyTimezonesInputProps {
   id: string;
   title: string;
   timezones: Timezone[];
+  setTimezones: any;
 }
 
 type Timezone = {
-  zoneName: string;
-  gmtOffset: string;
-  gmtOffsetName: string;
+  zone_name: string;
+  gmt_offset: string;
+  gmt_offset_name: string;
   abbreviation: string;
-  tzName: string;
+  tz_name: string;
 };
 
-const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({ title, timezones }) => {
+const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
+  title,
+  timezones,
+  setTimezones,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
 
   const addTimezone = () => {
@@ -30,35 +36,42 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({ title, time
     const abbreviation = document.getElementById("abbreviation_submit") as HTMLInputElement;
     const tz_name = document.getElementById("tz_name_submit") as HTMLInputElement;
 
-    const newTimezone = {
-      zoneName: zone_name.value,
-      gmtOffset: gmt_offset.value,
-      gmtOffsetName: gmt_offset_name.value,
-      abbreviation: abbreviation.value,
-      tzName: tz_name.value,
-    };
+    if (
+      zone_name.value == "" ||
+      gmt_offset.value == "" ||
+      gmt_offset_name.value == "" ||
+      abbreviation.value == "" ||
+      tz_name.value == ""
+    ) {
+      setError("Please fill all fields");
+      setIsLoading(false);
+      router.refresh();
+    } else {
+      const newTimezone = {
+        zone_name: zone_name.value,
+        gmt_offset: gmt_offset.value,
+        gmt_offset_name: gmt_offset_name.value,
+        abbreviation: abbreviation.value,
+        tz_name: tz_name.value,
+      };
 
-    timezones.push(newTimezone);
+      timezones.push(newTimezone);
 
-    zone_name.value = "";
-    gmt_offset.value = "";
-    gmt_offset_name.value = "";
-    abbreviation.value = "";
-    tz_name.value = "";
+      setTimezones(timezones);
 
-    setIsLoading(false);
-    router.refresh();
-    console.log(timezones);
+      zone_name.value = "";
+      gmt_offset.value = "";
+      gmt_offset_name.value = "";
+      abbreviation.value = "";
+      tz_name.value = "";
+
+      setError("");
+      setIsLoading(false);
+      router.refresh();
+    }
   };
 
-  let timezone;
-  useEffect(() => {
-    if (timezones.length !== 0) {
-      timezone = timezones[0];
-    } else {
-      timezone = {};
-    }
-  }, [timezones]);
+  useEffect(() => {}, [timezones]);
 
   return (
     <div className="mb-2.5">
@@ -94,6 +107,11 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({ title, time
         </div>
 
         <div className="w-full h-fit flex flex-col justify-center items-center border-t gap-3 p-3">
+          <label className="block text-sm text-gray-900 dark:text-white">Add new timezone</label>
+          <p id="errors" className="sm:max-w-[14rem] text-center text-red-600 font-bold">
+            {error}
+          </p>
+
           <Input
             id="zone_name_submit"
             name="zone_name"

@@ -8,7 +8,7 @@ import { createApiRequest } from "@/helpers/data-helper"
 
 export async function GET(req: Request) {
   const apiKey = req.headers.get("authorization")
-  console.log(apiKey)
+
   if (!apiKey) {
     return NextResponse.json({ error: 'Unauthorized', success: false }, { status: 401 })
   }
@@ -41,8 +41,6 @@ export async function GET(req: Request) {
     }
 
     try {
-      console.log(mongoDb)
-
       const Continent = mongoDb.Continent;
 
       const continents: continentBody[] = await Continent.find()

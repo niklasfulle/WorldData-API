@@ -1,4 +1,4 @@
-import React, { FC, use, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Input } from "./Input";
 import { Button } from "./Button";
 import { useRouter } from "next/navigation";
@@ -75,9 +75,9 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
 
   return (
     <div className="mb-2.5">
-      <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-white text-left pl-2">
+      <span className="block text-sm font-medium leading-6 text-gray-900 dark:text-white text-left pl-2">
         {title}
-      </label>
+      </span>
       <div className="mt-0.5 border border-white rounded-md ">
         <div className="flex flex-row flex-wrap justify-between gap-3 py-3 h-fit max-h-[16.7rem] overflow-auto whitespace-nowrap">
           {timezones.length !== 0 ? (
@@ -107,7 +107,7 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
         </div>
 
         <div className="w-full h-fit flex flex-col justify-center items-center border-t gap-3 p-3">
-          <label className="block text-sm text-gray-900 dark:text-white">Add new timezone</label>
+          <span className="block text-sm text-gray-900 dark:text-white">Add new timezone</span>
           <p id="errors" className="sm:max-w-[14rem] text-center text-red-600 font-bold">
             {error}
           </p>

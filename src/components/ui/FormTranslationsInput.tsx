@@ -28,9 +28,9 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({ title, translat
 
   return (
     <div className="mb-2.5">
-      <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-white text-left pl-2">
+      <span className="block text-sm font-medium leading-6 text-gray-900 dark:text-white text-left pl-2">
         {title}
-      </label>
+      </span>
       <div className="mt-0.5 flex flex-row flex-wrap justify-between gap-3 p-3 border border-white rounded-md ">
         {values.length > 0 ? (
           values.map((item) => (

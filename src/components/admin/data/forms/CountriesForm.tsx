@@ -3,7 +3,6 @@ import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
 import FormTranslationsInput from "@/components/ui/FormTranslationsInput";
 import FormMultyTimezonesInput from "@/components/ui/FormMultyTimezonesInput";
-import { countryBody } from "@/lib/db/schema/country.schema";
 
 interface CountriesFormProps {
   buttonTitle: string;

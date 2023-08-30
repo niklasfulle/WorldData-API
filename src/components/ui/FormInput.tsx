@@ -20,6 +20,7 @@ const FormInput: FC<FormInputProps> = ({ id, title, value }) => {
         <Input
           id={id}
           name={id}
+          autoComplete="off"
           type="text"
           defaultValue={value}
           required

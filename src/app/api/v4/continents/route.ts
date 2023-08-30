@@ -59,12 +59,10 @@ export async function GET(req: Request) {
 
       return NextResponse.json(continentsV4, { status: 200 })
     } catch (error) {
-      console.log(error)
       return NextResponse.json({ error: 'Internal Server Error1', success: false }, { status: 500 })
     }
 
   } catch (error) {
-    console.log(error)
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: error.issues, success: false }, { status: 400 })
     }

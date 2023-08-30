@@ -7,6 +7,7 @@ import Navbar from "@/navigation/Navbar";
 import { Toaster } from "@/ui/Toast";
 import { Metadata } from "next";
 import Footer from "@/navigation/Footer";
+import CookieConsent from "@/components/banner/CookieConsent";
 
 export const metadata: Metadata = {
   title: "Wordldata API - Home",
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navbar />
           {children}
           <Toaster position="bottom-right" />
+          <CookieConsent />
           <Footer />
         </Providers>
       </body>

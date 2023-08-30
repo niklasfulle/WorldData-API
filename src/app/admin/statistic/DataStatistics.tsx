@@ -1,7 +1,11 @@
 "use client";
 import React, { FC, useState } from "react";
 import LargeHeading from "@/ui/LargeHeading";
-import LineChart from "@/ui/LineChart";
+import dynamic from "next/dynamic";
+
+const LineChart = dynamic(() => import("@/ui/LineChart"), {
+  loading: () => <p>Loading...</p>,
+});
 
 export const UserData = [
   {

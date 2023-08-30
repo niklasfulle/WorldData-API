@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import CookieConsent from "@/components/banner/CookieConsent";
 import Sidebar from "@/navigation/SideBar/SideBar";
 import { useSearchParams } from "next/navigation";
 import APIStatistics from "./APIStatistics";
@@ -20,7 +19,6 @@ const StatisticPage = () => {
         {action === "user" && <UserStatistics />}
         {action === "data" && <DataStatistics />}
       </div>
-      <CookieConsent />
     </div>
   );
 };

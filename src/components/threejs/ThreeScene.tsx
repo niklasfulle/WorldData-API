@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect, useState, Dispatch, SetStateAction, FC } from "react";
+import React, { useRef, useEffect, useState, FC } from "react";
 import {
   vertexShader,
   fragmentShader,
@@ -18,19 +18,12 @@ import {
   WebGLRenderer,
 } from "three/src/Three.js";
 
-interface Props {
-  setLoading: SetLoading;
-}
-
-type SetLoading = Dispatch<SetStateAction<boolean>>;
-
-const ThreeScene: FC<Props> = ({ setLoading }) => {
+const ThreeScene: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const dataFetchedRef = useRef(false);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setLoading(true);
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
     try {
@@ -122,8 +115,7 @@ const ThreeScene: FC<Props> = ({ setLoading }) => {
     } catch (err) {
       setError(err as Error);
     }
-    setLoading(false);
-  }, [setLoading]);
+  }, []);
 
   return <>{error ? <div></div> : <div ref={containerRef} />}</>;
 };

@@ -5,7 +5,6 @@ import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import Link from "next/link";
 import type { Metadata } from "next";
-import CookieConsent from "@/components/banner/CookieConsent";
 
 export const metadata: Metadata = {
   title: "Wordldata API - Page not found",
@@ -28,7 +27,6 @@ const PageNotFound: FC = () => {
         <Icons.ChevronLeft className="mr-2 h-4 w-4" />
         Back to home
       </Link>
-      <CookieConsent />
     </section>
   );
 };

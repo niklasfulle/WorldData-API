@@ -30,7 +30,8 @@
       "@/docs/*": ["./src/components/docs/*"],
       "@/api/*": ["./src/components/api/*"],
       "@/three/*": ["./src/components/threejs/*"],
-      "@/admin/*": ["./src/components/admin-panel/*"],
+      "@/admin/*": ["./src/components/admin/*"],
+      "@/data/*": ["./src/components/admin/data/*"],
       "@/limit/*": ["./src/app/api/config/*"]
     }
   },

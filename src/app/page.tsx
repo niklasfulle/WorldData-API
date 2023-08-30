@@ -1,15 +1,23 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import LargeHeading from "@/ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
 import Link from "next/link";
-import ThreeScene from "@/three/ThreeScene";
-import CookieConsent from "@/components/banner/CookieConsent";
-import { Skeleton } from "@mui/material";
+import Skeleton from "@mui/material/Skeleton";
+import dynamic from "next/dynamic";
+
+const ThreeScene = dynamic(() => import("@/three/ThreeScene"), {
+  loading: () => (
+    <Skeleton
+      variant="rectangular"
+      animation="wave"
+      height={400}
+      className="mt-16 md:mt-0 bg-slate-300/20 dark:bg-slate-700/20 rounded-3xl w-64 h-64 md:w-96 md:h-96"
+    />
+  ),
+});
 
 export default function Home() {
-  const [threeIsLoaded, setThreeIsLoaded] = useState(false);
-
   return (
     <div className="relative flex items-center justify-center overflow-x-hidden">
       <div className="container pt-32 max-w-7xl mx-auto w-full h-screen">
@@ -30,17 +38,8 @@ export default function Home() {
             .
           </Paragraph>
           <div className="relative w-full max-w-xl lg:max-w-3xl lg:left-1/2 lg:absolute -mt-20 md:-mt-24 lg:-ml-12 mx-auto flex flex-col items-center">
-            {!threeIsLoaded ? (
-              <Skeleton
-                variant="rectangular"
-                animation="wave"
-                height={400}
-                className="mt-16 md:mt-0 bg-slate-300/20 dark:bg-slate-700/20 rounded-3xl w-64 h-64 md:w-96 md:h-96"
-              />
-            ) : null}
-            <ThreeScene setLoading={setThreeIsLoaded} />
+            <ThreeScene />
           </div>
-          <CookieConsent />
         </div>
       </div>
     </div>

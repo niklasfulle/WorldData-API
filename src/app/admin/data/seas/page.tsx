@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import CookieConsent from "@/components/banner/CookieConsent";
 import Sidebar from "@/navigation/SideBar/SideBar";
 import { useSearchParams } from "next/navigation";
-import ViewSection from "./ViewSection";
-import CreateSection from "./CreateSection";
-import UpdateSection from "./UpdateSection";
+import ViewSection from "@/data/ViewSection";
+import CreateSection from "@/data/CreateSection";
+import UpdateSection from "@/data/UpdateSection";
+import SeasForm from "@/data/forms/SeasForm";
 
 const SeasPage = () => {
   const searchParams = useSearchParams();
@@ -17,10 +17,13 @@ const SeasPage = () => {
       <Sidebar page="seas" />
       <div className="container p-0 gap-6 min-h-screen h-auto dark:text-white">
         {action === "view" && <ViewSection />}
-        {action === "create" && <CreateSection />}
-        {action === "update" && <UpdateSection />}
+        {action === "create" && (
+          <CreateSection title="Create City" form={<SeasForm buttonTitle="Create" />} />
+        )}
+        {action === "update" && (
+          <UpdateSection title="Update City" form={<SeasForm buttonTitle="Update" />} />
+        )}
       </div>
-      <CookieConsent />
     </div>
   );
 };

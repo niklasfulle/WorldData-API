@@ -1,4 +1,4 @@
-import { array, number, object, string, TypeOf } from "zod";
+import { array, number, object, string, TypeOf, z } from "zod";
 
 export const continentSchema = {
   body: object({
@@ -64,6 +64,20 @@ export const continentV3Schema = object({
 
 export const continentV4Schema = object({
   id: number(),
+  name: string(),
+  area_km2: number(),
+  population: number(),
+  density_km2: number(),
+  countries: array(
+    object({
+      id: number(),
+      name: string(),
+    }),
+  )
+});
+
+export const continentCreateSchema = object({
+  id: z.number().or(z.undefined()),
   name: string(),
   area_km2: number(),
   population: number(),

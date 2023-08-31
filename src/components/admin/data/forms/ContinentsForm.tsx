@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
 import FormTextarea from "@/ui/FormTextarea";
+import { createContinent } from "@/lib/data/continents-data-functions";
 
 interface ContinentsFormProps {
   buttonTitle: string;
@@ -26,7 +27,7 @@ const ContinentsForm: FC<ContinentsFormProps> = ({
       <div className="mt-3 sm:mx-auto sm:w-full">
         <form
           className="space-y-6"
-          onSubmit={(e) => console.log(e.target, setIsLoading, setError)}
+          onSubmit={(e) => createContinent(e, setIsLoading, setError)}
         >
           <div className="flex w-full flex-col items-center justify-center lg:flex-row lg:items-start lg:justify-around">
             <div className="w-[18rem]">
@@ -43,7 +44,7 @@ const ContinentsForm: FC<ContinentsFormProps> = ({
               />
               <FormInput
                 id="density_km2"
-                title="Population"
+                title="Density Km2"
                 value={continent?.density_km2 || ""}
               />
             </div>

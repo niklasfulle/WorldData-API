@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
 import FormTranslationsInput from "@/components/ui/FormTranslationsInput";
+import { createCelestialBodie } from "@/lib/data/celestialbodie-data-functions";
 
 interface CelestialBodieFormProps {
   buttonTitle: string;
@@ -15,6 +16,10 @@ const CelestialBodieForm: FC<CelestialBodieFormProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const [translations, setTranslations] = useState(
+    celestialBodie?.translations || {}
+  );
+
   return (
     <div className="flex min-h-full flex-col items-center justify-center rounded-lg px-2 py-6 md:px-6 lg:px-8">
       <p
@@ -26,7 +31,7 @@ const CelestialBodieForm: FC<CelestialBodieFormProps> = ({
       <div className="mt-3 sm:mx-auto sm:w-full">
         <form
           className="space-y-6"
-          onSubmit={(e) => console.log(e, setIsLoading, setError)}
+          onSubmit={(e) => createCelestialBodie(e, translations, setIsLoading, setError)}
         >
           <div className="flex w-full flex-col items-center justify-center lg:flex-row lg:items-start lg:justify-around">
             <div className="w-[18rem]">
@@ -50,8 +55,6 @@ const CelestialBodieForm: FC<CelestialBodieFormProps> = ({
                 title="Diameter Km"
                 value={celestialBodie?.diameter_km || ""}
               />
-            </div>
-            <div className="w-[18rem]">
               <FormInput
                 id="tilt_degrees"
                 title="Tilt Degrees"
@@ -62,10 +65,13 @@ const CelestialBodieForm: FC<CelestialBodieFormProps> = ({
                 title="Rotation Period Days"
                 value={celestialBodie?.rotation_period_days || ""}
               />
+            </div>
+            <div className="w-[18rem]">
               <FormTranslationsInput
                 id="translations"
                 title="Translations"
-                translations={celestialBodie?.translations || ""}
+                translations={translations}
+                setTranslations={setTranslations}
               />
             </div>
           </div>

@@ -19,13 +19,13 @@ const RiversPage = () => {
         {action === "view" && <ViewSection />}
         {action === "create" && (
           <CreateSection
-            title="Create Rivers"
+            title="Create River"
             form={<RiversForm buttonTitle="Create" />}
           />
         )}
         {action === "update" && (
           <UpdateSection
-            title="Update Rivers"
+            title="Update River"
             form={<RiversForm buttonTitle="Update" />}
           />
         )}

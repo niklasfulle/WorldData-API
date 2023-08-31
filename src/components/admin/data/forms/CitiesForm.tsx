@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
 import FormTimezoneInput from "@/components/ui/FormTimezoneInput";
+import { createCity } from "@/lib/data/cities-data-functions";
 
 interface CitiesFormProps {
   buttonTitle: string;
@@ -23,7 +24,7 @@ const CitiesForm: FC<CitiesFormProps> = ({ buttonTitle, city }) => {
       <div className="mt-3 sm:mx-auto sm:w-full">
         <form
           className="space-y-6"
-          onSubmit={(e) => console.log(e, setIsLoading, setError)}
+          onSubmit={(e) => createCity(e, setIsLoading, setError)}
         >
           <div className="flex w-full flex-col items-center justify-center lg:flex-row lg:items-start lg:justify-around">
             <div className="w-[18rem]">
@@ -44,9 +45,9 @@ const CitiesForm: FC<CitiesFormProps> = ({ buttonTitle, city }) => {
                 value={city?.area_populationm2 || ""}
               />
               <FormInput
-                id="area_m2"
-                title="Area m²"
-                value={city?.area_m2 || ""}
+                id="area_km2"
+                title="Area Km²"
+                value={city?.area_km2 || ""}
               />
               <FormInput
                 id="country"
@@ -58,7 +59,7 @@ const CitiesForm: FC<CitiesFormProps> = ({ buttonTitle, city }) => {
               <FormTimezoneInput
                 id="timezone"
                 title="Timezone"
-                timezone={city?.timezone || ""}
+                timezone={city?.timezone || {}}
               />
             </div>
           </div>

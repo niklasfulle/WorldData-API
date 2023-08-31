@@ -1,0 +1,118 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef*/
+import { Dispatch, FormEvent, SetStateAction } from "react"
+import { celestialBodieCreateSchema } from "../db/schema/celestialBodie.schema";
+
+type SetIsLoading = Dispatch<SetStateAction<boolean>>
+
+type SetError = Dispatch<SetStateAction<string>>;
+
+type Translations = {
+  kr: string;
+  "pt-BR": string;
+  pt: string;
+  nl: string;
+  hr: string;
+  fa: string;
+  de: string;
+  es: string;
+  fr: string;
+  ja: string;
+  it: string;
+  cn: string;
+  tr: string;
+};
+
+/**
+ * Creates an array of objects with id and name
+ * 
+ * @param countriesString  - string of countries separated by commas
+ * @returns array of objects with id and name
+ */
+const createCountiresArray = (countriesString: string) => {
+  const countriesArray = countriesString.split(",").map((country) => country.trim());
+
+  const countries = countriesArray.map((country, index) => {
+    return {
+      id: index,
+      name: country,
+    };
+  });
+
+  return countries;
+}
+
+/**
+ * Returns all celestialBodies from the database
+ */
+export const getCelestialBodies = async () => {
+
+}
+
+/**
+ * Gets a celestialBodie from the database
+ * 
+ * @param id  - id of the celestialBodie to get 
+ */
+export const getCelestialBodie = async (id: number) => {
+
+}
+
+/**
+ * Creates a celestialBodie to send to the database
+ * 
+ * @param e  - form event 
+ * @param setIsLoading  - set loading state
+ * @param setError  - set error state
+ */
+export const createCelestialBodie = async (e: FormEvent, translations: Translations, setIsLoading: SetIsLoading, setError: SetError) => {
+  e.preventDefault();
+  setIsLoading(true);
+
+  try {
+    const target = e.target as typeof e.target & {
+      name: { value: string };
+      type: { value: string };
+      mass: { value: string };
+      diameter_km: { value: string };
+      tilt_degrees: { value: string };
+      rotation_period_days: { value: string };
+    };
+
+    const celestialBodie = celestialBodieCreateSchema.parse({
+      name: target.name.value,
+      type: target.type.value,
+      mass: Number(target.mass.value),
+      diameter_km: Number(target.diameter_km.value),
+      tilt_degrees: Number(target.tilt_degrees.value),
+      rotation_period_days: Number(target.rotation_period_days.value),
+      translations
+    });
+
+    console.log(celestialBodie);
+
+    // TODO: Create celestialBodie in the database
+    setError("")
+  } catch (error) {
+    console.log(error)
+    setError("There was an error creating the celestialBodie.");
+  }
+  setIsLoading(false);
+}
+
+/**
+ * Updates a celestialBodie to send to the database
+ * 
+ * @param e  - form event 
+ * @param setIsLoading  - set loading state
+ * @param setError  - set error state
+ */
+export const updateCelestialBodie = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => { }
+
+/**
+ * Deletes a celestialBodie from the database
+ * 
+ * @param setIsLoading  - set loading state
+ * @param setError  - set error state
+ */
+export const deleteCelestialBodie = async (setIsLoading: SetIsLoading, setError: SetError) => { }

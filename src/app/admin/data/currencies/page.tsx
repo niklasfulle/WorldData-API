@@ -19,13 +19,13 @@ const CurrenciesPage = () => {
         {action === "view" && <ViewSection />}
         {action === "create" && (
           <CreateSection
-            title="Create Currencies"
+            title="Create Currency"
             form={<CurrenciesForm buttonTitle="Create" />}
           />
         )}
         {action === "update" && (
           <UpdateSection
-            title="Update Currencies"
+            title="Update Currency"
             form={<CurrenciesForm buttonTitle="Update" />}
           />
         )}

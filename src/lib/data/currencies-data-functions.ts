@@ -1,0 +1,97 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef*/
+import { Dispatch, FormEvent, SetStateAction } from "react"
+import { currencyCreateSchema } from "../db/schema/currency.schema";
+
+type SetIsLoading = Dispatch<SetStateAction<boolean>>
+
+type SetError = Dispatch<SetStateAction<string>>;
+
+/**
+ * Creates an array of objects with id and name
+ * 
+ * @param countriesString  - string of countries separated by commas
+ * @returns array of objects with id and name
+ */
+const createCountiresArray = (countriesString: string) => {
+  const countriesArray = countriesString.split(",").map((country) => country.trim());
+
+  const countries = countriesArray.map((country, index) => {
+    return {
+      id: index + 1,
+      name: country,
+    };
+  });
+
+  return countries;
+}
+
+/**
+ * Returns all currencies from the database
+ */
+export const getCurrencies = async () => {
+
+}
+
+/**
+ * Gets a currency from the database
+ * 
+ * @param id  - id of the currency to get 
+ */
+export const getCurrency = async (id: number) => {
+
+}
+
+/**
+ * Creates a currency to send to the database
+ * 
+ * @param e  - form event 
+ * @param setIsLoading  - set loading state
+ * @param setError  - set error state
+ */
+export const createCurrency = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+  e.preventDefault();
+  setIsLoading(true);
+
+  try {
+    const target = e.target as typeof e.target & {
+      name: { value: string };
+      code: { value: string };
+      symbol: { value: string };
+      countries: { value: string };
+    };
+
+    const currency = currencyCreateSchema.parse({
+      name: target.name.value,
+      code: target.code.value,
+      symbol: target.symbol.value,
+      countries: createCountiresArray(target.countries.value)
+    });
+
+    console.log(currency);
+
+    // TODO: Create currency in the database
+    setError("")
+  } catch (error) {
+    console.log(error)
+    setError("There was an error creating the currency.");
+  }
+  setIsLoading(false);
+}
+
+/**
+ * Updates a currency to send to the database
+ * 
+ * @param e  - form event 
+ * @param setIsLoading  - set loading state
+ * @param setError  - set error state
+ */
+export const updateCurrency = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => { }
+
+/**
+ * Deletes a currency from the database
+ * 
+ * @param setIsLoading  - set loading state
+ * @param setError  - set error state
+ */
+export const deleteCurrency = async (setIsLoading: SetIsLoading, setError: SetError) => { }

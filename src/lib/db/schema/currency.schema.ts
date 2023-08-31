@@ -1,4 +1,4 @@
-import { array, number, object, string, TypeOf } from "zod";
+import { array, number, object, string, TypeOf, z } from "zod";
 
 export const currencySchema = {
   body: object({
@@ -31,6 +31,19 @@ export type currencyBody = TypeOf<typeof currencySchema.body>;
 
 export const currencyV4Schema = object({
   id: number(),
+  name: string(),
+  code: string(),
+  symbol: string(),
+  countries: array(
+    object({
+      id: number(),
+      name: string(),
+    }),
+  )
+});
+
+export const currencyCreateSchema = object({
+  id: z.number().or(z.undefined()),
   name: string(),
   code: string(),
   symbol: string(),

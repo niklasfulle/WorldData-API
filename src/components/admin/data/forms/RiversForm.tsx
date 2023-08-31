@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
 import FormTextarea from "@/ui/FormTextarea";
+import { createRiver } from "@/lib/data/rivers-data-functions";
 
 interface RiversFormProps {
   buttonTitle: string;
@@ -23,7 +24,7 @@ const RiversForm: FC<RiversFormProps> = ({ buttonTitle, river }) => {
       <div className="mt-3 sm:mx-auto sm:w-full">
         <form
           className="space-y-6"
-          onSubmit={(e) => console.log(e, setIsLoading, setError)}
+          onSubmit={(e) => createRiver(e, setIsLoading, setError)}
         >
           <div className="flex w-full flex-col items-center justify-center lg:flex-row lg:items-start lg:justify-around">
             <div className="w-[18rem]">
@@ -48,12 +49,11 @@ const RiversForm: FC<RiversFormProps> = ({ buttonTitle, river }) => {
               />
               <FormInput
                 id="outflow"
-                title="Name"
+                title="Outflow"
                 value={river?.outflow || ""}
               />
             </div>
           </div>
-
           <div className="flex w-full flex-row justify-center pb-8 pt-12">
             <Button
               isLoading={isLoading}

@@ -19,13 +19,13 @@ const IslandsPage = () => {
         {action === "view" && <ViewSection />}
         {action === "create" && (
           <CreateSection
-            title="Create Islands"
+            title="Create Island"
             form={<IslandsForm buttonTitle="Create" />}
           />
         )}
         {action === "update" && (
           <UpdateSection
-            title="Update Islands"
+            title="Update Island"
             form={<IslandsForm buttonTitle="Update" />}
           />
         )}

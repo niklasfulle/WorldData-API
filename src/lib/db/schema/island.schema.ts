@@ -1,4 +1,4 @@
-import { array, number, object, string, TypeOf } from "zod";
+import { array, number, object, string, TypeOf, z } from "zod";
 
 export const islandSchema = {
   body: object({
@@ -8,8 +8,8 @@ export const islandSchema = {
     name: string({
       required_error: "name is required",
     }),
-    area_m2: number({
-      required_error: "area_m2 is required",
+    area_km2: number({
+      required_error: "area_km2 is required",
     }),
     latitude: string({
       required_error: "latitude is required",
@@ -41,7 +41,7 @@ export type islandBody = TypeOf<typeof islandSchema.body>;
 export const islandV3Schema = object({
   id: number(),
   name: string(),
-  area_m2: number(),
+  area_km2: number(),
   latitude: string(),
   longitude: string()
 });
@@ -49,7 +49,23 @@ export const islandV3Schema = object({
 export const islandV4Schema = object({
   id: number(),
   name: string(),
-  area_m2: number(),
+  area_km2: number(),
+  latitude: string(),
+  longitude: string(),
+  population: number(),
+  continent: string(),
+  countries: array(
+    object({
+      id: number(),
+      name: string(),
+    }),
+  )
+});
+
+export const islandCreateSchema = object({
+  id: z.number().or(z.undefined()),
+  name: string(),
+  area_km2: number(),
   latitude: string(),
   longitude: string(),
   population: number(),

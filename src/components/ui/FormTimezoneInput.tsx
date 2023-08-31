@@ -15,7 +15,30 @@ type Timezone = {
   tz_name: string;
 };
 
-const FormTimezoneInput: FC<FormTimezoneInputProps> = ({ title, timezone }) => {
+const inputList = [
+  { id: "zone_name", name: "zone_name", placeholder: "Zone Name" },
+  {
+    id: "gmt_offset",
+    name: "gmt_offset",
+    placeholder: "GMT Offset",
+  },
+  {
+    id: "gmt_offset_name",
+    name: "gmt_offset_name",
+    placeholder: "GMT Offset Name",
+  },
+  {
+    id: "abbreviation",
+    name: "abbreviation",
+    placeholder: "Abbreviation",
+  },
+  { id: "tz_name", name: "tz_name", placeholder: "TZ Name" },
+];
+
+const FormTimezoneInput: FC<FormTimezoneInputProps> = ({
+  title,
+  timezone,
+}) => {
   const values = Object.entries(timezone);
   return (
     <div className="mb-2.5">
@@ -38,51 +61,17 @@ const FormTimezoneInput: FC<FormTimezoneInputProps> = ({ title, timezone }) => {
           ))
         ) : (
           <>
-            <Input
-              id="zone_name"
-              name="zone_name"
-              placeholder="Zone Name"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
-            <Input
-              id="gmt_offset"
-              name="gmt_offset"
-              placeholder="GMT Offset"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
-            <Input
-              id="gmt_offset_name"
-              name="gmt_offset_name"
-              placeholder="GMT Offset Name"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
-            <Input
-              id="abbreviation"
-              name="abbreviation"
-              placeholder="Abbreviation"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
-            <Input
-              id="tz_name"
-              name="tz_name"
-              placeholder="TZ Name"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
+            {inputList.map((item) => (
+              <Input
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                placeholder={item.placeholder}
+                type="text"
+                defaultValue=""
+                className="px-l block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
+              />
+            ))}
           </>
         )}
       </div>

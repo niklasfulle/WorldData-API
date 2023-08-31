@@ -3,6 +3,8 @@ import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
 import FormTranslationsInput from "@/components/ui/FormTranslationsInput";
 import FormMultyTimezonesInput from "@/components/ui/FormMultyTimezonesInput";
+import { createCountry } from "@/lib/data/countries-data-functions";
+import FormSwitchInput from "@/components/ui/FormSwitchInput";
 
 interface CountriesFormProps {
   buttonTitle: string;
@@ -12,8 +14,10 @@ interface CountriesFormProps {
 const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [checked, setChecked] = useState(false);
 
   const [timezones, setTimezones] = useState(country?.timezones || []);
+  const [translations, setTranslations] = useState(country?.translations || {});
 
   return (
     <div className="flex min-h-full flex-col items-center justify-center rounded-lg px-2 py-6 md:px-6 lg:px-8">
@@ -26,7 +30,16 @@ const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
       <div className="mt-3 sm:mx-auto sm:w-full">
         <form
           className="space-y-6"
-          onSubmit={(e) => console.log(e, setIsLoading, setError)}
+          onSubmit={(e) =>
+            createCountry(
+              e,
+              timezones,
+              checked,
+              translations,
+              setIsLoading,
+              setError
+            )
+          }
         >
           <div className="flex w-full flex-col items-center justify-center lg:flex-row lg:items-start lg:justify-around">
             <div className="w-[18rem]">
@@ -69,15 +82,17 @@ const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
                 title="Longitude"
                 value={country?.longitude || ""}
               />
-              <FormInput
+              <FormSwitchInput
                 id="independent"
                 title="Independent"
-                value={country?.independent || ""}
+                value={country?.independent || false}
+                checked={checked}
+                setChecked={setChecked}
               />
               <FormInput
-                id="area_m2"
-                title="Area m²"
-                value={country?.area_m2 || ""}
+                id="area_km2"
+                title="Area Km²"
+                value={country?.area_km2 || ""}
               />
               <FormInput
                 id="population"
@@ -115,7 +130,8 @@ const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
               <FormTranslationsInput
                 id="translations"
                 title="Translations"
-                translations={country?.translations || ""}
+                translations={translations}
+                setTranslations={setTranslations}
               />
               <FormInput
                 id="emoji"

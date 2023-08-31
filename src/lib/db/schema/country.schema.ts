@@ -1,4 +1,4 @@
-import { number, object, string, TypeOf } from "zod";
+import { array, boolean, number, object, string, TypeOf, z } from "zod";
 
 export const countrySchema = {
   body: object({
@@ -39,7 +39,7 @@ export const countrySchema = {
       required_error: "longitude is required",
     }),
     independent: string({
-
+      required_error: "independent is required",
     }),
     area_km2: number({
       required_error: "area_km2 is required",
@@ -141,7 +141,7 @@ export const countryV1Schema = object({
   subregion: string(),
   latitude: string(),
   longitude: string(),
-  //independent: boolean()
+  independent: boolean()
 });
 
 export const countryV2Schema = object({
@@ -157,7 +157,7 @@ export const countryV2Schema = object({
   subregion: string(),
   latitude: string(),
   longitude: string(),
-  //independent: boolean(),
+  independent: boolean(),
   area_km2: number(),
   population: number(),
   density_km2: number()
@@ -176,7 +176,7 @@ export const countryV3Schema = object({
   subregion: string(),
   latitude: string(),
   longitude: string(),
-  //independent: boolean(),
+  independent: boolean(),
   area_km2: number(),
   population: number(),
   density_km2: number(),
@@ -213,19 +213,69 @@ export const countryV4Schema = object({
   subregion: string(),
   latitude: string(),
   longitude: string(),
-  //independent: boolean(),
+  independent: boolean(),
   area_km2: number(),
   population: number(),
   density_km2: number(),
   currency: string(),
   currency_symbol: string(),
-  timezones: object({
-    zone_name: string(),
-    gmt_offset: number(),
-    gmt_offset_name: string(),
-    abbreviation: string(),
-    tz_name: string(),
+  timezones: array(
+    object({
+      zone_name: string(),
+      gmt_offset: number(),
+      gmt_offset_name: string(),
+      abbreviation: string(),
+      tz_name: string(),
+    }),
+  ),
+  native_name: string(),
+  translations: object({
+    kr: string(),
+    "pt-BR": string(),
+    pt: string(),
+    nl: string(),
+    hr: string(),
+    fa: string(),
+    de: string(),
+    es: string(),
+    fr: string(),
+    ja: string(),
+    it: string(),
+    cn: string(),
+    tr: string(),
   }),
+  emoji: string(),
+  emojiU: string()
+});
+
+export const countryCreateSchema = object({
+  id: z.number().or(z.undefined()),
+  name: string(),
+  iso3: string(),
+  iso2: string(),
+  numeric_code: number(),
+  phone_code: string(),
+  capital: string(),
+  tld: string(),
+  region: string(),
+  subregion: string(),
+  latitude: string(),
+  longitude: string(),
+  independent: boolean(),
+  area_km2: number(),
+  population: number(),
+  density_km2: number(),
+  currency: string(),
+  currency_symbol: string(),
+  timezones: array(
+    object({
+      zone_name: string(),
+      gmt_offset: number(),
+      gmt_offset_name: string(),
+      abbreviation: string(),
+      tz_name: string(),
+    }),
+  ),
   native_name: string(),
   translations: object({
     kr: string(),

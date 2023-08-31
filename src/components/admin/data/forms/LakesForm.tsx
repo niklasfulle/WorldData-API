@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
 import FormTextarea from "@/ui/FormTextarea";
+import { createLake } from "@/lib/data/lakes-data-functions";
 
 interface LakesFormProps {
   buttonTitle: string;
@@ -23,7 +24,7 @@ const LakesForm: FC<LakesFormProps> = ({ buttonTitle, lake }) => {
       <div className="mt-3 sm:mx-auto sm:w-full">
         <form
           className="space-y-6"
-          onSubmit={(e) => console.log(e, setIsLoading, setError)}
+          onSubmit={(e) => createLake(e, setIsLoading, setError)}
         >
           <div className="flex w-full flex-col items-center justify-center lg:flex-row lg:items-start lg:justify-around">
             <div className="w-[18rem]">

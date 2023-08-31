@@ -1,4 +1,4 @@
-import { array, number, object, string, TypeOf } from "zod";
+import { array, number, object, string, TypeOf, z } from "zod";
 
 export const oceanSchema = {
   body: object({
@@ -85,6 +85,28 @@ export const oceanV3Schema = object({
 
 export const oceanV4Schema = object({
   id: number(),
+  name: string(),
+  area_km2: number(),
+  avg_depth_m: number(),
+  max_depth_m: number(),
+  volume_km3: number(),
+  coast_km: number(),
+  countries: array(
+    object({
+      id: number(),
+      name: string(),
+    }),
+  ),
+  territories: array(
+    object({
+      id: number(),
+      name: string(),
+    }),
+  )
+});
+
+export const oceanCreateSchema = object({
+  id: z.number().or(z.undefined()),
   name: string(),
   area_km2: number(),
   avg_depth_m: number(),

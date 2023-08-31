@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { Input } from "./Input";
 import { Button } from "./Button";
 import { useRouter } from "next/navigation";
+import { getAsHTMLInputElement } from "@/helpers/shorter-function";
 
 interface FormMultyTimezonesInputProps {
   id: string;
@@ -18,6 +19,26 @@ type Timezone = {
   tz_name: string;
 };
 
+const inputList = [
+  { id: "zone_name_submit", name: "zone_name", placeholder: "Zone Name" },
+  {
+    id: "gmt_offset_submit",
+    name: "gmt_offset",
+    placeholder: "GMT Offset",
+  },
+  {
+    id: "gmt_offset_name_submit",
+    name: "gmt_offset_name",
+    placeholder: "GMT Offset Name",
+  },
+  {
+    id: "abbreviation_submit",
+    name: "abbreviation",
+    placeholder: "Abbreviation",
+  },
+  { id: "tz_name_submit", name: "tz_name", placeholder: "TZ Name" },
+];
+
 const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
   title,
   timezones,
@@ -30,21 +51,11 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
   const addTimezone = () => {
     setIsLoading(true);
 
-    const zone_name = document.getElementById(
-      "zone_name_submit"
-    ) as HTMLInputElement;
-    const gmt_offset = document.getElementById(
-      "gmt_offset_submit"
-    ) as HTMLInputElement;
-    const gmt_offset_name = document.getElementById(
-      "gmt_offset_name_submit"
-    ) as HTMLInputElement;
-    const abbreviation = document.getElementById(
-      "abbreviation_submit"
-    ) as HTMLInputElement;
-    const tz_name = document.getElementById(
-      "tz_name_submit"
-    ) as HTMLInputElement;
+    const zone_name = getAsHTMLInputElement("zone_name_submit");
+    const gmt_offset = getAsHTMLInputElement("gmt_offset_submit");
+    const gmt_offset_name = getAsHTMLInputElement("gmt_offset_name_submit");
+    const abbreviation = getAsHTMLInputElement("abbreviation_submit");
+    const tz_name = getAsHTMLInputElement("tz_name_submit");
 
     if (
       zone_name.value == "" ||
@@ -96,7 +107,7 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
                 Object.entries(timezone).map((item, index2) => (
                   <>
                     <Input
-                      key={index1 + "_" + index2}
+                      key={item[0] + index1 + "_" + index2}
                       id={item[0] + "_" + index1}
                       name={item[0] + "_" + index1}
                       type="text"
@@ -126,53 +137,17 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
           >
             {error}
           </p>
-
-          <Input
-            id="zone_name_submit"
-            name="zone_name"
-            placeholder="Zone Name"
-            type="text"
-            defaultValue=""
-            required
-            className="px-l block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-          />
-          <Input
-            id="gmt_offset_submit"
-            name="gmt_offset"
-            placeholder="GMT Offset"
-            type="text"
-            defaultValue=""
-            required
-            className="px-l block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-          />
-          <Input
-            id="gmt_offset_name_submit"
-            name="gmt_offset_name"
-            placeholder="GMT Offset Name"
-            type="text"
-            defaultValue=""
-            required
-            className="px-l block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-          />
-          <Input
-            id="abbreviation_submit"
-            name="abbreviation"
-            placeholder="Abbreviation"
-            type="text"
-            defaultValue=""
-            required
-            className="px-l block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-          />
-          <Input
-            id="tz_name_submit"
-            name="tz_name"
-            placeholder="TZ Name"
-            type="text"
-            defaultValue=""
-            required
-            className="px-l block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-          />
-
+          {inputList.map((item) => (
+            <Input
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              placeholder={item.placeholder}
+              type="text"
+              defaultValue=""
+              className="px-l block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
+            />
+          ))}
           <Button
             isLoading={isLoading}
             disabled={isLoading}

@@ -7,3 +7,7 @@ export const shortToast = (title: string, message: string, type: string) => {
     type: type as any,
   });
 }
+
+export const getAsHTMLInputElement = (id: string) => {
+  return document.getElementById(id) as HTMLInputElement;
+}

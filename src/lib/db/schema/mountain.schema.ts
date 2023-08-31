@@ -1,4 +1,4 @@
-import { array, number, object, string, TypeOf } from "zod";
+import { array, number, object, string, TypeOf, z } from "zod";
 
 export const mountainSchema = {
   body: object({
@@ -20,7 +20,7 @@ export const mountainSchema = {
     continent: string({
       required_error: "continent is required",
     }),
-    country: array(
+    countries: array(
       object({
         id: number({
           required_error: "id is required",
@@ -53,7 +53,7 @@ export const mountainV3Schema = object({
   latitude: string(),
   longitude: string(),
   continent: string(),
-  country: array(
+  countries: array(
     object({
       id: number(),
       name: string(),
@@ -69,7 +69,23 @@ export const mountainV4Schema = object({
   latitude: string(),
   longitude: string(),
   continent: string(),
-  country: array(
+  countries: array(
+    object({
+      id: number(),
+      name: string(),
+    }),
+  ),
+  first_climbed: string()
+});
+
+export const mountainCreateSchema = object({
+  id: z.number().or(z.undefined()),
+  name: string(),
+  height_m: number(),
+  latitude: string(),
+  longitude: string(),
+  continent: string(),
+  countries: array(
     object({
       id: number(),
       name: string(),

@@ -1,4 +1,4 @@
-import { array, number, object, string, TypeOf } from "zod";
+import { array, number, object, string, TypeOf, z } from "zod";
 
 export const riverSchema = {
   body: object({
@@ -46,6 +46,20 @@ export const riverV3Schema = object({
 
 export const riverV4Schema = object({
   id: number(),
+  name: string(),
+  length_km: number(),
+  countries: array(
+    object({
+      id: number(),
+      name: string(),
+    }),
+  ),
+  discharge_m3_s: number(),
+  outflow: string()
+});
+
+export const riverCreateSchema = object({
+  id: z.number().or(z.undefined()),
   name: string(),
   length_km: number(),
   countries: array(

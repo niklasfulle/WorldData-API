@@ -83,6 +83,10 @@ export default function RootLayout({
           property="og:image"
           content="https://yourdomain.com/favicon.ico"
         />
+        <meta
+          name="format-detection"
+          content="telephone=no, date=no, email=no, address=no"
+        />
       </head>
       <body className="min-h-screen bg-slate-300 antialiased dark:bg-slate-900">
         <Providers>

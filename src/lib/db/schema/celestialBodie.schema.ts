@@ -1,4 +1,4 @@
-import { number, object, string, TypeOf } from "zod";
+import { number, object, string, TypeOf, z } from "zod";
 
 export const celestialBodieSchema = {
   body: object({
@@ -71,6 +71,31 @@ export type celestialBodieBody = TypeOf<typeof celestialBodieSchema.body>;
 
 export const celestialBodieV4Schema = object({
   id: number(),
+  name: string(),
+  type: string(),
+  mass: number(),
+  diameter_km: number(),
+  tilt_degrees: number(),
+  rotation_period_days: number(),
+  translations: object({
+    kr: string(),
+    "pt-BR": string(),
+    pt: string(),
+    nl: string(),
+    hr: string(),
+    fa: string(),
+    de: string(),
+    es: string(),
+    fr: string(),
+    ja: string(),
+    it: string(),
+    cn: string(),
+    tr: string(),
+  }),
+});
+
+export const celestialBodieCreateSchema = object({
+  id: z.number().or(z.undefined()),
   name: string(),
   type: string(),
   mass: number(),

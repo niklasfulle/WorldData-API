@@ -1,4 +1,4 @@
-import { number, object, string, TypeOf } from "zod";
+import { number, object, string, TypeOf, z } from "zod";
 
 export const citySchema = {
   body: object({
@@ -74,6 +74,23 @@ export const cityV3Schema = object({
 
 export const cityV4Schema = object({
   id: number(),
+  name: string(),
+  latitude: string(),
+  longitude: string(),
+  population: number(),
+  area_km2: number(),
+  country: string(),
+  timezone: object({
+    zone_name: string(),
+    gmt_offset: number(),
+    gmt_offset_name: string(),
+    abbreviation: string(),
+    tz_name: string()
+  })
+});
+
+export const cityCreateSchema = object({
+  id: z.number().or(z.undefined()),
   name: string(),
   latitude: string(),
   longitude: string(),

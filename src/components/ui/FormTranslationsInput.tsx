@@ -1,10 +1,12 @@
 import React, { FC } from "react";
-import { Input } from "./Input";
+import TranslationInput from "./TranslationInput";
+import { getAsHTMLInputElement } from "@/helpers/shorter-function";
 
 interface FormTranslationsInputInput {
   id: string;
   title: string;
   translations: Translations;
+  setTranslations: any;
 }
 
 type Translations = {
@@ -23,11 +25,48 @@ type Translations = {
   tr: string;
 };
 
+const inputList = [
+  { id: "kr" },
+  { id: "pt-BR" },
+  { id: "pt" },
+  { id: "nl" },
+  { id: "hr" },
+  { id: "fa" },
+  { id: "de" },
+  { id: "es" },
+  { id: "fr" },
+  { id: "ja" },
+  { id: "it" },
+  { id: "cn" },
+  { id: "tr" },
+];
+
 const FormTranslationsInput: FC<FormTranslationsInputInput> = ({
   title,
   translations,
+  setTranslations,
 }) => {
   const values = Object.entries(translations);
+
+  const createTranslations = () => {
+    translations = {
+      kr: getAsHTMLInputElement("kr").value,
+      "pt-BR": getAsHTMLInputElement("pt-BR").value,
+      pt: getAsHTMLInputElement("pt").value,
+      nl: getAsHTMLInputElement("nl").value,
+      hr: getAsHTMLInputElement("hr").value,
+      fa: getAsHTMLInputElement("fa").value,
+      de: getAsHTMLInputElement("de").value,
+      es: getAsHTMLInputElement("es").value,
+      fr: getAsHTMLInputElement("fr").value,
+      ja: getAsHTMLInputElement("ja").value,
+      it: getAsHTMLInputElement("it").value,
+      cn: getAsHTMLInputElement("cn").value,
+      tr: getAsHTMLInputElement("tr").value,
+    };
+
+    setTranslations(translations);
+  };
 
   return (
     <div className="mb-2.5">
@@ -37,136 +76,23 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({
       <div className="mt-0.5 flex flex-row flex-wrap justify-between gap-3 rounded-md border border-white p-3 ">
         {values.length > 0 ? (
           values.map((item) => (
-            <Input
+            <TranslationInput
               key={item[0]}
               id={item[0]}
-              name={item[0]}
-              placeholder={item[0]}
-              type="text"
-              defaultValue={item[1]}
-              required
-              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
+              value={item[1]}
+              onBlur={() => createTranslations()}
             />
           ))
         ) : (
           <>
-            <Input
-              id="kr"
-              name="kr"
-              placeholder="kr"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
-            <Input
-              id="pt-BR"
-              name="pt-BR"
-              placeholder="pt-BR"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
-            <Input
-              id="pt"
-              name="pt"
-              placeholder="pt"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
-            <Input
-              id="nl"
-              name="nl"
-              placeholder="nl"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
-            <Input
-              id="hr"
-              name="hr"
-              placeholder="hr"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
-            <Input
-              id="fa"
-              name="fa"
-              placeholder="fa"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
-            <Input
-              id="de"
-              name="de"
-              placeholder="de"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
-            <Input
-              id="es"
-              name="es"
-              placeholder="es"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
-            <Input
-              id="fr"
-              name="fr"
-              placeholder="fr"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
-            <Input
-              id="ja"
-              name="ja"
-              placeholder="ja"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
-            <Input
-              id="it"
-              name="it"
-              placeholder="it"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
-            <Input
-              id="cn"
-              name="cn"
-              placeholder="cn"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
-            <Input
-              id="tr"
-              name="tr"
-              placeholder="tr"
-              type="text"
-              defaultValue=""
-              required
-              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
-            />
+            {inputList.map((item) => (
+              <TranslationInput
+                key={item.id}
+                id={item.id}
+                value=""
+                onBlur={() => createTranslations()}
+              />
+            ))}
           </>
         )}
       </div>

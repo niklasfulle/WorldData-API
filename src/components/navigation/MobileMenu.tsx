@@ -15,11 +15,11 @@ import {
 import { shortToast } from "@/helpers/shorter-function";
 
 interface UserProfileProps {
-  session: any;
+  session?: any;
 }
 
 const MobileMenu: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
-  const { user } = session;
+  const { user } = session || {};
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
@@ -86,7 +86,7 @@ const MobileMenu: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
               <span>Blogposts</span>
             </Link>
           </DropdownMenuItem>
-          {user.role === "admin" ? (
+          {user && user.role === "admin" ? (
             <>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="gap-1.5 hover:cursor-pointer">
@@ -101,7 +101,7 @@ const MobileMenu: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
               </DropdownMenuItem>
             </>
           ) : null}
-          {user.provider === "credentials" ? (
+          {user && user.provider === "credentials" ? (
             <>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="gap-1.5 hover:cursor-pointer">

@@ -13,30 +13,30 @@ const Footer = async () => {
   });
 
   return (
-    <div className="relativ backdrop-blur-sm bg-white/75 dark:bg-slate-800/75 dark:text-white border-t border-slate-300 dark:border-slate-700 shadow-sm bottom-0 left-0 right-0">
-      <div className="flex flex-col py-4 md:px-20 px-8">
-        <div className="grid grid-flow-col gap-4 lg:grid-rows-1 grid-rows-2 w-full text-center mb-2">
-          <div className="m-1 flex justify-start flex-col dark:text-white">
-            <h1 className="text-base mb-1.5 text">WorldData API</h1>
+    <div className="relativ bottom-0 left-0 right-0 border-t border-slate-300 bg-white/75 shadow-sm backdrop-blur-sm dark:border-slate-700 dark:bg-slate-800/75 dark:text-white">
+      <div className="flex flex-col px-8 py-4 md:px-20">
+        <div className="mb-2 grid w-full grid-flow-col grid-rows-2 gap-4 text-center lg:grid-rows-1">
+          <div className="m-1 flex flex-col justify-start dark:text-white">
+            <h1 className="text mb-1.5 text-base">WorldData API</h1>
             <Link
               href="/documentation"
-              className="text-sm mb-1 active:text-slate-500 dark:active:text-slate-400"
+              className="mb-1 text-sm active:text-slate-500 dark:active:text-slate-400"
             >
               Documentation
             </Link>
             <Link
               href="/blogposts"
-              className="text-sm mb-1 active:text-slate-500 dark:active:text-slate-400"
+              className="mb-1 text-sm active:text-slate-500 dark:active:text-slate-400"
             >
               Blogposts
             </Link>
           </div>
-          <div className="m-1 flex justify-start flex-col dark:text-white">
-            <h1 className="text-base mb-1.5 text">For User</h1>
+          <div className="m-1 flex flex-col justify-start dark:text-white">
+            <h1 className="text mb-1.5 text-base">For User</h1>
             {session ? (
               <Link
                 href="/dashboard"
-                className="text-sm mb-1 active:text-slate-500 dark:active:text-slate-400"
+                className="mb-1 text-sm active:text-slate-500 dark:active:text-slate-400"
               >
                 Dashboard
               </Link>
@@ -44,36 +44,36 @@ const Footer = async () => {
               <>
                 <Link
                   href="/register"
-                  className="text-sm mb-1 active:text-slate-500 dark:active:text-slate-400"
+                  className="mb-1 text-sm active:text-slate-500 dark:active:text-slate-400"
                 >
                   Sign Up
                 </Link>
                 <Link
                   href="/login"
-                  className="text-sm mb-1 active:text-slate-500 dark:active:text-slate-400"
+                  className="mb-1 text-sm active:text-slate-500 dark:active:text-slate-400"
                 >
                   Sign In
                 </Link>
               </>
             )}
           </div>
-          <div className="m-1 flex items-center flex-col dark:text-white">
-            <h1 className="text-base mb-1.5 text">Theme</h1>
+          <div className="m-1 flex flex-col items-center dark:text-white">
+            <h1 className="text mb-1.5 text-base">Theme</h1>
             <ThemeToggleFooter />
           </div>
-          <div className="m-1 flexflex-col dark:text-white justify-center">
-            <h1 className="text-base mb-1.5 text">Extern</h1>
-            <div className="m-1 flex justify-center flex-row dark:text-white ">
+          <div className="flexflex-col m-1 justify-center dark:text-white">
+            <h1 className="text mb-1.5 text-base">Extern</h1>
+            <div className="m-1 flex flex-row justify-center dark:text-white ">
               <Link
                 href="https://twitter.com/"
-                className="text-sm mb-1 flex flex-col items-center p-2 active:text-slate-500 dark:active:text-slate-400"
+                className="mb-1 flex flex-col items-center p-2 text-sm active:text-slate-500 dark:active:text-slate-400"
               >
                 <Icons.Twitter className="mb-1" />
                 Twitter
               </Link>
               <Link
                 href="https://github.com/niklasfulle/WorldData-API#readme"
-                className="text-sm mb-1 flex flex-col items-center p-2 active:text-slate-500 dark:active:text-slate-400"
+                className="mb-1 flex flex-col items-center p-2 text-sm active:text-slate-500 dark:active:text-slate-400"
               >
                 <Icons.Github className="mb-1" />
                 Github
@@ -81,37 +81,37 @@ const Footer = async () => {
             </div>
           </div>
         </div>
-        <hr className="dark:text-white w-full mb-3 mt-0 lg:mt-4"></hr>
-        <div className="flex flex-row justify-between mt-0 px-4">
+        <hr className="mb-3 mt-0 w-full dark:text-white lg:mt-4"></hr>
+        <div className="mt-0 flex flex-row justify-between px-4">
           <div className="w-44 md:w-96">
-            <p className="font-sm dark:text-white font-semibold">
+            <p className="font-sm font-semibold dark:text-white">
               {"Copyright © "}
               {new Date().getFullYear() + " "}
               {"WorldData API."}
             </p>
           </div>
-          <div className="flex flex-col md:flex-row w-52 md:w-96 justify-end items-end">
+          <div className="flex w-52 flex-col items-end justify-end md:w-96 md:flex-row">
             <Link
               href="/info/terms"
-              className="text-sm mb-1 md:mr-4 active:text-slate-500 dark:active:text-slate-400"
+              className="mb-1 text-sm active:text-slate-500 dark:active:text-slate-400 md:mr-4"
             >
               Terms
             </Link>
             <Link
               href="/info/privacy"
-              className="text-sm mb-1 md:mr-4 active:text-slate-500 dark:active:text-slate-400"
+              className="mb-1 text-sm active:text-slate-500 dark:active:text-slate-400 md:mr-4"
             >
               Privacy
             </Link>
             <Link
               href="/info/security"
-              className="text-sm mb-1 md:mr-4 active:text-slate-500 dark:active:text-slate-400"
+              className="mb-1 text-sm active:text-slate-500 dark:active:text-slate-400 md:mr-4"
             >
               Security
             </Link>
             <Link
               href="/info/cookies"
-              className="text-sm mb-1 active:text-slate-500 dark:active:text-slate-400"
+              className="mb-1 text-sm active:text-slate-500 dark:active:text-slate-400"
             >
               Cookies
             </Link>

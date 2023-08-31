@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 const PageNotFound: FC = () => {
   return (
-    <section className="container pt-32 max-w-7xl mx-auto text-center flex flex-col gap-6 items-center h-screen">
+    <section className="container mx-auto flex h-screen max-w-7xl flex-col items-center gap-6 pt-32 text-center">
       <LargeHeading>Site not found...</LargeHeading>
       <Paragraph>The site you&apos;re searching for does not exist.</Paragraph>
       <Link

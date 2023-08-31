@@ -46,7 +46,9 @@ const UserProfile: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
     if (localStorage.getItem("theme") === "system") {
       setPrefersDarkMode(true);
     } else {
-      setPrefersDarkMode(localStorage.getItem("theme") === "dark" ? true : false);
+      setPrefersDarkMode(
+        localStorage.getItem("theme") === "dark" ? true : false
+      );
     }
   }, [open]);
 
@@ -63,7 +65,9 @@ const UserProfile: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
+        <Box
+          sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
+        >
           <Tooltip title="Account">
             <IconButton
               onClick={handleClick}
@@ -80,10 +84,10 @@ const UserProfile: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
                   width={100}
                   height={100}
                   priority={true}
-                  className="h-10 w-10 rounded-full drop-shadow-sm hover:drop-shadow-xl hover:cursor-pointer"
+                  className="h-10 w-10 rounded-full drop-shadow-sm hover:cursor-pointer hover:drop-shadow-xl"
                 />
               ) : (
-                <Icons.UserCircle2 className="dark:text-white h-10 w-10 drop-shadow-sm stroke-1 text-black" />
+                <Icons.UserCircle2 className="h-10 w-10 stroke-1 text-black drop-shadow-sm dark:text-white" />
               )}
             </IconButton>
           </Tooltip>
@@ -97,7 +101,7 @@ const UserProfile: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          <div className="h-auto flex flex-col gap-1 items-center p-4 -mt-2 dark:bg-slate-800 bg-slate-100 w-60">
+          <div className="-mt-2 flex h-auto w-60 flex-col items-center gap-1 bg-slate-100 p-4 dark:bg-slate-800">
             {user.image ? (
               <Image
                 src={user.image}
@@ -105,33 +109,39 @@ const UserProfile: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
                 width={100}
                 height={100}
                 priority={false}
-                className="h-32 w-32 rounded-full drop-shadow-sm mb-3 mt-1"
+                className="mb-3 mt-1 h-32 w-32 rounded-full drop-shadow-sm"
               />
             ) : (
-              <Icons.UserCircle2 className="dark:text-white h-32 w-32 drop-shadow-sm stroke-1 mt-1" />
+              <Icons.UserCircle2 className="mt-1 h-32 w-32 stroke-1 drop-shadow-sm dark:text-white" />
             )}
             <span> {user.name}</span>
             <span> {user.email}</span>
             {user.provider !== "credentials" ? (
-              <>{user.provider === "google" ? <span>Google</span> : <span>GitHub</span>}</>
+              <>
+                {user.provider === "google" ? (
+                  <span>Google</span>
+                ) : (
+                  <span>GitHub</span>
+                )}
+              </>
             ) : (
               <span>Email</span>
             )}
           </div>
-          <Divider className="dark:bg-white bg-black" />
-          <div className="dark:bg-slate-800 bg-slate-100 py-2 -mb-2">
+          <Divider className="bg-black dark:bg-white" />
+          <div className="-mb-2 bg-slate-100 py-2 dark:bg-slate-800">
             {user.provider === "credentials" ? (
               <Link href="/change-password" className="w-full">
-                <MenuItem className=" hover:bg-slate-50  dark:hover:bg-slate-700 -ml-1">
-                  <Icons.KeyRound className="mr-3 w-5 h-5" />
+                <MenuItem className=" -ml-1  hover:bg-slate-50 dark:hover:bg-slate-700">
+                  <Icons.KeyRound className="mr-3 h-5 w-5" />
                   Change password
                 </MenuItem>
               </Link>
             ) : null}
             {user.role === "admin" ? (
               <Link href="/admin" className="w-full">
-                <MenuItem className=" hover:bg-slate-50  dark:hover:bg-slate-700 -ml-1">
-                  <Icons.Lock className="mr-3 w-5 h-5" />
+                <MenuItem className=" -ml-1  hover:bg-slate-50 dark:hover:bg-slate-700">
+                  <Icons.Lock className="mr-3 h-5 w-5" />
                   Admin Panel
                 </MenuItem>
               </Link>
@@ -139,12 +149,12 @@ const UserProfile: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
             <MenuItem
               onClick={signUserOut}
               disabled={isLoading}
-              className=" hover:bg-slate-50  dark:hover:bg-slate-700 -ml-1"
+              className=" -ml-1  hover:bg-slate-50 dark:hover:bg-slate-700"
             >
               {isLoading ? (
-                <Icons.Loader2 className="mr-3 w-5 h-5 animate-spin" />
+                <Icons.Loader2 className="mr-3 h-5 w-5 animate-spin" />
               ) : (
-                <Icons.LogOut className="mr-3 w-5 h-5" />
+                <Icons.LogOut className="mr-3 h-5 w-5" />
               )}
               Logout
             </MenuItem>

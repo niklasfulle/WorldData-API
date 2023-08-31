@@ -1,5 +1,4 @@
 import React from "react";
-import CookieConsent from "@/components/banner/CookieConsent";
 import { db } from "@/lib/db/prisma";
 import { notFound } from "next/navigation";
 
@@ -58,21 +57,20 @@ const page = async ({ params: { token } }: Props) => {
   }
 
   return (
-    <div className="inset-0 mx-auto container flex flex-col mt-12 min-h-[90vh] h-auto">
-      <div className="mx-auto flex w-full flex-col justify-center space-y-6 max-w-lg text-white">
+    <div className="container inset-0 mx-auto mt-12 flex h-auto min-h-[90vh] flex-col">
+      <div className="mx-auto flex w-full max-w-lg flex-col justify-center space-y-6 text-white">
         {expires ? (
-          <div className="flex flex-col justify-center items-center space-y-6">
+          <div className="flex flex-col items-center justify-center space-y-6">
             <h1 className="text-4xl font-bold">Expired</h1>
             <p className="text-lg">This link has expired. Please request a new one.</p>
           </div>
         ) : null}
         {confimed ? (
-          <div className="flex flex-col justify-center items-center space-y-6">
+          <div className="flex flex-col items-center justify-center space-y-6">
             <h1 className="text-4xl font-bold">Confirmed</h1>
             <p className="text-lg">Your email has been confirmed. You can now login.</p>
           </div>
         ) : null}
-        <CookieConsent />
       </div>
     </div>
   );

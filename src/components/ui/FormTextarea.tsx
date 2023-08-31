@@ -9,12 +9,17 @@ interface FormTextareaProps {
   infoText: string;
 }
 
-const FormTextarea: FC<FormTextareaProps> = ({ id, title, value, infoText }) => {
+const FormTextarea: FC<FormTextareaProps> = ({
+  id,
+  title,
+  value,
+  infoText,
+}) => {
   return (
     <div className="mb-2.5">
       <label
         htmlFor={id}
-        className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
+        className="block pl-2 text-left text-sm font-medium leading-6 text-gray-900 dark:text-white"
       >
         {title}
       </label>
@@ -24,11 +29,11 @@ const FormTextarea: FC<FormTextareaProps> = ({ id, title, value, infoText }) => 
           name={id}
           required
           defaultValue={value}
-          className="ease-in transition-all block w-full rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 text-sm leading-6 dark:focus:ring-offset-slate-700"
+          className="px-l block w-full rounded-md border-0 py-1.5 text-sm leading-6 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700"
         ></Textarea>
       </div>
-      <div className="flex flex-row items-center mt-4 p-4 rounded-md text-center bg-orange-400/30 border-orange-400/50 border-2">
-        <Icons.Info className="h-8 w-8 mr-3" />
+      <div className="mt-4 flex flex-row items-center rounded-md border-2 border-orange-400/50 bg-orange-400/30 p-4 text-center">
+        <Icons.Info className="mr-3 h-8 w-8" />
         <span>{infoText}</span>
       </div>
     </div>

@@ -11,7 +11,7 @@ const CopyIcon: FC<CopyIconProps> = ({ copyText }) => {
   return (
     <Icons.Copy
       aria-label="Copy code to clipboard"
-      className="h-6 w-6 dark:text-white absolute right-0 top-0 hover:cursor-pointer hover:dark:text-gray-400"
+      className="absolute right-0 top-0 h-6 w-6 hover:cursor-pointer dark:text-white hover:dark:text-gray-400"
       onClick={() => {
         copyToClipboard(copyText);
         shortToast("Copied", "API key copied to clipboard.", "success");

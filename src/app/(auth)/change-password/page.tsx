@@ -3,8 +3,7 @@ import Icons from "@/ui/Icons";
 import { buttonVariants } from "@/ui/Button";
 import LargeHeading from "@/ui/LargeHeading";
 import Link from "next/link";
-import CookieConsent from "@/components/banner/CookieConsent";
-import ChangePasswordForm from "@/components/auth/ChangePassword";
+import ChangePasswordForm from "@/auth/ChangePassword";
 import { getSession } from "next-auth/react";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
@@ -21,15 +20,15 @@ const page = async () => {
   }
 
   return (
-    <div className="inset-0 mx-auto container flex flex-col mt-12 min-h-[90vh] h-auto mb-20">
-      <div className="mx-auto flex w-full flex-col justify-center space-y-6 max-w-lg">
+    <div className="container inset-0 mx-auto mb-20 mt-12 flex h-auto min-h-[90vh] flex-col">
+      <div className="mx-auto flex w-full max-w-lg flex-col justify-center space-y-6">
         <div className="flex flex-col items-center gap-6 text-center">
           <LargeHeading size={"sm"}>Change your password</LargeHeading>
           <ChangePasswordForm user={session!.user} />
           <Link
             className={buttonVariants({
               variant: "ghost",
-              className: "w-fit -mt-4",
+              className: "-mt-4 w-fit",
             })}
             href="/"
             aria-label="Back to the home page"
@@ -38,7 +37,6 @@ const page = async () => {
             Back to home
           </Link>
         </div>
-        <CookieConsent />
       </div>
     </div>
   );

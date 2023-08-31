@@ -28,9 +28,17 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
       await revokeApiKey();
       await createApiKey();
       router.refresh();
-      shortToast("New API key created", "New API key created successfully.", "success");
+      shortToast(
+        "New API key created",
+        "New API key created successfully.",
+        "success"
+      );
     } catch (error) {
-      shortToast("Error creating new API key", "Please try again later.", "error");
+      shortToast(
+        "Error creating new API key",
+        "Please try again later.",
+        "error"
+      );
     } finally {
       setIsCreatingNew(false);
     }
@@ -42,7 +50,11 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
       await revokeApiKey();
       router.refresh();
     } catch (error) {
-      shortToast("Error revoking your API key", "Please try again later.", "error");
+      shortToast(
+        "Error revoking your API key",
+        "Please try again later.",
+        "error"
+      );
     } finally {
       setIsRevoking(false);
     }
@@ -51,9 +63,21 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger disabled={isCreatingNew || isRevoking} asChild>
-        <Button variant="ghost" className="flex gap-2 items-center" id="ApiKeyOptions">
-          <p>{isCreatingNew ? "Creating new key" : isRevoking ? "Revoking key" : "Options"}</p>
-          {isCreatingNew || isRevoking ? <Loader2 className="animate-spin h-4 w-4" /> : null}
+        <Button
+          variant="ghost"
+          className="flex items-center gap-2"
+          id="ApiKeyOptions"
+        >
+          <p>
+            {isCreatingNew
+              ? "Creating new key"
+              : isRevoking
+              ? "Revoking key"
+              : "Options"}
+          </p>
+          {isCreatingNew || isRevoking ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : null}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
@@ -67,11 +91,17 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
           Copy
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="hover:cursor-pointer" onClick={createNewApiKey}>
+        <DropdownMenuItem
+          className="hover:cursor-pointer"
+          onClick={createNewApiKey}
+        >
           Create new key
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="hover:cursor-pointer" onClick={revokeCurrentApiKey}>
+        <DropdownMenuItem
+          className="hover:cursor-pointer"
+          onClick={revokeCurrentApiKey}
+        >
           Revoke key
         </DropdownMenuItem>
       </DropdownMenuContent>

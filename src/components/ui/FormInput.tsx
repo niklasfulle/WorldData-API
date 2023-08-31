@@ -12,7 +12,7 @@ const FormInput: FC<FormInputProps> = ({ id, title, value }) => {
     <div className="mb-2.5">
       <label
         htmlFor={id}
-        className="block text-sm font-medium leading-6 text-gray-900 text-left pl-2 dark:text-white"
+        className="block pl-2 text-left text-sm font-medium leading-6 text-gray-900 dark:text-white"
       >
         {title}
       </label>
@@ -24,7 +24,7 @@ const FormInput: FC<FormInputProps> = ({ id, title, value }) => {
           type="text"
           defaultValue={value}
           required
-          className="ease-in transition-all block w-full rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+          className="px-l block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
         />
       </div>
     </div>

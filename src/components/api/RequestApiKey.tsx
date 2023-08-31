@@ -33,12 +33,18 @@ const RequestApiKey = () => {
   }
 
   return (
-    <div className="container md:max-w-3xl min-h-[90vh] h-auto">
-      <div className="flex flex-col gap-6 items-center">
-        <LargeHeading className="text-center">Request your API key</LargeHeading>
+    <div className="container h-auto min-h-[90vh] md:max-w-3xl">
+      <div className="flex flex-col items-center gap-6">
+        <LargeHeading className="text-center">
+          Request your API key
+        </LargeHeading>
         <Paragraph>You haven&apos;t requested an API key yet.</Paragraph>
       </div>
-      <form onSubmit={createNewApiKey} className="mt-16 sm:flex sm:items-center px-12" action="#">
+      <form
+        onSubmit={createNewApiKey}
+        className="mt-16 px-12 sm:flex sm:items-center"
+        action="#"
+      >
         <label htmlFor="api-key" className="sr-only">
           Your API key
         </label>
@@ -46,7 +52,7 @@ const RequestApiKey = () => {
           {/* Show a copy icon if API key was generated successfully */}
           {apiKey ? (
             <CopyButton
-              className="absolute inset-y-0 right-0 animate-in fade-in duration-300"
+              className="absolute inset-y-0 right-0 duration-300 animate-in fade-in"
               valueToCopy={apiKey}
               type="button"
             />
@@ -59,7 +65,7 @@ const RequestApiKey = () => {
             id="api-key"
           />
         </div>
-        <div className="mt-6 flex justify-center sm:mt-0 sm:ml-4 sm:flex-shrink-0">
+        <div className="mt-6 flex justify-center sm:ml-4 sm:mt-0 sm:flex-shrink-0">
           <Button disabled={!!apiKey} isLoading={isCreating}>
             Request key
           </Button>

@@ -15,10 +15,10 @@ import Icons from "@/ui/Icons";
 
 const DataTabs = () => {
   return (
-    <Tabs defaultValue="v1" className="max-w-2xl w-full">
+    <Tabs defaultValue="v1" className="w-full max-w-2xl">
       <div className="flex justify-end md:justify-start">
         <TabsList className="hidden md:inline-flex">
-          <div className="p-1 dark:hover:bg-slate-700 rounded-l-md">
+          <div className="rounded-l-md p-1 dark:hover:bg-slate-700">
             <TabsTrigger
               value="v1"
               id="v1Trigger"
@@ -51,7 +51,7 @@ const DataTabs = () => {
               V3
             </TabsTrigger>
           </div>
-          <div className="p-1 dark:hover:bg-slate-700 rounded-r-md">
+          <div className="rounded-r-md p-1 dark:hover:bg-slate-700">
             <TabsTrigger
               value="v4"
               id="v4Trigger"
@@ -64,15 +64,20 @@ const DataTabs = () => {
           </div>
         </TabsList>
         <DropdownMenu>
-          <DropdownMenuTrigger asChild className="md:hidden mr-1">
-            <Button variant="ghost" size="sm" id="versionToggle" className="sm:mb-0">
+          <DropdownMenuTrigger asChild className="mr-1 md:hidden">
+            <Button
+              variant="ghost"
+              size="sm"
+              id="versionToggle"
+              className="sm:mb-0"
+            >
               <Icons.PanelTopOpen className="h-6 w-6" />
               <span className="sr-only">Toggle data tab</span>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" forceMount className="md:hidden p-0">
-            <TabsList className="flex-col p-0 md:hidden w-full">
-              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
+          <DropdownMenuContent align="end" forceMount className="p-0 md:hidden">
+            <TabsList className="w-full flex-col p-0 md:hidden">
+              <DropdownMenuItem className="flex w-full justify-center p-1 hover:cursor-pointer">
                 <TabsTrigger
                   value="v1"
                   id="v1TriggerDrop"
@@ -83,7 +88,7 @@ const DataTabs = () => {
                   V1
                 </TabsTrigger>
               </DropdownMenuItem>
-              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
+              <DropdownMenuItem className="flex w-full justify-center p-1 hover:cursor-pointer">
                 <TabsTrigger
                   value="v2"
                   id="v2TriggerDrop"
@@ -94,7 +99,7 @@ const DataTabs = () => {
                   V2
                 </TabsTrigger>
               </DropdownMenuItem>
-              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
+              <DropdownMenuItem className="flex w-full justify-center p-1 hover:cursor-pointer">
                 <TabsTrigger
                   value="v3"
                   id="v3TriggerDrop"
@@ -105,7 +110,7 @@ const DataTabs = () => {
                   V3
                 </TabsTrigger>
               </DropdownMenuItem>
-              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
+              <DropdownMenuItem className="flex w-full justify-center p-1 hover:cursor-pointer">
                 <TabsTrigger
                   value="v4"
                   id="v4TriggerDrop"
@@ -124,7 +129,7 @@ const DataTabs = () => {
       <TabsContent
         value="v1"
         id="v1TabContent"
-        className="lg:mb-24 mb-4"
+        className="mb-4 lg:mb-24"
         aria-labelledby="v1 TabContent"
       >
         <SimpleBar>
@@ -134,7 +139,7 @@ const DataTabs = () => {
       <TabsContent
         value="v2"
         id="v2TabContent"
-        className="lg:mb-24 mb-4"
+        className="mb-4 lg:mb-24"
         aria-labelledby="v2 TabContent"
       >
         <SimpleBar>
@@ -144,7 +149,7 @@ const DataTabs = () => {
       <TabsContent
         value="v3"
         id="v3TabContent"
-        className="lg:mb-24 mb-4"
+        className="mb-4 lg:mb-24"
         aria-labelledby="v3 TabContent"
       >
         <SimpleBar>
@@ -154,7 +159,7 @@ const DataTabs = () => {
       <TabsContent
         value="v4"
         id="v4TabContent"
-        className="lg:mb-24 mb-4"
+        className="mb-4 lg:mb-24"
         aria-labelledby="v4 TabContent"
       >
         <SimpleBar>

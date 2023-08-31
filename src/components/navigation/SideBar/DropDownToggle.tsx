@@ -22,13 +22,18 @@ interface DropDownToggleProps {
   }[];
 }
 
-export function DropDownToggle({ id, mainTitle, icon, collapseTitle }: DropDownToggleProps) {
+export function DropDownToggle({
+  id,
+  mainTitle,
+  icon,
+  collapseTitle,
+}: DropDownToggleProps) {
   return (
     <DropdownMenu>
       <Tooltip title={mainTitle} disableFocusListener arrow placement="right">
         <DropdownMenuTrigger
           asChild
-          className="dark:hover:bg-slate-700 dark:text-white text-black hover:bg-slate-200 p-2 h-10"
+          className="h-10 p-2 text-black hover:bg-slate-200 dark:text-white dark:hover:bg-slate-700"
         >
           <Button variant="ghost" size="sm" id={id}>
             {icon}

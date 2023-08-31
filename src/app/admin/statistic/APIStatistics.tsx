@@ -86,89 +86,89 @@ const APIStatistics: FC<APIStatisticsProps> = () => {
 
   return (
     <>
-      <div className="dark:bg-slate-900 w-full h-full rounded-sm flex flex-col xl:flex-row gap-4">
-        <div className="w-full xl:w-9/12 dark:bg-slate-800 bg-white/75 rounded-md h-fit relativ p-2 ">
-          <LargeHeading className="flex flex-row justify-center w-full mt-4">
+      <div className="flex h-full w-full flex-col gap-4 rounded-sm dark:bg-slate-900 xl:flex-row">
+        <div className="relativ h-fit w-full rounded-md bg-white/75 p-2 dark:bg-slate-800 xl:w-9/12 ">
+          <LargeHeading className="mt-4 flex w-full flex-row justify-center">
             API Statistic
           </LargeHeading>
-          <div className="h-auto w-full mb-6 dark:border-slate-700 border-2 mt-12 rounded-md">
+          <div className="mb-6 mt-12 h-auto w-full rounded-md border-2 dark:border-slate-700">
             <LineChart chartData={userData} />
           </div>
         </div>
-        <div className="w-full xl:w-3/12 dark:bg-slate-800 bg-white/75 h-full xl:h-fit rounded-md relativ flex flex-col gap-2">
-          <h1 className="flex flex-row justify-center w-full mt-6 text-2xl font-medium">
+        <div className="relativ flex h-full w-full flex-col gap-2 rounded-md bg-white/75 dark:bg-slate-800 xl:h-fit xl:w-3/12">
+          <h1 className="mt-6 flex w-full flex-row justify-center text-2xl font-medium">
             Calls by Month
           </h1>
-          <ul className="flex flex-col items-start px-24 xl:px-10 my-6 gap-4">
-            <li className="flex flex-row justify-between w-full">
+          <ul className="my-6 flex flex-col items-start gap-4 px-24 xl:px-10">
+            <li className="flex w-full flex-row justify-between">
               January:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               February:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               March:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               April:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               May:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               June:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               July:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               August:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               October:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               November:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               December:<span>7</span>
             </li>
           </ul>
-          <h1 className="flex flex-row justify-center w-full mt-4 text-2xl font-medium mb-4">
+          <h1 className="mb-4 mt-4 flex w-full flex-row justify-center text-2xl font-medium">
             Calls by Month
           </h1>
-          <ul className="flex flex-col items-start px-10 my-6 gap-4">
-            <li className="flex flex-row justify-between w-full">
+          <ul className="my-6 flex flex-col items-start gap-4 px-10">
+            <li className="flex w-full flex-row justify-between">
               Continents:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               Oceans:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               Seas:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               Countires:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               Cities:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               Mountains:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               Lakes:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               Rivers:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               Islands:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               Currencies:<span>7</span>
             </li>
-            <li className="flex flex-row justify-between w-full">
+            <li className="flex w-full flex-row justify-between">
               Solar System:<span>7</span>
             </li>
           </ul>

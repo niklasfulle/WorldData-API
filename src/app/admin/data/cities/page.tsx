@@ -13,15 +13,21 @@ const CitiesPage = () => {
   const action = searchParams?.get("action");
 
   return (
-    <div className="max-w-full mx-auto flex">
+    <div className="mx-auto flex max-w-full">
       <Sidebar page="cities" />
-      <div className="container p-0 gap-6 min-h-screen h-auto dark:text-white">
+      <div className="container h-auto min-h-screen gap-6 p-0 dark:text-white">
         {action === "view" && <ViewSection />}
         {action === "create" && (
-          <CreateSection title="Create City" form={<CitiesForm buttonTitle="Create" />} />
+          <CreateSection
+            title="Create City"
+            form={<CitiesForm buttonTitle="Create" />}
+          />
         )}
         {action === "update" && (
-          <UpdateSection title="Update City" form={<CitiesForm buttonTitle="Update" />} />
+          <UpdateSection
+            title="Update City"
+            form={<CitiesForm buttonTitle="Update" />}
+          />
         )}
       </div>
     </div>

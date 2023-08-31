@@ -43,7 +43,12 @@ const CollapseItems: FC<CollapseItemsProps> = ({ page }) => {
         page={page}
         collapseTitle={OceansLinkList}
       />
-      <ItemCollapse mainTile="Seas" icon={<WavesIcon />} page={page} collapseTitle={SeasLinkList} />
+      <ItemCollapse
+        mainTile="Seas"
+        icon={<WavesIcon />}
+        page={page}
+        collapseTitle={SeasLinkList}
+      />
       <ItemCollapse
         mainTile="Countries"
         icon={<FlagIcon />}

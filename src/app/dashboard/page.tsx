@@ -26,7 +26,7 @@ const page = async () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto mt-12">
+    <div className="mx-auto mt-12 max-w-7xl">
       {apiKey ? <ApiDashboard user={user} /> : <RequestApiKey />}
     </div>
   );

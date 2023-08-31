@@ -5,7 +5,6 @@ import { DataGrid, GridColDef, GridColumnHeaderParams } from "@mui/x-data-grid";
 import { ApiRequest } from "@prisma/client";
 import { useTheme } from "next-themes";
 
-
 type ModifiedRequestType<K extends keyof ApiRequest> = Omit<ApiRequest, K> & {
   timestamp: string;
 };
@@ -20,7 +19,9 @@ const columnsDraft: GridColDef[] = [
     headerName: "API key used",
     width: 300,
     renderHeader(params) {
-      return <strong className="font-semibold">{params.colDef.headerName} </strong>;
+      return (
+        <strong className="font-semibold">{params.colDef.headerName} </strong>
+      );
     },
   },
   { field: "col2", headerName: "Path", width: 250 },
@@ -38,7 +39,9 @@ const columns = columnsDraft.map((col) => {
   return {
     ...col,
     renderHeader(params: GridColumnHeaderParams<any, any, any>) {
-      return <strong className="font-semibold">{params.colDef.headerName}</strong>;
+      return (
+        <strong className="font-semibold">{params.colDef.headerName}</strong>
+      );
     },
   };
 });

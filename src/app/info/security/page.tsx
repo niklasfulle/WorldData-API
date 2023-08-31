@@ -3,7 +3,7 @@ import LargeHeading from "@/ui/LargeHeading";
 
 const page = () => {
   return (
-    <div className="container max-w-7xl mx-auto mt-12 min-h-screen h-auto">
+    <div className="container mx-auto mt-12 h-auto min-h-screen max-w-7xl">
       <div className="flex flex-col items-center gap-6">
         <LargeHeading>Security</LargeHeading>
       </div>

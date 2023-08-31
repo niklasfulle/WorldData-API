@@ -39,18 +39,25 @@ const CookieConsent = () => {
   }
 
   return (
-    <div className="fixed inset-0 bg-slate-100 bg-opacity-30 z-50">
-      <div className="fixed bottom-0 left-0 right-0 flex sm:items-center flex-col sm:flex-row sm:justify-between px-4 sm:px-20 py-4 sm:py-8 bg-slate-100 dark:bg-slate-700 dark:text-white">
-        <span className="dark:text-white sm:text-sm text-base sm:mr-16 text-justify sm:text-left px-4 sm:px-0 mb-3 sm:mb-0">
-          This website uses cookies to improve user experience. By using our website you consent to
-          all cookies in accordance with our Cookie Policy. To learn more about cookies, click on
-          <Link href="/info/cookies" className="text-[#4c4ddb] dark:text-[#25bbee]">
+    <div className="fixed inset-0 z-50 bg-slate-100 bg-opacity-30">
+      <div className="fixed bottom-0 left-0 right-0 flex flex-col bg-slate-100 px-4 py-4 dark:bg-slate-700 dark:text-white sm:flex-row sm:items-center sm:justify-between sm:px-20 sm:py-8">
+        <span className="mb-3 px-4 text-justify text-base dark:text-white sm:mb-0 sm:mr-16 sm:px-0 sm:text-left sm:text-sm">
+          This website uses cookies to improve user experience. By using our
+          website you consent to all cookies in accordance with our Cookie
+          Policy. To learn more about cookies, click on
+          <Link
+            href="/info/cookies"
+            className="text-[#4c4ddb] dark:text-[#25bbee]"
+          >
             {" "}
             Cookies
           </Link>
           .
         </span>
-        <Button className={buttonVariants({ variant: "cookie" })} onClick={() => acceptCookie()}>
+        <Button
+          className={buttonVariants({ variant: "cookie" })}
+          onClick={() => acceptCookie()}
+        >
           Accept
         </Button>
       </div>

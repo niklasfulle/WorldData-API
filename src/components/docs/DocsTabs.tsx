@@ -2,7 +2,14 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/Tabs";
 import Code from "@/docs/Code";
-import { go, javascript, python, rust, kotlin, csharp } from "@/helpers/code-values";
+import {
+  go,
+  javascript,
+  python,
+  rust,
+  kotlin,
+  csharp,
+} from "@/helpers/code-values";
 import SimpleBar from "simplebar-react";
 import {
   DropdownMenu,
@@ -16,10 +23,10 @@ import CopyIcon from "@/docs/CopyIcon";
 
 const DocumentationTabs = () => {
   return (
-    <Tabs defaultValue="nodejs" className="max-w-2xl w-full">
+    <Tabs defaultValue="nodejs" className="w-full max-w-2xl">
       <div className="flex justify-end md:justify-start">
         <TabsList className="hidden md:inline-flex">
-          <div className="p-1 dark:hover:bg-slate-700 rounded-l-md">
+          <div className="rounded-l-md p-1 dark:hover:bg-slate-700">
             <TabsTrigger
               id="nodejsTrigger"
               aria-controls="nodejs"
@@ -74,7 +81,7 @@ const DocumentationTabs = () => {
               Kotlin
             </TabsTrigger>
           </div>
-          <div className="p-1 dark:hover:bg-slate-700 rounded-r-md">
+          <div className="rounded-r-md p-1 dark:hover:bg-slate-700">
             <TabsTrigger
               id="csharpTrigger"
               aria-controls="csharp"
@@ -87,15 +94,20 @@ const DocumentationTabs = () => {
           </div>
         </TabsList>
         <DropdownMenu>
-          <DropdownMenuTrigger asChild className="md:hidden mr-1">
-            <Button variant="ghost" size="sm" id="codeToggle" className="sm:mb-0">
+          <DropdownMenuTrigger asChild className="mr-1 md:hidden">
+            <Button
+              variant="ghost"
+              size="sm"
+              id="codeToggle"
+              className="sm:mb-0"
+            >
               <Icons.PanelTopOpen className="h-6 w-6" />
               <span className="sr-only">Toggle doc tab</span>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" forceMount className="md:hidden p-0">
-            <TabsList className="flex-col p-0 md:hidden w-full">
-              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
+          <DropdownMenuContent align="end" forceMount className="p-0 md:hidden">
+            <TabsList className="w-full flex-col p-0 md:hidden">
+              <DropdownMenuItem className="flex w-full justify-center p-1 hover:cursor-pointer">
                 <TabsTrigger
                   id="nodejsTrigger"
                   aria-controls="nodejs"
@@ -106,7 +118,7 @@ const DocumentationTabs = () => {
                   NodeJs
                 </TabsTrigger>
               </DropdownMenuItem>
-              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
+              <DropdownMenuItem className="flex w-full justify-center p-1 hover:cursor-pointer">
                 <TabsTrigger
                   id="pythonTrigger"
                   aria-controls="python"
@@ -117,7 +129,7 @@ const DocumentationTabs = () => {
                   Python
                 </TabsTrigger>
               </DropdownMenuItem>
-              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
+              <DropdownMenuItem className="flex w-full justify-center p-1 hover:cursor-pointer">
                 <TabsTrigger
                   id="goTrigger"
                   aria-controls="go"
@@ -128,7 +140,7 @@ const DocumentationTabs = () => {
                   Go
                 </TabsTrigger>
               </DropdownMenuItem>
-              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
+              <DropdownMenuItem className="flex w-full justify-center p-1 hover:cursor-pointer">
                 <TabsTrigger
                   id="rustTrigger"
                   aria-controls="rust"
@@ -139,7 +151,7 @@ const DocumentationTabs = () => {
                   Rust
                 </TabsTrigger>
               </DropdownMenuItem>
-              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
+              <DropdownMenuItem className="flex w-full justify-center p-1 hover:cursor-pointer">
                 <TabsTrigger
                   id="kotlinTrigger"
                   aria-controls="kotlin"
@@ -150,7 +162,7 @@ const DocumentationTabs = () => {
                   Kotlin
                 </TabsTrigger>
               </DropdownMenuItem>
-              <DropdownMenuItem className="hover:cursor-pointer w-full flex justify-center p-1">
+              <DropdownMenuItem className="flex w-full justify-center p-1 hover:cursor-pointer">
                 <TabsTrigger
                   id="csharpTrigger"
                   aria-controls="csharp"
@@ -168,7 +180,7 @@ const DocumentationTabs = () => {
       <TabsContent
         value="nodejs"
         id="nodejsTabContent"
-        className="lg:mb-24 mb-4 px-4 py-3"
+        className="mb-4 px-4 py-3 lg:mb-24"
         aria-labelledby="nodejs Content"
       >
         <SimpleBar>
@@ -179,7 +191,7 @@ const DocumentationTabs = () => {
       <TabsContent
         value="python"
         id="pythonTabContent"
-        className="lg:mb-24 mb-4 px-4 py-3"
+        className="mb-4 px-4 py-3 lg:mb-24"
         aria-labelledby="python Content"
       >
         <SimpleBar>
@@ -190,7 +202,7 @@ const DocumentationTabs = () => {
       <TabsContent
         value="go"
         id="goTabContent"
-        className="lg:mb-24 mb-4 px-4 py-3"
+        className="mb-4 px-4 py-3 lg:mb-24"
         aria-labelledby="go Content"
       >
         <SimpleBar>
@@ -201,7 +213,7 @@ const DocumentationTabs = () => {
       <TabsContent
         value="rust"
         id="rustTabContent"
-        className="lg:mb-24 mb-4 px-4 py-3"
+        className="mb-4 px-4 py-3 lg:mb-24"
         aria-labelledby="rust Content"
       >
         <SimpleBar>
@@ -213,7 +225,7 @@ const DocumentationTabs = () => {
       <TabsContent
         value="kotlin"
         id="kotlinTabContent"
-        className="lg:mb-24 mb-4 px-4 py-3"
+        className="mb-4 px-4 py-3 lg:mb-24"
         aria-labelledby="kotlin Content"
       >
         <SimpleBar>
@@ -225,7 +237,7 @@ const DocumentationTabs = () => {
       <TabsContent
         value="csharp"
         id="csharpTabContent"
-        className="lg:mb-24 mb-4 px-4 py-3"
+        className="mb-4 px-4 py-3 lg:mb-24"
         aria-labelledby="csharp Content"
       >
         <SimpleBar>

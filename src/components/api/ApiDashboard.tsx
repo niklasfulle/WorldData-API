@@ -37,18 +37,25 @@ const ApiDashboard: FC<ApiDashboardProps> = async ({ user }) => {
   }));
 
   return (
-    <div className="container flex flex-col gap-6 min-h-[90vh] h-auto mb-12">
+    <div className="container mb-12 flex h-auto min-h-[90vh] flex-col gap-6">
       <LargeHeading>Welcome back, {user.name}</LargeHeading>
-      <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start items-center ">
+      <div className="flex flex-col items-center justify-center gap-4 md:flex-row md:justify-start ">
         <Paragraph className="ml-2 mt-1">Your API key:</Paragraph>
         <label htmlFor="api-key" className="sr-only">
           Your API key
         </label>
-        <Input id="api-key" className="md:w-[22rem] w-52" readOnly value={activeApiKey.key} />
+        <Input
+          id="api-key"
+          className="w-52 md:w-[22rem]"
+          readOnly
+          value={activeApiKey.key}
+        />
         <ApiKeyOptions apiKeyKey={activeApiKey.key} />
       </div>
-      <div className="flex flex-row justify-between -mb-4 px-2 items-center">
-        <Paragraph className="text-center md:text-left -mb-2">Your API history:</Paragraph>
+      <div className="-mb-4 flex flex-row items-center justify-between px-2">
+        <Paragraph className="-mb-2 text-center md:text-left">
+          Your API history:
+        </Paragraph>
         <ApiHistoryOptions apiKeyKey={activeApiKey.key} />
       </div>
       <div>

@@ -9,7 +9,7 @@ interface LineChartProps {
 }
 
 function LineChart({ chartData }: LineChartProps) {
-  return <Line className="xl:w-10/12 w-full" data={chartData} />;
+  return <Line className="w-full xl:w-10/12" data={chartData} />;
 }
 
 export default LineChart;

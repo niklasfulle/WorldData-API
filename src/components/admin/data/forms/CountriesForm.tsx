@@ -16,13 +16,19 @@ const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
   const [timezones, setTimezones] = useState(country?.timezones || []);
 
   return (
-    <div className="flex min-h-full flex-col justify-center px-2 md:px-6 lg:px-8 py-6 rounded-lg items-center">
-      <p id="errors" className="sm:max-w-[14rem] text-center mt-2 text-red-600 font-bold">
+    <div className="flex min-h-full flex-col items-center justify-center rounded-lg px-2 py-6 md:px-6 lg:px-8">
+      <p
+        id="errors"
+        className="mt-2 text-center font-bold text-red-600 sm:max-w-[14rem]"
+      >
         {error}
       </p>
       <div className="mt-3 sm:mx-auto sm:w-full">
-        <form className="space-y-6" onSubmit={(e) => console.log(e, setIsLoading, setError)}>
-          <div className="flex flex-col justify-center items-center lg:items-start lg:flex-row lg:justify-around w-full">
+        <form
+          className="space-y-6"
+          onSubmit={(e) => console.log(e, setIsLoading, setError)}
+        >
+          <div className="flex w-full flex-col items-center justify-center lg:flex-row lg:items-start lg:justify-around">
             <div className="w-[18rem]">
               <FormInput id="name" title="Name" value={country?.name || ""} />
               <FormInput id="iso3" title="Iso3" value={country?.iso3 || ""} />
@@ -32,28 +38,72 @@ const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
                 title="Numeric Code"
                 value={country?.numeric_code || ""}
               />
-              <FormInput id="phone_code" title="Phone Code" value={country?.phone_code || ""} />
-              <FormInput id="capital" title="Capital" value={country?.capital || ""} />
+              <FormInput
+                id="phone_code"
+                title="Phone Code"
+                value={country?.phone_code || ""}
+              />
+              <FormInput
+                id="capital"
+                title="Capital"
+                value={country?.capital || ""}
+              />
               <FormInput id="tld" title="Tld" value={country?.tld || ""} />
-              <FormInput id="region" title="Region" value={country?.region || ""} />
-              <FormInput id="subregion" title="Subregion" value={country?.subregion || ""} />
-              <FormInput id="latitude" title="Latitude" value={country?.latitude || ""} />
-              <FormInput id="longitude" title="Longitude" value={country?.longitude || ""} />
-              <FormInput id="independent" title="Independent" value={country?.independent || ""} />
-              <FormInput id="area_m2" title="Area m²" value={country?.area_m2 || ""} />
+              <FormInput
+                id="region"
+                title="Region"
+                value={country?.region || ""}
+              />
+              <FormInput
+                id="subregion"
+                title="Subregion"
+                value={country?.subregion || ""}
+              />
+              <FormInput
+                id="latitude"
+                title="Latitude"
+                value={country?.latitude || ""}
+              />
+              <FormInput
+                id="longitude"
+                title="Longitude"
+                value={country?.longitude || ""}
+              />
+              <FormInput
+                id="independent"
+                title="Independent"
+                value={country?.independent || ""}
+              />
+              <FormInput
+                id="area_m2"
+                title="Area m²"
+                value={country?.area_m2 || ""}
+              />
               <FormInput
                 id="population"
                 title="Population"
                 value={country?.area_populationm2 || ""}
               />
-              <FormInput id="density_km2" title="Density km²" value={country?.density_km2 || ""} />
-              <FormInput id="currency" title="Currency" value={country?.currency || ""} />
+              <FormInput
+                id="density_km2"
+                title="Density km²"
+                value={country?.density_km2 || ""}
+              />
+              <FormInput
+                id="currency"
+                title="Currency"
+                value={country?.currency || ""}
+              />
               <FormInput
                 id="currency_symbol"
                 title="Currency Symbol"
                 value={country?.currency_symbol || ""}
               />
-              <FormInput id="native_name" title="Native Name" value={country?.native_name || ""} />
+              <FormInput
+                id="native_name"
+                title="Native Name"
+                value={country?.native_name || ""}
+              />
             </div>
             <div className="w-[18rem]">
               <FormMultyTimezonesInput
@@ -67,17 +117,25 @@ const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
                 title="Translations"
                 translations={country?.translations || ""}
               />
-              <FormInput id="emoji" title="Emoji" value={country?.emoji || ""} />
-              <FormInput id="emojiU" title="EmojiU" value={country?.emojiU || ""} />
+              <FormInput
+                id="emoji"
+                title="Emoji"
+                value={country?.emoji || ""}
+              />
+              <FormInput
+                id="emojiU"
+                title="EmojiU"
+                value={country?.emojiU || ""}
+              />
             </div>
           </div>
 
-          <div className="w-full flex flex-row justify-center pt-12 pb-8">
+          <div className="flex w-full flex-row justify-center pb-8 pt-12">
             <Button
               isLoading={isLoading}
               disabled={isLoading}
               type="submit"
-              className="w-48 ease-in transition-all flex justify-center rounded-md bg-indigo-600 dark:bg-sky-400 hover:bg-indigo-500 dark:hover:bg-sky-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white dark:text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 disabled:opacity-50 dark:focus:ring-sky-500 disabled:pointer-events-none dark:focus:ring-offset-slate-700"
+              className="flex w-48 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm transition-all ease-in hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:bg-sky-400 dark:text-black dark:hover:bg-sky-500 dark:focus:ring-sky-500 dark:focus:ring-offset-slate-700"
             >
               {buttonTitle}
             </Button>

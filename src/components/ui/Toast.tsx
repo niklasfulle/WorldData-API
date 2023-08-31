@@ -29,7 +29,10 @@ Toast.Title = function ToastTitle({ className, ...props }: ToastTitleProps) {
 
 interface ToastDescriptionProps extends HTMLAttributes<HTMLParagraphElement> {}
 
-Toast.Description = function ToastDescription({ className, ...props }: ToastDescriptionProps) {
+Toast.Description = function ToastDescription({
+  className,
+  ...props
+}: ToastDescriptionProps) {
   return <p className={cn("text-sm opacity-80", className)} {...props} />;
 };
 

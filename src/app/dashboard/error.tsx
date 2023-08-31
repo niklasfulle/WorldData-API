@@ -5,7 +5,7 @@ import Paragraph from "@/ui/Paragraph";
 
 export default function Error({ reset }: { error: Error; reset: () => void }) {
   return (
-    <div className="flex flex-col gap-4 items-center h-screen pt-32">
+    <div className="flex h-screen flex-col items-center gap-4 pt-32">
       <Paragraph>Something went wrong while loading this page.</Paragraph>
       <Button
         size="lg"

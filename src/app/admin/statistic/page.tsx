@@ -12,9 +12,9 @@ const StatisticPage = () => {
   const action = searchParams?.get("data");
 
   return (
-    <div className="max-w-full mx-auto flex">
+    <div className="mx-auto flex max-w-full">
       <Sidebar page="statistic" />
-      <div className="container p-0 gap-6 min-h-screen h-auto dark:text-white">
+      <div className="container h-auto min-h-screen gap-6 p-0 dark:text-white">
         {action === "api" && <APIStatistics />}
         {action === "user" && <UserStatistics />}
         {action === "data" && <DataStatistics />}

@@ -23,15 +23,18 @@ type Translations = {
   tr: string;
 };
 
-const FormTranslationsInput: FC<FormTranslationsInputInput> = ({ title, translations }) => {
+const FormTranslationsInput: FC<FormTranslationsInputInput> = ({
+  title,
+  translations,
+}) => {
   const values = Object.entries(translations);
 
   return (
     <div className="mb-2.5">
-      <span className="block text-sm font-medium leading-6 text-gray-900 dark:text-white text-left pl-2">
+      <span className="block pl-2 text-left text-sm font-medium leading-6 text-gray-900 dark:text-white">
         {title}
       </span>
-      <div className="mt-0.5 flex flex-row flex-wrap justify-between gap-3 p-3 border border-white rounded-md ">
+      <div className="mt-0.5 flex flex-row flex-wrap justify-between gap-3 rounded-md border border-white p-3 ">
         {values.length > 0 ? (
           values.map((item) => (
             <Input
@@ -42,7 +45,7 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({ title, translat
               type="text"
               defaultValue={item[1]}
               required
-              className="w-[45%] ease-in transition-all block rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
             />
           ))
         ) : (
@@ -54,7 +57,7 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({ title, translat
               type="text"
               defaultValue=""
               required
-              className="w-[45%] ease-in transition-all block rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
             />
             <Input
               id="pt-BR"
@@ -63,7 +66,7 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({ title, translat
               type="text"
               defaultValue=""
               required
-              className="w-[45%] ease-in transition-all block rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
             />
             <Input
               id="pt"
@@ -72,7 +75,7 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({ title, translat
               type="text"
               defaultValue=""
               required
-              className="w-[45%] ease-in transition-all block rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
             />
             <Input
               id="nl"
@@ -81,7 +84,7 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({ title, translat
               type="text"
               defaultValue=""
               required
-              className="w-[45%] ease-in transition-all block rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
             />
             <Input
               id="hr"
@@ -90,7 +93,7 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({ title, translat
               type="text"
               defaultValue=""
               required
-              className="w-[45%] ease-in transition-all block rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
             />
             <Input
               id="fa"
@@ -99,7 +102,7 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({ title, translat
               type="text"
               defaultValue=""
               required
-              className="w-[45%] ease-in transition-all block rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
             />
             <Input
               id="de"
@@ -108,7 +111,7 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({ title, translat
               type="text"
               defaultValue=""
               required
-              className="w-[45%] ease-in transition-all block rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
             />
             <Input
               id="es"
@@ -117,7 +120,7 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({ title, translat
               type="text"
               defaultValue=""
               required
-              className="w-[45%] ease-in transition-all block rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
             />
             <Input
               id="fr"
@@ -126,7 +129,7 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({ title, translat
               type="text"
               defaultValue=""
               required
-              className="w-[45%] ease-in transition-all block rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
             />
             <Input
               id="ja"
@@ -135,7 +138,7 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({ title, translat
               type="text"
               defaultValue=""
               required
-              className="w-[45%] ease-in transition-all block rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
             />
             <Input
               id="it"
@@ -144,7 +147,7 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({ title, translat
               type="text"
               defaultValue=""
               required
-              className="w-[45%] ease-in transition-all block rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
             />
             <Input
               id="cn"
@@ -153,7 +156,7 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({ title, translat
               type="text"
               defaultValue=""
               required
-              className="w-[45%] ease-in transition-all block rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
             />
             <Input
               id="tr"
@@ -162,7 +165,7 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({ title, translat
               type="text"
               defaultValue=""
               required
-              className="w-[45%] ease-in transition-all block rounded-md border-0 px-l py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 sm:text-sm sm:leading-6 dark:focus:ring-offset-slate-700"
+              className="px-l block w-[45%] rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
             />
           </>
         )}

@@ -47,7 +47,7 @@ const MobileMenu: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
             {session ? (
               <Link
                 href="/dashboard"
-                className="w-full flex items-center gap-1.5"
+                className="flex w-full items-center gap-1.5"
                 aria-label="Link to the dashboard page"
               >
                 <Icons.LayoutDashboard className="mr-2 h-5 w-5" />
@@ -68,7 +68,7 @@ const MobileMenu: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
           <DropdownMenuItem asChild className="hover:cursor-pointer">
             <Link
               href="/documentation"
-              className="w-full flex items-center gap-1.5"
+              className="flex w-full items-center gap-1.5"
               aria-label="Link to the documentation page"
             >
               <Icons.Book className="mr-2 h-5 w-5" />
@@ -79,7 +79,7 @@ const MobileMenu: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
           <DropdownMenuItem asChild className="hover:cursor-pointer">
             <Link
               href="/blogposts"
-              className="w-full flex items-center gap-1.5"
+              className="flex w-full items-center gap-1.5"
               aria-label="Link to the world-data page"
             >
               <Icons.Newspaper className="mr-2 h-5 w-5" />
@@ -92,10 +92,10 @@ const MobileMenu: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
               <DropdownMenuItem className="gap-1.5 hover:cursor-pointer">
                 <Link
                   href="/admin"
-                  className="w-full flex items-center gap-1.5"
+                  className="flex w-full items-center gap-1.5"
                   aria-label="Link to the world-data page"
                 >
-                  <Icons.Lock className="mr-2 w-5 h-5" />
+                  <Icons.Lock className="mr-2 h-5 w-5" />
                   <span>Admin Panel</span>
                 </Link>
               </DropdownMenuItem>
@@ -107,10 +107,10 @@ const MobileMenu: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
               <DropdownMenuItem className="gap-1.5 hover:cursor-pointer">
                 <Link
                   href="/change-password"
-                  className="w-full flex items-center gap-1.5"
+                  className="flex w-full items-center gap-1.5"
                   aria-label="Link to the world-data page"
                 >
-                  <Icons.KeyRound className="mr-2 w-5 h-5" />
+                  <Icons.KeyRound className="mr-2 h-5 w-5" />
                   <span>Change password</span>
                 </Link>
               </DropdownMenuItem>
@@ -119,10 +119,15 @@ const MobileMenu: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
           {user ? (
             <>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={signUserOut} className="gap-1.5 hover:cursor-pointer">
+              <DropdownMenuItem
+                onClick={signUserOut}
+                className="gap-1.5 hover:cursor-pointer"
+              >
                 <Icons.LogOut className="mr-2 h-5 w-5" />
                 <span>{isLoading ? "Signing out" : "Sign out"}</span>
-                {isLoading ? <Icons.Loader2 className="animate-spin h-4 w-4" /> : null}
+                {isLoading ? (
+                  <Icons.Loader2 className="h-4 w-4 animate-spin" />
+                ) : null}
               </DropdownMenuItem>
             </>
           ) : null}

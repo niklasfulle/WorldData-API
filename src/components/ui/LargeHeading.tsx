@@ -23,7 +23,11 @@ interface LargeheadingProps
 const LargeHeading = forwardRef<HTMLHeadingElement, LargeheadingProps>(
   ({ className, size, children, ...props }, ref) => {
     return (
-      <h1 ref={ref} {...props} className={cn(headingVariants({ size, className }))}>
+      <h1
+        ref={ref}
+        {...props}
+        className={cn(headingVariants({ size, className }))}
+      >
         {children}
       </h1>
     );

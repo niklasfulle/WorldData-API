@@ -6,7 +6,9 @@ interface PasswordStrengthProps {
   password: string;
 }
 
-const PasswordStrength: FC<PasswordStrengthProps> = ({ password }: PasswordStrengthProps) => {
+const PasswordStrength: FC<PasswordStrengthProps> = ({
+  password,
+}: PasswordStrengthProps) => {
   const [validate, setValidate] = useState({
     hasLow: false,
     hasCap: false,
@@ -16,7 +18,10 @@ const PasswordStrength: FC<PasswordStrengthProps> = ({ password }: PasswordStren
     has15digit: false,
   });
 
-  const strength = Object.values(validate).reduce((a, item) => a + (item ? 1 : 0), 0);
+  const strength = Object.values(validate).reduce(
+    (a, item) => a + (item ? 1 : 0),
+    0
+  );
 
   const feedback = {
     1: "Password is to weak!",
@@ -74,13 +79,20 @@ const PasswordStrength: FC<PasswordStrengthProps> = ({ password }: PasswordStren
         <div className="mb-1 block px-3">
           <div>
             <progress
-              className={cn(`strength-${strength}`, "w-full h-2 rounded-full")}
+              className={cn(`strength-${strength}`, "h-2 w-full rounded-full")}
               value={strength}
               max="6"
               id="passwordStrengh"
             ></progress>
           </div>
-          <p className={cn(`strength-${strength}`, "max-w-[14rem] px-1 font-bold")}>{feedback}</p>
+          <p
+            className={cn(
+              `strength-${strength}`,
+              "max-w-[14rem] px-1 font-bold"
+            )}
+          >
+            {feedback}
+          </p>
         </div>
       )}
     </>

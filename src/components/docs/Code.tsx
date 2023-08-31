@@ -1,6 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import Highlight, { defaultProps, type Language, Prism } from "prism-react-renderer";
+import Highlight, {
+  defaultProps,
+  type Language,
+  Prism,
+} from "prism-react-renderer";
 import darkTheme from "prism-react-renderer/themes/nightOwl";
 import lightTheme from "prism-react-renderer/themes/nightOwlLight";
 
@@ -57,7 +61,8 @@ const Code: FC<CodeProps> = ({
       {({ className, tokens, getLineProps, getTokenProps }) => (
         <pre
           className={
-            className + "transition-all w-fit bg-transparent duration-100 py-0 overflow-hidden "
+            className +
+            "w-fit overflow-hidden bg-transparent py-0 transition-all duration-100 "
           }
           style={{
             maxHeight: show ? lines * 24 : 0,

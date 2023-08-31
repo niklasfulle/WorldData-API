@@ -1,9 +1,8 @@
 import React from "react";
-import NewPasswordForm from "@/components/auth/NewPasswordForm";
-import CookieConsent from "@/components/banner/CookieConsent";
-import { buttonVariants } from "@/components/ui/Button";
-import Icons from "@/components/ui/Icons";
-import LargeHeading from "@/components/ui/LargeHeading";
+import NewPasswordForm from "@/auth/NewPasswordForm";
+import { buttonVariants } from "@/ui/Button";
+import Icons from "@/ui/Icons";
+import LargeHeading from "@/ui/LargeHeading";
 import { db } from "@/lib/db/prisma";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -37,8 +36,8 @@ const page = async ({ params: { token } }: Props) => {
   }
 
   return (
-    <div className="inset-0 mx-auto container flex flex-col mt-12 min-h-[90vh] h-auto">
-      <div className="mx-auto flex w-full flex-col justify-center space-y-6 max-w-lg">
+    <div className="container inset-0 mx-auto mt-12 flex h-auto min-h-[90vh] flex-col">
+      <div className="mx-auto flex w-full max-w-lg flex-col justify-center space-y-6">
         {expires ? (
           <div className="flex flex-col items-center gap-6 text-center">
             <LargeHeading size={"sm"}>Expired</LargeHeading>
@@ -51,7 +50,7 @@ const page = async ({ params: { token } }: Props) => {
             <Link
               className={buttonVariants({
                 variant: "ghost",
-                className: "w-fit -mt-4",
+                className: "-mt-4 w-fit",
               })}
               href="/"
               aria-label="Back to the home page"
@@ -61,8 +60,6 @@ const page = async ({ params: { token } }: Props) => {
             </Link>
           </div>
         )}
-
-        <CookieConsent />
       </div>
     </div>
   );

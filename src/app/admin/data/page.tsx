@@ -3,9 +3,9 @@ import Sidebar from "@/navigation/SideBar/SideBar";
 
 const page = async () => {
   return (
-    <div className="max-w-full mx-auto flex">
+    <div className="mx-auto flex max-w-full">
       <Sidebar page="data" />
-      <div className="container flex flex-col items-center gap-6 min-h-screen h-auto rounded-md dark:text-white border md:border-orange-500/30 lg:border-red-500/30 xl:border-green-500/30 border-blue-500/30"></div>
+      <div className="container flex h-auto min-h-screen flex-col items-center gap-6 rounded-md border border-blue-500/30 dark:text-white md:border-orange-500/30 lg:border-red-500/30 xl:border-green-500/30"></div>
     </div>
   );
 };

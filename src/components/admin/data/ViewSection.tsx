@@ -4,9 +4,9 @@ interface ViewSectionProps {}
 
 const ViewSection: FC<ViewSectionProps> = () => {
   return (
-    <div className="dark:bg-slate-900 w-full h-full rounded-sm flex flex-col xl:flex-row gap-4">
-      <div className="w-full xl:w-9/12 dark:bg-slate-800 bg-white/75 rounded-md h-fit relativ p-2 "></div>
-      <div className="w-full xl:w-3/12 dark:bg-slate-800 bg-white/75 h-full xl:h-full rounded-md relativ flex flex-col gap-2"></div>
+    <div className="flex h-full w-full flex-col gap-4 rounded-sm dark:bg-slate-900 xl:flex-row">
+      <div className="relativ h-fit w-full rounded-md bg-white/75 p-2 dark:bg-slate-800 xl:w-9/12 "></div>
+      <div className="relativ flex h-full w-full flex-col gap-2 rounded-md bg-white/75 dark:bg-slate-800 xl:h-full xl:w-3/12"></div>
     </div>
   );
 };

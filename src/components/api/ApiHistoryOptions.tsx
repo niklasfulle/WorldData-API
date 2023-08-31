@@ -27,7 +27,11 @@ const ApiHistoryOptions: FC<ApiHistoryOptionsProps> = () => {
       router.refresh();
       shortToast("History cleared", "History cleared successfully.", "success");
     } catch (error) {
-      shortToast("Error clearing your history", "Please try again later.", "error");
+      shortToast(
+        "Error clearing your history",
+        "Please try again later.",
+        "error"
+      );
     } finally {
       setIsClearingHistory(false);
     }
@@ -36,13 +40,22 @@ const ApiHistoryOptions: FC<ApiHistoryOptionsProps> = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger disabled={isClearingHistory} asChild>
-        <Button variant="ghost" className="flex gap-2 items-center" id="ApiHistoryOptions">
+        <Button
+          variant="ghost"
+          className="flex items-center gap-2"
+          id="ApiHistoryOptions"
+        >
           <p>{isClearingHistory ? "Clearing the history" : "Options"}</p>
-          {isClearingHistory ? <Loader2 className="animate-spin h-4 w-4" /> : null}
+          {isClearingHistory ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : null}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem className="hover:cursor-pointer text-red-600" onClick={clearingHistory}>
+        <DropdownMenuItem
+          className="text-red-600 hover:cursor-pointer"
+          onClick={clearingHistory}
+        >
           Clearing history
         </DropdownMenuItem>
       </DropdownMenuContent>

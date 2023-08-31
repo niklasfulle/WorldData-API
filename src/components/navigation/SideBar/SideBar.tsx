@@ -26,15 +26,15 @@ const Sidebar: FC<SidebarProps> = ({ page }) => {
   }, [searchParams]);
 
   return (
-    <div className="lg:w-64 w-14 dark:bg-slate-800 bg-white/75 rounded-md px-1 xl:px-3 mr-4 sm:block hidden">
-      <div className="my-1 lg:block hidden">
-        <h1 className="dark:text-white py-1 flex flex-row justify-center w-full dark:hover:bg-slate-700 hover:bg-slate-200 rounded-md ease-in transition-all duration-150">
-          <Link href="/admin" className="flex flex-row items-center h-10">
+    <div className="mr-4 hidden w-14 rounded-md bg-white/75 px-1 dark:bg-slate-800 sm:block lg:w-64 xl:px-3">
+      <div className="my-1 hidden lg:block">
+        <h1 className="flex w-full flex-row justify-center rounded-md py-1 transition-all duration-150 ease-in hover:bg-slate-200 dark:text-white dark:hover:bg-slate-700">
+          <Link href="/admin" className="flex h-10 flex-row items-center">
             <Icons.Lock className="mr-2" /> Admin Panel
           </Link>
         </h1>
       </div>
-      <div className="lg:hidden text-white my-2 flex flex-col items-center justify-center">
+      <div className="my-2 flex flex-col items-center justify-center text-white lg:hidden">
         <DropDownToggle
           mainTitle="Admin Panel"
           id="Admin"
@@ -48,26 +48,26 @@ const Sidebar: FC<SidebarProps> = ({ page }) => {
         sx={{ width: "100%", maxWidth: 360 }}
         component="nav"
         aria-labelledby="nested-list-subheader"
-        className="dark:bg-slate-800 dark:text-white gap-1 lg:flex flex-col hidden"
+        className="hidden flex-col gap-1 dark:bg-slate-800 dark:text-white lg:flex"
       >
         <AdminLinkItems active={active} />
       </List>
-      <div className="my-1 lg:block hidden lg:mt-6">
-        <h1 className="dark:text-white py-1 flex flex-row justify-center w-full dark:hover:bg-slate-700 hover:bg-slate-200 rounded-md ease-in transition-all duration-150">
-          <Link href="/admin/data" className="flex flex-row items-center h-10">
+      <div className="my-1 hidden lg:mt-6 lg:block">
+        <h1 className="flex w-full flex-row justify-center rounded-md py-1 transition-all duration-150 ease-in hover:bg-slate-200 dark:text-white dark:hover:bg-slate-700">
+          <Link href="/admin/data" className="flex h-10 flex-row items-center">
             <Icons.Database className="mr-2" /> Data Panel
           </Link>
         </h1>
       </div>
       <Divider className="bg-white" />
-      <div className="lg:hidden text-white my-2 flex flex-col items-center gap-1 justify-center">
+      <div className="my-2 flex flex-col items-center justify-center gap-1 text-white lg:hidden">
         <DropDownItems page={page} />
       </div>
       <List
         sx={{ width: "100%", maxWidth: 360 }}
         component="nav"
         aria-labelledby="nested-list-subheader"
-        className="dark:bg-slate-800 dark:text-white gap-1 lg:flex flex-col hidden"
+        className="hidden flex-col gap-1 dark:bg-slate-800 dark:text-white lg:flex"
       >
         <CollapseItems page={page} />
       </List>

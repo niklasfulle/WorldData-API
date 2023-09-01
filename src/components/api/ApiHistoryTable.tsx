@@ -72,6 +72,7 @@ const ApiHistoryTable: FC<TableProps> = ({ userRequests }) => {
           fontSize: "1rem",
           marginBottom: "3rem",
         }}
+        className="shadow-md backdrop-blur-md"
         pageSizeOptions={[10, 25, 50]}
         disableRowSelectionOnClick
         autoHeight

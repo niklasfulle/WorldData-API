@@ -20,12 +20,14 @@ const SeasPage = () => {
         {action === "create" && (
           <CreateSection
             title="Create Sea"
+            subtitle="Last created Seas"
             form={<SeasForm buttonTitle="Create" />}
           />
         )}
         {action === "update" && (
           <UpdateSection
             title="Update Sea"
+            subtitle="Last created Seas"
             form={<SeasForm buttonTitle="Update" />}
           />
         )}

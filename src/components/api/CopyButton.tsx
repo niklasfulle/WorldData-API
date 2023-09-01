@@ -3,8 +3,8 @@ import React, { ButtonHTMLAttributes, FC } from "react";
 import { cn } from "@/lib/utils";
 import { Copy } from "lucide-react";
 import { Button } from "@/ui/Button";
-import { shortToast } from "@/helpers/shorter-function";
-import copyToClipboard from "@/helpers/copyToClipboard";
+import { shortToast } from "@/lib/helpers/shorter-function";
+import copyToClipboard from "@/lib/helpers/copyToClipboard";
 
 interface CopyButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   valueToCopy: string;
@@ -26,7 +26,7 @@ const CopyButton: FC<CopyButtonProps> = ({
       variant="ghost"
       className={cn("", className)}
     >
-      <Copy className="h-5 w-5" />
+      <Copy className="h-5 w-5 bg-black" />
     </Button>
   );
 };

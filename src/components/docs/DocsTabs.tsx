@@ -9,7 +9,7 @@ import {
   rust,
   kotlin,
   csharp,
-} from "@/helpers/code-values";
+} from "@/lib/helpers/code-values";
 import SimpleBar from "simplebar-react";
 import {
   DropdownMenu,

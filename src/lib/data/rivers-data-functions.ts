@@ -70,9 +70,15 @@ export const createRiver = async (e: FormEvent, setIsLoading: SetIsLoading, setE
       outflow: target.outflow.value,
     });
 
-    console.log(river);
+    const res = await fetch("/api/data/rivers", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(river),
+    })
 
-    // TODO: Create river in the database
+    // TODO: res handling
     setError("")
   } catch (error) {
     console.log(error)

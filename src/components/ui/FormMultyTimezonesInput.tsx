@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { Input } from "./Input";
 import { Button } from "./Button";
 import { useRouter } from "next/navigation";
-import { getAsHTMLInputElement } from "@/helpers/shorter-function";
+import { getAsHTMLInputElement } from "@/lib/helpers/shorter-function";
 
 interface FormMultyTimezonesInputProps {
   id: string;
@@ -13,7 +13,7 @@ interface FormMultyTimezonesInputProps {
 
 type Timezone = {
   zone_name: string;
-  gmt_offset: string;
+  gmt_offset: number;
   gmt_offset_name: string;
   abbreviation: string;
   tz_name: string;
@@ -70,7 +70,7 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
     } else {
       const newTimezone = {
         zone_name: zone_name.value,
-        gmt_offset: gmt_offset.value,
+        gmt_offset: Number(gmt_offset.value),
         gmt_offset_name: gmt_offset_name.value,
         abbreviation: abbreviation.value,
         tz_name: tz_name.value,
@@ -99,7 +99,7 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
       <span className="block pl-2 text-left text-sm font-medium leading-6 text-gray-900 dark:text-white">
         {title}
       </span>
-      <div className="mt-0.5 rounded-md border border-white ">
+      <div className="mt-0.5 rounded-md border border-gray-500 dark:border-white">
         <div className="flex h-fit max-h-[16.7rem] flex-row flex-wrap justify-between gap-3 overflow-auto whitespace-nowrap py-3">
           {timezones.length !== 0 ? (
             <>
@@ -113,10 +113,11 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
                       type="text"
                       defaultValue={item[1]}
                       required
-                      className="px-l mx-3 block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
+                      readOnly
+                      className="px-l mx-3 block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-500 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:ring-white dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
                     />
                     {index2 == 4 && index1 != timezones.length - 1 && (
-                      <hr className="mx-1.5 h-0.5 w-full dark:bg-white" />
+                      <hr className="mx-1.5 h-0.5 w-full bg-gray-500 dark:bg-white" />
                     )}
                   </>
                 ))
@@ -127,9 +128,9 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
           )}
         </div>
 
-        <div className="flex h-fit w-full flex-col items-center justify-center gap-3 border-t p-3">
+        <div className="flex h-fit w-full flex-col items-center justify-center gap-3 border-t border-gray-500 p-3">
           <span className="block text-sm text-gray-900 dark:text-white">
-            Add new timezone
+            Add new Timezone
           </span>
           <p
             id="errors"
@@ -145,7 +146,7 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
               placeholder={item.placeholder}
               type="text"
               defaultValue=""
-              className="px-l block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
+              className="px-l block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-500 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:ring-white dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
             />
           ))}
           <Button

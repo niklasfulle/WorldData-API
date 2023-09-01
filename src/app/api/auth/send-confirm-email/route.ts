@@ -1,10 +1,11 @@
-import { sendConfirmMail } from "@/helpers/send-mail";
+import { sendConfirmMail } from "@/lib/helpers/send-mail";
 import { db } from "@/lib/db/prisma";
 import { nanoid } from "nanoid";
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { getUserWithouPassword } from "@/lib/helpers/user-functions";
 
-const registerUserSchema = z.object({
+const sendConfirmMailSchema = z.object({
   email: z.string().email('Invalid email'),
 });
 
@@ -12,12 +13,9 @@ export async function POST(
   req: Request
 ) {
   try {
-    const body = await req.json()
-    const { email } = registerUserSchema.parse(body);
+    const { email } = sendConfirmMailSchema.parse(await req.json());
 
-    const userDb = await db.user.findUnique({
-      where: { email },
-    });
+    const userDb = await getUserWithouPassword(email);
 
     if (userDb == null) return NextResponse.json({ message: 'No user found', success: false }, { status: 409 })
 

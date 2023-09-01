@@ -46,7 +46,7 @@ const ApiDashboard: FC<ApiDashboardProps> = async ({ user }) => {
         </label>
         <Input
           id="api-key"
-          className="w-52 md:w-[22rem]"
+          className="w-52 shadow-md backdrop-blur-md md:w-[22rem]"
           readOnly
           value={activeApiKey.key}
         />

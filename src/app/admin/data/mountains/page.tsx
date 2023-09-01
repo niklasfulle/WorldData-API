@@ -20,12 +20,14 @@ const MountainsPage = () => {
         {action === "create" && (
           <CreateSection
             title="Create Mountain"
+            subtitle="Last created Mountains"
             form={<MountainsForm buttonTitle="Create" />}
           />
         )}
         {action === "update" && (
           <UpdateSection
             title="Update Mountain"
+            subtitle="Last created Mountains"
             form={<MountainsForm buttonTitle="Update" />}
           />
         )}

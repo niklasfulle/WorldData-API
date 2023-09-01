@@ -74,9 +74,15 @@ export const createMountain = async (e: FormEvent, setIsLoading: SetIsLoading, s
       first_climbed: target.first_climbed.value,
     });
 
-    console.log(mountain);
+    const res = await fetch("/api/data/mountains", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(mountain),
+    })
 
-    // TODO: Create mountain in the database
+    // TODO: res handling
     setError("")
   } catch (error) {
     console.log(error)

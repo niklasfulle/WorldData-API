@@ -24,25 +24,6 @@ type Translations = {
 };
 
 /**
- * Creates an array of objects with id and name
- * 
- * @param countriesString  - string of countries separated by commas
- * @returns array of objects with id and name
- */
-const createCountiresArray = (countriesString: string) => {
-  const countriesArray = countriesString.split(",").map((country) => country.trim());
-
-  const countries = countriesArray.map((country, index) => {
-    return {
-      id: index,
-      name: country,
-    };
-  });
-
-  return countries;
-}
-
-/**
  * Returns all celestialBodies from the database
  */
 export const getCelestialBodies = async () => {
@@ -89,9 +70,15 @@ export const createCelestialBodie = async (e: FormEvent, translations: Translati
       translations
     });
 
-    console.log(celestialBodie);
+    const res = await fetch("/api/data/celestialBodies", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(celestialBodie),
+    })
 
-    // TODO: Create celestialBodie in the database
+    // TODO: res handling
     setError("")
   } catch (error) {
     console.log(error)

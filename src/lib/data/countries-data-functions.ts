@@ -10,7 +10,7 @@ type SetError = Dispatch<SetStateAction<string>>;
 
 type Timezone = {
   zone_name: string;
-  gmt_offset: string;
+  gmt_offset: number;
   gmt_offset_name: string;
   abbreviation: string;
   tz_name: string;
@@ -55,7 +55,7 @@ export const getCountry = async (id: number) => {
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const createCountry = async (e: FormEvent, timezones: Timezone[], checked: boolean, translations: Translations, setIsLoading: SetIsLoading, setError: SetError) => {
+export const createCountry = async (e: FormEvent, timezones: Timezone[], translations: Translations, setIsLoading: SetIsLoading, setError: SetError) => {
   e.preventDefault();
   setIsLoading(true);
 
@@ -80,13 +80,14 @@ export const createCountry = async (e: FormEvent, timezones: Timezone[], checked
       native_name: { value: string };
       emoji: { value: string };
       emojiU: { value: string };
+      independent: { checked: boolean };
     };
 
     const country = countryCreateSchema.parse({
       name: target.name.value,
       iso3: target.iso3.value,
       iso2: target.iso2.value,
-      numeric_code: target.numeric_code.value,
+      numeric_code: Number(target.numeric_code.value),
       phone_code: target.phone_code.value,
       capital: target.capital.value,
       tld: target.tld.value,
@@ -94,21 +95,30 @@ export const createCountry = async (e: FormEvent, timezones: Timezone[], checked
       subregion: target.subregion.value,
       latitude: target.latitude.value,
       longitude: target.longitude.value,
-      indepenent: checked,
-      area_km2: target.area_km2.value,
-      population: target.population.value,
-      density_km2: target.density_km2.value,
+      independent: target.independent.checked,
+      area_km2: Number(target.area_km2.value),
+      population: Number(target.population.value),
+      density_km2: Number(target.density_km2.value),
       currency: target.currency.value,
       currency_symbol: target.currency_symbol.value,
+      native_name: target.native_name.value,
       emoji: target.emoji.value,
       emojiU: target.emojiU.value,
       timezones: timezones,
       translations: translations,
     });
 
-    console.log(country);
+    const res = await fetch("/api/data/countries", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(country),
+    })
 
-    // TODO: Create country in the database
+    console.log(res)
+
+    // TODO: res handling
     setError("");
   } catch (error) {
     console.log(error)

@@ -29,7 +29,7 @@ const FormTextarea: FC<FormTextareaProps> = ({
           name={id}
           required
           defaultValue={value}
-          className="px-l block w-full rounded-md border-0 py-1.5 text-sm leading-6 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700"
+          className="px-l block w-full rounded-md border-0 py-1.5 text-sm leading-6 text-gray-900 ring-1 ring-inset ring-gray-500 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:ring-white dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700"
         ></Textarea>
       </div>
       <div className="mt-4 flex flex-row items-center rounded-md border-2 border-orange-400/50 bg-orange-400/30 p-4 text-center">

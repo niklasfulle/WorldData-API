@@ -76,9 +76,15 @@ export const createLake = async (e: FormEvent, setIsLoading: SetIsLoading, setEr
       countries: createCountiresArray(target.countries.value)
     });
 
-    console.log(lake);
+    const res = await fetch("/api/data/lakes", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(lake),
+    })
 
-    // TODO: Create lake in the database
+    // TODO: res handling
     setError("")
   } catch (error) {
     console.log(error)

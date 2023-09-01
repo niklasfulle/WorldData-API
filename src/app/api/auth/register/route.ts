@@ -2,8 +2,9 @@ import { z } from 'zod';
 import { db } from '@/lib/db/prisma';
 import { NextResponse } from 'next/server';
 import { nanoid } from 'nanoid';
-import { sendConfirmMail } from '@/helpers/send-mail';
+import { sendConfirmMail } from '@/lib/helpers/send-mail';
 import { hash } from 'bcrypt';
+import { getUserWithouPassword } from '@/lib/helpers/user-functions';
 
 const registerUserSchema = z.object({
   username: z.string().regex(/^[a-zA-Z0-9]{3,15}$/g, 'Invalid username'),
@@ -15,13 +16,9 @@ export async function POST(
   req: Request
 ) {
   try {
+    const { username, email, password } = registerUserSchema.parse(await req.json());
 
-    const body = await req.json()
-    const { username, email, password } = registerUserSchema.parse(body);
-
-    const user = await db.user.findUnique({
-      where: { email },
-    });
+    const user = await getUserWithouPassword(email);
 
     if (user !== null) return NextResponse.json({ message: 'User already exists', success: false }, { status: 409 })
 

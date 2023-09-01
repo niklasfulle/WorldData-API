@@ -9,8 +9,8 @@ import {
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/ui/Button";
-import { clearHistory } from "@/helpers/api-key";
-import { shortToast } from "@/helpers/shorter-function";
+import { clearHistory } from "@/lib/helpers/api-key";
+import { shortToast } from "@/lib/helpers/shorter-function";
 
 interface ApiHistoryOptionsProps {
   apiKeyKey: string;

@@ -74,9 +74,15 @@ export const createIsland = async (e: FormEvent, setIsLoading: SetIsLoading, set
       countries: createCountiresArray(target.countries.value)
     });
 
-    console.log(island);
+    const res = await fetch("/api/data/islands", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(island),
+    })
 
-    // TODO: Create island in the database
+    // TODO: res handling
     setError("")
   } catch (error) {
     console.log(error)

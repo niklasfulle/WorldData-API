@@ -1,9 +1,10 @@
-import { sendResetPasswordMail } from "@/helpers/send-mail";
+import { sendResetPasswordMail } from "@/lib/helpers/send-mail";
 import { db } from "@/lib/db/prisma";
 import { nanoid } from "nanoid";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { resetPassword } from "../../../../lib/limiter";
+import { getUserWithouPassword } from "@/lib/helpers/user-functions";
 
 const forgotPasswordSchema = z.object({
   email: z.string().email('Invalid email'),
@@ -20,13 +21,10 @@ export async function POST(
       return NextResponse.json({ message: 'Too many requests', success: false }, { status: 429 })
     }
 
-    const body = await req.json()
-    const { email } = forgotPasswordSchema.parse(body);
+    const { email } = forgotPasswordSchema.parse(await req.json());
 
     // check if the user exists
-    const userDb = await db.user.findUnique({
-      where: { email },
-    });
+    const userDb = await getUserWithouPassword(email);
 
     if (userDb == null) return NextResponse.json({ message: 'No user found', success: false }, { status: 409 })
 

@@ -16,7 +16,7 @@ const Navbar = async () => {
   });
 
   return (
-    <div className="left-0 right-0 top-0 z-50 flex h-20 items-center justify-between border-b border-slate-300 bg-white/75 shadow-sm backdrop-blur-sm dark:border-slate-700 dark:bg-slate-800/75">
+    <div className="left-0 right-0 top-0 z-50 flex h-20 items-center justify-between border-b border-slate-300 bg-white/75 shadow-md backdrop-blur-sm dark:border-slate-700 dark:bg-slate-800/75">
       <div className="container mx-auto flex w-full max-w-7xl items-center justify-between">
         <div className="flex flex-row items-center  justify-center">
           <Link href="/" aria-label="Link to the home page">

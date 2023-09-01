@@ -20,7 +20,7 @@ const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
   const [translations, setTranslations] = useState(country?.translations || {});
 
   return (
-    <div className="flex min-h-full flex-col items-center justify-center rounded-lg px-2 py-6 md:px-6 lg:px-8">
+    <div className="flex min-h-full flex-col rounded-lg px-2 py-6 md:px-6 lg:px-8">
       <p
         id="errors"
         className="mt-2 text-center font-bold text-red-600 sm:max-w-[14rem]"
@@ -31,14 +31,7 @@ const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
         <form
           className="space-y-6"
           onSubmit={(e) =>
-            createCountry(
-              e,
-              timezones,
-              checked,
-              translations,
-              setIsLoading,
-              setError
-            )
+            createCountry(e, timezones, translations, setIsLoading, setError)
           }
         >
           <div className="flex w-full flex-col items-center justify-center lg:flex-row lg:items-start lg:justify-around">

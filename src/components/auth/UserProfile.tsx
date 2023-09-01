@@ -9,7 +9,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Image from "next/image";
 import Icons from "@/ui/Icons";
 import { signOut } from "next-auth/react";
-import { shortToast } from "@/helpers/shorter-function";
+import { shortToast } from "@/lib/helpers/shorter-function";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Link from "next/link";
 

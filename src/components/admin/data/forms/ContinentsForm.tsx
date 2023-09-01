@@ -17,7 +17,7 @@ const ContinentsForm: FC<ContinentsFormProps> = ({
   const [error, setError] = useState("");
 
   return (
-    <div className="flex min-h-full flex-col items-center justify-center rounded-lg px-6 py-6 lg:px-8">
+    <div className="flex min-h-full flex-col rounded-lg px-2 py-6 md:px-6 lg:px-8">
       <p
         id="errors"
         className="mt-2 text-center font-bold text-red-600 sm:max-w-[14rem]"

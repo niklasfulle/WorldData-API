@@ -24,7 +24,7 @@ const FormInput: FC<FormInputProps> = ({ id, title, value }) => {
           type="text"
           defaultValue={value}
           required
-          className="px-l block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
+          className="px-l block w-full rounded-md border-0  py-1.5 text-gray-900 ring-1 ring-inset ring-gray-500 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:ring-white dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700 sm:text-sm sm:leading-6"
         />
       </div>
     </div>

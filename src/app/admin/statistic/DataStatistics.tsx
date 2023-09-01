@@ -86,8 +86,8 @@ const DataStatistics: FC<DataStatisticsProps> = () => {
 
   return (
     <>
-      <div className="flex h-full w-full flex-col gap-4 rounded-sm dark:bg-slate-900 xl:flex-row">
-        <div className="relativ h-fit w-full rounded-md bg-white/75 p-2 dark:bg-slate-800 xl:w-9/12 ">
+      <div className="flex h-fit min-h-[90vh] w-full flex-col gap-4 rounded-sm dark:bg-slate-900 xl:flex-row">
+        <div className="relativ h-fit min-h-[90vh]  w-full rounded-md bg-white/75 p-2 shadow-md backdrop-blur-md dark:bg-slate-800 xl:w-9/12">
           <LargeHeading className="mt-4 flex w-full flex-row justify-center">
             Data Statistic
           </LargeHeading>
@@ -95,7 +95,7 @@ const DataStatistics: FC<DataStatisticsProps> = () => {
             <LineChart chartData={userData} />
           </div>
         </div>
-        <div className="relativ flex h-full w-full flex-col gap-2 rounded-md bg-white/75 dark:bg-slate-800 xl:h-fit xl:w-3/12">
+        <div className="relativ flex h-fit min-h-[90vh]  w-full flex-col gap-2 rounded-md bg-white/75 shadow-md backdrop-blur-md dark:bg-slate-800 xl:h-fit xl:w-3/12">
           <h1 className="mt-6 flex w-full flex-row justify-center text-2xl font-medium">
             Data Count
           </h1>

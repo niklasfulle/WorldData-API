@@ -20,12 +20,14 @@ const CurrenciesPage = () => {
         {action === "create" && (
           <CreateSection
             title="Create Currency"
+            subtitle="Last created Currencies"
             form={<CurrenciesForm buttonTitle="Create" />}
           />
         )}
         {action === "update" && (
           <UpdateSection
             title="Update Currency"
+            subtitle="Last created Currencies"
             form={<CurrenciesForm buttonTitle="Update" />}
           />
         )}

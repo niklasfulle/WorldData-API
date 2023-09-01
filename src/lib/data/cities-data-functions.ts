@@ -65,9 +65,15 @@ export const createCity = async (e: FormEvent, setIsLoading: SetIsLoading, setEr
       },
     });
 
-    console.log(city);
+    const res = await fetch("/api/data/cities", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(city),
+    })
 
-    // TODO: Create city in the database
+    // TODO: res handling
     setError("")
   } catch (error) {
     console.log(error)

@@ -20,12 +20,14 @@ const ContinentsPage = () => {
         {action === "create" && (
           <CreateSection
             title="Create Continent"
+            subtitle="Last created Continents"
             form={<ContinentsForm buttonTitle="Create" />}
           />
         )}
         {action === "update" && (
           <UpdateSection
             title="Update Continent"
+            subtitle="Last created Continents"
             form={<ContinentsForm buttonTitle="Update" />}
           />
         )}

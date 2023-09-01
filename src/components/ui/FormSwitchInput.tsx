@@ -32,7 +32,7 @@ const FormSwitchInput: FC<FormSwitchInputProps> = ({
       >
         {title}
       </label>
-      <div className="p-3gap-3 mt-0.5 flex w-full flex-row items-center justify-around rounded-md border border-white p-3 px-12 ">
+      <div className="p-3gap-3 mt-0.5 flex w-full flex-row items-center justify-around rounded-md border border-gray-500 p-3 px-12 dark:border-white ">
         <span className="text-sm ">False</span>
         <Switch
           id={id}

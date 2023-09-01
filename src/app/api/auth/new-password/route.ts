@@ -12,8 +12,7 @@ export async function POST(
   req: Request
 ) {
   try {
-    const body = await req.json()
-    const { token, password } = newPasswordSchema.parse(body);
+    const { token, password } = newPasswordSchema.parse(await req.json());
 
     // check if the user has a forgot password token
     const forgotPassword = await db.forgotPassword.findFirst({

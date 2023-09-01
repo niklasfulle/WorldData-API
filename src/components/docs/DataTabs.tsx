@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/ui/DropdownMenu";
 import Code from "@/docs/Code";
-import { v1, v2, v3, v4 } from "@/helpers/data-values";
+import { v1, v2, v3, v4 } from "@/lib/helpers/data-values";
 import SimpleBar from "simplebar-react";
 import { Button } from "@/ui/Button";
 import Icons from "@/ui/Icons";

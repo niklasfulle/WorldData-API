@@ -21,7 +21,7 @@ const CelestialBodieForm: FC<CelestialBodieFormProps> = ({
   );
 
   return (
-    <div className="flex min-h-full flex-col items-center justify-center rounded-lg px-2 py-6 md:px-6 lg:px-8">
+    <div className="flex min-h-full flex-col rounded-lg px-2 py-6 md:px-6 lg:px-8">
       <p
         id="errors"
         className="mt-2 text-center font-bold text-red-600 sm:max-w-[14rem]"
@@ -31,7 +31,9 @@ const CelestialBodieForm: FC<CelestialBodieFormProps> = ({
       <div className="mt-3 sm:mx-auto sm:w-full">
         <form
           className="space-y-6"
-          onSubmit={(e) => createCelestialBodie(e, translations, setIsLoading, setError)}
+          onSubmit={(e) =>
+            createCelestialBodie(e, translations, setIsLoading, setError)
+          }
         >
           <div className="flex w-full flex-col items-center justify-center lg:flex-row lg:items-start lg:justify-around">
             <div className="w-[18rem]">

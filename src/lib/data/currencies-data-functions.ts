@@ -68,9 +68,15 @@ export const createCurrency = async (e: FormEvent, setIsLoading: SetIsLoading, s
       countries: createCountiresArray(target.countries.value)
     });
 
-    console.log(currency);
+    const res = await fetch("/api/data/currencies", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(currency),
+    })
 
-    // TODO: Create currency in the database
+    // TODO: res handling
     setError("")
   } catch (error) {
     console.log(error)

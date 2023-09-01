@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import TranslationInput from "./TranslationInput";
-import { getAsHTMLInputElement } from "@/helpers/shorter-function";
+import { getAsHTMLInputElement } from "@/lib/helpers/shorter-function";
 
 interface FormTranslationsInputInput {
   id: string;
@@ -73,7 +73,7 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({
       <span className="block pl-2 text-left text-sm font-medium leading-6 text-gray-900 dark:text-white">
         {title}
       </span>
-      <div className="mt-0.5 flex flex-row flex-wrap justify-between gap-3 rounded-md border border-white p-3 ">
+      <div className="mt-0.5 flex flex-row flex-wrap justify-between gap-3 rounded-md border border-gray-500 p-3 dark:border-white ">
         {values.length > 0 ? (
           values.map((item) => (
             <TranslationInput

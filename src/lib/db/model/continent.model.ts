@@ -7,11 +7,12 @@ export function continentModel() {
     id: {
       type: Number,
       required: true,
-      unique: true
+      unique: true,
     },
     name: {
       type: String,
-      required: true
+      required: true,
+      unique: false,
     },
     area_km2: {
       type: Number,

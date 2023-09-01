@@ -70,9 +70,15 @@ export const createSea = async (e: FormEvent, setIsLoading: SetIsLoading, setErr
       countries: createCountiresArray(target.countries.value),
     });
 
-    console.log(sea)
+    const res = await fetch("/api/data/seas", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(sea),
+    })
 
-    // TODO: Create sea in the database
+    // TODO: res handling
     setError("")
   } catch (error) {
     console.log(error)

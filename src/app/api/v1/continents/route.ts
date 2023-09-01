@@ -4,7 +4,7 @@ import { db as prisma } from '@/lib/db/prisma'
 import { mongoDb } from "@/lib/db/mogodb"
 import { z } from "zod"
 import { continentBody, continentV1Schema } from "@/lib/db/schema/continent.schema"
-import { createApiRequest } from "@/helpers/data-helper"
+import { createApiRequest } from "@/lib/helpers/data-helper"
 
 export async function GET(req: Request) {
   const apiKey = req.headers.get("authorization")

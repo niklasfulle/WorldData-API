@@ -70,9 +70,15 @@ export const createContinent = async (e: FormEvent, setIsLoading: SetIsLoading, 
       countries: createCountiresArray(target.countries.value)
     });
 
-    console.log(continent);
+    const res = await fetch("/api/data/continents", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(continent),
+    })
 
-    // TODO: Create continent in the database
+    // TODO: res handling
     setError("")
   } catch (error) {
     console.log(error)

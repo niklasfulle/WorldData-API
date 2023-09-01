@@ -7,11 +7,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/ui/DropdownMenu";
-import { createApiKey, revokeApiKey } from "@/helpers/api-key";
+import { createApiKey, revokeApiKey } from "@/lib/helpers/api-key";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/ui/Button";
-import { shortToast } from "@/helpers/shorter-function";
+import { shortToast } from "@/lib/helpers/shorter-function";
 
 interface ApiKeyOptionsProps {
   apiKeyKey: string;

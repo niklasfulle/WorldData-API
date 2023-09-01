@@ -26,7 +26,7 @@ const Sidebar: FC<SidebarProps> = ({ page }) => {
   }, [searchParams]);
 
   return (
-    <div className="mr-4 hidden w-14 rounded-md bg-white/75 px-1 dark:bg-slate-800 sm:block lg:w-64 xl:px-3">
+    <div className="mr-4 hidden h-fit min-h-[90vh] w-14 rounded-lg bg-white/75 px-1 shadow-md backdrop-blur-md dark:bg-slate-800 sm:block lg:w-64 xl:px-3">
       <div className="my-1 hidden lg:block">
         <h1 className="flex w-full flex-row justify-center rounded-md py-1 transition-all duration-150 ease-in hover:bg-slate-200 dark:text-white dark:hover:bg-slate-700">
           <Link href="/admin" className="flex h-10 flex-row items-center">

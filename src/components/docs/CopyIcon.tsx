@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import Icons from "@/ui/Icons";
-import { shortToast } from "@/helpers/shorter-function";
-import copyToClipboard from "@/helpers/copyToClipboard";
+import { shortToast } from "@/lib/helpers/shorter-function";
+import copyToClipboard from "@/lib/helpers/copyToClipboard";
 
 interface CopyIconProps {
   copyText: string;

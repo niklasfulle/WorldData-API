@@ -20,12 +20,14 @@ const CitiesPage = () => {
         {action === "create" && (
           <CreateSection
             title="Create City"
+            subtitle="Last created Cities"
             form={<CitiesForm buttonTitle="Create" />}
           />
         )}
         {action === "update" && (
           <UpdateSection
             title="Update City"
+            subtitle="Last created Cities"
             form={<CitiesForm buttonTitle="Update" />}
           />
         )}

@@ -4,7 +4,7 @@ import { db as prisma } from '@/lib/db/prisma'
 import { mongoDb } from "@/lib/db/mogodb"
 import { z } from "zod"
 import { oceanBody, oceanV2Schema } from "@/lib/db/schema/ocean.schema"
-import { createApiRequest } from "@/helpers/data-helper"
+import { createApiRequest } from "@/lib/helpers/data-helper"
 
 type Props = {
   params: {

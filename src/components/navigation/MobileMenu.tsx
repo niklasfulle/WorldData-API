@@ -12,7 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/ui/DropdownMenu";
-import { shortToast } from "@/helpers/shorter-function";
+import { shortToast } from "@/lib/helpers/shorter-function";
 
 interface UserProfileProps {
   session?: any;

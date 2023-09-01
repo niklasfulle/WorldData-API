@@ -20,12 +20,14 @@ const CelestialBodiePage = () => {
         {action === "create" && (
           <CreateSection
             title="Create Celestial Bodie"
+            subtitle="Last created Celestial Bodies"
             form={<CelestialBodieForm buttonTitle="Create" />}
           />
         )}
         {action === "update" && (
           <UpdateSection
             title="Update Celestial Bodie"
+            subtitle="Last created Celestial Bodies"
             form={<CelestialBodieForm buttonTitle="Update" />}
           />
         )}

@@ -4,6 +4,7 @@ import { z } from "zod";
 import { compare, hash } from "bcrypt"
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
+import { getUser } from "@/lib/helpers/user-functions";
 
 const changePasswordSchema = z.object({
   oldPassword: z.string().min(8, 'Password must be at least 8 characters'),
@@ -15,10 +16,7 @@ export async function POST(
 ) {
   try {
     const session = await getServerSession(authOptions);
-
-    const user = await db.user.findFirst({
-      where: { email: session?.user?.email }
-    })
+    const user = await getUser(session?.user?.email);
 
     if (!user) {
       return NextResponse.json({
@@ -27,8 +25,7 @@ export async function POST(
       }, { status: 401 })
     }
 
-    const body = await req.json()
-    const { oldPassword, newPassword } = changePasswordSchema.parse(body);
+    const { oldPassword, newPassword } = changePasswordSchema.parse(await req.json());
 
     // check if the user has a credentials account
     const account = await db.account.findFirst({

@@ -7,30 +7,40 @@ import ViewSection from "@/data/ViewSection";
 import UpdateSection from "@/data/UpdateSection";
 import CountriesForm from "@/data/forms/CountriesForm";
 
+const getView = (action: string | null | undefined) => {
+  switch (action) {
+    case "view":
+      return <ViewSection title="View Countires" />;
+    case "create":
+      return (
+        <CreateSection
+          title="Create Country"
+          subtitle="Last created Countires"
+          form={<CountriesForm buttonTitle="Create" />}
+          infoSide={<></>}
+        />
+      );
+    case "update":
+      return (
+        <UpdateSection
+          title="Update Country"
+          subtitle="Last created Countires"
+          form={<CountriesForm buttonTitle="Update" />}
+          infoSide={<></>}
+        />
+      );
+    default:
+      return null;
+  }
+};
+
 const CountriesPage = () => {
-  const searchParams = useSearchParams();
-
-  const action = searchParams?.get("action");
-
+  const action = useSearchParams()?.get("action");
   return (
     <div className="mx-auto flex max-w-full">
       <Sidebar page="countries" />
       <div className="container h-auto min-h-screen gap-6 p-0 dark:text-white">
-        {action === "view" && <ViewSection />}
-        {action === "create" && (
-          <CreateSection
-            title="Create Country"
-            subtitle="Last created Countires"
-            form={<CountriesForm buttonTitle="Create" />}
-          />
-        )}
-        {action === "update" && (
-          <UpdateSection
-            title="Update Country"
-            subtitle="Last created Countires"
-            form={<CountriesForm buttonTitle="Update" />}
-          />
-        )}
+        {getView(action)}
       </div>
     </div>
   );

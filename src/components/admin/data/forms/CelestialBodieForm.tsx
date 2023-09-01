@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import FormTranslationsInput from "@/components/ui/FormTranslationsInput";
 import { createCelestialBodie } from "@/lib/data/celestialbodie-data-functions";
+import FormTranslationsInput from "../components/FormTranslationsInput";
 
 interface CelestialBodieFormProps {
   buttonTitle: string;

@@ -70,7 +70,9 @@ export const createCelestialBodie = async (e: FormEvent, translations: Translati
       translations
     });
 
-    const res = await fetch("/api/data/celestialBodies", {
+    console.log(celestialBodie)
+
+    const res = await fetch("/api/data/celestialbodies", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

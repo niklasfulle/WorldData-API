@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import FormTextarea from "@/ui/FormTextarea";
+import FormCountiresTextarea from "../components/FormCountiresTextarea";
 import { createLake } from "@/lib/data/lakes-data-functions";
 
 interface LakesFormProps {
@@ -61,7 +61,7 @@ const LakesForm: FC<LakesFormProps> = ({ buttonTitle, lake }) => {
                 title="Continent"
                 value={lake?.continent || ""}
               />
-              <FormTextarea
+              <FormCountiresTextarea
                 id="countries"
                 title="Countries"
                 value={lake?.countries || ""}

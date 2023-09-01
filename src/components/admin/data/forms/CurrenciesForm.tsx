@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import FormTextarea from "@/ui/FormTextarea";
+import FormCountiresTextarea from "../components/FormCountiresTextarea";
 import { createCurrency } from "@/lib/data/currencies-data-functions";
 
 interface CurrenciesFormProps {
@@ -37,7 +37,7 @@ const CurrenciesForm: FC<CurrenciesFormProps> = ({ buttonTitle, currency }) => {
               />
             </div>
             <div className="w-[18rem]">
-              <FormTextarea
+              <FormCountiresTextarea
                 id="countries"
                 title="Countries"
                 value={currency?.countries || ""}

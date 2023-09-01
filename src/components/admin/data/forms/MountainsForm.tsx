@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import FormTextarea from "@/ui/FormTextarea";
 import { createMountain } from "@/lib/data/mountains-data-functions";
+import FormCountiresTextarea from "../components/FormCountiresTextarea";
 
 interface MountainsFormProps {
   buttonTitle: string;
@@ -51,7 +51,7 @@ const MountainsForm: FC<MountainsFormProps> = ({ buttonTitle, mountain }) => {
               />
             </div>
             <div className="w-[18rem]">
-              <FormTextarea
+              <FormCountiresTextarea
                 id="countries"
                 title="Countries"
                 value={mountain?.countries || ""}

@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import FormTimezoneInput from "@/components/ui/FormTimezoneInput";
 import { createCity } from "@/lib/data/cities-data-functions";
+import FormTimezoneInput from "../components/FormTimezoneInput";
 
 interface CitiesFormProps {
   buttonTitle: string;

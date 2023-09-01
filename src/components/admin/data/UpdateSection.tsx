@@ -6,9 +6,15 @@ interface UpdateSectionProps {
   title: string;
   subtitle?: string;
   form: React.ReactNode;
+  infoSide?: React.ReactNode;
 }
 
-const UpdateSection: FC<UpdateSectionProps> = ({ title, subtitle, form }) => {
+const UpdateSection: FC<UpdateSectionProps> = ({
+  title,
+  subtitle,
+  form,
+  infoSide,
+}) => {
   return (
     <div className="flex h-fit min-h-[90vh] w-full flex-col gap-4 rounded-sm dark:bg-slate-900 xl:flex-row">
       <div className="relativ h-fit min-h-[90vh] w-full rounded-md bg-white/75 p-2 shadow-md backdrop-blur-md dark:bg-slate-800 xl:w-9/12">
@@ -20,10 +26,11 @@ const UpdateSection: FC<UpdateSectionProps> = ({ title, subtitle, form }) => {
         </LargeHeading>
         {form}
       </div>
-      <div className="relativ flex h-fit min-h-[90vh] w-full flex-col gap-2 p-4 rounded-md bg-white/75 shadow-md backdrop-blur-md dark:bg-slate-800 xl:h-full xl:w-3/12">
+      <div className="relativ flex h-fit min-h-[90vh] w-full flex-col gap-2 rounded-md bg-white/75 p-4 shadow-md backdrop-blur-md dark:bg-slate-800 xl:h-full xl:w-3/12">
         <h1 className="mt-8 w-full text-center text-2xl font-medium">
           {subtitle}
         </h1>
+        {infoSide}
       </div>
     </div>
   );

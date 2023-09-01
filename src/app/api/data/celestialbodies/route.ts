@@ -2,6 +2,7 @@
 /* eslint-disable no-undef*/
 import { authOptions } from "@/lib/auth/auth";
 import { mongoDb } from "@/lib/db/mogodb";
+import { celestialBodieCreateSchema } from "@/lib/db/schema/celestialBodie.schema";
 import { cityCreateSchema } from "@/lib/db/schema/city.schema";
 import { getUserWithouPassword } from "@/lib/helpers/user-functions";
 import { getServerSession } from "next-auth";
@@ -25,17 +26,17 @@ export async function POST(
     }, { status: 401 })
 
 
-    const City = mongoDb.City;
+    const CelestialBodie = mongoDb.CelestialBodie;
 
-    const city = cityCreateSchema.parse(await req.json());
+    const celestialBodie = celestialBodieCreateSchema.parse(await req.json());
 
-    const lastCity = await City.findOne().sort({ id: -1 }).limit(1);
+    const lastCelestialBodie = await CelestialBodie.findOne().sort({ id: -1 }).limit(1);
 
-    city.id = lastCity?.id ? lastCity.id + 1 : 1;
+    celestialBodie.id = lastCelestialBodie?.id ? lastCelestialBodie.id + 1 : 1;
 
-    await City.create(city);
+    await CelestialBodie.create(celestialBodie);
 
-    return NextResponse.json({ message: "City created succsesful", success: true }, { status: 200 })
+    return NextResponse.json({ message: "Celestiel Bodie created succsesful", success: true }, { status: 200 })
   } catch (error) {
     console.log(error)
   }

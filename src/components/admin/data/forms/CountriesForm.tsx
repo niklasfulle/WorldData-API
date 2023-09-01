@@ -1,10 +1,10 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import FormTranslationsInput from "@/components/ui/FormTranslationsInput";
-import FormMultyTimezonesInput from "@/components/ui/FormMultyTimezonesInput";
+import FormMultyTimezonesInput from "@/components/admin/data/components/FormMultyTimezonesInput";
 import { createCountry } from "@/lib/data/countries-data-functions";
-import FormSwitchInput from "@/components/ui/FormSwitchInput";
+import FormSwitchInput from "../components/FormSwitchInput";
+import FormTranslationsInput from "../components/FormTranslationsInput";
 
 interface CountriesFormProps {
   buttonTitle: string;

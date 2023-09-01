@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import FormTextarea from "@/ui/FormTextarea";
 import { createOcean } from "@/lib/data/oceans-data-functions";
+import FormCountiresTextarea from "../components/FormCountiresTextarea";
 
 interface OceansFormProps {
   buttonTitle: string;
@@ -56,13 +56,13 @@ const OceansForm: FC<OceansFormProps> = ({ buttonTitle, ocean }) => {
               />
             </div>
             <div className="w-[18rem]">
-              <FormTextarea
+              <FormCountiresTextarea
                 id="countries"
                 title="Countries"
                 value={ocean?.countries || ""}
                 infoText="Must be a list with countries separated by commas."
               />
-              <FormTextarea
+              <FormCountiresTextarea
                 id="territories"
                 title="Territories"
                 value={ocean?.territories || ""}

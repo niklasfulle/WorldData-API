@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import FormTextarea from "@/ui/FormTextarea";
 import { createRiver } from "@/lib/data/rivers-data-functions";
+import FormCountiresTextarea from "../components/FormCountiresTextarea";
 
 interface RiversFormProps {
   buttonTitle: string;
@@ -34,7 +34,7 @@ const RiversForm: FC<RiversFormProps> = ({ buttonTitle, river }) => {
                 title="Length Km"
                 value={river?.length_km || ""}
               />
-              <FormTextarea
+              <FormCountiresTextarea
                 id="countries"
                 title="Countries"
                 value={river?.countries || ""}

@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import FormTextarea from "@/ui/FormTextarea";
 import { createSea } from "@/lib/data/seas-data-functions";
+import FormCountiresTextarea from "../components/FormCountiresTextarea";
 
 interface SeasFormProps {
   buttonTitle: string;
@@ -46,7 +46,7 @@ const SeasForm: FC<SeasFormProps> = ({ buttonTitle, sea }) => {
               />
             </div>
             <div className="w-[18rem]">
-              <FormTextarea
+              <FormCountiresTextarea
                 id="countries"
                 title="Countries"
                 value={sea?.countries || ""}

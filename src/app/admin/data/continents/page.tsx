@@ -7,30 +7,41 @@ import ViewSection from "@/data/ViewSection";
 import UpdateSection from "@/data/UpdateSection";
 import ContinentsForm from "@/data/forms/ContinentsForm";
 
-const ContinentsPage = () => {
-  const searchParams = useSearchParams();
+const getView = (action: string | null | undefined) => {
+  switch (action) {
+    case "view":
+      return <ViewSection title="View Continents" />;
+    case "create":
+      return (
+        <CreateSection
+          title="Create Continent"
+          subtitle="Last created Continents"
+          form={<ContinentsForm buttonTitle="Create" />}
+          infoSide={<></>}
+        />
+      );
+    case "update":
+      return (
+        <UpdateSection
+          title="Update Continent"
+          subtitle="Last created Continents"
+          form={<ContinentsForm buttonTitle="Update" />}
+          infoSide={<></>}
+        />
+      );
+    default:
+      return null;
+  }
+};
 
-  const action = searchParams?.get("action");
+const ContinentsPage = () => {
+  const action = useSearchParams()?.get("action");
 
   return (
     <div className="mx-auto flex max-w-full">
       <Sidebar page="continents" />
       <div className="container h-auto min-h-screen gap-6 p-0 dark:text-white">
-        {action === "view" && <ViewSection />}
-        {action === "create" && (
-          <CreateSection
-            title="Create Continent"
-            subtitle="Last created Continents"
-            form={<ContinentsForm buttonTitle="Create" />}
-          />
-        )}
-        {action === "update" && (
-          <UpdateSection
-            title="Update Continent"
-            subtitle="Last created Continents"
-            form={<ContinentsForm buttonTitle="Update" />}
-          />
-        )}
+        {getView(action)}
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 /* eslint-disable no-undef*/
 import { authOptions } from "@/lib/auth/auth";
 import { mongoDb } from "@/lib/db/mogodb";
-import { cityCreateSchema } from "@/lib/db/schema/city.schema";
+import { currencyCreateSchema } from "@/lib/db/schema/currency.schema";
 import { getUserWithouPassword } from "@/lib/helpers/user-functions";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
@@ -25,17 +25,17 @@ export async function POST(
     }, { status: 401 })
 
 
-    const City = mongoDb.City;
+    const Currency = mongoDb.Currency;
 
-    const city = cityCreateSchema.parse(await req.json());
+    const currency = currencyCreateSchema.parse(await req.json());
 
-    const lastCity = await City.findOne().sort({ id: -1 }).limit(1);
+    const lastCurrency = await Currency.findOne().sort({ id: -1 }).limit(1);
 
-    city.id = lastCity?.id ? lastCity.id + 1 : 1;
+    currency.id = lastCurrency?.id ? lastCurrency.id + 1 : 1;
 
-    await City.create(city);
+    await Currency.create(currency);
 
-    return NextResponse.json({ message: "City created succsesful", success: true }, { status: 200 })
+    return NextResponse.json({ message: "Currency Bodie created succsesful", success: true }, { status: 200 })
   } catch (error) {
     console.log(error)
   }

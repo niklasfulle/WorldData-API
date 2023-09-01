@@ -6,9 +6,15 @@ interface CreateSectionProps {
   title: string;
   subtitle?: string;
   form: React.ReactNode;
+  infoSide?: React.ReactNode;
 }
 
-const CreateSection: FC<CreateSectionProps> = ({ title, subtitle, form }) => {
+const CreateSection: FC<CreateSectionProps> = ({
+  title,
+  subtitle,
+  form,
+  infoSide,
+}) => {
   return (
     <div className="flex h-fit min-h-[90vh] w-full flex-col gap-4 rounded-sm dark:bg-slate-900 xl:flex-row">
       <div className="relativ h-fit min-h-[90vh] w-full rounded-md bg-white/75 p-2 shadow-md backdrop-blur-md dark:bg-slate-800 xl:w-9/12">
@@ -24,6 +30,7 @@ const CreateSection: FC<CreateSectionProps> = ({ title, subtitle, form }) => {
         <h1 className="mt-8 w-full text-center text-2xl font-medium">
           {subtitle}
         </h1>
+        {infoSide}
       </div>
     </div>
   );

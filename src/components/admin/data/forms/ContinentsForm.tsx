@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import FormTextarea from "@/ui/FormTextarea";
 import { createContinent } from "@/lib/data/continents-data-functions";
+import FormCountiresTextarea from "../components/FormCountiresTextarea";
 
 interface ContinentsFormProps {
   buttonTitle: string;
@@ -49,7 +49,7 @@ const ContinentsForm: FC<ContinentsFormProps> = ({
               />
             </div>
             <div className="w-[18rem]">
-              <FormTextarea
+              <FormCountiresTextarea
                 id="countries"
                 title="Countries"
                 value={continent?.countries || ""}

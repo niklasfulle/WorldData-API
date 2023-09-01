@@ -3,6 +3,7 @@
 import { authOptions } from "@/lib/auth/auth";
 import { mongoDb } from "@/lib/db/mogodb";
 import { cityCreateSchema } from "@/lib/db/schema/city.schema";
+import { lakeCreateSchema } from "@/lib/db/schema/lake.schema";
 import { getUserWithouPassword } from "@/lib/helpers/user-functions";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
@@ -25,17 +26,17 @@ export async function POST(
     }, { status: 401 })
 
 
-    const City = mongoDb.City;
+    const Lake = mongoDb.Lake;
 
-    const city = cityCreateSchema.parse(await req.json());
+    const lake = lakeCreateSchema.parse(await req.json());
 
-    const lastCity = await City.findOne().sort({ id: -1 }).limit(1);
+    const lastLake = await Lake.findOne().sort({ id: -1 }).limit(1);
 
-    city.id = lastCity?.id ? lastCity.id + 1 : 1;
+    lake.id = lastLake?.id ? lastLake.id + 1 : 1;
 
-    await City.create(city);
+    await Lake.create(lake);
 
-    return NextResponse.json({ message: "City created succsesful", success: true }, { status: 200 })
+    return NextResponse.json({ message: "Lake Bodie created succsesful", success: true }, { status: 200 })
   } catch (error) {
     console.log(error)
   }

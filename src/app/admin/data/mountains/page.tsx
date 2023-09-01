@@ -7,30 +7,41 @@ import CreateSection from "@/data/CreateSection";
 import UpdateSection from "@/data/UpdateSection";
 import MountainsForm from "@/data/forms/MountainsForm";
 
-const MountainsPage = () => {
-  const searchParams = useSearchParams();
+const getView = (action: string | null | undefined) => {
+  switch (action) {
+    case "view":
+      return <ViewSection title="View Mountains" />;
+    case "create":
+      return (
+        <CreateSection
+          title="Create Mountain"
+          subtitle="Last created Mountains"
+          form={<MountainsForm buttonTitle="Create" />}
+          infoSide={<></>}
+        />
+      );
+    case "update":
+      return (
+        <UpdateSection
+          title="Update Mountain"
+          subtitle="Last created Mountains"
+          form={<MountainsForm buttonTitle="Update" />}
+          infoSide={<></>}
+        />
+      );
+    default:
+      return null;
+  }
+};
 
-  const action = searchParams?.get("action");
+const MountainsPage = () => {
+  const action = useSearchParams()?.get("action");
 
   return (
     <div className="mx-auto flex max-w-full">
       <Sidebar page="mountains" />
       <div className="container h-auto min-h-screen gap-6 p-0 dark:text-white">
-        {action === "view" && <ViewSection />}
-        {action === "create" && (
-          <CreateSection
-            title="Create Mountain"
-            subtitle="Last created Mountains"
-            form={<MountainsForm buttonTitle="Create" />}
-          />
-        )}
-        {action === "update" && (
-          <UpdateSection
-            title="Update Mountain"
-            subtitle="Last created Mountains"
-            form={<MountainsForm buttonTitle="Update" />}
-          />
-        )}
+        {getView(action)}
       </div>
     </div>
   );

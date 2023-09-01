@@ -6,18 +6,27 @@ import APIStatistics from "./APIStatistics";
 import DataStatistics from "./DataStatistics";
 import UserStatistics from "./UserStatistics";
 
-const StatisticPage = () => {
-  const searchParams = useSearchParams();
+const getView = (action: string | null | undefined) => {
+  switch (action) {
+    case "api":
+      return <APIStatistics />;
+    case "user":
+      return <UserStatistics />;
+    case "data":
+      return <DataStatistics />;
+    default:
+      return null;
+  }
+};
 
-  const action = searchParams?.get("data");
+const StatisticPage = () => {
+  const action = useSearchParams()?.get("data");
 
   return (
     <div className="mx-auto flex max-w-full">
       <Sidebar page="statistic" />
       <div className="container h-auto min-h-screen gap-6 p-0 dark:text-white">
-        {action === "api" && <APIStatistics />}
-        {action === "user" && <UserStatistics />}
-        {action === "data" && <DataStatistics />}
+        {getView(action)}
       </div>
     </div>
   );

@@ -29,8 +29,29 @@ const createCountiresArray = (countriesString: string) => {
 /**
  * Returns all currencies from the database
  */
-export const getCurrencies = async () => {
+export const getCurrencies = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting all currencies.");
+  }
+  setIsLoading(false);
+}
+
+/**
+ * Returns the last ten currencies from the database
+ */
+export const getCurrencieLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the last ten currencies.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -38,8 +59,15 @@ export const getCurrencies = async () => {
  * 
  * @param id  - id of the currency to get 
  */
-export const getCurrency = async (id: number) => {
+export const getCurrency = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the currency.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -92,7 +120,16 @@ export const createCurrency = async (e: FormEvent, setIsLoading: SetIsLoading, s
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateCurrency = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => { }
+export const updateCurrency = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error updating the currency.");
+  }
+  setIsLoading(false);
+}
 
 /**
  * Deletes a currency from the database
@@ -100,4 +137,13 @@ export const updateCurrency = async (e: FormEvent, setIsLoading: SetIsLoading, s
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const deleteCurrency = async (setIsLoading: SetIsLoading, setError: SetError) => { }
+export const deleteCurrency = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error deleting the currency.");
+  }
+  setIsLoading(false);
+}

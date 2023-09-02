@@ -10,8 +10,27 @@ type SetError = Dispatch<SetStateAction<string>>;
 /**
  * Returns all cities from the database
  */
-export const getCitys = async () => {
+export const getCities = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting all cities.");
+  }
+  setIsLoading(false);
+}
+
+/**
+ * Returns the last ten cities from the database
+ */
+export const getCityLastTen = async () => {
+
+  try {
+
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 /**
@@ -19,8 +38,15 @@ export const getCitys = async () => {
  * 
  * @param id  - id of the city to get 
  */
-export const getCity = async (id: number) => {
+export const getCity = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the city.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -89,7 +115,16 @@ export const createCity = async (e: FormEvent, setIsLoading: SetIsLoading, setEr
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateCity = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => { }
+export const updateCity = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error updating the city.");
+  }
+  setIsLoading(false);
+}
 
 /**
  * Deletes a city from the database
@@ -97,4 +132,13 @@ export const updateCity = async (e: FormEvent, setIsLoading: SetIsLoading, setEr
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const deleteCity = async (setIsLoading: SetIsLoading, setError: SetError) => { }
+export const deleteCity = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error deleting the city.");
+  }
+  setIsLoading(false);
+}

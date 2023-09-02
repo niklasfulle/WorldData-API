@@ -12,6 +12,7 @@ interface MountainsFormProps {
 const MountainsForm: FC<MountainsFormProps> = ({ buttonTitle, mountain }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [disabled, setDisabled] = useState(false);
 
   return (
     <div className="flex min-h-full flex-col rounded-lg px-2 py-6 md:px-6 lg:px-8">
@@ -56,6 +57,7 @@ const MountainsForm: FC<MountainsFormProps> = ({ buttonTitle, mountain }) => {
                 title="Countries"
                 value={mountain?.countries || ""}
                 infoText="Must be a list with countries separated by commas."
+                setDisabled={setDisabled}
               />
               <FormInput
                 id="first_climbed"

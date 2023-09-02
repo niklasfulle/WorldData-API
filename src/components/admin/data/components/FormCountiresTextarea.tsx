@@ -7,6 +7,7 @@ interface FormCountiresTextareaProps {
   title: string;
   value: string;
   infoText: string;
+  setDisabled: any;
 }
 
 const FormCountiresTextarea: FC<FormCountiresTextareaProps> = ({
@@ -14,16 +15,19 @@ const FormCountiresTextarea: FC<FormCountiresTextareaProps> = ({
   title,
   value,
   infoText,
+  setDisabled,
 }) => {
   const [error, setError] = useState("");
 
   const checkInput = (e: any) => {
     // check if regex matches
-    const regex = /^(([a-zA-Z]+(,))*[a-zA-Z]+)+$/;
+    const regex = /^(([a-zA-Z]+(,))*[a-zA-Z]+)*$/;
 
     if (!regex.test(e.target.value)) {
+      setDisabled(true);
       setError("The list is not correct.");
     } else {
+      setDisabled(false);
       setError("");
     }
   };

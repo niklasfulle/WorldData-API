@@ -12,6 +12,7 @@ interface IslandsFormProps {
 const IslandsForm: FC<IslandsFormProps> = ({ buttonTitle, island }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [disabled, setDisabled] = useState(false);
 
   return (
     <div className="flex min-h-full flex-col rounded-lg px-2 py-6 md:px-6 lg:px-8">
@@ -61,6 +62,7 @@ const IslandsForm: FC<IslandsFormProps> = ({ buttonTitle, island }) => {
                 title="Countries"
                 value={island?.countries || ""}
                 infoText="Must be a list with countries separated by commas."
+                setDisabled={setDisabled}
               />
             </div>
           </div>

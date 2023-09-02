@@ -29,8 +29,29 @@ const createCountiresArray = (countriesString: string) => {
 /**
  * Returns all continents from the database
  */
-export const getContinents = async () => {
+export const getContinents = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting all continents.");
+  }
+  setIsLoading(false);
+}
+
+/**
+ * Returns the last ten continents from the database
+ */
+export const getContinentLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the last ten continents.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -38,8 +59,15 @@ export const getContinents = async () => {
  * 
  * @param id  - id of the continent to get 
  */
-export const getContinent = async (id: number) => {
+export const getContinent = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the continent.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -94,7 +122,16 @@ export const createContinent = async (e: FormEvent, setIsLoading: SetIsLoading, 
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateContinent = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => { }
+export const updateContinent = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error updating the continent.");
+  }
+  setIsLoading(false);
+}
 
 /**
  * Deletes a continent from the database
@@ -102,4 +139,13 @@ export const updateContinent = async (e: FormEvent, setIsLoading: SetIsLoading, 
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const deleteContinent = async (setIsLoading: SetIsLoading, setError: SetError) => { }
+export const deleteContinent = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error deleting the continent.");
+  }
+  setIsLoading(false);
+}

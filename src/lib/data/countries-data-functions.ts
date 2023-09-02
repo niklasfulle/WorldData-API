@@ -35,8 +35,29 @@ type Translations = {
 /**
  * Returns all countries from the database
  */
-export const getCountries = async () => {
+export const getCountries = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting all countries.");
+  }
+  setIsLoading(false);
+}
+
+/**
+ * Returns the last ten countries from the database
+ */
+export const getCountrieLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the last ten countries.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -44,8 +65,15 @@ export const getCountries = async () => {
  * 
  * @param id  - id of the country to get 
  */
-export const getCountry = async (id: number) => {
+export const getCountry = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the country.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -134,7 +162,16 @@ export const createCountry = async (e: FormEvent, timezones: Timezone[], transla
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateCountry = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => { }
+export const updateCountry = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error updating the country.");
+  }
+  setIsLoading(false);
+}
 
 /**
  * Deletes a country from the database
@@ -142,4 +179,13 @@ export const updateCountry = async (e: FormEvent, setIsLoading: SetIsLoading, se
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const deleteCountry = async (setIsLoading: SetIsLoading, setError: SetError) => { }
+export const deleteCountry = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error deleting the country.");
+  }
+  setIsLoading(false);
+}

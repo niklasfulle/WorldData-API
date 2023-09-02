@@ -34,8 +34,29 @@ const createCountiresArray = (countriesString: string): Country[] => {
 /**
  * Returns all oceans from the database
  */
-export const getOceans = async () => {
+export const getOceans = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting all oceans.");
+  }
+  setIsLoading(false);
+}
+
+/**
+ * Returns the last ten oceans from the database
+ */
+export const getOceanLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the last ten oceans.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -43,8 +64,15 @@ export const getOceans = async () => {
  * 
  * @param id  - id of the ocean to get 
  */
-export const getOcean = async (id: number) => {
+export const getOcean = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the ocean.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -105,7 +133,16 @@ export const createOcean = async (e: FormEvent, setIsLoading: SetIsLoading, setE
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateOcean = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => { }
+export const updateOcean = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error updating the ocean.");
+  }
+  setIsLoading(false);
+}
 
 /**
  * Deletes a ocean from the database
@@ -113,4 +150,13 @@ export const updateOcean = async (e: FormEvent, setIsLoading: SetIsLoading, setE
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const deleteOcean = async (setIsLoading: SetIsLoading, setError: SetError) => { }
+export const deleteOcean = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error deleting the ocean.");
+  }
+  setIsLoading(false);
+}

@@ -26,8 +26,29 @@ type Translations = {
 /**
  * Returns all celestialBodies from the database
  */
-export const getCelestialBodies = async () => {
+export const getCelestialBodies = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting all celestialBodies.");
+  }
+  setIsLoading(false);
+}
+
+/**
+ * Returns the last ten celestialBodies from the database
+ */
+export const getCelestialBodieLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the last ten celestialBodies.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -35,8 +56,15 @@ export const getCelestialBodies = async () => {
  * 
  * @param id  - id of the celestialBodie to get 
  */
-export const getCelestialBodie = async (id: number) => {
+export const getCelestialBodie = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the celestialBodie.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -96,7 +124,17 @@ export const createCelestialBodie = async (e: FormEvent, translations: Translati
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateCelestialBodie = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => { }
+export const updateCelestialBodie = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+  e.preventDefault();
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error updating the celestialBodie.");
+  }
+  setIsLoading(false);
+}
 
 /**
  * Deletes a celestialBodie from the database
@@ -104,4 +142,12 @@ export const updateCelestialBodie = async (e: FormEvent, setIsLoading: SetIsLoad
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const deleteCelestialBodie = async (setIsLoading: SetIsLoading, setError: SetError) => { }
+export const deleteCelestialBodie = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+  try {
+
+  } catch (error) {
+    setError("There was an error deleting the celestialBodie.");
+  }
+  setIsLoading(false);
+}

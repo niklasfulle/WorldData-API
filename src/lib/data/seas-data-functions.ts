@@ -29,8 +29,29 @@ const createCountiresArray = (countriesString: string) => {
 /**
  * Returns all seas from the database
  */
-export const getSeas = async () => {
+export const getSeas = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting all seas.");
+  }
+  setIsLoading(false);
+}
+
+/**
+ * Returns the last ten seas from the database
+ */
+export const getSeaLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the last ten seas.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -38,8 +59,15 @@ export const getSeas = async () => {
  * 
  * @param id  - id of the sea to get 
  */
-export const getSea = async (id: number) => {
+export const getSea = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the sea.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -61,7 +89,7 @@ export const createSea = async (e: FormEvent, setIsLoading: SetIsLoading, setErr
       max_depth_m: { value: string };
       countries: { value: string };
     };
-    
+
     const sea = seaCreateSchema.parse({
       name: target.name.value,
       area_km2: Number(target.area_km2.value),
@@ -94,7 +122,16 @@ export const createSea = async (e: FormEvent, setIsLoading: SetIsLoading, setErr
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateSea = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => { }
+export const updateSea = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error updating the sea.");
+  }
+  setIsLoading(false);
+}
 
 /**
  * Deletes a sea from the database
@@ -102,4 +139,13 @@ export const updateSea = async (e: FormEvent, setIsLoading: SetIsLoading, setErr
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const deleteSea = async (setIsLoading: SetIsLoading, setError: SetError) => { }
+export const deleteSea = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error deleting the sea.");
+  }
+  setIsLoading(false);
+}

@@ -12,6 +12,7 @@ interface OceansFormProps {
 const OceansForm: FC<OceansFormProps> = ({ buttonTitle, ocean }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [disabled, setDisabled] = useState(false);
 
   return (
     <div className="flex min-h-full flex-col rounded-lg px-2 py-6 md:px-6 lg:px-8">
@@ -61,12 +62,14 @@ const OceansForm: FC<OceansFormProps> = ({ buttonTitle, ocean }) => {
                 title="Countries"
                 value={ocean?.countries || ""}
                 infoText="Must be a list with countries separated by commas."
+                setDisabled={setDisabled}
               />
               <FormCountiresTextarea
                 id="territories"
                 title="Territories"
                 value={ocean?.territories || ""}
                 infoText="Must be a list with countries separated by commas."
+                setDisabled={setDisabled}
               />
             </div>
           </div>

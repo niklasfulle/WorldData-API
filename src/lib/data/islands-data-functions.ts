@@ -29,8 +29,29 @@ const createCountiresArray = (countriesString: string) => {
 /**
  * Returns all islands from the database
  */
-export const getIslands = async () => {
+export const getIslands = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting all islands.");
+  }
+  setIsLoading(false);
+}
+
+/**
+ * Returns the last ten islands from the database
+ */
+export const getIslandLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the last ten islands.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -38,8 +59,15 @@ export const getIslands = async () => {
  * 
  * @param id  - id of the island to get 
  */
-export const getIsland = async (id: number) => {
+export const getIsland = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the island.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -98,7 +126,16 @@ export const createIsland = async (e: FormEvent, setIsLoading: SetIsLoading, set
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateIsland = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => { }
+export const updateIsland = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error updating the island.");
+  }
+  setIsLoading(false);
+}
 
 /**
  * Deletes a island from the database
@@ -106,4 +143,13 @@ export const updateIsland = async (e: FormEvent, setIsLoading: SetIsLoading, set
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const deleteIsland = async (setIsLoading: SetIsLoading, setError: SetError) => { }
+export const deleteIsland = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error deleting the island.");
+  }
+  setIsLoading(false);
+}

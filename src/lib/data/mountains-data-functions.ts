@@ -29,8 +29,29 @@ const createCountiresArray = (countriesString: string) => {
 /**
  * Returns all mountains from the database
  */
-export const getMountains = async () => {
+export const getMountains = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting all mountains.");
+  }
+  setIsLoading(false);
+}
+
+/**
+ * Returns the last ten mountains from the database
+ */
+export const getMountainLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the last ten mountains.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -38,8 +59,15 @@ export const getMountains = async () => {
  * 
  * @param id  - id of the mountain to get 
  */
-export const getMountain = async (id: number) => {
+export const getMountain = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the mountain.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -98,7 +126,16 @@ export const createMountain = async (e: FormEvent, setIsLoading: SetIsLoading, s
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateMountain = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => { }
+export const updateMountain = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error updating the mountain.");
+  }
+  setIsLoading(false);
+}
 
 /**
  * Deletes a mountain from the database
@@ -106,4 +143,13 @@ export const updateMountain = async (e: FormEvent, setIsLoading: SetIsLoading, s
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const deleteMountain = async (setIsLoading: SetIsLoading, setError: SetError) => { }
+export const deleteMountain = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error deleting the mountain.");
+  }
+  setIsLoading(false);
+}

@@ -29,8 +29,29 @@ const createCountiresArray = (countriesString: string) => {
 /**
  * Returns all lakes from the database
  */
-export const getLakes = async () => {
+export const getLakes = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting all lakes.");
+  }
+  setIsLoading(false);
+}
+
+/**
+ * Returns the last ten lakes from the database
+ */
+export const getLakeLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the last ten lakes.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -38,8 +59,15 @@ export const getLakes = async () => {
  * 
  * @param id  - id of the lake to get 
  */
-export const getLake = async (id: number) => {
+export const getLake = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
 
+  try {
+
+  } catch (error) {
+    setError("There was an error getting the lake.");
+  }
+  setIsLoading(false);
 }
 
 /**
@@ -100,7 +128,16 @@ export const createLake = async (e: FormEvent, setIsLoading: SetIsLoading, setEr
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateLake = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => { }
+export const updateLake = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error updating the lake.");
+  }
+  setIsLoading(false);
+}
 
 /**
  * Deletes a lake from the database
@@ -108,4 +145,13 @@ export const updateLake = async (e: FormEvent, setIsLoading: SetIsLoading, setEr
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const deleteLake = async (setIsLoading: SetIsLoading, setError: SetError) => { }
+export const deleteLake = async (setIsLoading: SetIsLoading, setError: SetError) => {
+  setIsLoading(true);
+
+  try {
+
+  } catch (error) {
+    setError("There was an error deleting the lake.");
+  }
+  setIsLoading(false);
+}

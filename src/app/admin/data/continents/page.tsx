@@ -10,7 +10,7 @@ import ContinentsForm from "@/data/forms/ContinentsForm";
 const getView = (action: string | null | undefined) => {
   switch (action) {
     case "view":
-      return <ViewSection title="View Continents" />;
+      return <ViewSection title="View Continents" table={<></>} />;
     case "create":
       return (
         <CreateSection

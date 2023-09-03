@@ -25,6 +25,10 @@ export function cityModel() {
       type: Number,
       required: true,
     },
+    area_km2: {
+      type: Number,
+      required: true,
+    },
     country: {
       type: String,
       required: true,

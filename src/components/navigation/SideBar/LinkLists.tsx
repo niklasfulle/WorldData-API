@@ -4,198 +4,143 @@ import React from "react";
 export const ContinentsLinkList = [
   {
     title: "View",
-    link: "/admin/data/continents?action=view",
+    link: "/admin/data/continents/view",
     icon: <Icons.FileText className="mr-2" />,
   },
   {
     title: "Create",
-    link: "/admin/data/continents?action=create",
+    link: "/admin/data/continents/create",
     icon: <Icons.FilePlus className="mr-2" />,
-  },
-  {
-    title: "Update",
-    link: "/admin/data/continents?action=update",
-    icon: <Icons.FileEdit className="mr-2" />,
   },
 ];
 
 export const OceansLinkList = [
   {
     title: "View",
-    link: "/admin/data/oceans?action=view",
+    link: "/admin/data/oceans/view",
     icon: <Icons.FileText className="mr-2" />,
   },
   {
     title: "Create",
-    link: "/admin/data/oceans?action=create",
+    link: "/admin/data/oceans/create",
     icon: <Icons.FilePlus className="mr-2" />,
-  },
-  {
-    title: "Update",
-    link: "/admin/data/oceans?action=update",
-    icon: <Icons.FileEdit className="mr-2" />,
   },
 ];
 
 export const SeasLinkList = [
   {
     title: "View",
-    link: "/admin/data/seas?action=view",
+    link: "/admin/data/seas/view",
     icon: <Icons.FileText className="mr-2" />,
   },
   {
     title: "Create",
-    link: "/admin/data/seas?action=create",
+    link: "/admin/data/seas/create",
     icon: <Icons.FilePlus className="mr-2" />,
-  },
-  {
-    title: "Update",
-    link: "/admin/data/seas?action=update",
-    icon: <Icons.FileEdit className="mr-2" />,
   },
 ];
 
 export const CountiresLinkList = [
   {
     title: "View",
-    link: "/admin/data/countires?action=view",
+    link: "/admin/data/countires/view",
     icon: <Icons.FileText className="mr-2" />,
   },
   {
     title: "Create",
-    link: "/admin/data/countires?action=create",
+    link: "/admin/data/countires/create",
     icon: <Icons.FilePlus className="mr-2" />,
-  },
-  {
-    title: "Update",
-    link: "/admin/data/countires?action=update",
-    icon: <Icons.FileEdit className="mr-2" />,
   },
 ];
 
 export const CitiesLinkList = [
   {
     title: "View",
-    link: "/admin/data/cities?action=view",
+    link: "/admin/data/cities/view",
     icon: <Icons.FileText className="mr-2" />,
   },
   {
     title: "Create",
-    link: "/admin/data/cities?action=create",
+    link: "/admin/data/cities/create",
     icon: <Icons.FilePlus className="mr-2" />,
-  },
-  {
-    title: "Update",
-    link: "/admin/data/cities?action=update",
-    icon: <Icons.FileEdit className="mr-2" />,
   },
 ];
 
 export const MountainsLinkList = [
   {
     title: "View",
-    link: "/admin/data/mountains?action=view",
+    link: "/admin/data/mountains/view",
     icon: <Icons.FileText className="mr-2" />,
   },
   {
     title: "Create",
-    link: "/admin/data/mountains?action=create",
+    link: "/admin/data/mountains/create",
     icon: <Icons.FilePlus className="mr-2" />,
-  },
-  {
-    title: "Update",
-    link: "/admin/data/mountains?action=update",
-    icon: <Icons.FileEdit className="mr-2" />,
   },
 ];
 
 export const LakesLinkList = [
   {
     title: "View",
-    link: "/admin/data/lakes?action=view",
+    link: "/admin/data/lakes/view",
     icon: <Icons.FileText className="mr-2" />,
   },
   {
     title: "Create",
-    link: "/admin/data/lakes?action=create",
+    link: "/admin/data/lakes/create",
     icon: <Icons.FilePlus className="mr-2" />,
-  },
-  {
-    title: "Update",
-    link: "/admin/data/lakes?action=update",
-    icon: <Icons.FileEdit className="mr-2" />,
   },
 ];
 
 export const RiversLinkList = [
   {
     title: "View",
-    link: "/admin/data/rivers?action=view",
+    link: "/admin/data/rivers/view",
     icon: <Icons.FileText className="mr-2" />,
   },
   {
     title: "Create",
-    link: "/admin/data/rivers?action=create",
+    link: "/admin/data/rivers/create",
     icon: <Icons.FilePlus className="mr-2" />,
-  },
-  {
-    title: "Update",
-    link: "/admin/data/rivers?action=update",
-    icon: <Icons.FileEdit className="mr-2" />,
   },
 ];
 
 export const IslandsLinkList = [
   {
     title: "View",
-    link: "/admin/data/islands?action=view",
+    link: "/admin/data/islands/view",
     icon: <Icons.FileText className="mr-2" />,
   },
   {
     title: "Create",
-    link: "/admin/data/islands?action=create",
+    link: "/admin/data/islands/create",
     icon: <Icons.FilePlus className="mr-2" />,
-  },
-  {
-    title: "Update",
-    link: "/admin/data/islands?action=update",
-    icon: <Icons.FileEdit className="mr-2" />,
   },
 ];
 
 export const CurrenciesLinkList = [
   {
     title: "View",
-    link: "/admin/data/currencies?action=view",
+    link: "/admin/data/currencies/view",
     icon: <Icons.FileText className="mr-2" />,
   },
   {
     title: "Create",
-    link: "/admin/data/currencies?action=create",
+    link: "/admin/data/currencies/create",
     icon: <Icons.FilePlus className="mr-2" />,
-  },
-  {
-    title: "Update",
-    link: "/admin/data/currencies?action=update",
-    icon: <Icons.FileEdit className="mr-2" />,
   },
 ];
 
 export const SolarSystemLinkList = [
   {
     title: "View",
-    link: "/admin/data/solar-system?action=view",
+    link: "/admin/data/solar-system/view",
     icon: <Icons.FileText className="mr-2" />,
   },
   {
     title: "Create",
-    link: "/admin/data/solar-system?action=create",
+    link: "/admin/data/solar-system/create",
     icon: <Icons.FilePlus className="mr-2" />,
-  },
-  {
-    title: "Update",
-    link: "/admin/data/solar-system?action=update",
-    icon: <Icons.FileEdit className="mr-2" />,
   },
 ];
 

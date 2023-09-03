@@ -10,7 +10,7 @@ import RiversForm from "@/data/forms/RiversForm";
 const getView = (action: string | null | undefined) => {
   switch (action) {
     case "view":
-      return <ViewSection title="View Rivers" />;
+      return <ViewSection title="View Rivers" table={<></>} />;
     case "create":
       return (
         <CreateSection

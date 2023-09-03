@@ -10,7 +10,7 @@ import SeasForm from "@/data/forms/SeasForm";
 const getView = (action: string | null | undefined) => {
   switch (action) {
     case "view":
-      return <ViewSection title="View Seas" />;
+      return <ViewSection title="View Seas" table={<></>} />;
     case "create":
       return (
         <CreateSection

@@ -10,7 +10,7 @@ import CelestialBodieForm from "@/data/forms/CelestialBodieForm";
 const getView = (action: string | null | undefined) => {
   switch (action) {
     case "view":
-      return <ViewSection title="View Celestial Bodies" />;
+      return <ViewSection title="View Celestial Bodies" table={<></>} />;
     case "create":
       return (
         <CreateSection

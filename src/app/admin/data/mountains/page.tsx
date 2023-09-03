@@ -10,7 +10,7 @@ import MountainsForm from "@/data/forms/MountainsForm";
 const getView = (action: string | null | undefined) => {
   switch (action) {
     case "view":
-      return <ViewSection title="View Mountains" />;
+      return <ViewSection title="View Mountains" table={<></>} />;
     case "create":
       return (
         <CreateSection

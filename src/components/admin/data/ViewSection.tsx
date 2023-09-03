@@ -3,20 +3,21 @@ import React, { FC } from "react";
 
 interface ViewSectionProps {
   title: string;
+  table: any;
 }
 
-const ViewSection: FC<ViewSectionProps> = ({ title }) => {
+const ViewSection: FC<ViewSectionProps> = ({ title, table }) => {
   return (
     <div className="flex h-fit min-h-[90vh] w-full flex-col gap-4 rounded-sm dark:bg-slate-900 xl:flex-row">
-      <div className="relativ h-fit min-h-[90vh] w-full rounded-md bg-white/75 p-2 dark:bg-slate-800 xl:w-9/12 ">
+      <div className="relativ h-fit min-h-[90vh] w-full rounded-md bg-white/75  p-8 dark:bg-slate-800 ">
         <LargeHeading
-          className="mt-12 flex w-full flex-row justify-center"
+          className="mb-8 mt-4 flex w-full flex-row justify-center"
           size={"sm"}
         >
           {title}
         </LargeHeading>
+        {table}
       </div>
-      <div className="relativ flex h-fit min-h-[90vh] w-full flex-col gap-2 rounded-md bg-white/75 dark:bg-slate-800 xl:h-full xl:w-3/12"></div>
     </div>
   );
 };

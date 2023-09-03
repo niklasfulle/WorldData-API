@@ -10,7 +10,7 @@ import CurrenciesForm from "@/data/forms/CurrenciesForm";
 const getView = (action: string | null | undefined) => {
   switch (action) {
     case "view":
-      return <ViewSection title="View Currencies" />;
+      return <ViewSection title="View Currencies" table={<></>} />;
     case "create":
       return (
         <CreateSection

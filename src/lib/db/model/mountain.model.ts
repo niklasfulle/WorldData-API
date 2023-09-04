@@ -29,7 +29,7 @@ export function mountainModel() {
       type: String,
       required: true,
     },
-    country: {
+    countries: {
       type: Array,
       required: true,
     },

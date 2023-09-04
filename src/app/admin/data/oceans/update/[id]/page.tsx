@@ -5,6 +5,7 @@ import { mongoDb } from "@/lib/db/mogodb";
 import OceansForm from "@/components/admin/data/forms/OceansForm";
 import OceansSideInfo from "@/components/admin/data/sideinfo/OceansSideInfo";
 import { oceanCreateSchema } from "@/lib/db/schema/ocean.schema";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: {
@@ -12,8 +13,12 @@ type Props = {
   };
 };
 
-const CitiesPage = async ({ params: { id } }: Props) => {
+const CitiesUpdatePage = async ({ params: { id } }: Props) => {
   const Ocean = mongoDb.Ocean;
+
+  const ocean = await Ocean.findOne({ id: parseInt(id) });
+
+  if (!ocean) return notFound();
 
   const oceans = await Ocean.find().sort({ id: -1 }).limit(10);
 
@@ -21,8 +26,6 @@ const CitiesPage = async ({ params: { id } }: Props) => {
   oceans.map((ocean) => {
     oceansArray.push(oceanCreateSchema.parse(ocean));
   });
-
-  const ocean = await Ocean.findOne({ id: parseInt(id) });
 
   const oceanData = oceanCreateSchema.parse(ocean);
 
@@ -41,4 +44,4 @@ const CitiesPage = async ({ params: { id } }: Props) => {
   );
 };
 
-export default CitiesPage;
+export default CitiesUpdatePage;

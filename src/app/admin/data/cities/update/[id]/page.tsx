@@ -5,6 +5,7 @@ import CitiesForm from "@/data/forms/CitiesForm";
 import { mongoDb } from "@/lib/db/mogodb";
 import { cityCreateSchema } from "@/lib/db/schema/city.schema";
 import CitiesSideInfo from "@/components/admin/data/sideinfo/CitiesSideInfo";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: {
@@ -15,14 +16,16 @@ type Props = {
 const CitiesPage = async ({ params: { id } }: Props) => {
   const City = mongoDb.City;
 
+  const city = await City.findOne({ id: parseInt(id) });
+
+  if (!city) return notFound();
+
   const cities = await City.find().sort({ id: -1 }).limit(10);
 
   let citiesArray: Array<any> = [];
   cities.map((city) => {
     citiesArray.push(cityCreateSchema.parse(city));
   });
-
-  const city = await City.findOne({ id: parseInt(id) });
 
   const cityData = cityCreateSchema.parse(city);
 

@@ -1,7 +1,8 @@
+"use client";
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import FormCountiresTextarea from "../components/FormCountiresTextarea";
+import FormCountiresTextarea from "../components/FormCountriesTextarea";
 import { createLake } from "@/lib/data/lakes-data-functions";
 
 interface LakesFormProps {

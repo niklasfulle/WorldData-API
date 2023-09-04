@@ -1,8 +1,9 @@
+"use client";
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
 import { createMountain } from "@/lib/data/mountains-data-functions";
-import FormCountiresTextarea from "../components/FormCountiresTextarea";
+import FormCountiresTextarea from "../components/FormCountriesTextarea";
 
 interface MountainsFormProps {
   buttonTitle: string;

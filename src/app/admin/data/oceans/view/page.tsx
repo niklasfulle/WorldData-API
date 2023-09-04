@@ -5,7 +5,7 @@ import { mongoDb } from "@/lib/db/mogodb";
 import { oceanCreateSchema } from "@/lib/db/schema/ocean.schema";
 import OceansTable from "@/components/admin/data/table/OceansTable";
 
-const OceansPage = async () => {
+const OceansViewPage = async () => {
   const Ocean = mongoDb.Ocean;
 
   const oceans = await Ocean.find();
@@ -28,4 +28,4 @@ const OceansPage = async () => {
   );
 };
 
-export default OceansPage;
+export default OceansViewPage;

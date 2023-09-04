@@ -6,7 +6,7 @@ import ContinentsForm from "@/components/admin/data/forms/ContinentsForm";
 import { continentCreateSchema } from "@/lib/db/schema/continent.schema";
 import ContinentsSideInfo from "@/components/admin/data/sideinfo/ContinentsSieInfo";
 
-const ContinentsPage = async () => {
+const ContinentsCreatePage = async () => {
   const Continent = mongoDb.Continent;
 
   const continents = await Continent.find().sort({ id: -1 }).limit(10);
@@ -31,4 +31,4 @@ const ContinentsPage = async () => {
   );
 };
 
-export default ContinentsPage;
+export default ContinentsCreatePage;

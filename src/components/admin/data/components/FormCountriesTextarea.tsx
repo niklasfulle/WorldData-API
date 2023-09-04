@@ -10,6 +10,18 @@ interface FormCountiresTextareaProps {
   setDisabled: any;
 }
 
+const formatValue = (value: any) => {
+  let string = "";
+
+  for (let i = 0; i < value.length; i++) {
+    if (i === value.length - 1) {
+      string += value[i].name;
+    } else string += value[i].name + ",";
+  }
+
+  return string;
+};
+
 const FormCountiresTextarea: FC<FormCountiresTextareaProps> = ({
   id,
   title,
@@ -45,7 +57,7 @@ const FormCountiresTextarea: FC<FormCountiresTextareaProps> = ({
           id={id}
           name={id}
           required
-          defaultValue={value}
+          defaultValue={formatValue(value)}
           onBlur={(e) => checkInput(e)}
           className="px-l block w-full rounded-md border-0 py-1.5 text-sm leading-6 text-gray-900 ring-1 ring-inset ring-gray-500 transition-all ease-in placeholder:text-gray-400 focus:ring-indigo-600 dark:ring-white dark:focus:ring-sky-400 dark:focus:ring-offset-slate-700"
         ></Textarea>

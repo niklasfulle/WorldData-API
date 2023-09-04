@@ -1,8 +1,9 @@
+"use client";
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
 import { createSea } from "@/lib/data/seas-data-functions";
-import FormCountiresTextarea from "../components/FormCountiresTextarea";
+import FormCountiresTextarea from "../components/FormCountriesTextarea";
 
 interface SeasFormProps {
   buttonTitle: string;

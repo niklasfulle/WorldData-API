@@ -1,3 +1,4 @@
+"use client";
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
@@ -90,7 +91,7 @@ const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
               <FormInput
                 id="population"
                 title="Population"
-                value={country?.area_populationm2 || ""}
+                value={country?.population || ""}
               />
               <FormInput
                 id="density_km2"

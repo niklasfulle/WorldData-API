@@ -43,12 +43,12 @@ export const SeasLinkList = [
 export const CountiresLinkList = [
   {
     title: "View",
-    link: "/admin/data/countires/view",
+    link: "/admin/data/countries/view",
     icon: <Icons.FileText className="mr-2" />,
   },
   {
     title: "Create",
-    link: "/admin/data/countires/create",
+    link: "/admin/data/countries/create",
     icon: <Icons.FilePlus className="mr-2" />,
   },
 ];

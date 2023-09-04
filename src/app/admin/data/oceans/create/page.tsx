@@ -6,7 +6,7 @@ import { oceanCreateSchema } from "@/lib/db/schema/ocean.schema";
 import OceansForm from "@/components/admin/data/forms/OceansForm";
 import OceansSideInfo from "@/components/admin/data/sideinfo/OceansSideInfo";
 
-const OceansPage = async () => {
+const OceansCreatePage = async () => {
   const Ocean = mongoDb.Ocean;
 
   const oceans = await Ocean.find().sort({ id: -1 }).limit(10);
@@ -31,4 +31,4 @@ const OceansPage = async () => {
   );
 };
 
-export default OceansPage;
+export default OceansCreatePage;

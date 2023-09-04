@@ -5,6 +5,7 @@ import ContinentsForm from "@/components/admin/data/forms/ContinentsForm";
 import { continentCreateSchema } from "@/lib/db/schema/continent.schema";
 import UpdateSection from "@/components/admin/data/UpdateSection";
 import ContinentsSideInfo from "@/components/admin/data/sideinfo/ContinentsSieInfo";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: {
@@ -12,8 +13,12 @@ type Props = {
   };
 };
 
-const CitiesPage = async ({ params: { id } }: Props) => {
+const CitiesUpdatePage = async ({ params: { id } }: Props) => {
   const Continent = mongoDb.Continent;
+
+  const continent = await Continent.findOne({ id: parseInt(id) });
+
+  if (!continent) return notFound();
 
   const continents = await Continent.find().sort({ id: -1 }).limit(10);
 
@@ -21,8 +26,6 @@ const CitiesPage = async ({ params: { id } }: Props) => {
   continents.map((continent) => {
     continentsArray.push(continentCreateSchema.parse(continent));
   });
-
-  const continent = await Continent.findOne({ id: parseInt(id) });
 
   const continentData = continentCreateSchema.parse(continent);
 
@@ -43,4 +46,4 @@ const CitiesPage = async ({ params: { id } }: Props) => {
   );
 };
 
-export default CitiesPage;
+export default CitiesUpdatePage;

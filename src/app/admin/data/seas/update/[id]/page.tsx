@@ -6,6 +6,7 @@ import { seaCreateSchema } from "@/lib/db/schema/sea.schema";
 import SeasForm from "@/components/admin/data/forms/SeasForm";
 import SeasSideInfo from "@/components/admin/data/sideinfo/SeasSideInfo";
 import { notFound } from "next/navigation";
+import { formatDistance } from "date-fns";
 
 type Props = {
   params: {
@@ -20,11 +21,14 @@ const SeasUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!sea) return notFound();
 
-  const seas = await Sea.find().sort({ id: -1 }).limit(10);
+  const seas = await Sea.find().sort({ id: -1 }).limit(5);
 
   let seasArray: Array<any> = [];
-  seas.map((continent) => {
-    seasArray.push(seaCreateSchema.parse(continent));
+  seas.map((sea) => {
+    seasArray.push({
+      ...seaCreateSchema.parse(sea),
+      createdAt: formatDistance(new Date(sea.createdAt), new Date()),
+    });
   });
 
   const seaData = seaCreateSchema.parse(sea);

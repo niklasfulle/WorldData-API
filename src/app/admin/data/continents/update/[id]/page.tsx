@@ -6,6 +6,7 @@ import { continentCreateSchema } from "@/lib/db/schema/continent.schema";
 import UpdateSection from "@/components/admin/data/UpdateSection";
 import ContinentsSideInfo from "@/components/admin/data/sideinfo/ContinentsSieInfo";
 import { notFound } from "next/navigation";
+import { formatDistance } from "date-fns";
 
 type Props = {
   params: {
@@ -20,11 +21,14 @@ const CitiesUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!continent) return notFound();
 
-  const continents = await Continent.find().sort({ id: -1 }).limit(10);
+  const continents = await Continent.find().sort({ id: -1 }).limit(5);
 
   let continentsArray: Array<any> = [];
   continents.map((continent) => {
-    continentsArray.push(continentCreateSchema.parse(continent));
+    continentsArray.push({
+      ...continentCreateSchema.parse(continent),
+      createdAt: formatDistance(new Date(continent.createdAt), new Date()),
+    });
   });
 
   const continentData = continentCreateSchema.parse(continent);

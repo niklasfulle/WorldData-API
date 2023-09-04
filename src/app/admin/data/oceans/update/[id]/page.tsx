@@ -6,6 +6,7 @@ import OceansForm from "@/components/admin/data/forms/OceansForm";
 import OceansSideInfo from "@/components/admin/data/sideinfo/OceansSideInfo";
 import { oceanCreateSchema } from "@/lib/db/schema/ocean.schema";
 import { notFound } from "next/navigation";
+import { formatDistance } from "date-fns";
 
 type Props = {
   params: {
@@ -20,11 +21,14 @@ const CitiesUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!ocean) return notFound();
 
-  const oceans = await Ocean.find().sort({ id: -1 }).limit(10);
+  const oceans = await Ocean.find().sort({ id: -1 }).limit(5);
 
   let oceansArray: Array<any> = [];
   oceans.map((ocean) => {
-    oceansArray.push(oceanCreateSchema.parse(ocean));
+    oceansArray.push({
+      ...oceanCreateSchema.parse(ocean),
+      createdAt: formatDistance(new Date(ocean.createdAt), new Date()),
+    });
   });
 
   const oceanData = oceanCreateSchema.parse(ocean);

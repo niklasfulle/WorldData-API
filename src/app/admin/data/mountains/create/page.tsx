@@ -5,15 +5,19 @@ import { mongoDb } from "@/lib/db/mogodb";
 import MountainsForm from "@/components/admin/data/forms/MountainsForm";
 import { mountainCreateSchema } from "@/lib/db/schema/mountain.schema";
 import MountainsSideInfo from "@/components/admin/data/sideinfo/MountainsSideInfo";
+import { formatDistance } from "date-fns";
 
 const MountainsCreatePage = async () => {
   const Mountain = mongoDb.Mountain;
 
-  const mountains = await Mountain.find().sort({ id: -1 }).limit(10);
+  const mountains = await Mountain.find().sort({ id: -1 }).limit(5);
 
   let mountainsArray: Array<any> = [];
   mountains.map((mountain) => {
-    mountainsArray.push(mountainCreateSchema.parse(mountain));
+    mountainsArray.push({
+      ...mountainCreateSchema.parse(mountain),
+      createdAt: formatDistance(new Date(mountain.createdAt), new Date()),
+    });
   });
 
   return (

@@ -8,15 +8,19 @@ import CountriesSideInfo from "@/components/admin/data/sideinfo/CountriesSideInf
 import IslandsForm from "@/components/admin/data/forms/IslandsForm";
 import IslandsSideInfo from "@/components/admin/data/sideinfo/IslandsSideInfo";
 import { islandCreateSchema } from "@/lib/db/schema/island.schema";
+import { formatDistance } from "date-fns";
 
 const IslandsCreatePage = async () => {
   const Island = mongoDb.Island;
 
-  const islands = await Island.find().sort({ id: -1 }).limit(10);
+  const islands = await Island.find().sort({ id: -1 }).limit(5);
 
   let islandsArray: Array<any> = [];
   islands.map((island) => {
-    islandsArray.push(islandCreateSchema.parse(island));
+    islandsArray.push({
+      ...islandCreateSchema.parse(island),
+      createdAt: formatDistance(new Date(island.createdAt), new Date()),
+    });
   });
 
   return (

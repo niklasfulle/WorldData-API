@@ -26,7 +26,7 @@ const CreateSection: FC<CreateSectionProps> = ({
         </LargeHeading>
         {form}
       </div>
-      <div className="relativ flex h-fit min-h-[90vh] w-full flex-col gap-2 rounded-md bg-white/75 p-4 shadow-md backdrop-blur-md dark:bg-slate-800 xl:h-full xl:w-3/12">
+      <div className="relativ flex h-fit min-h-[90vh] w-full flex-col gap-2 rounded-md bg-white/75 px-4 py-2 shadow-md backdrop-blur-md dark:bg-slate-800 xl:h-full xl:w-3/12">
         <h1 className="mt-8 w-full text-center text-2xl font-medium">
           {subtitle}
         </h1>

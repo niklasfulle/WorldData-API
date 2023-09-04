@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { riverCreateSchema } from "@/lib/db/schema/river.schema";
 import RiversForm from "@/components/admin/data/forms/RiversForm";
 import RiversSideInfo from "@/components/admin/data/sideinfo/RiversSideInfo";
+import { formatDistance } from "date-fns";
 
 type Props = {
   params: {
@@ -20,11 +21,14 @@ const RiversUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!river) return notFound();
 
-  const rivers = await River.find().sort({ id: -1 }).limit(10);
+  const rivers = await River.find().sort({ id: -1 }).limit(5);
 
   let riversArray: Array<any> = [];
   rivers.map((river) => {
-    riversArray.push(riverCreateSchema.parse(river));
+    riversArray.push({
+      ...riverCreateSchema.parse(river),
+      createdAt: formatDistance(new Date(river.createdAt), new Date()),
+    });
   });
 
   const riverData = riverCreateSchema.parse(river);

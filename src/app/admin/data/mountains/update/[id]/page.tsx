@@ -6,6 +6,7 @@ import MountainsForm from "@/components/admin/data/forms/MountainsForm";
 import MountainsSideInfo from "@/components/admin/data/sideinfo/MountainsSideInfo";
 import { mountainCreateSchema } from "@/lib/db/schema/mountain.schema";
 import { notFound } from "next/navigation";
+import { formatDistance } from "date-fns";
 
 type Props = {
   params: {
@@ -20,11 +21,14 @@ const MountainsUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!mountain) return notFound();
 
-  const mountains = await Mountain.find().sort({ id: -1 }).limit(10);
+  const mountains = await Mountain.find().sort({ id: -1 }).limit(5);
 
   let mountainsArray: Array<any> = [];
   mountains.map((mountain) => {
-    mountainsArray.push(mountainCreateSchema.parse(mountain));
+    mountainsArray.push({
+      ...mountainCreateSchema.parse(mountain),
+      createdAt: formatDistance(new Date(mountain.createdAt), new Date()),
+    });
   });
 
   const mountainData = mountainCreateSchema.parse(mountain);

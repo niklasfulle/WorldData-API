@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import IslandsForm from "@/components/admin/data/forms/IslandsForm";
 import IslandsSideInfo from "@/components/admin/data/sideinfo/IslandsSideInfo";
 import { islandCreateSchema } from "@/lib/db/schema/island.schema";
+import { formatDistance } from "date-fns";
 
 type Props = {
   params: {
@@ -20,11 +21,14 @@ const IslandsUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!island) return notFound();
 
-  const islands = await Island.find().sort({ id: -1 }).limit(10);
+  const islands = await Island.find().sort({ id: -1 }).limit(5);
 
   let islandsArray: Array<any> = [];
   islands.map((island) => {
-    islandsArray.push(islandCreateSchema.parse(island));
+    islandsArray.push({
+      ...islandCreateSchema.parse(island),
+      createdAt: formatDistance(new Date(island.createdAt), new Date()),
+    });
   });
 
   const islandData = islandCreateSchema.parse(island);

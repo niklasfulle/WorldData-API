@@ -5,15 +5,19 @@ import { mongoDb } from "@/lib/db/mogodb";
 import CountriesForm from "@/components/admin/data/forms/CountriesForm";
 import { countryCreateSchema } from "@/lib/db/schema/country.schema";
 import CountriesSideInfo from "@/components/admin/data/sideinfo/CountriesSideInfo";
+import { formatDistance } from "date-fns";
 
 const CitiesCreatePage = async () => {
   const Country = mongoDb.Country;
 
-  const countries = await Country.find().sort({ id: -1 }).limit(10);
+  const countries = await Country.find().sort({ id: -1 }).limit(5);
 
   let countriesArray: Array<any> = [];
   countries.map((country) => {
-    countriesArray.push(countryCreateSchema.parse(country));
+    countriesArray.push({
+      ...countryCreateSchema.parse(country),
+      createdAt: formatDistance(new Date(country.createdAt), new Date()),
+    });
   });
 
   return (

@@ -6,6 +6,7 @@ import { countryCreateSchema } from "@/lib/db/schema/country.schema";
 import CountriesForm from "@/components/admin/data/forms/CountriesForm";
 import CountriesSideInfo from "@/components/admin/data/sideinfo/CountriesSideInfo";
 import { notFound } from "next/navigation";
+import { formatDistance } from "date-fns";
 
 type Props = {
   params: {
@@ -20,11 +21,14 @@ const CountriesUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!country) return notFound();
 
-  const countries = await Country.find().sort({ id: -1 }).limit(10);
+  const countries = await Country.find().sort({ id: -1 }).limit(5);
 
   let countriesArray: Array<any> = [];
   countries.map((country) => {
-    countriesArray.push(countryCreateSchema.parse(country));
+    countriesArray.push({
+      ...countryCreateSchema.parse(country),
+      createdAt: formatDistance(new Date(country.createdAt), new Date()),
+    });
   });
 
   const countryData = countryCreateSchema.parse(country);

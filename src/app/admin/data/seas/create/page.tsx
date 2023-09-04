@@ -5,15 +5,19 @@ import { mongoDb } from "@/lib/db/mogodb";
 import { seaCreateSchema } from "@/lib/db/schema/sea.schema";
 import SeasForm from "@/components/admin/data/forms/SeasForm";
 import SeasSideInfo from "@/components/admin/data/sideinfo/SeasSideInfo";
+import { formatDistance } from "date-fns";
 
 const SeasCreatePage = async () => {
   const Sea = mongoDb.Sea;
 
-  const seas = await Sea.find().sort({ id: -1 }).limit(10);
+  const seas = await Sea.find().sort({ id: -1 }).limit(5);
 
   let seasArray: Array<any> = [];
   seas.map((sea) => {
-    seasArray.push(seaCreateSchema.parse(sea));
+    seasArray.push({
+      ...seaCreateSchema.parse(sea),
+      createdAt: formatDistance(new Date(sea.createdAt), new Date()),
+    });
   });
 
   return (

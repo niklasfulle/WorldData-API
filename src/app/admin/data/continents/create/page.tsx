@@ -5,15 +5,20 @@ import { mongoDb } from "@/lib/db/mogodb";
 import ContinentsForm from "@/components/admin/data/forms/ContinentsForm";
 import { continentCreateSchema } from "@/lib/db/schema/continent.schema";
 import ContinentsSideInfo from "@/components/admin/data/sideinfo/ContinentsSieInfo";
+import { formatDistance } from "date-fns";
 
 const ContinentsCreatePage = async () => {
   const Continent = mongoDb.Continent;
 
-  const continents = await Continent.find().sort({ id: -1 }).limit(10);
+  const continents = await Continent.find().sort({ id: -1 }).limit(5);
 
   let continentsArray: Array<any> = [];
+
   continents.map((continent) => {
-    continentsArray.push(continentCreateSchema.parse(continent));
+    continentsArray.push({
+      ...continentCreateSchema.parse(continent),
+      createdAt: formatDistance(new Date(continent.createdAt), new Date()),
+    });
   });
 
   return (

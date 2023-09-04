@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { lakeCreateSchema } from "@/lib/db/schema/lake.schema";
 import LakesForm from "@/components/admin/data/forms/LakesForm";
 import LakesSideInfo from "@/components/admin/data/sideinfo/LakesSideInfo";
+import { formatDistance } from "date-fns";
 
 type Props = {
   params: {
@@ -20,11 +21,14 @@ const LakesUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!lake) return notFound();
 
-  const lakes = await Lake.find().sort({ id: -1 }).limit(10);
+  const lakes = await Lake.find().sort({ id: -1 }).limit(5);
 
   let lakesArray: Array<any> = [];
   lakes.map((lake) => {
-    lakesArray.push(lakeCreateSchema.parse(lake));
+    lakesArray.push({
+      ...lakeCreateSchema.parse(lake),
+      createdAt: formatDistance(new Date(lake.createdAt), new Date()),
+    });
   });
 
   const lakeData = lakeCreateSchema.parse(lake);

@@ -2,20 +2,22 @@ import React from "react";
 import Sidebar from "@/navigation/SideBar/SideBar";
 import CreateSection from "@/data/CreateSection";
 import { mongoDb } from "@/lib/db/mogodb";
-import CountriesForm from "@/components/admin/data/forms/CountriesForm";
-import { countryCreateSchema } from "@/lib/db/schema/country.schema";
-import CountriesSideInfo from "@/components/admin/data/sideinfo/CountriesSideInfo";
 import CurrenciesForm from "@/components/admin/data/forms/CurrenciesForm";
 import { currencyCreateSchema } from "@/lib/db/schema/currency.schema";
+import { formatDistance } from "date-fns";
+import CurrenciesSideInfo from "@/components/admin/data/sideinfo/CurrenciesSideInfo";
 
 const CitiesCreatePage = async () => {
   const Currency = mongoDb.Currency;
 
-  const currencies = await Currency.find().sort({ id: -1 }).limit(10);
+  const currencies = await Currency.find().sort({ id: -1 }).limit(5);
 
   let currenciesArray: Array<any> = [];
   currencies.map((currency) => {
-    currenciesArray.push(currencyCreateSchema.parse(currency));
+    currenciesArray.push({
+      ...currencyCreateSchema.parse(currency),
+      createdAt: formatDistance(new Date(currency.createdAt), new Date()),
+    });
   });
 
   return (
@@ -26,7 +28,7 @@ const CitiesCreatePage = async () => {
           title="Create Currency"
           subtitle="Last created Currencies"
           form={<CurrenciesForm buttonTitle="Create" />}
-          infoSide={<CountriesSideInfo data={currenciesArray} />}
+          infoSide={<CurrenciesSideInfo data={currenciesArray} />}
         />
       </div>
     </div>

@@ -9,6 +9,7 @@ import { celestialBodieCreateSchema } from "@/lib/db/schema/celestialBodie.schem
 import CelestialBodieForm from "@/components/admin/data/forms/CelestialBodieForm";
 import CelestialBodiesSideInfo from "@/components/admin/data/sideinfo/CelestialBodiesSideInfo";
 import { notFound } from "next/navigation";
+import { formatDistance } from "date-fns";
 
 type Props = {
   params: {
@@ -23,13 +24,14 @@ const CelestialBodiesUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!celestialBodie) return notFound();
 
-  const celestialBodies = await CelestialBodie.find()
-    .sort({ id: -1 })
-    .limit(10);
+  const celestialBodies = await CelestialBodie.find().sort({ id: -1 }).limit(5);
 
   let celestialBodiesArray: Array<any> = [];
   celestialBodies.map((celestialBodie) => {
-    celestialBodiesArray.push(celestialBodieCreateSchema.parse(celestialBodie));
+    celestialBodiesArray.push({
+      ...celestialBodieCreateSchema.parse(celestialBodie),
+      createdAt: formatDistance(new Date(celestialBodie.createdAt), new Date()),
+    });
   });
 
   const celestialBodieData = celestialBodieCreateSchema.parse(celestialBodie);

@@ -5,15 +5,19 @@ import CitiesForm from "@/data/forms/CitiesForm";
 import { mongoDb } from "@/lib/db/mogodb";
 import { cityCreateSchema } from "@/lib/db/schema/city.schema";
 import CitiesSideInfo from "@/components/admin/data/sideinfo/CitiesSideInfo";
+import { formatDistance } from "date-fns";
 
 const CitiesPage = async () => {
   const City = mongoDb.City;
 
-  const cities = await City.find().sort({ id: -1 }).limit(10);
+  const cities = await City.find().sort({ id: -1 }).limit(5);
 
   let citiesArray: Array<any> = [];
   cities.map((city) => {
-    citiesArray.push(cityCreateSchema.parse(city));
+    citiesArray.push({
+      ...cityCreateSchema.parse(city),
+      createdAt: formatDistance(new Date(city.createdAt), new Date()),
+    });
   });
 
   return (

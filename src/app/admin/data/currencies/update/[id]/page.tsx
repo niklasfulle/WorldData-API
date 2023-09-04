@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import CurrenciesForm from "@/components/admin/data/forms/CurrenciesForm";
 import CurrenciesSideInfo from "@/components/admin/data/sideinfo/CurrenciesSideInfo";
 import { currencyCreateSchema } from "@/lib/db/schema/currency.schema";
+import { formatDistance } from "date-fns";
 
 type Props = {
   params: {
@@ -20,11 +21,14 @@ const CountriesUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!currency) return notFound();
 
-  const currencies = await Currency.find().sort({ id: -1 }).limit(10);
+  const currencies = await Currency.find().sort({ id: -1 }).limit(5);
 
   let currenciesArray: Array<any> = [];
   currencies.map((currency) => {
-    currenciesArray.push(currencyCreateSchema.parse(currency));
+    currenciesArray.push({
+      ...currencyCreateSchema.parse(currency),
+      createdAt: formatDistance(new Date(currency.createdAt), new Date()),
+    });
   });
 
   const currencyData = currencyCreateSchema.parse(currency);

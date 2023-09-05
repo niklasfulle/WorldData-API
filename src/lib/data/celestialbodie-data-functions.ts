@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef*/
+/* eslint-disable no-empty*/
 import { Dispatch, FormEvent, SetStateAction } from "react"
 import { celestialBodieCreateSchema } from "../db/schema/celestialBodie.schema";
 
@@ -75,7 +76,6 @@ export const getCelestialBodie = async (id: number, setIsLoading: SetIsLoading, 
  * @param setError  - set error state
  */
 export const createCelestialBodie = async (e: FormEvent, translations: Translations, setIsLoading: SetIsLoading, setError: SetError) => {
-  e.preventDefault();
   setIsLoading(true);
 
   try {
@@ -97,8 +97,6 @@ export const createCelestialBodie = async (e: FormEvent, translations: Translati
       rotation_period_days: Number(target.rotation_period_days.value),
       translations
     });
-
-    console.log(celestialBodie)
 
     const res = await fetch("/api/data/celestialbodies", {
       method: 'POST',

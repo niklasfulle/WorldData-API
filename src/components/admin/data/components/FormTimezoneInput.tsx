@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/Input";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 
 interface FormTimezoneInputProps {
   id: string;
@@ -37,6 +37,7 @@ const inputList = [
 
 const FormTimezoneInput: FC<FormTimezoneInputProps> = ({ title, timezone }) => {
   const values = Object.entries(timezone);
+
   return (
     <div className="mb-2.5">
       <span className="block pl-2 text-left text-sm font-medium leading-6 text-gray-900 dark:text-white">

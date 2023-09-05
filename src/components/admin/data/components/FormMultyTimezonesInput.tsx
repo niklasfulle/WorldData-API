@@ -9,6 +9,7 @@ interface FormMultyTimezonesInputProps {
   title: string;
   timezones: Timezone[];
   setTimezones: any;
+  setDisabled: any;
 }
 
 type Timezone = {
@@ -43,6 +44,7 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
   title,
   timezones,
   setTimezones,
+  setDisabled,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -86,13 +88,12 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
       abbreviation.value = "";
       tz_name.value = "";
 
+      setDisabled(false);
       setError("");
       setIsLoading(false);
       router.refresh();
     }
   };
-
-  useEffect(() => {}, [timezones]);
 
   return (
     <div className="mb-2.5">

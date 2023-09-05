@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef*/
+/* eslint-disable no-empty*/
 "use client";
 import React, { FC } from "react";
 import { createTheme, ThemeProvider } from "@mui/material";

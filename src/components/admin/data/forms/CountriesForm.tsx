@@ -6,6 +6,7 @@ import FormMultyTimezonesInput from "@/components/admin/data/components/FormMult
 import { createCountry } from "@/lib/data/countries-data-functions";
 import FormSwitchInput from "../components/FormSwitchInput";
 import FormTranslationsInput from "../components/FormTranslationsInput";
+import { useRouter } from "next/navigation";
 
 interface CountriesFormProps {
   buttonTitle: string;
@@ -16,25 +17,38 @@ const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [checked, setChecked] = useState(false);
+  const [reset, setReset] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+  const router = useRouter();
 
   const [timezones, setTimezones] = useState(country?.timezones || []);
   const [translations, setTranslations] = useState(country?.translations || {});
 
+  const handelSubmit = (e: any) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
+
+    if (disabled) {
+      setError("Please, fill the form correctly.");
+      setIsLoading(false);
+      return;
+    }
+    createCountry(e, timezones, translations, setIsLoading, setError);
+    e.target.reset();
+    setTimezones([]);
+    setTranslations({});
+    setIsLoading(false);
+    router.refresh();
+  };
+
   return (
     <div className="flex min-h-full flex-col rounded-lg px-2 py-6 md:px-6 lg:px-8">
-      <p
-        id="errors"
-        className="mt-2 text-center font-bold text-red-600 sm:max-w-[14rem]"
-      >
+      <p id="errors" className="my-3 w-full text-center font-bold text-red-600">
         {error}
       </p>
       <div className="mt-3 sm:mx-auto sm:w-full">
-        <form
-          className="space-y-6"
-          onSubmit={(e) =>
-            createCountry(e, timezones, translations, setIsLoading, setError)
-          }
-        >
+        <form className="space-y-6" onSubmit={(e) => handelSubmit(e)}>
           <div className="flex w-full flex-col items-center justify-center lg:flex-row lg:items-start lg:justify-around">
             <div className="w-[18rem]">
               <FormInput id="name" title="Name" value={country?.name || ""} />
@@ -120,6 +134,7 @@ const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
                 title="Timezones"
                 timezones={timezones}
                 setTimezones={setTimezones}
+                setDisabled={setDisabled}
               />
               <FormTranslationsInput
                 id="translations"

@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef*/
+/* eslint-disable no-empty*/
 import { Dispatch, FormEvent, SetStateAction } from "react"
 import { countryCreateSchema } from "../db/schema/country.schema";
 
@@ -143,8 +144,6 @@ export const createCountry = async (e: FormEvent, timezones: Timezone[], transla
       },
       body: JSON.stringify(country),
     })
-
-    console.log(res)
 
     // TODO: res handling
     setError("");

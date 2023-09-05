@@ -24,7 +24,6 @@ export async function POST(
       error: 'Unauthorized to perform this action.', success: false
     }, { status: 401 })
 
-
     const Currency = mongoDb.Currency;
 
     const currency = currencyCreateSchema.parse(await req.json());
@@ -35,7 +34,7 @@ export async function POST(
 
     await Currency.create(currency);
 
-    return NextResponse.json({ message: "Currency Bodie created succsesful", success: true }, { status: 200 })
+    return NextResponse.json({ message: "Currency created succsesful", success: true }, { status: 201 })
   } catch (error) {
     console.log(error)
   }
@@ -57,8 +56,17 @@ export async function PUT(
       error: 'Unauthorized to perform this action.', success: false
     }, { status: 401 })
 
+    const body: any = await req.json();
 
-    return NextResponse.json({ session }, { status: 200 })
+    const Currency = mongoDb.Currency;
+
+    const currency = currencyCreateSchema.parse(body.currency);
+
+    const id = body.id;
+
+    await Currency.updateOne({ id: id }, currency);
+
+    return NextResponse.json({ message: "Currency updated succsesful", success: true }, { status: 200 })
   } catch (error) {
     console.log(error)
   }

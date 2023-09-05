@@ -2,16 +2,18 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import { createSea } from "@/lib/data/seas-data-functions";
+import { createSea, updateSea } from "@/lib/data/seas-data-functions";
 import FormCountriesTextarea from "../components/FormCountriesTextarea";
 import { useRouter } from "next/navigation";
 
 interface SeasFormProps {
   buttonTitle: string;
+  action: string;
+  id?: string;
   sea?: any;
 }
 
-const SeasForm: FC<SeasFormProps> = ({ buttonTitle, sea }) => {
+const SeasForm: FC<SeasFormProps> = ({ buttonTitle, action, id, sea }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(false);
@@ -27,7 +29,13 @@ const SeasForm: FC<SeasFormProps> = ({ buttonTitle, sea }) => {
       setIsLoading(false);
       return;
     }
-    createSea(e, setIsLoading, setError);
+
+    if (action === "create") {
+      createSea(e, setIsLoading, setError);
+    } else if (action === "update" && id !== undefined) {
+      updateSea(id, e, setIsLoading, setError);
+    }
+
     e.target.reset();
     setIsLoading(false);
     router.refresh();

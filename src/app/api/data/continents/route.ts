@@ -7,7 +7,6 @@ import { getUserWithouPassword } from "@/lib/helpers/user-functions";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
-
 export async function POST(
   req: Request
 ) {
@@ -35,7 +34,7 @@ export async function POST(
 
     await Continent.create(continent);
 
-    return NextResponse.json({ message: "Continent created succsesful", success: true }, { status: 200 })
+    return NextResponse.json({ message: "Continent created succsesful", success: true }, { status: 201 })
   } catch (error) {
     console.log(error)
   }
@@ -57,8 +56,17 @@ export async function PUT(
       error: 'Unauthorized to perform this action.', success: false
     }, { status: 401 })
 
+    const body: any = await req.json();
 
-    return NextResponse.json({ session }, { status: 200 })
+    const Continent = mongoDb.Continent;
+
+    const continent = continentCreateSchema.parse(body.continent);
+
+    const id = body.id;
+
+    await Continent.updateOne({ id: id }, continent);
+
+    return NextResponse.json({ message: "Continent updated succsesful", success: true }, { status: 200 })
   } catch (error) {
     console.log(error)
   }

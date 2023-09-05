@@ -10,7 +10,7 @@ import { formatDistance } from "date-fns";
 const RiversCreatePage = async () => {
   const River = mongoDb.River;
 
-  const rivers = await River.find().sort({ id: -1 }).limit(5);
+  const rivers = await River.find().sort({ createdAt: -1 }).limit(5);
 
   let riversArray: Array<any> = [];
   rivers.map((river) => {
@@ -27,7 +27,7 @@ const RiversCreatePage = async () => {
         <CreateSection
           title="Create River"
           subtitle="Last created Rivers"
-          form={<RiversForm buttonTitle="Create" />}
+          form={<RiversForm buttonTitle="Create" action="create" />}
           infoSide={<RiversSideInfo data={riversArray} />}
         />
       </div>

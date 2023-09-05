@@ -2,16 +2,23 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import { createMountain } from "@/lib/data/mountains-data-functions";
+import { createMountain, updateMountain } from "@/lib/data/mountains-data-functions";
 import FormCountriesTextarea from "../components/FormCountriesTextarea";
 import { useRouter } from "next/navigation";
 
 interface MountainsFormProps {
   buttonTitle: string;
+  action: string;
+  id?: string;
   mountain?: any;
 }
 
-const MountainsForm: FC<MountainsFormProps> = ({ buttonTitle, mountain }) => {
+const MountainsForm: FC<MountainsFormProps> = ({
+  buttonTitle,
+  action,
+  id,
+  mountain,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(false);
@@ -27,7 +34,13 @@ const MountainsForm: FC<MountainsFormProps> = ({ buttonTitle, mountain }) => {
       setIsLoading(false);
       return;
     }
-    createMountain(e, setIsLoading, setError);
+
+    if (action === "create") {
+      createMountain(e, setIsLoading, setError);
+    } else if (action === "update" && id !== undefined) {
+      updateMountain(id, e, setIsLoading, setError);
+    }
+
     e.target.reset();
     setIsLoading(false);
     router.refresh();

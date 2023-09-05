@@ -3,21 +3,30 @@ import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
 import FormMultyTimezonesInput from "@/components/admin/data/components/FormMultyTimezonesInput";
-import { createCountry } from "@/lib/data/countries-data-functions";
+import {
+  createCountry,
+  updateCountry,
+} from "@/lib/data/countries-data-functions";
 import FormSwitchInput from "../components/FormSwitchInput";
 import FormTranslationsInput from "../components/FormTranslationsInput";
 import { useRouter } from "next/navigation";
 
 interface CountriesFormProps {
   buttonTitle: string;
+  action: string;
+  id?: string;
   country?: any;
 }
 
-const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
+const CountriesForm: FC<CountriesFormProps> = ({
+  buttonTitle,
+  action,
+  id,
+  country,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [checked, setChecked] = useState(false);
-  const [reset, setReset] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const router = useRouter();
 
@@ -34,10 +43,23 @@ const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
       setIsLoading(false);
       return;
     }
-    createCountry(e, timezones, translations, setIsLoading, setError);
+
+    if (action === "create") {
+      createCountry(e, timezones, translations, setIsLoading, setError);
+    } else if (action === "update" && id !== undefined) {
+      updateCountry(id, e, timezones, translations, setIsLoading, setError);
+    }
+
     e.target.reset();
-    setTimezones([]);
-    setTranslations({});
+
+    if (action === "create") {
+      setTimezones([]);
+      setTranslations({});
+    } else {
+      setTimezones(timezones);
+      setTranslations(translations);
+    }
+    
     setIsLoading(false);
     router.refresh();
   };
@@ -135,6 +157,7 @@ const CountriesForm: FC<CountriesFormProps> = ({ buttonTitle, country }) => {
                 timezones={timezones}
                 setTimezones={setTimezones}
                 setDisabled={setDisabled}
+                action={action}
               />
               <FormTranslationsInput
                 id="translations"

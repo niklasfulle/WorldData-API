@@ -10,7 +10,7 @@ import CurrenciesSideInfo from "@/components/admin/data/sideinfo/CurrenciesSideI
 const CitiesCreatePage = async () => {
   const Currency = mongoDb.Currency;
 
-  const currencies = await Currency.find().sort({ id: -1 }).limit(5);
+  const currencies = await Currency.find().sort({ createdAt: -1 }).limit(5);
 
   let currenciesArray: Array<any> = [];
   currencies.map((currency) => {
@@ -27,7 +27,7 @@ const CitiesCreatePage = async () => {
         <CreateSection
           title="Create Currency"
           subtitle="Last created Currencies"
-          form={<CurrenciesForm buttonTitle="Create" />}
+          form={<CurrenciesForm buttonTitle="Create" action="create" />}
           infoSide={<CurrenciesSideInfo data={currenciesArray} />}
         />
       </div>

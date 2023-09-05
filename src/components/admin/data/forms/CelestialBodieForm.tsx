@@ -2,17 +2,24 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import { createCelestialBodie } from "@/lib/data/celestialbodie-data-functions";
+import {
+  createCelestialBodie,
+  updateCelestialBodie,
+} from "@/lib/data/celestialbodie-data-functions";
 import FormTranslationsInput from "../components/FormTranslationsInput";
 import { useRouter } from "next/navigation";
 
 interface CelestialBodieFormProps {
   buttonTitle: string;
+  action: string;
+  id?: string;
   celestialBodie?: any;
 }
 
 const CelestialBodieForm: FC<CelestialBodieFormProps> = ({
   buttonTitle,
+  action,
+  id,
   celestialBodie,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,9 +35,20 @@ const CelestialBodieForm: FC<CelestialBodieFormProps> = ({
     setIsLoading(true);
     setError("");
 
-    createCelestialBodie(e, translations, setIsLoading, setError);
+    if (action === "create") {
+      createCelestialBodie(e, translations, setIsLoading, setError);
+    } else if (action === "update" && id !== undefined) {
+      updateCelestialBodie(id, e, translations, setIsLoading, setError);
+    }
+
     e.target.reset();
-    setTranslations({});
+
+    if (action === "create") {
+      setTranslations({});
+    } else {
+      setTranslations(translations);
+    }
+
     setIsLoading(false);
     router.refresh();
   };

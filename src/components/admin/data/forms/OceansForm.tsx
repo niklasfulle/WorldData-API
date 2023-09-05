@@ -2,16 +2,23 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import { createOcean } from "@/lib/data/oceans-data-functions";
+import { createOcean, updateOcean } from "@/lib/data/oceans-data-functions";
 import FormCountriesTextarea from "../components/FormCountriesTextarea";
 import { useRouter } from "next/navigation";
 
 interface OceansFormProps {
   buttonTitle: string;
+  action: string;
+  id?: string;
   ocean?: any;
 }
 
-const OceansForm: FC<OceansFormProps> = ({ buttonTitle, ocean }) => {
+const OceansForm: FC<OceansFormProps> = ({
+  buttonTitle,
+  action,
+  id,
+  ocean,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(false);
@@ -27,7 +34,13 @@ const OceansForm: FC<OceansFormProps> = ({ buttonTitle, ocean }) => {
       setIsLoading(false);
       return;
     }
-    createOcean(e, setIsLoading, setError);
+    
+    if (action === "create") {
+      createOcean(e, setIsLoading, setError);
+    } else if (action === "update" && id !== undefined) {
+      updateOcean(id, e, setIsLoading, setError);
+    }
+
     e.target.reset();
     setIsLoading(false);
     router.refresh();

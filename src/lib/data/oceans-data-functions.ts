@@ -84,7 +84,6 @@ export const getOcean = async (id: number, setIsLoading: SetIsLoading, setError:
  * @param setError  - set error state
  */
 export const createOcean = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
-  e.preventDefault();
   setIsLoading(true);
 
   try {
@@ -134,10 +133,44 @@ export const createOcean = async (e: FormEvent, setIsLoading: SetIsLoading, setE
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateOcean = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const updateOcean = async (id: string, e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
   setIsLoading(true);
 
   try {
+    const target = e.target as typeof e.target & {
+      name: { value: string };
+      area_km2: { value: string };
+      avg_depth_m: { value: string };
+      max_depth_m: { value: string };
+      volume_km3: { value: string };
+      coast_km: { value: string };
+      countries: { value: string };
+      territories: { value: string };
+    };
+
+    const ocean = oceanCreateSchema.parse({
+      name: target.name.value,
+      area_km2: Number(target.area_km2.value),
+      avg_depth_m: Number(target.avg_depth_m.value),
+      max_depth_m: Number(target.max_depth_m.value),
+      volume_km3: Number(target.volume_km3.value),
+      coast_km: Number(target.coast_km.value),
+      countries: createCountiresArray(target.countries.value),
+      territories: createCountiresArray(target.territories.value),
+    });
+
+    const data = {
+      id,
+      ocean
+    }
+
+    const res = await fetch("/api/data/oceans", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
 
   } catch (error) {
     setError("There was an error updating the ocean.");

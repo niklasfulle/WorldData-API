@@ -3,6 +3,7 @@ import { Input } from "../../../ui/Input";
 import { Button } from "../../../ui/Button";
 import { useRouter } from "next/navigation";
 import { getAsHTMLInputElement } from "@/lib/helpers/shorter-function";
+import { set } from "lodash";
 
 interface FormMultyTimezonesInputProps {
   id: string;
@@ -10,6 +11,7 @@ interface FormMultyTimezonesInputProps {
   timezones: Timezone[];
   setTimezones: any;
   setDisabled: any;
+  action?: string;
 }
 
 type Timezone = {
@@ -45,6 +47,7 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
   timezones,
   setTimezones,
   setDisabled,
+  action,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -60,11 +63,12 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
     const tz_name = getAsHTMLInputElement("tz_name_submit");
 
     if (
-      zone_name.value == "" ||
-      gmt_offset.value == "" ||
-      gmt_offset_name.value == "" ||
-      abbreviation.value == "" ||
-      tz_name.value == ""
+      action === "create" &&
+      (zone_name.value == "" ||
+        gmt_offset.value == "" ||
+        gmt_offset_name.value == "" ||
+        abbreviation.value == "" ||
+        tz_name.value == "")
     ) {
       setError("Please fill all fields");
       setIsLoading(false);
@@ -94,6 +98,11 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
       router.refresh();
     }
   };
+
+  useEffect(() => {
+    setTimezones(timezones);
+    if (action === "update") setDisabled(false);
+  }, []);
 
   return (
     <div className="mb-2.5">

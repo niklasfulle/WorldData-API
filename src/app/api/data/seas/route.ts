@@ -35,7 +35,7 @@ export async function POST(
 
     await Sea.create(sea);
 
-    return NextResponse.json({ message: "Sea created succsesful", success: true }, { status: 200 })
+    return NextResponse.json({ message: "Sea created succsesful", success: true }, { status: 201 })
   } catch (error) {
     console.log(error)
   }
@@ -57,8 +57,17 @@ export async function PUT(
       error: 'Unauthorized to perform this action.', success: false
     }, { status: 401 })
 
+    const body: any = await req.json();
 
-    return NextResponse.json({ session }, { status: 200 })
+    const Sea = mongoDb.Sea;
+
+    const sea = seaCreateSchema.parse(body.sea);
+
+    const id = body.id;
+
+    await Sea.updateOne({ id: id }, sea);
+
+    return NextResponse.json({ message: "Sea updated succsesful", success: true }, { status: 200 })
   } catch (error) {
     console.log(error)
   }

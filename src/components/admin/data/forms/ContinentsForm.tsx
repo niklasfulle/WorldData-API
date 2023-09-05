@@ -2,17 +2,24 @@
 import React, { FC, useEffect, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import { createContinent } from "@/lib/data/continents-data-functions";
+import {
+  createContinent,
+  updateContinent,
+} from "@/lib/data/continents-data-functions";
 import FormCountriesTextarea from "../components/FormCountriesTextarea";
 import { useRouter } from "next/navigation";
 
 interface ContinentsFormProps {
   buttonTitle: string;
+  action: string;
+  id?: string;
   continent?: any;
 }
 
 const ContinentsForm: FC<ContinentsFormProps> = ({
   buttonTitle,
+  action,
+  id,
   continent,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +37,13 @@ const ContinentsForm: FC<ContinentsFormProps> = ({
       setIsLoading(false);
       return;
     }
-    createContinent(e, setIsLoading, setError);
+
+    if (action === "create") {
+      createContinent(e, setIsLoading, setError);
+    } else if (action === "update" && id !== undefined) {
+      updateContinent(id, e, setIsLoading, setError);
+    }
+    
     e.target.reset();
     setIsLoading(false);
     router.refresh();

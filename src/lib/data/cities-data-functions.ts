@@ -58,7 +58,6 @@ export const getCity = async (id: number, setIsLoading: SetIsLoading, setError: 
  * @param setError  - set error state
  */
 export const createCity = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
-  e.preventDefault();
   setIsLoading(true);
 
   try {
@@ -116,11 +115,55 @@ export const createCity = async (e: FormEvent, setIsLoading: SetIsLoading, setEr
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateCity = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const updateCity = async (id: string, e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
   setIsLoading(true);
 
   try {
+    const target = e.target as typeof e.target & {
+      name: { value: string };
+      latitude: { value: string };
+      longitude: { value: string };
+      population: { value: string };
+      area_km2: { value: string };
+      country: { value: string };
+      zone_name: { value: string };
+      gmt_offset: { value: string };
+      gmt_offset_name: { value: string };
+      abbreviation: { value: string };
+      tz_name: { value: string };
+    };
 
+    const city = cityCreateSchema.parse({
+      name: target.name.value,
+      latitude: target.latitude.value,
+      longitude: target.longitude.value,
+      population: Number(target.population.value),
+      area_km2: Number(target.area_km2.value),
+      country: target.country.value,
+      timezone: {
+        zone_name: target.zone_name.value,
+        gmt_offset: Number(target.gmt_offset.value),
+        gmt_offset_name: target.gmt_offset_name.value,
+        abbreviation: target.abbreviation.value,
+        tz_name: target.tz_name.value,
+      },
+    });
+
+    const data = {
+      id,
+      city
+    }
+
+    const res = await fetch("/api/data/cities", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    // TODO: res handling
+    setError("")
   } catch (error) {
     setError("There was an error updating the city.");
   }

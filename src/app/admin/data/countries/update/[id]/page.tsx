@@ -21,13 +21,13 @@ const CountriesUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!country) return notFound();
 
-  const countries = await Country.find().sort({ id: -1 }).limit(5);
+  const countries = await Country.find().sort({ updatedAt: -1 }).limit(5);
 
   let countriesArray: Array<any> = [];
   countries.map((country) => {
     countriesArray.push({
       ...countryCreateSchema.parse(country),
-      createdAt: formatDistance(new Date(country.createdAt), new Date()),
+      createdAt: formatDistance(new Date(country.updatedAt), new Date()),
     });
   });
 
@@ -35,12 +35,19 @@ const CountriesUpdatePage = async ({ params: { id } }: Props) => {
 
   return (
     <div className="mx-auto flex max-w-full">
-      <Sidebar page="countires" />
+      <Sidebar page="countries" />
       <div className="container h-auto min-h-screen gap-6 p-0 dark:text-white">
         <UpdateSection
           title="Update Country"
-          subtitle="Last created Countires"
-          form={<CountriesForm buttonTitle="Update" country={countryData} />}
+          subtitle="Last updated Countires"
+          form={
+            <CountriesForm
+              buttonTitle="Update"
+              id={id}
+              action="update"
+              country={countryData}
+            />
+          }
           infoSide={<CountriesSideInfo data={countriesArray} />}
         />
       </div>

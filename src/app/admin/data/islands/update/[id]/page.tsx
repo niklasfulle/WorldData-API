@@ -21,13 +21,13 @@ const IslandsUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!island) return notFound();
 
-  const islands = await Island.find().sort({ id: -1 }).limit(5);
+  const islands = await Island.find().sort({ updatedAt: -1 }).limit(5);
 
   let islandsArray: Array<any> = [];
   islands.map((island) => {
     islandsArray.push({
       ...islandCreateSchema.parse(island),
-      createdAt: formatDistance(new Date(island.createdAt), new Date()),
+      createdAt: formatDistance(new Date(island.updatedAt), new Date()),
     });
   });
 
@@ -39,8 +39,15 @@ const IslandsUpdatePage = async ({ params: { id } }: Props) => {
       <div className="container h-auto min-h-screen gap-6 p-0 dark:text-white">
         <UpdateSection
           title="Update Island"
-          subtitle="Last created Islands"
-          form={<IslandsForm buttonTitle="Update" island={islandData} />}
+          subtitle="Last updated Islands"
+          form={
+            <IslandsForm
+              buttonTitle="Update"
+              id={id}
+              action="update"
+              island={islandData}
+            />
+          }
           infoSide={<IslandsSideInfo data={islandsArray} />}
         />
       </div>

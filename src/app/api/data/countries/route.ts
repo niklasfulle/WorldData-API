@@ -35,7 +35,7 @@ export async function POST(
 
     await Country.create(country);
 
-    return NextResponse.json({ message: "Country created succsesful", success: true }, { status: 200 })
+    return NextResponse.json({ message: "Country created succsesful", success: true }, { status: 201 })
   } catch (error) {
     console.log(error)
   }
@@ -57,8 +57,17 @@ export async function PUT(
       error: 'Unauthorized to perform this action.', success: false
     }, { status: 401 })
 
+    const body: any = await req.json();
 
-    return NextResponse.json({ session }, { status: 200 })
+    const Country = mongoDb.Country;
+
+    const country = countryCreateSchema.parse(body.country);
+
+    const id = body.id;
+
+    await Country.updateOne({ id: id }, country);
+
+    return NextResponse.json({ message: "Country updated succsesful", success: true }, { status: 200 })
   } catch (error) {
     console.log(error)
   }

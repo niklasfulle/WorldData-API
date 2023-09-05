@@ -35,7 +35,7 @@ export async function POST(
 
     await Island.create(island);
 
-    return NextResponse.json({ message: "Island Bodie created succsesful", success: true }, { status: 200 })
+    return NextResponse.json({ message: "Island created succsesful", success: true }, { status: 201 })
   } catch (error) {
     console.log(error)
   }
@@ -57,8 +57,17 @@ export async function PUT(
       error: 'Unauthorized to perform this action.', success: false
     }, { status: 401 })
 
+    const body: any = await req.json();
 
-    return NextResponse.json({ session }, { status: 200 })
+    const Island = mongoDb.Island;
+
+    const island = islandCreateSchema.parse(body.island);
+
+    const id = body.id;
+
+    await Island.updateOne({ id: id }, island);
+
+    return NextResponse.json({ message: "Island updated succsesful", success: true }, { status: 200 })
   } catch (error) {
     console.log(error)
   }

@@ -21,13 +21,13 @@ const CitiesUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!continent) return notFound();
 
-  const continents = await Continent.find().sort({ id: -1 }).limit(5);
+  const continents = await Continent.find().sort({ updatedAt: -1 }).limit(5);
 
   let continentsArray: Array<any> = [];
   continents.map((continent) => {
     continentsArray.push({
       ...continentCreateSchema.parse(continent),
-      createdAt: formatDistance(new Date(continent.createdAt), new Date()),
+      createdAt: formatDistance(new Date(continent.updatedAt), new Date()),
     });
   });
 
@@ -39,9 +39,14 @@ const CitiesUpdatePage = async ({ params: { id } }: Props) => {
       <div className="container h-auto min-h-screen gap-6 p-0 dark:text-white">
         <UpdateSection
           title="Update Continent"
-          subtitle="Last created Continents"
+          subtitle="Last updated Continents"
           form={
-            <ContinentsForm buttonTitle="Update" continent={continentData} />
+            <ContinentsForm
+              buttonTitle="Update"
+              id={id}
+              action="update"
+              continent={continentData}
+            />
           }
           infoSide={<ContinentsSideInfo data={continentsArray} />}
         />

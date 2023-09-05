@@ -10,7 +10,7 @@ import { formatDistance } from "date-fns";
 const ContinentsCreatePage = async () => {
   const Continent = mongoDb.Continent;
 
-  const continents = await Continent.find().sort({ id: -1 }).limit(5);
+  const continents = await Continent.find().sort({ createdAt: -1 }).limit(5);
 
   let continentsArray: Array<any> = [];
 
@@ -28,7 +28,7 @@ const ContinentsCreatePage = async () => {
         <CreateSection
           title="Create Continent"
           subtitle="Last created Continents"
-          form={<ContinentsForm buttonTitle="Create" />}
+          form={<ContinentsForm buttonTitle="Create" action="create" />}
           infoSide={<ContinentsSideInfo data={continentsArray} />}
         />
       </div>

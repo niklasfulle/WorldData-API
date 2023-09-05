@@ -79,7 +79,6 @@ export const getLake = async (id: number, setIsLoading: SetIsLoading, setError: 
  * @param setError  - set error state
  */
 export const createLake = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
-  e.preventDefault();
   setIsLoading(true);
 
   try {
@@ -129,11 +128,47 @@ export const createLake = async (e: FormEvent, setIsLoading: SetIsLoading, setEr
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateLake = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const updateLake = async (id: string, e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
   setIsLoading(true);
 
   try {
+    const target = e.target as typeof e.target & {
+      name: { value: string };
+      area_km2: { value: string };
+      depth_m: { value: string };
+      volume_km3: { value: string };
+      latitude: { value: string };
+      longitude: { value: string };
+      continent: { value: string };
+      countries: { value: string };
+    };
 
+    const lake = lakeCreateSchema.parse({
+      name: target.name.value,
+      area_km2: Number(target.area_km2.value),
+      depth_m: Number(target.depth_m.value),
+      volume_km3: Number(target.volume_km3.value),
+      latitude: target.latitude.value,
+      longitude: target.longitude.value,
+      continent: target.continent.value,
+      countries: createCountiresArray(target.countries.value)
+    });
+
+    const data = {
+      id,
+      lake
+    }
+
+    const res = await fetch("/api/data/lakes", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    // TODO: res handling
+    setError("")
   } catch (error) {
     setError("There was an error updating the lake.");
   }

@@ -10,7 +10,9 @@ import { formatDistance } from "date-fns";
 const CelestialBodiesCreatePage = async () => {
   const CelestialBodie = mongoDb.CelestialBodie;
 
-  const celestialBodies = await CelestialBodie.find().sort({ id: -1 }).limit(5);
+  const celestialBodies = await CelestialBodie.find()
+    .sort({ createdAt: -1 })
+    .limit(5);
 
   let celestialBodiesArray: Array<any> = [];
   celestialBodies.map((celestialBodie) => {
@@ -27,7 +29,7 @@ const CelestialBodiesCreatePage = async () => {
         <CreateSection
           title="Create Celestial Bodie"
           subtitle="Last created Celestial Bodies"
-          form={<CelestialBodieForm buttonTitle="Create" />}
+          form={<CelestialBodieForm buttonTitle="Create" action="create" />}
           infoSide={<CelestialBodiesSideInfo data={celestialBodiesArray} />}
         />
       </div>

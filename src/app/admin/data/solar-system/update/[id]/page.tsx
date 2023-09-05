@@ -21,13 +21,15 @@ const CelestialBodiesUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!celestialBodie) return notFound();
 
-  const celestialBodies = await CelestialBodie.find().sort({ id: -1 }).limit(5);
+  const celestialBodies = await CelestialBodie.find()
+    .sort({ updatedAt: -1 })
+    .limit(5);
 
   let celestialBodiesArray: Array<any> = [];
   celestialBodies.map((celestialBodie) => {
     celestialBodiesArray.push({
       ...celestialBodieCreateSchema.parse(celestialBodie),
-      createdAt: formatDistance(new Date(celestialBodie.createdAt), new Date()),
+      createdAt: formatDistance(new Date(celestialBodie.updatedAt), new Date()),
     });
   });
 
@@ -35,14 +37,16 @@ const CelestialBodiesUpdatePage = async ({ params: { id } }: Props) => {
 
   return (
     <div className="mx-auto flex max-w-full">
-      <Sidebar page="seas" />
+      <Sidebar page="solar system" />
       <div className="container h-auto min-h-screen gap-6 p-0 dark:text-white">
         <UpdateSection
           title="Update Celestial Bodie"
-          subtitle="Last created Celestial Bodies"
+          subtitle="Last updated Celestial Bodies"
           form={
             <CelestialBodieForm
               buttonTitle="Update"
+              id={id}
+              action="update"
               celestialBodie={celestialBodieData}
             />
           }

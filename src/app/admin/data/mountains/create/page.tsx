@@ -10,7 +10,7 @@ import { formatDistance } from "date-fns";
 const MountainsCreatePage = async () => {
   const Mountain = mongoDb.Mountain;
 
-  const mountains = await Mountain.find().sort({ id: -1 }).limit(5);
+  const mountains = await Mountain.find().sort({ createdAt: -1 }).limit(5);
 
   let mountainsArray: Array<any> = [];
   mountains.map((mountain) => {
@@ -27,7 +27,7 @@ const MountainsCreatePage = async () => {
         <CreateSection
           title="Create Mountain"
           subtitle="Last created Mountains"
-          form={<MountainsForm buttonTitle="Create" />}
+          form={<MountainsForm buttonTitle="Create" action="create" />}
           infoSide={<MountainsSideInfo data={mountainsArray} />}
         />
       </div>

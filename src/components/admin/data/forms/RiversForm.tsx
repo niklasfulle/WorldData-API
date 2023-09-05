@@ -2,16 +2,23 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import { createRiver } from "@/lib/data/rivers-data-functions";
+import { createRiver, updateRiver } from "@/lib/data/rivers-data-functions";
 import FormCountriesTextarea from "../components/FormCountriesTextarea";
 import { useRouter } from "next/navigation";
 
 interface RiversFormProps {
   buttonTitle: string;
+  action: string;
+  id?: string;
   river?: any;
 }
 
-const RiversForm: FC<RiversFormProps> = ({ buttonTitle, river }) => {
+const RiversForm: FC<RiversFormProps> = ({
+  buttonTitle,
+  action,
+  id,
+  river,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(false);
@@ -27,7 +34,13 @@ const RiversForm: FC<RiversFormProps> = ({ buttonTitle, river }) => {
       setIsLoading(false);
       return;
     }
-    createRiver(e, setIsLoading, setError);
+
+    if (action === "create") {
+      createRiver(e, setIsLoading, setError);
+    } else if (action === "update" && id !== undefined) {
+      updateRiver(id, e, setIsLoading, setError);
+    }
+
     e.target.reset();
     setIsLoading(false);
     router.refresh();

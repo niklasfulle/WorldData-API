@@ -21,13 +21,13 @@ const MountainsUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!mountain) return notFound();
 
-  const mountains = await Mountain.find().sort({ id: -1 }).limit(5);
+  const mountains = await Mountain.find().sort({ updatedAt: -1 }).limit(5);
 
   let mountainsArray: Array<any> = [];
   mountains.map((mountain) => {
     mountainsArray.push({
       ...mountainCreateSchema.parse(mountain),
-      createdAt: formatDistance(new Date(mountain.createdAt), new Date()),
+      createdAt: formatDistance(new Date(mountain.updatedAt), new Date()),
     });
   });
 
@@ -39,8 +39,15 @@ const MountainsUpdatePage = async ({ params: { id } }: Props) => {
       <div className="container h-auto min-h-screen gap-6 p-0 dark:text-white">
         <UpdateSection
           title="Update Mountain"
-          subtitle="Last created Mountains"
-          form={<MountainsForm buttonTitle="Update" mountain={mountainData} />}
+          subtitle="Last updated Mountains"
+          form={
+            <MountainsForm
+              buttonTitle="Update"
+              id={id}
+              action="update"
+              mountain={mountainData}
+            />
+          }
           infoSide={<MountainsSideInfo data={mountainsArray} />}
         />
       </div>

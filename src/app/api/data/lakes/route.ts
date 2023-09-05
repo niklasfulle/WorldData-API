@@ -36,7 +36,7 @@ export async function POST(
 
     await Lake.create(lake);
 
-    return NextResponse.json({ message: "Lake Bodie created succsesful", success: true }, { status: 200 })
+    return NextResponse.json({ message: "Lake Bodie created succsesful", success: true }, { status: 201 })
   } catch (error) {
     console.log(error)
   }
@@ -58,8 +58,17 @@ export async function PUT(
       error: 'Unauthorized to perform this action.', success: false
     }, { status: 401 })
 
+    const body: any = await req.json();
 
-    return NextResponse.json({ session }, { status: 200 })
+    const Lake = mongoDb.Lake;
+
+    const lake = lakeCreateSchema.parse(body.lake);
+
+    const id = body.id;
+
+    await Lake.updateOne({ id: id }, lake);
+
+    return NextResponse.json({ message: "Lake updated succsesful", success: true }, { status: 200 })
   } catch (error) {
     console.log(error)
   }

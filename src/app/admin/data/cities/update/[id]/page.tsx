@@ -21,13 +21,13 @@ const CitiesPage = async ({ params: { id } }: Props) => {
 
   if (!city) return notFound();
 
-  const cities = await City.find().sort({ id: -1 }).limit(5);
+  const cities = await City.find().sort({ updatedAt: -1 }).limit(5);
 
   let citiesArray: Array<any> = [];
   cities.map((city) => {
     citiesArray.push({
       ...cityCreateSchema.parse(city),
-      createdAt: formatDistance(new Date(city.createdAt), new Date()),
+      createdAt: formatDistance(new Date(city.updatedAt), new Date()),
     });
   });
 
@@ -39,8 +39,15 @@ const CitiesPage = async ({ params: { id } }: Props) => {
       <div className="container h-auto min-h-screen gap-6 p-0 dark:text-white">
         <UpdateSection
           title="Update City"
-          subtitle="Last created Cities"
-          form={<CitiesForm buttonTitle="Update" city={cityData} />}
+          subtitle="Last updated Cities"
+          form={
+            <CitiesForm
+              buttonTitle="Update"
+              id={id}
+              action="update"
+              city={cityData}
+            />
+          }
           infoSide={<CitiesSideInfo data={citiesArray} />}
         />
       </div>

@@ -79,7 +79,6 @@ export const getIsland = async (id: number, setIsLoading: SetIsLoading, setError
  * @param setError  - set error state
  */
 export const createIsland = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
-  e.preventDefault();
   setIsLoading(true);
 
   try {
@@ -127,11 +126,45 @@ export const createIsland = async (e: FormEvent, setIsLoading: SetIsLoading, set
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateIsland = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const updateIsland = async (id: string, e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
   setIsLoading(true);
 
   try {
+    const target = e.target as typeof e.target & {
+      name: { value: string };
+      area_km2: { value: string };
+      population: { value: string };
+      latitude: { value: string };
+      longitude: { value: string };
+      continent: { value: string };
+      countries: { value: string };
+    };
 
+    const island = islandCreateSchema.parse({
+      name: target.name.value,
+      area_km2: Number(target.area_km2.value),
+      population: Number(target.population.value),
+      latitude: target.latitude.value,
+      longitude: target.longitude.value,
+      continent: target.continent.value,
+      countries: createCountiresArray(target.countries.value)
+    });
+
+    const data = {
+      id,
+      island
+    }
+
+    const res = await fetch("/api/data/islands", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    // TODO: res handling
+    setError("")
   } catch (error) {
     setError("There was an error updating the island.");
   }

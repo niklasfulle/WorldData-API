@@ -79,7 +79,6 @@ export const getRiver = async (id: number, setIsLoading: SetIsLoading, setError:
  * @param setError  - set error state
  */
 export const createRiver = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
-  e.preventDefault();
   setIsLoading(true);
 
   try {
@@ -123,11 +122,41 @@ export const createRiver = async (e: FormEvent, setIsLoading: SetIsLoading, setE
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateRiver = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const updateRiver = async (id: string, e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
   setIsLoading(true);
 
   try {
+    const target = e.target as typeof e.target & {
+      name: { value: string };
+      length_km: { value: string };
+      countries: { value: string };
+      discharge_m3_s: { value: string };
+      outflow: { value: string };
+    };
 
+    const river = riverCreateSchema.parse({
+      name: target.name.value,
+      length_km: Number(target.length_km.value),
+      countries: createCountiresArray(target.countries.value),
+      discharge_m3_s: Number(target.discharge_m3_s.value),
+      outflow: target.outflow.value,
+    });
+
+    const data = {
+      id,
+      river
+    }
+
+    const res = await fetch("/api/data/rivers", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    // TODO: res handling
+    setError("")
   } catch (error) {
     setError("There was an error updating the river.");
   }

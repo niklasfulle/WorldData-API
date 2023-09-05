@@ -3,15 +3,25 @@ import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
 import FormCountriesTextarea from "../components/FormCountriesTextarea";
-import { createCurrency } from "@/lib/data/currencies-data-functions";
+import {
+  createCurrency,
+  updateCurrency,
+} from "@/lib/data/currencies-data-functions";
 import { useRouter } from "next/navigation";
 
 interface CurrenciesFormProps {
   buttonTitle: string;
+  action: string;
+  id?: string;
   currency?: any;
 }
 
-const CurrenciesForm: FC<CurrenciesFormProps> = ({ buttonTitle, currency }) => {
+const CurrenciesForm: FC<CurrenciesFormProps> = ({
+  buttonTitle,
+  action,
+  id,
+  currency,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(false);
@@ -27,7 +37,13 @@ const CurrenciesForm: FC<CurrenciesFormProps> = ({ buttonTitle, currency }) => {
       setIsLoading(false);
       return;
     }
-    createCurrency(e, setIsLoading, setError);
+
+    if (action === "create") {
+      createCurrency(e, setIsLoading, setError);
+    } else if (action === "update" && id !== undefined) {
+      updateCurrency(id, e, setIsLoading, setError);
+    }
+
     e.target.reset();
     setIsLoading(false);
     router.refresh();

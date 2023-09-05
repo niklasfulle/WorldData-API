@@ -2,16 +2,23 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import { createIsland } from "@/lib/data/islands-data-functions";
+import { createIsland, updateIsland } from "@/lib/data/islands-data-functions";
 import FormCountriesTextarea from "../components/FormCountriesTextarea";
 import { useRouter } from "next/navigation";
 
 interface IslandsFormProps {
   buttonTitle: string;
+  action: string;
+  id?: string;
   island?: any;
 }
 
-const IslandsForm: FC<IslandsFormProps> = ({ buttonTitle, island }) => {
+const IslandsForm: FC<IslandsFormProps> = ({
+  buttonTitle,
+  action,
+  id,
+  island,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(false);
@@ -27,7 +34,13 @@ const IslandsForm: FC<IslandsFormProps> = ({ buttonTitle, island }) => {
       setIsLoading(false);
       return;
     }
-    createIsland(e, setIsLoading, setError);
+
+    if (action === "create") {
+      createIsland(e, setIsLoading, setError);
+    } else if (action === "update" && id !== undefined) {
+      updateIsland(id, e, setIsLoading, setError);
+    }
+
     e.target.reset();
     setIsLoading(false);
     router.refresh();

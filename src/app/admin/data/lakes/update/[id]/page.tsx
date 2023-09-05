@@ -21,13 +21,13 @@ const LakesUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!lake) return notFound();
 
-  const lakes = await Lake.find().sort({ id: -1 }).limit(5);
+  const lakes = await Lake.find().sort({ updatedAt: -1 }).limit(5);
 
   let lakesArray: Array<any> = [];
   lakes.map((lake) => {
     lakesArray.push({
       ...lakeCreateSchema.parse(lake),
-      createdAt: formatDistance(new Date(lake.createdAt), new Date()),
+      createdAt: formatDistance(new Date(lake.updatedAt), new Date()),
     });
   });
 
@@ -39,8 +39,15 @@ const LakesUpdatePage = async ({ params: { id } }: Props) => {
       <div className="container h-auto min-h-screen gap-6 p-0 dark:text-white">
         <UpdateSection
           title="Update Lake"
-          subtitle="Last created Lakes"
-          form={<LakesForm buttonTitle="Update" lake={lakeData} />}
+          subtitle="Last updated Lakes"
+          form={
+            <LakesForm
+              buttonTitle="Update"
+              id={id}
+              action="update"
+              lake={lakeData}
+            />
+          }
           infoSide={<LakesSideInfo data={lakesArray} />}
         />
       </div>

@@ -35,7 +35,7 @@ export async function POST(
 
     await Ocean.create(ocean);
 
-    return NextResponse.json({ message: "Ocean created succsesful", success: true }, { status: 200 })
+    return NextResponse.json({ message: "Ocean created succsesful", success: true }, { status: 201 })
   } catch (error) {
     console.log(error)
   }
@@ -57,8 +57,17 @@ export async function PUT(
       error: 'Unauthorized to perform this action.', success: false
     }, { status: 401 })
 
+    const body: any = await req.json();
 
-    return NextResponse.json({ session }, { status: 200 })
+    const Ocean = mongoDb.Ocean;
+
+    const ocean = oceanCreateSchema.parse(body.ocean);
+
+    const id = body.id;
+
+    await Ocean.updateOne({ id: id }, ocean);
+
+    return NextResponse.json({ message: "Ocean updated succsesful", success: true }, { status: 200 })
   } catch (error) {
     console.log(error)
   }

@@ -127,11 +127,45 @@ export const createMountain = async (e: FormEvent, setIsLoading: SetIsLoading, s
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateMountain = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const updateMountain = async (id: string, e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
   setIsLoading(true);
 
   try {
+    const target = e.target as typeof e.target & {
+      name: { value: string };
+      height_m: { value: string };
+      latitude: { value: string };
+      longitude: { value: string };
+      continent: { value: string };
+      first_climbed: { value: string };
+      countries: { value: string };
+    };
 
+    const mountain = mountainCreateSchema.parse({
+      name: target.name.value,
+      height_m: Number(target.height_m.value),
+      latitude: target.latitude.value,
+      longitude: target.longitude.value,
+      continent: target.continent.value,
+      countries: createCountiresArray(target.countries.value),
+      first_climbed: target.first_climbed.value,
+    });
+
+    const data = {
+      id,
+      mountain
+    }
+
+    const res = await fetch("/api/data/mountains", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    // TODO: res handling
+    setError("")
   } catch (error) {
     setError("There was an error updating the mountain.");
   }

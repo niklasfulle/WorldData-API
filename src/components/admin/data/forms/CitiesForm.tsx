@@ -2,16 +2,18 @@
 import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
-import { createCity } from "@/lib/data/cities-data-functions";
+import { createCity, updateCity } from "@/lib/data/cities-data-functions";
 import FormTimezoneInput from "../components/FormTimezoneInput";
 import { useRouter } from "next/navigation";
 
 interface CitiesFormProps {
   buttonTitle: string;
+  action: string;
+  id?: string;
   city?: any;
 }
 
-const CitiesForm: FC<CitiesFormProps> = ({ buttonTitle, city }) => {
+const CitiesForm: FC<CitiesFormProps> = ({ buttonTitle, action, id, city }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
@@ -21,7 +23,12 @@ const CitiesForm: FC<CitiesFormProps> = ({ buttonTitle, city }) => {
     setIsLoading(true);
     setError("");
 
-    createCity(e, setIsLoading, setError);
+    if (action === "create") {
+      createCity(e, setIsLoading, setError);
+    } else if (action === "update" && id !== undefined) {
+      updateCity(id, e, setIsLoading, setError);
+    }
+
     e.target.reset();
     setIsLoading(false);
     router.refresh();

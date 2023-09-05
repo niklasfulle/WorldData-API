@@ -3,15 +3,17 @@ import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
 import FormCountriesTextarea from "../components/FormCountriesTextarea";
-import { createLake } from "@/lib/data/lakes-data-functions";
+import { createLake, updateLake } from "@/lib/data/lakes-data-functions";
 import { useRouter } from "next/navigation";
 
 interface LakesFormProps {
   buttonTitle: string;
+  action: string;
+  id?: string;
   lake?: any;
 }
 
-const LakesForm: FC<LakesFormProps> = ({ buttonTitle, lake }) => {
+const LakesForm: FC<LakesFormProps> = ({ buttonTitle, action, id, lake }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(false);
@@ -27,7 +29,13 @@ const LakesForm: FC<LakesFormProps> = ({ buttonTitle, lake }) => {
       setIsLoading(false);
       return;
     }
-    createLake(e, setIsLoading, setError);
+
+    if (action === "create") {
+      createLake(e, setIsLoading, setError);
+    } else if (action === "update" && id !== undefined) {
+      updateLake(id, e, setIsLoading, setError);
+    }
+
     e.target.reset();
     setIsLoading(false);
     router.refresh();

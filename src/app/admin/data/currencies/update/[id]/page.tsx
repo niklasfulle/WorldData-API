@@ -21,13 +21,13 @@ const CountriesUpdatePage = async ({ params: { id } }: Props) => {
 
   if (!currency) return notFound();
 
-  const currencies = await Currency.find().sort({ id: -1 }).limit(5);
+  const currencies = await Currency.find().sort({ updatedAt: -1 }).limit(5);
 
   let currenciesArray: Array<any> = [];
   currencies.map((currency) => {
     currenciesArray.push({
       ...currencyCreateSchema.parse(currency),
-      createdAt: formatDistance(new Date(currency.createdAt), new Date()),
+      createdAt: formatDistance(new Date(currency.updatedAt), new Date()),
     });
   });
 
@@ -39,8 +39,15 @@ const CountriesUpdatePage = async ({ params: { id } }: Props) => {
       <div className="container h-auto min-h-screen gap-6 p-0 dark:text-white">
         <UpdateSection
           title="Update Currency"
-          subtitle="Last created Currencies"
-          form={<CurrenciesForm buttonTitle="Update" currency={currencyData} />}
+          subtitle="Last updated Currencies"
+          form={
+            <CurrenciesForm
+              buttonTitle="Update"
+              id={id}
+              action="update"
+              currency={currencyData}
+            />
+          }
           infoSide={<CurrenciesSideInfo data={currenciesArray} />}
         />
       </div>

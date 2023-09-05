@@ -79,7 +79,6 @@ export const getContinent = async (id: number, setIsLoading: SetIsLoading, setEr
  * @param setError  - set error state
  */
 export const createContinent = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
-  e.preventDefault();
   setIsLoading(true);
 
   try {
@@ -123,11 +122,41 @@ export const createContinent = async (e: FormEvent, setIsLoading: SetIsLoading, 
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateContinent = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const updateContinent = async (id: string, e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
   setIsLoading(true);
 
   try {
+    const target = e.target as typeof e.target & {
+      name: { value: string };
+      area_km2: { value: string };
+      population: { value: string };
+      density_km2: { value: string };
+      countries: { value: string };
+    };
 
+    const continent = continentCreateSchema.parse({
+      name: target.name.value,
+      area_km2: Number(target.area_km2.value),
+      population: Number(target.population.value),
+      density_km2: Number(target.density_km2.value),
+      countries: createCountiresArray(target.countries.value)
+    });
+
+    const data = {
+      id,
+      continent
+    }
+
+    const res = await fetch("/api/data/continents", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    // TODO: res handling
+    setError("")
   } catch (error) {
     setError("There was an error updating the continent.");
   }

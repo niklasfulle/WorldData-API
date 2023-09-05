@@ -122,12 +122,44 @@ export const createCelestialBodie = async (e: FormEvent, translations: Translati
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateCelestialBodie = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
-  e.preventDefault();
+export const updateCelestialBodie = async (id: string, e: FormEvent, translations: Translations, setIsLoading: SetIsLoading, setError: SetError) => {
   setIsLoading(true);
 
   try {
+    const target = e.target as typeof e.target & {
+      name: { value: string };
+      type: { value: string };
+      mass: { value: string };
+      diameter_km: { value: string };
+      tilt_degrees: { value: string };
+      rotation_period_days: { value: string };
+    };
 
+    const celestialBodie = celestialBodieCreateSchema.parse({
+      name: target.name.value,
+      type: target.type.value,
+      mass: Number(target.mass.value),
+      diameter_km: Number(target.diameter_km.value),
+      tilt_degrees: Number(target.tilt_degrees.value),
+      rotation_period_days: Number(target.rotation_period_days.value),
+      translations
+    });
+
+    const data = {
+      id,
+      celestialBodie
+    }
+
+    const res = await fetch("/api/data/celestialbodies", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    // TODO: res handling
+    setError("")
   } catch (error) {
     setError("There was an error updating the celestialBodie.");
   }

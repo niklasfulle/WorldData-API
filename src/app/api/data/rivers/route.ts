@@ -24,7 +24,6 @@ export async function POST(
       error: 'Unauthorized to perform this action.', success: false
     }, { status: 401 })
 
-
     const River = mongoDb.River;
 
     const river = riverCreateSchema.parse(await req.json());
@@ -35,7 +34,7 @@ export async function POST(
 
     await River.create(river);
 
-    return NextResponse.json({ message: "River Bodie created succsesful", success: true }, { status: 200 })
+    return NextResponse.json({ message: "River created succsesful", success: true }, { status: 201 })
   } catch (error) {
     console.log(error)
   }
@@ -58,7 +57,17 @@ export async function PUT(
     }, { status: 401 })
 
 
-    return NextResponse.json({ session }, { status: 200 })
+    const body: any = await req.json();
+
+    const River = mongoDb.River;
+
+    const river = riverCreateSchema.parse(body.river);
+
+    const id = body.id;
+
+    await River.updateOne({ id: id }, river);
+
+    return NextResponse.json({ message: "River updated succsesful", success: true }, { status: 200 })
   } catch (error) {
     console.log(error)
   }

@@ -10,7 +10,7 @@ import { formatDistance } from "date-fns";
 const SeasCreatePage = async () => {
   const Sea = mongoDb.Sea;
 
-  const seas = await Sea.find().sort({ id: -1 }).limit(5);
+  const seas = await Sea.find().sort({ createdAt: -1 }).limit(5);
 
   let seasArray: Array<any> = [];
   seas.map((sea) => {
@@ -27,7 +27,7 @@ const SeasCreatePage = async () => {
         <CreateSection
           title="Create Sea"
           subtitle="Last created Seas"
-          form={<SeasForm buttonTitle="Create" />}
+          form={<SeasForm buttonTitle="Create" action="create" />}
           infoSide={<SeasSideInfo data={seasArray} />}
         />
       </div>

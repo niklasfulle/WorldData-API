@@ -35,7 +35,7 @@ export async function POST(
 
     await Mountain.create(mountain);
 
-    return NextResponse.json({ message: "Mountain Bodie created succsesful", success: true }, { status: 200 })
+    return NextResponse.json({ message: "Mountain Bodie created succsesful", success: true }, { status: 201 })
   } catch (error) {
     console.log(error)
   }
@@ -57,8 +57,17 @@ export async function PUT(
       error: 'Unauthorized to perform this action.', success: false
     }, { status: 401 })
 
+    const body: any = await req.json();
 
-    return NextResponse.json({ session }, { status: 200 })
+    const Mountain = mongoDb.Mountain;
+
+    const mountain = mountainCreateSchema.parse(body.mountain);
+
+    const id = body.id;
+
+    await Mountain.updateOne({ id: id }, mountain);
+
+    return NextResponse.json({ message: "Mountain updated succsesful", success: true }, { status: 200 })
   } catch (error) {
     console.log(error)
   }

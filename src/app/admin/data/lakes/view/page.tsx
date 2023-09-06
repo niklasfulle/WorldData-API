@@ -12,7 +12,7 @@ const LakesViewPage = async () => {
 
   let lakesArray: Array<any> = [];
   lakes.map((lake) => {
-    lakes.push(lakeCreateSchema.parse(lake));
+    lakesArray.push(lakeCreateSchema.parse(lake));
   });
 
   return (

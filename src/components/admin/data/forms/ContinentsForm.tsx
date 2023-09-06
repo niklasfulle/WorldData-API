@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { Button } from "@/ui/Button";
 import FormInput from "@/ui/FormInput";
 import {
@@ -43,7 +43,7 @@ const ContinentsForm: FC<ContinentsFormProps> = ({
     } else if (action === "update" && id !== undefined) {
       updateContinent(id, e, setIsLoading, setError);
     }
-    
+
     e.target.reset();
     setIsLoading(false);
     router.refresh();

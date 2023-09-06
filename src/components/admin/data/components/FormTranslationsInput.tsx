@@ -1,7 +1,6 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import TranslationInput from "./TranslationInput";
 import { getAsHTMLInputElement } from "@/lib/helpers/shorter-function";
-import { useRouter } from "next/navigation";
 
 interface FormTranslationsInputInput {
   id: string;
@@ -47,7 +46,6 @@ const FormTranslationsInput: FC<FormTranslationsInputInput> = ({
   translations,
   setTranslations,
 }) => {
-  const router = useRouter();
   const values = Object.entries(translations);
 
   const createTranslations = () => {

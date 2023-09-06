@@ -1,38 +1,28 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef*/
-/* eslint-disable no-empty*/
 "use client";
 import React, { FC } from "react";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { DataGrid, GridColDef, GridColumnHeaderParams } from "@mui/x-data-grid";
-import { ApiRequest } from "@prisma/client";
 import { useTheme } from "next-themes";
 
-type ModifiedRequestType<K extends keyof ApiRequest> = Omit<ApiRequest, K> & {
-  timestamp: string;
-};
-
-interface OcenasTableProps {
-  //userRequests: ModifiedRequestType<"timestamp">[];
+interface OceansTableProps {
   data: any;
 }
 
 const columnsDraft: GridColDef[] = [
   {
     field: "col1",
-    headerName: "API key used",
-    width: 300,
-    renderHeader(params) {
-      return (
-        <strong className="font-semibold">{params.colDef.headerName} </strong>
-      );
-    },
+    headerName: "Id",
+    width: 100,
   },
-  { field: "col2", headerName: "Path", width: 250 },
-  { field: "col3", headerName: "Recency", width: 250 },
-  { field: "col4", headerName: "Duration", width: 150 },
-  { field: "col5", headerName: "Status", width: 100 },
-  { field: "col6", headerName: "Response", width: 170 },
+  {
+    field: "col2",
+    headerName: "Name",
+    width: 350,
+  },
+  { field: "col3", headerName: "Area Km²", width: 220 },
+  { field: "col4", headerName: "Average Depth m", width: 220 },
+  { field: "col5", headerName: "Max Depth m", width: 220 },
+  { field: "col6", headerName: "Actions", width: 170, headerAlign: "center" },
 ];
 
 const columns = columnsDraft.map((col) => {
@@ -50,7 +40,7 @@ const columns = columnsDraft.map((col) => {
   };
 });
 
-const OceansTable: FC<OcenasTableProps> = ({ data }) => {
+const OceansTable: FC<OceansTableProps> = ({ data }) => {
   const { theme: applicationTheme } = useTheme();
 
   const darkTheme = createTheme({
@@ -59,15 +49,16 @@ const OceansTable: FC<OcenasTableProps> = ({ data }) => {
     },
   });
 
-  /*const rows = userRequests.map((request) => ({
-    id: request.id,
-    col1: request.usedApiKey,
-    col2: request.path,
-    col3: `${request.timestamp} ago`,
-    col4: `${request.duration} ms`,
-    col5: request.status,
-    col6: request.response,
-  }));*/
+  const rows = data.map((ocean: any) => ({
+    id: ocean.id,
+    col1: ocean.id,
+    col2: ocean.name,
+    col3: `${ocean.area_km2} Km²`,
+    col4: `${ocean.avg_depth_m} m`,
+    col5: `${ocean.max_depth_m} m`,
+    col6: "",
+  }));
+
   return (
     <ThemeProvider theme={darkTheme}>
       <DataGrid
@@ -87,8 +78,8 @@ const OceansTable: FC<OcenasTableProps> = ({ data }) => {
             },
           },
         }}
-        columns={[]}
-        rows={[]}
+        columns={columns}
+        rows={rows}
       />
     </ThemeProvider>
   );

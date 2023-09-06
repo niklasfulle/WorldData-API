@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/Input";
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 
 interface FormTimezoneInputProps {
   id: string;

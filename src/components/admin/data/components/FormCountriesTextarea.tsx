@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { Textarea } from "@/ui/Textarea";
 import Icons from "@/ui/Icons";
 

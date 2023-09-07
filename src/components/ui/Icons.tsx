@@ -41,7 +41,8 @@ import {
   FileEdit,
   BarChart3,
   BarChart4,
-  Pencil
+  Pencil,
+  Trash,
 } from "lucide-react";
 
 export const Icons = {
@@ -88,6 +89,7 @@ export const Icons = {
   BarChart3,
   BarChart4,
   Pencil,
+  Trash,
 };
 
 export default Icons;

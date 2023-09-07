@@ -1,11 +1,32 @@
 "use client";
 import React, { FC } from "react";
-import { createTheme, ThemeProvider } from "@mui/material";
-import { DataGrid, GridColDef, GridColumnHeaderParams } from "@mui/x-data-grid";
+import { createTheme, ThemeProvider, Tooltip } from "@mui/material";
+import {
+  DataGrid,
+  GridColDef,
+  GridColumnHeaderParams,
+  GridRenderEditCellParams,
+} from "@mui/x-data-grid";
 import { useTheme } from "next-themes";
+import Link from "next/link";
+import Icons from "@/components/ui/Icons";
 
 interface LakesTableProps {
   data: any;
+}
+
+function CustomComponent(props: GridRenderEditCellParams) {
+  const href = "/admin/data/lakes/update/" + props.id;
+  return (
+    <Tooltip title="Edit" placement="right">
+      <Link
+        href={href}
+        className="mx-2 rounded-full p-2 transition-all duration-150 ease-in hover:bg-slate-200 dark:hover:bg-slate-700"
+      >
+        <Icons.Pencil />
+      </Link>
+    </Tooltip>
+  );
 }
 
 const columnsDraft: GridColDef[] = [
@@ -17,12 +38,24 @@ const columnsDraft: GridColDef[] = [
   {
     field: "col2",
     headerName: "Name",
-    width: 350,
+    width: 380,
   },
   { field: "col3", headerName: "Area Km²", width: 220 },
   { field: "col4", headerName: "Depth m", width: 220 },
   { field: "col5", headerName: "Continent", width: 220 },
-  { field: "col6", headerName: "Actions", width: 170, headerAlign: "center" },
+  {
+    field: "col6",
+    headerName: "Actions",
+    width: 150,
+    headerAlign: "center",
+    align: "center",
+    sortable: false,
+    filterable: false,
+
+    renderCell: (params: GridRenderEditCellParams) => (
+      <CustomComponent {...params} />
+    ),
+  },
 ];
 
 const columns = columnsDraft.map((col) => {

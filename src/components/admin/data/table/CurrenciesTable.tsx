@@ -1,11 +1,32 @@
 "use client";
 import React, { FC } from "react";
-import { createTheme, ThemeProvider } from "@mui/material";
-import { DataGrid, GridColDef, GridColumnHeaderParams } from "@mui/x-data-grid";
+import { createTheme, ThemeProvider, Tooltip } from "@mui/material";
+import {
+  DataGrid,
+  GridColDef,
+  GridColumnHeaderParams,
+  GridRenderEditCellParams,
+} from "@mui/x-data-grid";
 import { useTheme } from "next-themes";
+import Link from "next/link";
+import Icons from "@/components/ui/Icons";
 
-interface OcenasTableProps {
+interface CurrenciesTableProps {
   data: any;
+}
+
+function CustomComponent(props: GridRenderEditCellParams) {
+  const href = "/admin/data/currencies/update/" + props.id;
+  return (
+    <Tooltip title="Edit" placement="right">
+      <Link
+        href={href}
+        className="mx-2 rounded-full p-2 transition-all duration-150 ease-in hover:bg-slate-200 dark:hover:bg-slate-700"
+      >
+        <Icons.Pencil />
+      </Link>
+    </Tooltip>
+  );
 }
 
 const columnsDraft: GridColDef[] = [
@@ -17,11 +38,23 @@ const columnsDraft: GridColDef[] = [
   {
     field: "col2",
     headerName: "Name",
-    width: 350,
+    width: 370,
   },
-  { field: "col3", headerName: "Code", width: 300 },
-  { field: "col4", headerName: "Symbol", width: 300 },
-  { field: "col5", headerName: "Actions", width: 230, headerAlign: "center" },
+  { field: "col3", headerName: "Code", width: 330 },
+  { field: "col4", headerName: "Symbol", width: 330 },
+  {
+    field: "col5",
+    headerName: "Actions",
+    width: 150,
+    headerAlign: "center",
+    align: "center",
+    sortable: false,
+    filterable: false,
+
+    renderCell: (params: GridRenderEditCellParams) => (
+      <CustomComponent {...params} />
+    ),
+  },
 ];
 
 const columns = columnsDraft.map((col) => {
@@ -39,7 +72,7 @@ const columns = columnsDraft.map((col) => {
   };
 });
 
-const CurrenciesTable: FC<OcenasTableProps> = ({ data }) => {
+const CurrenciesTable: FC<CurrenciesTableProps> = ({ data }) => {
   const { theme: applicationTheme } = useTheme();
 
   const darkTheme = createTheme({

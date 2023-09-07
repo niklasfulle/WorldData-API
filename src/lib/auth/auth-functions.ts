@@ -1,5 +1,4 @@
 import { shortToast } from "@/lib/helpers/shorter-function";
-import { set } from "lodash";
 import { signIn } from "next-auth/react";
 import { Dispatch, FormEvent, SetStateAction } from "react";
 

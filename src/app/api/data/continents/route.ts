@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef*/
 import { authOptions } from "@/lib/auth/auth";
 import { mongoDb } from "@/lib/db/mogodb";
 import { continentCreateSchema } from "@/lib/db/schema/continent.schema";

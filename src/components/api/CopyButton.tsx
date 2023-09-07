@@ -21,7 +21,7 @@ const CopyButton: FC<CopyButtonProps> = ({
       type="button"
       onClick={() => {
         copyToClipboard(valueToCopy);
-        shortToast("Copied", "API key copied to clipboard.", "success");
+        shortToast("Copied", "API key copied to clipboard.", "success", 3000);
       }}
       variant="ghost"
       className={cn("", className)}

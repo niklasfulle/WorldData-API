@@ -44,7 +44,11 @@ interface ToastOpts {
 }
 
 export function toast(opts: ToastOpts) {
-  const { title, message, type = "default", duration = 3000 } = opts;
+  const { title, message, type = "default", duration } = opts;
+
+  if (!message) {
+    throw new Error("Message is required");
+  }
 
   return hotToast.custom(
     ({ visible }) => (

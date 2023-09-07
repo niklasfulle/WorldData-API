@@ -6,6 +6,7 @@ import { continentCreateSchema } from "@/lib/db/schema/continent.schema";
 import { getUserWithouPassword } from "@/lib/helpers/user-functions";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+import { z } from "zod";
 
 export async function POST(
   req: Request
@@ -68,52 +69,10 @@ export async function PUT(
 
     return NextResponse.json({ message: "Continent updated succsesful", success: true }, { status: 200 })
   } catch (error) {
-    console.log(error)
-  }
-}
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ error: error.issues, success: false }, { status: 400 })
+    }
 
-export async function GET(
-  req: Request
-) {
-  try {
-    const session = await getServerSession(authOptions);
-
-    if (!session) return NextResponse.json({
-      error: 'Unauthorized to perform this action.', success: false
-    }, { status: 401 })
-
-    const user = await getUserWithouPassword(session?.user?.email)
-
-    if (!user || user.role !== "admin") return NextResponse.json({
-      error: 'Unauthorized to perform this action.', success: false
-    }, { status: 401 })
-
-
-    return NextResponse.json({ session }, { status: 200 })
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-export async function DELETE(
-  req: Request
-) {
-  try {
-    const session = await getServerSession(authOptions);
-
-    if (!session) return NextResponse.json({
-      error: 'Unauthorized to perform this action.', success: false
-    }, { status: 401 })
-
-    const user = await getUserWithouPassword(session?.user?.email)
-
-    if (!user || user.role !== "admin") return NextResponse.json({
-      error: 'Unauthorized to perform this action.', success: false
-    }, { status: 401 })
-
-
-    return NextResponse.json({ session }, { status: 200 })
-  } catch (error) {
-    console.log(error)
+    return NextResponse.json({ error: 'Internal Server Error', success: false }, { status: 500 })
   }
 }

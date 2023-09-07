@@ -25,12 +25,18 @@ const ApiHistoryOptions: FC<ApiHistoryOptionsProps> = () => {
     try {
       await clearHistory();
       router.refresh();
-      shortToast("History cleared", "History cleared successfully.", "success");
+      shortToast(
+        "History cleared",
+        "History cleared successfully.",
+        "success",
+        3000
+      );
     } catch (error) {
       shortToast(
         "Error clearing your history",
         "Please try again later.",
-        "error"
+        "error",
+        5000
       );
     } finally {
       setIsClearingHistory(false);

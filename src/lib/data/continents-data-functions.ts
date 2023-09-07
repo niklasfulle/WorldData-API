@@ -1,12 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef*/
-/* eslint-disable no-empty*/
 import { Dispatch, FormEvent, SetStateAction } from "react"
 import { continentCreateSchema } from "../db/schema/continent.schema";
+import { shortToast } from "../helpers/shorter-function";
 
 type SetIsLoading = Dispatch<SetStateAction<boolean>>
-
-type SetError = Dispatch<SetStateAction<string>>;
 
 /**
  * Creates an array of objects with id and name
@@ -28,57 +24,12 @@ const createCountiresArray = (countriesString: string) => {
 }
 
 /**
- * Returns all continents from the database
- */
-export const getContinents = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting all continents.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Returns the last ten continents from the database
- */
-export const getContinentLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the last ten continents.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Gets a continent from the database
- * 
- * @param id  - id of the continent to get 
- */
-export const getContinent = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the continent.");
-  }
-  setIsLoading(false);
-}
-
-/**
  * Creates a continent to send to the database
  * 
  * @param e  - form event 
  * @param setIsLoading  - set loading state
- * @param setError  - set error state
  */
-export const createContinent = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const createContinent = async (e: FormEvent, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -106,13 +57,27 @@ export const createContinent = async (e: FormEvent, setIsLoading: SetIsLoading, 
       body: JSON.stringify(continent),
     })
 
-    // TODO: res handling
-    setError("")
-  } catch (error) {
-    console.log(error)
-    setError("There was an error creating the continent.");
+    if (res.status === 201) {
+      shortToast("Success", "Continent created successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to create a continent", "error", 5000);
+    }
+
+    setIsLoading(false);
+    return "success"
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
+
+    setIsLoading(false);
+    return "error"
   }
-  setIsLoading(false);
 }
 
 /**
@@ -120,9 +85,8 @@ export const createContinent = async (e: FormEvent, setIsLoading: SetIsLoading, 
  * 
  * @param e  - form event 
  * @param setIsLoading  - set loading state
- * @param setError  - set error state
  */
-export const updateContinent = async (id: string, e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const updateContinent = async (id: string, e: FormEvent, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -155,27 +119,20 @@ export const updateContinent = async (id: string, e: FormEvent, setIsLoading: Se
       body: JSON.stringify(data),
     })
 
-    // TODO: res handling
-    setError("")
-  } catch (error) {
-    setError("There was an error updating the continent.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Deletes a continent from the database
- * 
- * @param setIsLoading  - set loading state
- * @param setError  - set error state
- */
-export const deleteContinent = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error deleting the continent.");
+    if (res.status === 200) {
+      shortToast("Success", "Continent updated successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to updated a continent", "error", 5000);
+    }
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
   }
   setIsLoading(false);
 }

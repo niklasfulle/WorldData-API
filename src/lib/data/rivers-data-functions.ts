@@ -1,12 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef*/
-/* eslint-disable no-empty*/
 import { Dispatch, FormEvent, SetStateAction } from "react"
 import { riverCreateSchema } from "../db/schema/river.schema";
+import { shortToast } from "../helpers/shorter-function";
 
 type SetIsLoading = Dispatch<SetStateAction<boolean>>
-
-type SetError = Dispatch<SetStateAction<string>>;
 
 /**
  * Creates an array of objects with id and name
@@ -28,57 +24,13 @@ const createCountiresArray = (countriesString: string) => {
 }
 
 /**
- * Returns all rivers from the database
- */
-export const getRivers = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting all rivers.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Returns the last ten rivers from the database
- */
-export const getRiverLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the last ten rivers.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Gets a river from the database
- * 
- * @param id  - id of the river to get 
- */
-export const getRiver = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the river.");
-  }
-  setIsLoading(false);
-}
-
-/**
  * Creates a river to send to the database
  * 
  * @param e  - form event 
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const createRiver = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const createRiver = async (e: FormEvent, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -106,13 +58,27 @@ export const createRiver = async (e: FormEvent, setIsLoading: SetIsLoading, setE
       body: JSON.stringify(river),
     })
 
-    // TODO: res handling
-    setError("")
-  } catch (error) {
-    console.log(error)
-    setError("There was an error creating the river.");
+    if (res.status === 201) {
+      shortToast("Success", "River created successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to create a river", "error", 5000);
+    }
+
+    setIsLoading(false);
+    return "success"
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
+
+    setIsLoading(false);
+    return "error"
   }
-  setIsLoading(false);
 }
 
 /**
@@ -122,7 +88,7 @@ export const createRiver = async (e: FormEvent, setIsLoading: SetIsLoading, setE
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateRiver = async (id: string, e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const updateRiver = async (id: string, e: FormEvent, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -155,27 +121,20 @@ export const updateRiver = async (id: string, e: FormEvent, setIsLoading: SetIsL
       body: JSON.stringify(data),
     })
 
-    // TODO: res handling
-    setError("")
-  } catch (error) {
-    setError("There was an error updating the river.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Deletes a river from the database
- * 
- * @param setIsLoading  - set loading state
- * @param setError  - set error state
- */
-export const deleteRiver = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error deleting the river.");
+    if (res.status === 200) {
+      shortToast("Success", "River updated successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to updated a river", "error", 5000);
+    }
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
   }
   setIsLoading(false);
 }

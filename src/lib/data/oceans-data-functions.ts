@@ -1,12 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef*/
-/* eslint-disable no-empty*/
 import { Dispatch, FormEvent, SetStateAction } from "react"
 import { oceanCreateSchema } from "../db/schema/ocean.schema";
+import { shortToast } from "../helpers/shorter-function";
 
 type SetIsLoading = Dispatch<SetStateAction<boolean>>
-
-type SetError = Dispatch<SetStateAction<string>>;
 
 type Country = {
   id: number;
@@ -33,57 +29,13 @@ const createCountiresArray = (countriesString: string): Country[] => {
 }
 
 /**
- * Returns all oceans from the database
- */
-export const getOceans = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting all oceans.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Returns the last ten oceans from the database
- */
-export const getOceanLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the last ten oceans.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Gets a ocean from the database
- * 
- * @param id  - id of the ocean to get 
- */
-export const getOcean = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the ocean.");
-  }
-  setIsLoading(false);
-}
-
-/**
  * Creates a ocean to send to the database
  * 
  * @param e  - form event 
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const createOcean = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const createOcean = async (e: FormEvent, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -117,13 +69,27 @@ export const createOcean = async (e: FormEvent, setIsLoading: SetIsLoading, setE
       body: JSON.stringify(ocean),
     })
 
-    // TODO: res handling
-    setError("")
-  } catch (error) {
-    console.log(error)
-    setError("There was an error creating the continent.");
+    if (res.status === 201) {
+      shortToast("Success", "Ocean created successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to create a ocean", "error", 5000);
+    }
+
+    setIsLoading(false);
+    return "success"
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
+
+    setIsLoading(false);
+    return "error"
   }
-  setIsLoading(false);
 }
 
 /**
@@ -133,7 +99,7 @@ export const createOcean = async (e: FormEvent, setIsLoading: SetIsLoading, setE
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateOcean = async (id: string, e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const updateOcean = async (id: string, e: FormEvent, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -172,25 +138,20 @@ export const updateOcean = async (id: string, e: FormEvent, setIsLoading: SetIsL
       body: JSON.stringify(data),
     })
 
-  } catch (error) {
-    setError("There was an error updating the ocean.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Deletes a ocean from the database
- * 
- * @param setIsLoading  - set loading state
- * @param setError  - set error state
- */
-export const deleteOcean = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error deleting the ocean.");
+    if (res.status === 200) {
+      shortToast("Success", "Ocean updated successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to updated a ocean", "error", 5000);
+    }
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
   }
   setIsLoading(false);
 }

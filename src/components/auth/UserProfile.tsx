@@ -37,7 +37,12 @@ const UserProfile: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
     try {
       await signOut();
     } catch (error) {
-      shortToast("Error", "There was an error logging in with Google", "error");
+      shortToast(
+        "Error",
+        "There was an error logging in with Google",
+        "error",
+        5000
+      );
     }
     setIsLoading(false);
   };

@@ -1,12 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef*/
-/* eslint-disable no-empty*/
 import { Dispatch, FormEvent, SetStateAction } from "react"
 import { mountainCreateSchema } from "../db/schema/mountain.schema";
+import { shortToast } from "../helpers/shorter-function";
 
 type SetIsLoading = Dispatch<SetStateAction<boolean>>
-
-type SetError = Dispatch<SetStateAction<string>>;
 
 /**
  * Creates an array of objects with id and name
@@ -28,57 +24,13 @@ const createCountiresArray = (countriesString: string) => {
 }
 
 /**
- * Returns all mountains from the database
- */
-export const getMountains = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting all mountains.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Returns the last ten mountains from the database
- */
-export const getMountainLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the last ten mountains.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Gets a mountain from the database
- * 
- * @param id  - id of the mountain to get 
- */
-export const getMountain = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the mountain.");
-  }
-  setIsLoading(false);
-}
-
-/**
  * Creates a mountain to send to the database
  * 
  * @param e  - form event 
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const createMountain = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const createMountain = async (e: FormEvent, setIsLoading: SetIsLoading) => {
   e.preventDefault();
   setIsLoading(true);
 
@@ -111,13 +63,27 @@ export const createMountain = async (e: FormEvent, setIsLoading: SetIsLoading, s
       body: JSON.stringify(mountain),
     })
 
-    // TODO: res handling
-    setError("")
-  } catch (error) {
-    console.log(error)
-    setError("There was an error creating the mountain.");
+    if (res.status === 201) {
+      shortToast("Success", "Mountain created successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to create a mountain", "error", 5000);
+    }
+
+    setIsLoading(false);
+    return "success"
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
+
+    setIsLoading(false);
+    return "error"
   }
-  setIsLoading(false);
 }
 
 /**
@@ -127,7 +93,7 @@ export const createMountain = async (e: FormEvent, setIsLoading: SetIsLoading, s
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateMountain = async (id: string, e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const updateMountain = async (id: string, e: FormEvent, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -164,27 +130,20 @@ export const updateMountain = async (id: string, e: FormEvent, setIsLoading: Set
       body: JSON.stringify(data),
     })
 
-    // TODO: res handling
-    setError("")
-  } catch (error) {
-    setError("There was an error updating the mountain.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Deletes a mountain from the database
- * 
- * @param setIsLoading  - set loading state
- * @param setError  - set error state
- */
-export const deleteMountain = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error deleting the mountain.");
+    if (res.status === 200) {
+      shortToast("Success", "Mountain updated successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to updated a mountain", "error", 5000);
+    }
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
   }
   setIsLoading(false);
 }

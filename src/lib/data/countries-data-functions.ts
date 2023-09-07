@@ -1,13 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef*/
-/* eslint-disable no-empty*/
 import { Dispatch, FormEvent, SetStateAction } from "react"
 import { countryCreateSchema } from "../db/schema/country.schema";
-
+import { shortToast } from "../helpers/shorter-function";
 
 type SetIsLoading = Dispatch<SetStateAction<boolean>>
-
-type SetError = Dispatch<SetStateAction<string>>;
 
 type Timezone = {
   zone_name: string;
@@ -34,57 +29,13 @@ type Translations = {
 };
 
 /**
- * Returns all countries from the database
- */
-export const getCountries = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting all countries.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Returns the last ten countries from the database
- */
-export const getCountrieLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the last ten countries.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Gets a country from the database
- * 
- * @param id  - id of the country to get 
- */
-export const getCountry = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the country.");
-  }
-  setIsLoading(false);
-}
-
-/**
  * Creates a country to send to the database
  * 
  * @param e  - form event 
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const createCountry = async (e: FormEvent, timezones: Timezone[], translations: Translations, setIsLoading: SetIsLoading, setError: SetError) => {
+export const createCountry = async (e: FormEvent, timezones: Timezone[], translations: Translations, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -144,13 +95,27 @@ export const createCountry = async (e: FormEvent, timezones: Timezone[], transla
       body: JSON.stringify(country),
     })
 
-    // TODO: res handling
-    setError("");
-  } catch (error) {
-    console.log(error)
-    setError("There was an error creating the country.");
+    if (res.status === 201) {
+      shortToast("Success", "Country created successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to create a country", "error", 5000);
+    }
+
+    setIsLoading(false);
+    return "success"
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
+
+    setIsLoading(false);
+    return "error"
   }
-  setIsLoading(false);
 }
 
 /**
@@ -160,7 +125,7 @@ export const createCountry = async (e: FormEvent, timezones: Timezone[], transla
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateCountry = async (id: string, e: FormEvent, timezones: Timezone[], translations: Translations, setIsLoading: SetIsLoading, setError: SetError) => {
+export const updateCountry = async (id: string, e: FormEvent, timezones: Timezone[], translations: Translations, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -225,27 +190,20 @@ export const updateCountry = async (id: string, e: FormEvent, timezones: Timezon
       body: JSON.stringify(data),
     })
 
-    // TODO: res handling
-    setError("")
-  } catch (error) {
-    setError("There was an error updating the country.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Deletes a country from the database
- * 
- * @param setIsLoading  - set loading state
- * @param setError  - set error state
- */
-export const deleteCountry = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error deleting the country.");
+    if (res.status === 200) {
+      shortToast("Success", "Country updated successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to updated a country", "error", 5000);
+    }
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
   }
   setIsLoading(false);
 }

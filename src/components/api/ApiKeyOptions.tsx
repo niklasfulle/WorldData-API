@@ -31,13 +31,15 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
       shortToast(
         "New API key created",
         "New API key created successfully.",
-        "success"
+        "success",
+        3000
       );
     } catch (error) {
       shortToast(
         "Error creating new API key",
         "Please try again later.",
-        "error"
+        "error",
+        5000
       );
     } finally {
       setIsCreatingNew(false);
@@ -53,7 +55,8 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
       shortToast(
         "Error revoking your API key",
         "Please try again later.",
-        "error"
+        "error",
+        5000
       );
     } finally {
       setIsRevoking(false);
@@ -85,7 +88,12 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyKey }) => {
           className="hover:cursor-pointer"
           onClick={() => {
             navigator.clipboard.writeText(apiKeyKey);
-            shortToast("Copied", "API key copied to clipboard.", "success");
+            shortToast(
+              "Copied",
+              "API key copied to clipboard.",
+              "success",
+              3000
+            );
           }}
         >
           Copy

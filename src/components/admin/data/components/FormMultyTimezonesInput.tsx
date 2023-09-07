@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { Input } from "../../../ui/Input";
 import { Button } from "../../../ui/Button";
 import { useRouter } from "next/navigation";
-import { getAsHTMLInputElement } from "@/lib/helpers/shorter-function";
+import { getAsHTMLInputElement, shortToast } from "@/lib/helpers/shorter-function";
 
 interface FormMultyTimezonesInputProps {
   id: string;
@@ -69,7 +69,7 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
         abbreviation.value == "" ||
         tz_name.value == "")
     ) {
-      setError("Please fill all fields");
+      shortToast("Error", "Please fill all timezone fields.", "error", 5000);
       setIsLoading(false);
       router.refresh();
     } else {
@@ -92,7 +92,6 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
       tz_name.value = "";
 
       setDisabled(false);
-      setError("");
       setIsLoading(false);
       router.refresh();
     }

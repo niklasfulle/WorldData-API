@@ -41,7 +41,9 @@ const page = async ({ params: { token } }: Props) => {
         {expires ? (
           <div className="flex flex-col items-center gap-6 text-center">
             <LargeHeading size={"sm"}>Expired</LargeHeading>
-            <p className="text-lg">This link has expired. Please request a new one.</p>
+            <p className="text-lg">
+              This link has expired. Please request a new one.
+            </p>
           </div>
         ) : (
           <div className="flex flex-col items-center gap-6 text-center">

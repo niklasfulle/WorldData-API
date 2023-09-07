@@ -10,6 +10,7 @@ import {
 import FormSwitchInput from "../components/FormSwitchInput";
 import FormTranslationsInput from "../components/FormTranslationsInput";
 import { useRouter } from "next/navigation";
+import { shortToast } from "@/lib/helpers/shorter-function";
 
 interface CountriesFormProps {
   buttonTitle: string;
@@ -33,33 +34,36 @@ const CountriesForm: FC<CountriesFormProps> = ({
   const [timezones, setTimezones] = useState(country?.timezones || []);
   const [translations, setTranslations] = useState(country?.translations || {});
 
-  const handelSubmit = (e: any) => {
+  const handelSubmit = async (e: any) => {
     e.preventDefault();
     setIsLoading(true);
-    setError("");
 
     if (disabled) {
-      setError("Please, fill the form correctly.");
+      shortToast("Error", "Please, fill the form correctly.", "error", 5000);
       setIsLoading(false);
       return;
     }
 
     if (action === "create") {
-      createCountry(e, timezones, translations, setIsLoading, setError);
+      const res = await createCountry(
+        e,
+        timezones,
+        translations,
+        setIsLoading,
+      );
+
+      if (res === "success") {
+        e.target.reset();
+        setTimezones([]);
+        setTranslations({});
+      }
     } else if (action === "update" && id !== undefined) {
-      updateCountry(id, e, timezones, translations, setIsLoading, setError);
-    }
+      await updateCountry(id, e, timezones, translations, setIsLoading);
 
-    e.target.reset();
-
-    if (action === "create") {
-      setTimezones([]);
-      setTranslations({});
-    } else {
       setTimezones(timezones);
       setTranslations(translations);
     }
-    
+
     setIsLoading(false);
     router.refresh();
   };

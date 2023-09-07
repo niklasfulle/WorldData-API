@@ -21,12 +21,12 @@ const RequestApiKey = () => {
       setApiKey(generatedApiKey);
     } catch (err) {
       if (err instanceof Error) {
-        shortToast("Error", err.message, "error");
+        shortToast("Error", err.message, "error", 5000);
 
         return;
       }
 
-      shortToast("Error", "Something went wrong", "error");
+      shortToast("Error", "Something went wrong", "error", 5000);
     } finally {
       setIsCreating(false);
     }

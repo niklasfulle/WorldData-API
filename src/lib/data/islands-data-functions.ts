@@ -1,12 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef*/
-/* eslint-disable no-empty*/
 import { Dispatch, FormEvent, SetStateAction } from "react"
 import { islandCreateSchema } from "../db/schema/island.schema";
+import { shortToast } from "../helpers/shorter-function";
 
 type SetIsLoading = Dispatch<SetStateAction<boolean>>
-
-type SetError = Dispatch<SetStateAction<string>>;
 
 /**
  * Creates an array of objects with id and name
@@ -28,57 +24,13 @@ const createCountiresArray = (countriesString: string) => {
 }
 
 /**
- * Returns all islands from the database
- */
-export const getIslands = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting all islands.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Returns the last ten islands from the database
- */
-export const getIslandLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the last ten islands.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Gets a island from the database
- * 
- * @param id  - id of the island to get 
- */
-export const getIsland = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the island.");
-  }
-  setIsLoading(false);
-}
-
-/**
  * Creates a island to send to the database
  * 
  * @param e  - form event 
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const createIsland = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const createIsland = async (e: FormEvent, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -110,13 +62,27 @@ export const createIsland = async (e: FormEvent, setIsLoading: SetIsLoading, set
       body: JSON.stringify(island),
     })
 
-    // TODO: res handling
-    setError("")
-  } catch (error) {
-    console.log(error)
-    setError("There was an error creating the island.");
+    if (res.status === 201) {
+      shortToast("Success", "Island created successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to create a island", "error", 5000);
+    }
+
+    setIsLoading(false);
+    return "success"
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
+
+    setIsLoading(false);
+    return "error"
   }
-  setIsLoading(false);
 }
 
 /**
@@ -126,7 +92,7 @@ export const createIsland = async (e: FormEvent, setIsLoading: SetIsLoading, set
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateIsland = async (id: string, e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const updateIsland = async (id: string, e: FormEvent, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -163,27 +129,20 @@ export const updateIsland = async (id: string, e: FormEvent, setIsLoading: SetIs
       body: JSON.stringify(data),
     })
 
-    // TODO: res handling
-    setError("")
-  } catch (error) {
-    setError("There was an error updating the island.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Deletes a island from the database
- * 
- * @param setIsLoading  - set loading state
- * @param setError  - set error state
- */
-export const deleteIsland = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error deleting the island.");
+    if (res.status === 200) {
+      shortToast("Success", "Island updated successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to updated a island", "error", 5000);
+    }
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
   }
   setIsLoading(false);
 }

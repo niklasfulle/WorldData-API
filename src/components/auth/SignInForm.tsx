@@ -27,15 +27,9 @@ const SignInForm = () => {
           Sign in
         </h2>
       </div>
-      <p
-        id="errors"
-        className="mt-2 text-center font-bold text-[#ff0000] sm:max-w-[14rem]"
-      >
-        {error}
-      </p>
       {error !== "Email not verified" ? null : (
         <Button
-          onClick={() => resendConfirmationEmail(setIsLoading, setError, email)}
+          onClick={() => resendConfirmationEmail(setIsLoading, email)}
           isLoading={isLoading.provider == "email" && isLoading.isLoading}
           disabled={isLoading.provider == "email" && isLoading.isLoading}
           className="mt-2"

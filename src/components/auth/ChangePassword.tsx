@@ -27,7 +27,6 @@ const ChangePasswordForm: FC<ChangePasswordFormProps> = ({
   const [showNewPassword, setShowNewPassword] = useState<boolean>(false);
   const [showNewPasswordConfimation, setShowNewPasswordConfimation] =
     useState<boolean>(false);
-  const [error, setError] = useState<string>("");
 
   const handleChange = (password: string) => {
     setPassword(password);
@@ -46,16 +45,11 @@ const ChangePasswordForm: FC<ChangePasswordFormProps> = ({
           Change password
         </h2>
       </div>
-      <p
-        id="errors"
-        className="mt-2 text-center font-bold text-red-600 sm:max-w-[14rem]"
-      >
-        {error}
-      </p>
+
       <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
         <form
           className="space-y-6"
-          onSubmit={(e) => changePassword(e, setIsLoading, setError, user)}
+          onSubmit={(e) => changePassword(e, setIsLoading, user)}
         >
           <div>
             <label

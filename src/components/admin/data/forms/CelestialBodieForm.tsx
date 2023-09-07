@@ -23,29 +23,25 @@ const CelestialBodieForm: FC<CelestialBodieFormProps> = ({
   celestialBodie,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
   const router = useRouter();
 
   const [translations, setTranslations] = useState(
     celestialBodie?.translations || {}
   );
 
-  const handelSubmit = (e: any) => {
+  const handelSubmit = async (e: any) => {
     e.preventDefault();
     setIsLoading(true);
-    setError("");
 
     if (action === "create") {
-      createCelestialBodie(e, translations, setIsLoading, setError);
+      const res = await createCelestialBodie(e, translations, setIsLoading);
+
+      if (res === "success") {
+        e.target.reset();
+        setTranslations({});
+      }
     } else if (action === "update" && id !== undefined) {
-      updateCelestialBodie(id, e, translations, setIsLoading, setError);
-    }
-
-    e.target.reset();
-
-    if (action === "create") {
-      setTranslations({});
-    } else {
+      await updateCelestialBodie(id, e, translations, setIsLoading);
       setTranslations(translations);
     }
 
@@ -55,9 +51,6 @@ const CelestialBodieForm: FC<CelestialBodieFormProps> = ({
 
   return (
     <div className="flex min-h-full flex-col rounded-lg px-2 py-6 md:px-6 lg:px-8">
-      <p id="errors" className="my-3 w-full text-center font-bold text-red-600">
-        {error}
-      </p>
       <div className="mt-3 sm:mx-auto sm:w-full">
         <form className="space-y-6" onSubmit={(e) => handelSubmit(e)}>
           <div className="flex w-full flex-col items-center justify-center lg:flex-row lg:items-start lg:justify-around">

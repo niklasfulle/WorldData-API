@@ -1,12 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef*/
-/* eslint-disable no-empty*/
 import { Dispatch, FormEvent, SetStateAction } from "react"
 import { celestialBodieCreateSchema } from "../db/schema/celestialBodie.schema";
+import { shortToast } from "../helpers/shorter-function";
 
 type SetIsLoading = Dispatch<SetStateAction<boolean>>
-
-type SetError = Dispatch<SetStateAction<string>>;
 
 type Translations = {
   kr: string;
@@ -25,57 +21,13 @@ type Translations = {
 };
 
 /**
- * Returns all celestialBodies from the database
- */
-export const getCelestialBodies = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting all celestialBodies.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Returns the last ten celestialBodies from the database
- */
-export const getCelestialBodieLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the last ten celestialBodies.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Gets a celestialBodie from the database
- * 
- * @param id  - id of the celestialBodie to get 
- */
-export const getCelestialBodie = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the celestialBodie.");
-  }
-  setIsLoading(false);
-}
-
-/**
  * Creates a celestialBodie to send to the database
  * 
  * @param e  - form event 
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const createCelestialBodie = async (e: FormEvent, translations: Translations, setIsLoading: SetIsLoading, setError: SetError) => {
+export const createCelestialBodie = async (e: FormEvent, translations: Translations, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -106,13 +58,27 @@ export const createCelestialBodie = async (e: FormEvent, translations: Translati
       body: JSON.stringify(celestialBodie),
     })
 
-    // TODO: res handling
-    setError("")
-  } catch (error) {
-    console.log(error)
-    setError("There was an error creating the celestialBodie.");
+    if (res.status === 201) {
+      shortToast("Success", "Celestial Bodie created successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to create a celestial bodie", "error", 5000);
+    }
+
+    setIsLoading(false);
+    return "success"
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
+
+    setIsLoading(false);
+    return "error"
   }
-  setIsLoading(false);
 }
 
 /**
@@ -122,7 +88,7 @@ export const createCelestialBodie = async (e: FormEvent, translations: Translati
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateCelestialBodie = async (id: string, e: FormEvent, translations: Translations, setIsLoading: SetIsLoading, setError: SetError) => {
+export const updateCelestialBodie = async (id: string, e: FormEvent, translations: Translations, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -158,26 +124,20 @@ export const updateCelestialBodie = async (id: string, e: FormEvent, translation
       body: JSON.stringify(data),
     })
 
-    // TODO: res handling
-    setError("")
-  } catch (error) {
-    setError("There was an error updating the celestialBodie.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Deletes a celestialBodie from the database
- * 
- * @param setIsLoading  - set loading state
- * @param setError  - set error state
- */
-export const deleteCelestialBodie = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-  try {
-
-  } catch (error) {
-    setError("There was an error deleting the celestialBodie.");
+    if (res.status === 200) {
+      shortToast("Success", "Celestial Bodie updated successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to updated a celestial bodie", "error", 5000);
+    }
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
   }
   setIsLoading(false);
 }

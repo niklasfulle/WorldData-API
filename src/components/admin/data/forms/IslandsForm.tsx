@@ -5,6 +5,7 @@ import FormInput from "@/ui/FormInput";
 import { createIsland, updateIsland } from "@/lib/data/islands-data-functions";
 import FormCountriesTextarea from "../components/FormCountriesTextarea";
 import { useRouter } from "next/navigation";
+import { shortToast } from "@/lib/helpers/shorter-function";
 
 interface IslandsFormProps {
   buttonTitle: string;
@@ -20,37 +21,35 @@ const IslandsForm: FC<IslandsFormProps> = ({
   island,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(false);
   const router = useRouter();
 
-  const handelSubmit = (e: any) => {
+  const handelSubmit = async (e: any) => {
     e.preventDefault();
     setIsLoading(true);
-    setError("");
 
     if (disabled) {
-      setError("Please, fill the form correctly.");
+      shortToast("Error", "Please, fill the form correctly.", "error", 5000);
       setIsLoading(false);
       return;
     }
 
     if (action === "create") {
-      createIsland(e, setIsLoading, setError);
+      const res = await createIsland(e, setIsLoading);
+
+      if (res === "success") {
+        e.target.reset();
+      }
     } else if (action === "update" && id !== undefined) {
-      updateIsland(id, e, setIsLoading, setError);
+      await updateIsland(id, e, setIsLoading);
     }
 
-    e.target.reset();
     setIsLoading(false);
     router.refresh();
   };
 
   return (
     <div className="flex min-h-full flex-col rounded-lg px-2 py-6 md:px-6 lg:px-8">
-      <p id="errors" className="my-3 w-full text-center font-bold text-red-600">
-        {error}
-      </p>
       <div className="mt-3 sm:mx-auto sm:w-full">
         <form className="space-y-6" onSubmit={(e) => handelSubmit(e)}>
           <div className="flex w-full flex-col items-center justify-center lg:flex-row lg:items-start lg:justify-around">

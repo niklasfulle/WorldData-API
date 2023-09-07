@@ -1,12 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef*/
-/* eslint-disable no-empty*/
 import { Dispatch, FormEvent, SetStateAction } from "react"
 import { lakeCreateSchema } from "../db/schema/lake.schema";
+import { shortToast } from "../helpers/shorter-function";
 
 type SetIsLoading = Dispatch<SetStateAction<boolean>>
-
-type SetError = Dispatch<SetStateAction<string>>;
 
 /**
  * Creates an array of objects with id and name
@@ -28,57 +24,13 @@ const createCountiresArray = (countriesString: string) => {
 }
 
 /**
- * Returns all lakes from the database
- */
-export const getLakes = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting all lakes.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Returns the last ten lakes from the database
- */
-export const getLakeLastTen = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the last ten lakes.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Gets a lake from the database
- * 
- * @param id  - id of the lake to get 
- */
-export const getLake = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the lake.");
-  }
-  setIsLoading(false);
-}
-
-/**
  * Creates a lake to send to the database
  * 
  * @param e  - form event 
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const createLake = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const createLake = async (e: FormEvent, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -112,13 +64,27 @@ export const createLake = async (e: FormEvent, setIsLoading: SetIsLoading, setEr
       body: JSON.stringify(lake),
     })
 
-    // TODO: res handling
-    setError("")
-  } catch (error) {
-    console.log(error)
-    setError("There was an error creating the lake.");
+    if (res.status === 201) {
+      shortToast("Success", "Lake created successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to create a lake", "error", 5000);
+    }
+
+    setIsLoading(false);
+    return "success"
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
+
+    setIsLoading(false);
+    return "error"
   }
-  setIsLoading(false);
 }
 
 /**
@@ -128,7 +94,7 @@ export const createLake = async (e: FormEvent, setIsLoading: SetIsLoading, setEr
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateLake = async (id: string, e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const updateLake = async (id: string, e: FormEvent, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -167,27 +133,20 @@ export const updateLake = async (id: string, e: FormEvent, setIsLoading: SetIsLo
       body: JSON.stringify(data),
     })
 
-    // TODO: res handling
-    setError("")
-  } catch (error) {
-    setError("There was an error updating the lake.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Deletes a lake from the database
- * 
- * @param setIsLoading  - set loading state
- * @param setError  - set error state
- */
-export const deleteLake = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error deleting the lake.");
+    if (res.status === 200) {
+      shortToast("Success", "Lake updated successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to updated a lake", "error", 5000);
+    }
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
   }
   setIsLoading(false);
 }

@@ -1,10 +1,11 @@
 import { toast } from "@/components/ui/Toast";
 
-export const shortToast = (title: string, message: string, type: string) => {
+export const shortToast = (title: string, message: string, type: string, duration: number) => {
   toast({
     title,
     message,
     type: type as any,
+    duration
   });
 }
 

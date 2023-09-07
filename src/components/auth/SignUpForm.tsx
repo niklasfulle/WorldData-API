@@ -21,7 +21,6 @@ const SignInForm = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showPasswordConfimation, setShowPasswordConfimation] =
     useState<boolean>(false);
-  const [error, setError] = useState<string>("");
 
   const handleChange = (password: string) => {
     setPassword(password);
@@ -40,16 +39,10 @@ const SignInForm = () => {
           Sign Up
         </h2>
       </div>
-      <p
-        id="errors"
-        className="mt-2 text-center font-bold text-red-600 sm:max-w-[14rem]"
-      >
-        {error}
-      </p>
       <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
         <form
           className="space-y-6"
-          onSubmit={(e) => registerWithCredentials(e, setIsLoading, setError)}
+          onSubmit={(e) => registerWithCredentials(e, setIsLoading)}
         >
           <div>
             <label

@@ -1,54 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef*/
-/* eslint-disable no-empty*/
 import { Dispatch, FormEvent, SetStateAction } from "react"
 import { cityCreateSchema } from "../db/schema/city.schema";
+import { shortToast } from "../helpers/shorter-function";
 
 type SetIsLoading = Dispatch<SetStateAction<boolean>>
-
-type SetError = Dispatch<SetStateAction<string>>;
-
-/**
- * Returns all cities from the database
- */
-export const getCities = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting all cities.");
-  }
-  setIsLoading(false);
-}
-
-/**
- * Returns the last ten cities from the database
- */
-export const getCityLastTen = async () => {
-
-  try {
-
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-/**
- * Gets a city from the database
- * 
- * @param id  - id of the city to get 
- */
-export const getCity = async (id: number, setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error getting the city.");
-  }
-  setIsLoading(false);
-}
 
 /**
  * Creates a city to send to the database
@@ -57,7 +11,7 @@ export const getCity = async (id: number, setIsLoading: SetIsLoading, setError: 
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const createCity = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const createCity = async (e: FormEvent, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -99,13 +53,27 @@ export const createCity = async (e: FormEvent, setIsLoading: SetIsLoading, setEr
       body: JSON.stringify(city),
     })
 
-    // TODO: res handling
-    setError("")
-  } catch (error) {
-    console.log(error)
-    setError("There was an error creating the city.");
+    if (res.status === 201) {
+      shortToast("Success", "City created successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to create a city", "error", 5000);
+    }
+
+    setIsLoading(false);
+    return "success"
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
+
+    setIsLoading(false);
+    return "error"
   }
-  setIsLoading(false);
 }
 
 /**
@@ -115,7 +83,7 @@ export const createCity = async (e: FormEvent, setIsLoading: SetIsLoading, setEr
  * @param setIsLoading  - set loading state
  * @param setError  - set error state
  */
-export const updateCity = async (id: string, e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const updateCity = async (id: string, e: FormEvent, setIsLoading: SetIsLoading) => {
   setIsLoading(true);
 
   try {
@@ -162,27 +130,21 @@ export const updateCity = async (id: string, e: FormEvent, setIsLoading: SetIsLo
       body: JSON.stringify(data),
     })
 
-    // TODO: res handling
-    setError("")
-  } catch (error) {
-    setError("There was an error updating the city.");
+    if (res.status === 200) {
+      shortToast("Success", "City updated successfully", "success", 3000);
+    } else if (res.status === 401) {
+      shortToast("Error", "You are not authorized to updated a city", "error", 5000);
+    }
+  } catch (error: any) {
+    if (error.error) {
+      shortToast("Error", error.error[0].message, "error", 10000);
+    } else if (error.message) {
+      const messages: any = JSON.parse(error.message);
+      shortToast("Error", messages[0].path[0] + ": " + messages[0].message, "error", 10000);
+    } else {
+      shortToast("Error", error.message, "error", 10000);
+    }
   }
   setIsLoading(false);
 }
 
-/**
- * Deletes a city from the database
- * 
- * @param setIsLoading  - set loading state
- * @param setError  - set error state
- */
-export const deleteCity = async (setIsLoading: SetIsLoading, setError: SetError) => {
-  setIsLoading(true);
-
-  try {
-
-  } catch (error) {
-    setError("There was an error deleting the city.");
-  }
-  setIsLoading(false);
-}

@@ -5,6 +5,7 @@ import Paragraph from "@/ui/Paragraph";
 import Link from "next/link";
 import Skeleton from "@mui/material/Skeleton";
 import dynamic from "next/dynamic";
+import { Toaster } from "@/components/ui/Toast";
 
 const ThreeScene = dynamic(() => import("@/three/ThreeScene"), {
   loading: () => (

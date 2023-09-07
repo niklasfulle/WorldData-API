@@ -7,7 +7,6 @@ import { sendForgotPasswordEmail } from "@/lib/auth/auth-functions";
 
 const ForgotPasswordForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
 
   return (
     <div className="flex min-h-full flex-col items-center justify-center rounded-lg bg-white px-6 py-6 dark:bg-slate-600 lg:px-8">
@@ -16,16 +15,10 @@ const ForgotPasswordForm = () => {
           Enter your E-Mail
         </h2>
       </div>
-      <p
-        id="errors"
-        className="mt-2 text-center font-bold text-[#ff0000] sm:max-w-[14rem]"
-      >
-        {error}
-      </p>
       <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
         <form
           className="space-y-6"
-          onSubmit={(e) => sendForgotPasswordEmail(e, setIsLoading, setError)}
+          onSubmit={(e) => sendForgotPasswordEmail(e, setIsLoading)}
         >
           <div>
             <label

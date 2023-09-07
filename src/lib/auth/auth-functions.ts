@@ -1,4 +1,5 @@
 import { shortToast } from "@/lib/helpers/shorter-function";
+import { set } from "lodash";
 import { signIn } from "next-auth/react";
 import { Dispatch, FormEvent, SetStateAction } from "react";
 
@@ -29,7 +30,7 @@ export const loginWithGoogle = async (setIsLoading: SetIsLoading) => {
   try {
     await signIn("google")
   } catch (error) {
-    shortToast("Error", "There was an error logging in with Google.", "error");
+    shortToast("Error", "There was an error logging in with Google.", "error", 5000);
   } finally {
     setIsLoading({ provider: "", isLoading: false });
   }
@@ -42,14 +43,14 @@ export const loginWithGithub = async (setIsLoading: SetIsLoading) => {
   try {
     await signIn("github")
   } catch (error) {
-    shortToast("Error", "There was an error logging in with Github.", "error");
+    shortToast("Error", "There was an error logging in with Github.", "error", 5000);
   } finally {
     setIsLoading({ provider: "", isLoading: false });
   }
 };
 
 // handles the login with credentials
-export const loginWithCredentials = async (e: FormEvent, setIsLoading: SetIsLoading, setEmail: SetEmail, setError: SetError) => {
+export const loginWithCredentials = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError, setEmail: SetEmail) => {
   e.preventDefault();
   setIsLoading({ provider: "credentials", isLoading: true });
 
@@ -72,22 +73,24 @@ export const loginWithCredentials = async (e: FormEvent, setIsLoading: SetIsLoad
       setEmail(email);
       if (typeof res.error === "string" && res.error.charAt(0) === "[") {
         const error: any = JSON.parse(res.error);
+
+        shortToast("Error", error[0].message, "error", 5000);
         setError(error[0].message);
       } else {
+        shortToast("Error", res.error, "error", 5000);
         setError(res.error);
       }
     } else {
-      setError("");
       window.location.href = "/";
     }
   } catch (error) {
-    shortToast("Error", "There was an error logging in.", "error");
+    shortToast("Error", "There was an error logging in.", "error", 5000);
   }
   setIsLoading({ provider: "", isLoading: false });
 };
 
 // handles the registration with credentials
-export const registerWithCredentials = async (e: FormEvent, setIsLoading: SetIsLoading, setError: SetError) => {
+export const registerWithCredentials = async (e: FormEvent, setIsLoading: SetIsLoading) => {
   e.preventDefault();
   setIsLoading({ provider: "credentials", isLoading: true });
 
@@ -105,7 +108,7 @@ export const registerWithCredentials = async (e: FormEvent, setIsLoading: SetIsL
     const passwordConfirm = target.passwordConfirm.value;
 
     if (password !== passwordConfirm) {
-      setError("Passwords do not match");
+      shortToast("Error", "Passwords do not match", "error", 5000);
       setIsLoading({ provider: "", isLoading: false });
       return;
     }
@@ -126,26 +129,25 @@ export const registerWithCredentials = async (e: FormEvent, setIsLoading: SetIsL
       res.text().then((text) => {
         const error: any = JSON.parse(text);
         if (error.error) {
-          setError(error.error[0].message);
+          shortToast("Error", error.error[0].message, "error", 5000);
         } else if (error.message) {
-          setError(error.message);
+          shortToast("Error", error.message, "error", 5000);
         } else {
-          setError(error.message);
+          shortToast("Error", error.message, "error", 5000);
         }
       });
     } else {
-      setError("");
-      shortToast("Success", "You have successfully registered - Check your email to confirm", "success");
+      shortToast("Success", "You have successfully registered - Check your email to confirm", "success", 3000);
     }
   } catch (error) {
-    shortToast("Error", "There was an error registering", "error");
+    shortToast("Error", "There was an error registering", "error", 5000);
   } finally {
     setIsLoading({ provider: "", isLoading: false });
   }
 };
 
 // handles the resend of the confirmation email
-export const resendConfirmationEmail = async (setIsLoading: SetIsLoading, setError: SetError, email: string) => {
+export const resendConfirmationEmail = async (setIsLoading: SetIsLoading, email: string) => {
   setIsLoading({ provider: "email", isLoading: true });
 
   try {
@@ -163,24 +165,23 @@ export const resendConfirmationEmail = async (setIsLoading: SetIsLoading, setErr
       res.text().then((text) => {
         const error: any = JSON.parse(text);
         if (error.error) {
-          setError(error.error[0].message);
+          shortToast("Error", error.error[0].message, "error", 5000);
         } else if (error.message) {
-          setError(error.message);
+          shortToast("Error", error.message, "error", 5000);
         } else {
-          setError(error.message);
+          shortToast("Error", error.message, "error", 5000);
         }
       });
     } else {
-      setError("");
-      shortToast("Success", "Check your email to confirm.", "success");
+      shortToast("Success", "Check your email to confirm.", "success", 3000);
     }
   } catch (error) {
-    shortToast("Error", "There was an error with sending the confirm email.", "error");
+    shortToast("Error", "There was an error with sending the confirm email.", "error", 5000);
   }
   setIsLoading({ provider: "", isLoading: false });
 };
 
-export const sendForgotPasswordEmail = async (e: FormEvent, setIsLoading: SetIsLoading2, setError: SetError) => {
+export const sendForgotPasswordEmail = async (e: FormEvent, setIsLoading: SetIsLoading2) => {
   e.preventDefault();
   setIsLoading(true);
 
@@ -206,31 +207,28 @@ export const sendForgotPasswordEmail = async (e: FormEvent, setIsLoading: SetIsL
         const error: any = JSON.parse(text);
         if (error.error) {
           if (error.error[0].message === "Invalid email") {
-            setError("Invalid email");
+            shortToast("Error", "Invalid email", "error", 5000);
           }
         } else if (error.message) {
           if (error.message === "No user found" || error.message === "Wrong Provider") {
-            shortToast("Success", "Check your email to reset your password.", "success");
+            shortToast("Success", "Check your email to reset your password.", "success", 3000);
           } else if (error.message === "Too many requests") {
-            shortToast("Error", "Too many requests. Please try again later.", "error");
+            shortToast("Error", "Too many requests. Please try again later.", "error", 5000);
           }
-          setError("");
         } else {
-          setError(error.message);
+          shortToast("Error", error.message, "error", 5000);
         }
       });
     } else {
-      setError("");
-      shortToast("Success", "Check your email to reset your password.", "success");
+      shortToast("Success", "Check your email to reset your password.", "success", 3000);
     }
   } catch (error) {
-    setError("");
-    shortToast("Error", "There was an error with sending the forgot password email.", "error");
+    shortToast("Error", "There was an error with sending the forgot password email.", "error", 5000);
   }
   setIsLoading(false);
 };
 
-export const resetPassword = async (e: FormEvent, setIsLoading: SetIsLoading2, setError: SetError, token: string) => {
+export const resetPassword = async (e: FormEvent, setIsLoading: SetIsLoading2, token: string) => {
   e.preventDefault();
   setIsLoading(true);
   try {
@@ -243,7 +241,7 @@ export const resetPassword = async (e: FormEvent, setIsLoading: SetIsLoading2, s
     const passwordConfirm = target.passwordConfirm.value;
 
     if (password !== passwordConfirm) {
-      setError("Passwords do not match");
+      shortToast("Error", "Passwords do not match", "error", 5000);
       setIsLoading(false);
       return;
     }
@@ -263,26 +261,23 @@ export const resetPassword = async (e: FormEvent, setIsLoading: SetIsLoading2, s
       res.text().then((text) => {
         const error: any = JSON.parse(text);
         if (error.error) {
-          setError(error.error[0].message);
+          shortToast("Error", error.error[0].message, "error", 5000);
         } else if (error.message) {
-          setError(error.message);
+          shortToast("Error", error.message, "error", 5000);
         } else {
-          setError(error.message);
+          shortToast("Error", error.message, "error", 5000);
         }
       });
     }
 
-    setError("");
-    shortToast("Success", "You have successfully reset your password.", "success");
-
+    shortToast("Success", "You have successfully reset your password.", "success", 3000);
   } catch (error) {
-    setError("");
-    shortToast("Error", "There was an error with reseting the password.", "error");
+    shortToast("Error", "There was an error with reseting the password.", "error", 5000);
   }
   setIsLoading(false);
 }
 
-export const changePassword = async (e: FormEvent, setIsLoading: SetIsLoading2, setError: SetError, user: User) => {
+export const changePassword = async (e: FormEvent, setIsLoading: SetIsLoading2, user: User) => {
   e.preventDefault();
   setIsLoading(true);
   try {
@@ -297,7 +292,7 @@ export const changePassword = async (e: FormEvent, setIsLoading: SetIsLoading2, 
     const newPasswordConfirm = target.newPasswordConfirm.value;
 
     if (newPassword !== newPasswordConfirm) {
-      setError("Passwords do not match");
+      shortToast("Error", "Passwords do not match", "error", 5000);
       setIsLoading(false);
       return;
     }
@@ -319,21 +314,18 @@ export const changePassword = async (e: FormEvent, setIsLoading: SetIsLoading2, 
       res.text().then((text) => {
         const error: any = JSON.parse(text);
         if (error.error) {
-          setError(error.error[0].message);
+          shortToast("Error", error.error[0].message, "error", 5000);
         } else if (error.message) {
-          setError(error.message);
+          shortToast("Error", error.message, "error", 5000);
         } else {
-          setError(error.message);
+          shortToast("Error", error.message, "error", 5000);
         }
       });
     }
 
-    setError("");
-    shortToast("Success", "You have successfully change your password.", "success");
-
+    shortToast("Success", "You have successfully change your password.", "success", 3000);
   } catch (error) {
-    setError("");
-    shortToast("Error", "There was an error with changing the password.", "error");
+    shortToast("Error", "There was an error with changing the password.", "error", 5000);
   }
   setIsLoading(false);
 }

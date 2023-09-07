@@ -62,13 +62,17 @@ const page = async ({ params: { token } }: Props) => {
         {expires ? (
           <div className="flex flex-col items-center justify-center space-y-6">
             <h1 className="text-4xl font-bold">Expired</h1>
-            <p className="text-lg">This link has expired. Please request a new one.</p>
+            <p className="text-lg">
+              This link has expired. Please request a new one.
+            </p>
           </div>
         ) : null}
         {confimed ? (
           <div className="flex flex-col items-center justify-center space-y-6">
             <h1 className="text-4xl font-bold">Confirmed</h1>
-            <p className="text-lg">Your email has been confirmed. You can now login.</p>
+            <p className="text-lg">
+              Your email has been confirmed. You can now login.
+            </p>
           </div>
         ) : null}
       </div>

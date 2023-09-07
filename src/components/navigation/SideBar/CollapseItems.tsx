@@ -28,75 +28,76 @@ interface CollapseItemsProps {
   page: string;
 }
 
+const itemList = [
+  {
+    mainTile: "Continents",
+    icon: <SouthAmericaIcon />,
+    collapseTitle: ContinentsLinkList,
+  },
+  {
+    mainTile: "Oceans",
+    icon: <SailingIcon />,
+    collapseTitle: OceansLinkList,
+  },
+  {
+    mainTile: "Seas",
+    icon: <WavesIcon />,
+    collapseTitle: SeasLinkList,
+  },
+  {
+    mainTile: "Countries",
+    icon: <FlagIcon />,
+    collapseTitle: CountiresLinkList,
+  },
+  {
+    mainTile: "Cities",
+    icon: <ApartmentIcon />,
+    collapseTitle: CitiesLinkList,
+  },
+  {
+    mainTile: "Mountains",
+    icon: <TerrainIcon />,
+    collapseTitle: MountainsLinkList,
+  },
+  {
+    mainTile: "Lakes",
+    icon: <WaterIcon />,
+    collapseTitle: LakesLinkList,
+  },
+  {
+    mainTile: "Rivers",
+    icon: <WaterIcon />,
+    collapseTitle: RiversLinkList,
+  },
+  {
+    mainTile: "Islands",
+    icon: <Icons.Palmtree />,
+    collapseTitle: IslandsLinkList,
+  },
+  {
+    mainTile: "Currencies",
+    icon: <AttachMoneyIcon />,
+    collapseTitle: CurrenciesLinkList,
+  },
+  {
+    mainTile: "Solar-System",
+    icon: <WbTwilightIcon />,
+    collapseTitle: SolarSystemLinkList,
+  },
+];
+
 const CollapseItems: FC<CollapseItemsProps> = ({ page }) => {
   return (
     <>
-      <ItemCollapse
-        mainTile="Continents"
-        icon={<SouthAmericaIcon />}
-        page={page}
-        collapseTitle={ContinentsLinkList}
-      />
-      <ItemCollapse
-        mainTile="Oceans"
-        icon={<SailingIcon />}
-        page={page}
-        collapseTitle={OceansLinkList}
-      />
-      <ItemCollapse
-        mainTile="Seas"
-        icon={<WavesIcon />}
-        page={page}
-        collapseTitle={SeasLinkList}
-      />
-      <ItemCollapse
-        mainTile="Countries"
-        icon={<FlagIcon />}
-        page={page}
-        collapseTitle={CountiresLinkList}
-      />
-      <ItemCollapse
-        mainTile="Cities"
-        icon={<ApartmentIcon />}
-        page={page}
-        collapseTitle={CitiesLinkList}
-      />
-      <ItemCollapse
-        mainTile="Mountains"
-        icon={<TerrainIcon />}
-        page={page}
-        collapseTitle={MountainsLinkList}
-      />
-      <ItemCollapse
-        mainTile="Lakes"
-        icon={<WaterIcon />}
-        page={page}
-        collapseTitle={LakesLinkList}
-      />
-      <ItemCollapse
-        mainTile="Rivers"
-        icon={<WaterIcon />}
-        page={page}
-        collapseTitle={RiversLinkList}
-      />
-      <ItemCollapse
-        mainTile="Islands"
-        icon={<Icons.Palmtree />}
-        page={page}
-        collapseTitle={IslandsLinkList}
-      />
-      <ItemCollapse
-        mainTile="Currencies"
-        icon={<AttachMoneyIcon />}
-        page={page}
-        collapseTitle={CurrenciesLinkList}
-      />
-      <ItemCollapse
-        mainTile="Solar System"
-        icon={<WbTwilightIcon />}
-        page={page}
-        collapseTitle={SolarSystemLinkList}
-      />
+      {itemList.map((item, index) => (
+        <ItemCollapse
+          key={index}
+          mainTile={item.mainTile}
+          icon={item.icon}
+          collapseTitle={item.collapseTitle}
+          page={page}
+        />
+      ))}
     </>
   );
 };

@@ -29,6 +29,7 @@ const ItemCollapse: FC<ItemCollapseProps> = ({
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const [active, setActive] = useState<string>("");
+  const [links, setLinks] = useState<any>(collapseTitle);
   const searchParams = useSearchParams();
 
   const handleClick = (
@@ -40,9 +41,19 @@ const ItemCollapse: FC<ItemCollapseProps> = ({
 
   useEffect(() => {
     if (mainTile.toLowerCase() === page) {
-      const action = searchParams?.get("action");
-      if (action) {
-        setActive(action);
+      const action = window.location.pathname.split("/")[4];
+      const id = window.location.pathname.split("/")[5];
+      setActive(action);
+
+      if (action === "update") {
+        setLinks([
+          ...collapseTitle,
+          {
+            title: "Update",
+            link: `/admin/data/${page}/update/${id}`,
+            icon: <Icons.Pencil className="mr-2" />,
+          },
+        ]);
       }
 
       setOpen(true);
@@ -64,7 +75,7 @@ const ItemCollapse: FC<ItemCollapseProps> = ({
         )}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
-        {collapseTitle.map((item, index) => (
+        {links.map((item: any, index: number) => (
           <List component="div" disablePadding key={index}>
             <Link href={item.link}>
               {active === item.title.toLowerCase() ? (

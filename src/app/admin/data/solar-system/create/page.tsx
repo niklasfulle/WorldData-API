@@ -24,7 +24,7 @@ const CelestialBodiesCreatePage = async () => {
 
   return (
     <div className="mx-auto flex max-w-full">
-      <Sidebar page="solar system" />
+      <Sidebar page="solar-system" />
       <div className="container h-auto min-h-screen gap-6 p-0 dark:text-white">
         <CreateSection
           title="Create Celestial Bodie"

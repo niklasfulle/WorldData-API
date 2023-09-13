@@ -1,7 +1,4 @@
-import { db } from '@/lib/db/prisma';
 import { withAuth } from 'next-auth/middleware'
-import { getSession } from 'next-auth/react';
-import { headers } from 'next/headers';
 import { NextResponse } from 'next/server'
 
 export default withAuth(

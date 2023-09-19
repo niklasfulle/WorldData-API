@@ -15,7 +15,6 @@ interface CitiesFormProps {
 
 const CitiesForm: FC<CitiesFormProps> = ({ buttonTitle, action, id, city }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
   const router = useRouter();
 
   const handelSubmit = async (e: any) => {

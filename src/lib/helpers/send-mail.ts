@@ -27,7 +27,7 @@ export async function sendConfirmMail(email: string, token: string) {
       to: email,
       subject: "Confirm Email for your account on Worlddata API",
       text: `Please click this link to confirm your email: ${process.env.NEXTAUTH_URL}/confirm-email/${token}`,
-      html: `<div>Please click this link to confirm your email: <a href="${process.env.NEXTAUTH_URL}/confirm-email/${token}">Click</a> </div>`
+      html: `<div>Please click this link to confirm your email: <a href="${process.env.NEXTAUTH_URL}/confirm-email/${token}">Click</a> </div>`,
     };
 
     transporter.sendMail(mailOptions, function (error: any) {

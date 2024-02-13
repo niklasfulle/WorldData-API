@@ -26,7 +26,7 @@ const CountriesForm: FC<CountriesFormProps> = ({
   country,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error /*setError*/] = useState("");
   const [checked, setChecked] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const router = useRouter();
@@ -45,12 +45,7 @@ const CountriesForm: FC<CountriesFormProps> = ({
     }
 
     if (action === "create") {
-      const res = await createCountry(
-        e,
-        timezones,
-        translations,
-        setIsLoading,
-      );
+      const res = await createCountry(e, timezones, translations, setIsLoading);
 
       if (res === "success") {
         e.target.reset();

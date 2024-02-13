@@ -29,7 +29,7 @@ const MobileMenu: FC<UserProfileProps> = ({ session }: UserProfileProps) => {
       setIsLoading(true);
       await signOut();
     } catch (error) {
-      shortToast("Error signing out", "Please try again later.", "error");
+      shortToast("Error signing out", "Please try again later.", "error", 5000);
     }
   };
 

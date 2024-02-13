@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+/*import React, { FC } from "react";
 import Icons from "@/ui/Icons";
 import { shortToast } from "@/lib/helpers/shorter-function";
 import copyToClipboard from "@/lib/helpers/copyToClipboard";
@@ -20,4 +20,4 @@ const CopyIcon: FC<CopyIconProps> = ({ copyText }) => {
   );
 };
 
-export default CopyIcon;
+export default CopyIcon;*/

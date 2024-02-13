@@ -49,7 +49,7 @@ const FormMultyTimezonesInput: FC<FormMultyTimezonesInputProps> = ({
   action,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error /*setError*/] = useState("");
   const router = useRouter();
 
   const addTimezone = () => {

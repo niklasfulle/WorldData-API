@@ -1,4 +1,4 @@
-"use client";
+/*"use client";
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/Tabs";
 import Code from "@/docs/Code";
@@ -218,7 +218,8 @@ const DocumentationTabs = () => {
       >
         <SimpleBar>
           <CopyIcon copyText={rust} />
-          {/* @ts-ignore*/}
+          {/* @ts-ignore*/ /*}
+          
           <Code animated language="rust" code={rust} show />
         </SimpleBar>
       </TabsContent>
@@ -230,7 +231,7 @@ const DocumentationTabs = () => {
       >
         <SimpleBar>
           <CopyIcon copyText={kotlin} />
-          {/* @ts-ignore*/}
+          {/* @ts-ignore*/ /*}
           <Code animated language="kotlin" code={kotlin} show />
         </SimpleBar>
       </TabsContent>
@@ -242,7 +243,7 @@ const DocumentationTabs = () => {
       >
         <SimpleBar>
           <CopyIcon copyText={csharp} />
-          {/* @ts-ignore*/}
+          {/* @ts-ignore*/ /*}
           <Code animated language="csharp" code={csharp} show />
         </SimpleBar>
       </TabsContent>
@@ -250,4 +251,4 @@ const DocumentationTabs = () => {
   );
 };
 
-export default DocumentationTabs;
+export default DocumentationTabs;*/

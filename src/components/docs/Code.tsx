@@ -1,10 +1,11 @@
-import React, { FC, useEffect, useState } from "react";
+/*import React, { FC, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import Highlight, {
   defaultProps,
   type Language,
   Prism,
 } from "prism-react-renderer";
+
 import darkTheme from "prism-react-renderer/themes/nightOwl";
 import lightTheme from "prism-react-renderer/themes/nightOwlLight";
 
@@ -89,3 +90,4 @@ const Code: FC<CodeProps> = ({
 };
 
 export default Code;
+*/

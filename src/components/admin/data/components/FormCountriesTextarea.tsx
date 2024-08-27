@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { Textarea } from "@/ui/Textarea";
 import Icons from "@/ui/Icons";
 import { shortToast } from "@/lib/helpers/shorter-function";

@@ -1,4 +1,4 @@
-"use client";
+/*"use client";
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/Tabs";
 import {
@@ -170,4 +170,4 @@ const DataTabs = () => {
   );
 };
 
-export default DataTabs;
+export default DataTabs;*/

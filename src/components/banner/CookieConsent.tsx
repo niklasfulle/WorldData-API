@@ -40,8 +40,8 @@ const CookieConsent = () => {
 
   return (
     <div className="fixed inset-0 z-50 bg-slate-100 bg-opacity-30">
-      <div className="fixed bottom-0 left-0 right-0 flex flex-col bg-slate-100 px-4 py-4 dark:bg-slate-700 dark:text-white sm:flex-row sm:items-center sm:justify-between sm:px-20 sm:py-8">
-        <span className="mb-3 px-4 text-justify text-base dark:text-white sm:mb-0 sm:mr-16 sm:px-0 sm:text-left sm:text-sm">
+      <div className="fixed bottom-0 left-0 right-0 flex flex-col px-4 py-4 bg-slate-100 dark:bg-slate-700 dark:text-white sm:flex-row sm:items-center sm:justify-between sm:px-20 sm:py-8">
+        <span className="px-4 mb-3 text-base text-justify dark:text-white sm:mb-0 sm:mr-16 sm:px-0 sm:text-left sm:text-sm">
           This website uses cookies to improve user experience. By using our
           website you consent to all cookies in accordance with our Cookie
           Policy. To learn more about cookies, click on
